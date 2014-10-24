@@ -1,0 +1,5 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Synaptics\SynTP\Defaults]
+"HasBothButtonFeature"=dword:00000001
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding='UTF-8'?>
+
+<hrd-sets>
+
+<hrd class="console" name="gentle" description="Gentle Console">
+<location link="%FARPROFILE%/../FarColorer/styles/gentle-console.hrd"/>
+</hrd>
+
+<hrd class="rgb" name="gentle_rgb" description="Gentle RGB">
+<location link="%FARPROFILE%/../FarColorer/styles/gentle-rgb.hrd"/>
+</hrd>
+
+</hrd-sets>
+<!--
+<!DOCTYPE catalog PUBLIC "-//Cail Lomecb//DTD Colorer CATALOG take5//EN" "http://colorer.sf.net/2003/catalog.dtd" [
+
+<!ENTITY styles "&#37;FARPROFILE&#37;/../FarColorer/styles">
+
+]>
+<hrd-sets>
+
+<hrd class="console" name="gentle" description="Gentle Console">
+<location link="&styles;/gentle-console.hrd"/>
+</hrd>
+
+</hrd-sets>
+-->

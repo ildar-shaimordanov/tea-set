@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding='Windows-1251'?>
+<hrc>
+
+<!--  IUM languages  -->
+<prototype name="ium.config" group="IUM" description="IUM Config">
+<location link="schemes/ium/ium.config.hrc"/>
+<filename>/\.(config)$/i</filename>
+</prototype>
+
+<prototype name="jScript" group="inet" description="JavaScript">
+<location link="schemes/jscript.hrc"/>
+<filename>/\.(js|mocha)$/i</filename>
+</prototype>
+
+<prototype name="Batch" group="scripts" description="Batch/Config.sys/NTcmd">
+<location link="schemes/batch.hrc"/>
+<filename weight="3">/\.(Cmd|Bat|nt|btm|sys)$/i</filename>
+</prototype>
+
+<prototype name="shell" group="scripts" description="sh/ksh/bash script">
+<location link="schemes/sh.hrc"/>
+<filename>/\.(sh|spec)$/i</filename>
+<filename>/^PKGBUILD$/i</filename>
+<firstline weight='2'>/^\#(!\s*.+sh\b)/</firstline>
+</prototype>
+
+</hrc>
