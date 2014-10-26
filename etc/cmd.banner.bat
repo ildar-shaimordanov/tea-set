@@ -7,25 +7,29 @@
 
 @echo off
 
-for %%m in ( set path doskey alias home conemu far ) do (
-	if /i "%~1" == "/LIST" echo:%%m
-	if /i "%~1" == "%%m" (
-		call :show_%%m
-		echo:
-		goto :EOF
-	)
+setlocal
+
+set "banner_list=set path doskey alias home conemu far"
+
+if "%~1" == "" (
+	echo:Show the actual environment ^(variables and/or aliases^)
+	echo:
+	echo:Usage:
+	echo:%~n0 PATTERN ...
+	echo:
+	echo:Available patterns:
+	echo:%banner_list%
+
+	goto :EOF
 )
 
-if /i "%~1" == "/LIST" goto :EOF
+:banner_loop_1
+if "%~1" == "" goto :EOF
 
-echo:Usage:
-echo:
-echo:Show environment variables accordingly the PATTERN
-echo:    %~n0 PATTERN
-echo:
-echo:Show the list of all available patterns
-echo:    %~n0 /LIST
-goto :EOF
+for %%m in ( %banner_list% ) do if /i "%~1" == "%%m" call :show_%%m && echo:
+shift
+
+goto :banner_loop_1
 
 :: ========================================================================
 
@@ -38,13 +42,12 @@ for %%a in ( "%PATH:;=" "%" ) do echo:%%~a
 goto :EOF
 
 :show_doskey
-
 :show_alias
 doskey /macros
 goto :EOF
 
 :show_home
-set | findstr /i "HOME="
+set | findstr /i /b "[^=]*HOME="
 goto :EOF
 
 :show_conemu

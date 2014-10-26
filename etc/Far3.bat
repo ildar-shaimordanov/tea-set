@@ -30,9 +30,7 @@ set "FAROPTS=/w"
 
 if exist "%~dp0cmd.env.bat" call "%~dp0cmd.env.bat"
 
-if defined SHOW_BANNER_FAR if exist "%~dp0cmd.banner.bat" (
-	for %%b in ( %SHOW_BANNER_FAR% ) do call "%~dp0cmd.banner.bat" %%b
-)
+if defined SHOW_BANNER_FAR if exist "%~dp0cmd.banner.bat" call "%~dp0cmd.banner.bat" %SHOW_BANNER_FAR%
 
 if not exist "%FARHOME%\Far.exe.ini" (
 	echo:
