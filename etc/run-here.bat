@@ -1,8 +1,8 @@
 @echo off
 
-if /i "%~1" == "" goto :run_help
-
 setlocal
+
+if /i "%~1" == "" goto :run_help
 
 :: Current user
 :: HKEY_CURRENT_USER\Software\Classes\Drive\shell\<menu>\command
