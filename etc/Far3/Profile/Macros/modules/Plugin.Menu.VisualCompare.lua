@@ -18,7 +18,7 @@ INSTALLATION
 2. Create the following item in the Main Menu (launched by pressing F2): 
 
 :  Visual Compare
-    lua:@"%FARPROFILE%\Macros\modules\Plugin.VisualCompare.lua"
+    lua:@"%FARPROFILE%\Macros\modules\Plugin.Menu.VisualCompare.lua"
 
 REQUIREMENTS
 ------------
