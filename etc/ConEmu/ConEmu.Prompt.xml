@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2014-10-24 09:31:02" build="141001">
+		<key name=".Vanilla" modified="2014-10-28 01:52:42" build="141004">
 			<value name="SingleInstance" type="hex" data="00"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="00"/>
@@ -92,6 +92,7 @@
 			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
+				<line data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\etc\clink.bat&quot;"/>
 				<line data="{far3}"/>
 				<line data="{cmd.prompt}"/>
 				<line data="{cmd}"/>

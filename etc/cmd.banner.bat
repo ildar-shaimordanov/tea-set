@@ -26,7 +26,7 @@ if "%~1" == "" (
 :banner_loop_1
 if "%~1" == "" goto :EOF
 
-for %%m in ( %banner_list% ) do if /i "%~1" == "%%m" call :show_%%m && echo:
+for %%m in ( %banner_list% ) do if /i "%~1" == "%%m" call :show_%%m & echo:
 shift
 
 goto :banner_loop_1

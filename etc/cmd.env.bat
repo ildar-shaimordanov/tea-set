@@ -9,31 +9,12 @@
 
 :: ========================================================================
 ::
-:: Integration with ConEmu
-::
-:: ========================================================================
-
-if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
-:: powershell "\"`n\" * ((Get-Host).UI.RawUI.WindowSize.Height)"
-:: if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" for /f %%h in ( ' powershell "(Get-Host).UI.RawUI.WindowSize.Height" ' ) do echo:[%%hE
-
-:: Make ConEmu's environment variables available for child processes
-:: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
-:: 	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && "%ConEmuBaseDir%\ConEmuC.exe" /export
-:: )
-
-:: Colorize the command line prompt 
-::if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\ColorPrompt.cmd" (
-::	call "%ConEmuBaseDir%\ColorPrompt.cmd"
-::)
-
-:: ========================================================================
-::
 :: Escape double execution
 ::
 :: ========================================================================
 
-if defined CMD_ENV_LOADED goto :EOF
+if defined CMD_ENV_LOADED goto :cmd.env.integration
+
 set "CMD_ENV_LOADED=1"
 
 :: ========================================================================
@@ -42,7 +23,7 @@ set "CMD_ENV_LOADED=1"
 ::
 :: ========================================================================
 
-set "SHOW_BANNER_FAR=conemu home path"
+set "SHOW_BANNER_FAR=conemu far home path"
 set "SHOW_BANNER_CMD=conemu home path"
 
 :: ========================================================================
@@ -58,18 +39,40 @@ for /f "tokens=*" %%p in ( "%~dp0.." ) do set "TEA_HOME=%%~fp"
 set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
 
 :: 7-zip path
-set "A7ZIP_HOME=%TEA_HOME%\vendors\7za"
-if exist "%A7ZIP_HOME%" set "PATH=%PATH%;%A7ZIP_HOME%"
+set "SEVENZIP_HOME=%TEA_HOME%\vendors\7za"
+if exist "%SEVENZIP_HOME%" set "PATH=%PATH%;%SEVENZIP_HOME%"
+
+:: ========================================================================
+::
+:: SVN
+::
+:: ========================================================================
+
+set "SVN_HOME=%TEA_HOME%\opt\svn-1.8.5"
+if exist "%SVN_HOME%" set "PATH=%PATH%;%SVN_HOME%\bin"
+
+:: ========================================================================
+::
+:: Git
+:: (prepend in PATH for using unix tools "find" and "sort")
+::
+:: ========================================================================
+
+:: set "GIT_HOME=C:\Program Files (x86)\Git"
+set "GIT_HOME=%TEA_HOME%\vendors\msysgit"
+:: if exist "%GIT_HOME%" set "PATH=%PATH%;%GIT_HOME%\cmd"
+if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\cmd;%GIT_HOME%\share\vim\vim74;%PATH%"
 
 :: ========================================================================
 ::
 :: Perl
+:: (prepend in PATH for covering old Perl version in msysgit)
 ::
 :: ========================================================================
 
 :: set "PERL_HOME=%TEA_HOME%\vendors\strawberryPerl-5.8.8.3"
 set "PERL_HOME=%TEA_HOME%\vendors\StrawberryPerl-5.16.2"
-if exist "%PERL_HOME%" set "PATH=%PATH%;%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%PERL_HOME%\c\bin"
+if exist "%PERL_HOME%" set "PATH=%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%PERL_HOME%\c\bin;%PATH%"
 
 :: ========================================================================
 ::
@@ -82,20 +85,6 @@ set "PATH=%PATH%;%TEA_HOME%\opt\curl\bin"
 
 :: ========================================================================
 ::
-:: Java
-::
-:: ========================================================================
-
-for %%d in (
-	"C:\Program Files\Java\jdk"
-	"C:\Program Files (x86)\Java\jdk"
-	"C:\Program Files\Java\jre"
-	"C:\Program Files (x86)\Java\jre"
-) do if not defined JAVA_HOME for /d %%p in ( "%%~d*" ) do set "JAVA_HOME=%%p"
-if defined JAVA_HOME set "PATH=%PATH%;%JAVA_HOME%\bin"
-
-:: ========================================================================
-::
 :: Apache Ant
 ::
 :: ========================================================================
@@ -103,22 +92,6 @@ if defined JAVA_HOME set "PATH=%PATH%;%JAVA_HOME%\bin"
 set "ANT_HOME=%TEA_HOME%\opt\apache-ant-1.9.3"
 :: set "ANT_HOME=%TEA_HOME%\opt\apache-ant-1.9.4"
 if exist "%ANT_HOME%" set "PATH=%PATH%;%ANT_HOME%\bin"
-
-:: ========================================================================
-::
-:: Version Control: SVN, Git
-::
-:: ========================================================================
-
-set "SVN_HOME=%TEA_HOME%\opt\svn-1.8.5"
-if exist "%SVN_HOME%" set "PATH=%PATH%;%SVN_HOME%\bin"
-
-:: set "GIT_HOME=%PATH%;C:\Program Files (x86)\Git"
-:: set "GIT_HOME=%TEA_HOME%\vendors\msysgit_v1.8.4"
-:: set "GIT_HOME=%TEA_HOME%\vendors\msysgit_v1.9.0"
-set "GIT_HOME=%TEA_HOME%\vendors\msysgit"
-:: if exist "%GIT_HOME%" set "PATH=%PATH%;%GIT_HOME%\cmd"
-if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\cmd;%GIT_HOME%\share\vim\vim74;%PATH%"
 
 :: ========================================================================
 ::
@@ -180,11 +153,50 @@ if defined UNIX_HOME set "PATH=%PATH%;%UNIX_HOME%\bin"
 
 :: ========================================================================
 ::
+:: Java
+::
+:: ========================================================================
+
+for %%d in (
+	"C:\Program Files\Java\jdk"
+	"C:\Program Files (x86)\Java\jdk"
+	"C:\Program Files\Java\jre"
+	"C:\Program Files (x86)\Java\jre"
+) do if not defined JAVA_HOME for /d %%p in ( "%%~d*" ) do set "JAVA_HOME=%%p"
+if defined JAVA_HOME set "PATH=%PATH%;%JAVA_HOME%\bin"
+
+:: ========================================================================
+::
 :: VirtualBox
 ::
 :: ========================================================================
 
 if exist "C:\Program Files\Oracle\VirtualBox" set "PATH=%PATH%;C:\Program Files\Oracle\VirtualBox"
+
+:: ========================================================================
+::
+:: Integration with ConEmu
+::
+:: ========================================================================
+
+:cmd.env.integration
+
+if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
+
+:: Integrate Git into prompt
+if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
+	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_
+)
+
+:: Make ConEmu's environment variables available for child processes
+:: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
+:: 	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && "%ConEmuBaseDir%\ConEmuC.exe" /export
+:: )
+
+:: Colorize the command line prompt 
+:: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\ColorPrompt.cmd" (
+:: 	call "%ConEmuBaseDir%\ColorPrompt.cmd"
+:: )
 
 :: ========================================================================
 

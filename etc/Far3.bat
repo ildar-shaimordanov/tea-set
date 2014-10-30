@@ -1,51 +1,51 @@
 @echo off
 
 if /i "%~1" == "/N" (
-	set "FARNAME=%~2"
+	set "FAR_NAME=%~2"
 	shift
 	shift
 )
 
-if not defined FARNAME set "FARNAME=Far3"
+if not defined FAR_NAME set "FAR_NAME=Far3"
 
-set "FARHOME=%~dp0..\vendors\%FARNAME%"
+set "FAR_HOME=%~dp0..\vendors\%FAR_NAME%"
 
-if not exist "%FARHOME%" (
-	call :error "%FARHOME% not found"
+if not exist "%FAR_HOME%" (
+	call :error "%FAR_HOME% not found"
 	goto :EOF
 )
 
-if not exist "%FARHOME%\Far.exe" (
-	call :error "%FARHOME%\Far.exe not found"
+if not exist "%FAR_HOME%\Far.exe" (
+	call :error "%FAR_HOME%\Far.exe not found"
 	goto :EOF
 )
 
 :: Path to the common directory for all FAR-related stuffs
 :: It can be redeclared in "cmd.env.bat"
-set "FARCONF=%~dp0Far3"
+set "FAR_CONF=%~dp0Far3"
 
 :: FAR startup options
 :: It can be redeclared in "cmd.env.bat"
-set "FAROPTS=/w"
+set "FAR_OPTS=/w"
 
 if exist "%~dp0cmd.env.bat" call "%~dp0cmd.env.bat"
 
 if defined SHOW_BANNER_FAR if exist "%~dp0cmd.banner.bat" call "%~dp0cmd.banner.bat" %SHOW_BANNER_FAR%
 
-if not exist "%FARHOME%\Far.exe.ini" (
+if not exist "%FAR_HOME%\Far.exe.ini" (
 	echo:
 	echo:*** Copying Far Manager global configuration
-	copy /b "%FARCONF%\Far.exe.ini" "%FARHOME%\Far.exe.ini" || (
-		call :error "Cannot copy %FARCONF%\Far.exe.ini to %FARHOME%"
+	copy /b "%FAR_CONF%\Far.exe.ini" "%FAR_HOME%\Far.exe.ini" || (
+		call :error "Cannot copy %FAR_CONF%\Far.exe.ini to %FAR_HOME%"
 		goto :EOF
 	)
 )
 
 call :conemu_plugin_check
 
-echo:Starting %FARNAME%
+echo:Starting %FAR_NAME%
 
-"%FARHOME%\Far.exe" %FAROPTS% %1 %2 %3 %4 %5 %6 %7 %8 %9
+"%FAR_HOME%\Far.exe" %FAR_OPTS% %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 echo:Terminating...
 goto :EOF
@@ -53,7 +53,7 @@ goto :EOF
 :: ========================================================================
 
 :usage
-echo:Usage: %~n0 /N FARNAME
+echo:Usage: %~n0 /N FAR_NAME
 goto :EOF
 
 :: ========================================================================
@@ -75,7 +75,7 @@ if not defined ConEmuBuild goto :EOF
 
 setlocal
 
-set "far_PluginDir=%FARCONF%\Profile\Plugins"
+set "far_PluginDir=%FAR_CONF%\Profile\Plugins"
 set "far_ConEmuDir=%far_PluginDir%\ConEmu"
 set "far_ConEmuFile=%far_ConEmuDir%\ConEmu.dll"
 set "far_ConEmuBuild="
