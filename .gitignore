@@ -31,3 +31,4 @@ var/
 
 vendors/
 !vendors/README.md
+!vendors/package_list.txt

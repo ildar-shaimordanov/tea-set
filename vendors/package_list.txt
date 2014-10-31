@@ -1,0 +1,32 @@
+
+7-zip
+http://7-zip.org.ua/ru/download.html
+http://downloads.sourceforge.net/sevenzip/7za920.zip
+
+notepad2
+http://www.flos-freeware.ch/notepad2.html
+http://www.flos-freeware.ch/zip/notepad2_4.2.25_x86.zip
+
+Clink
+https://github.com/mridgers/clink
+https://github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2.zip
+
+ConEmu
+http://www.fosshub.com/ConEmu.html
+http://app.fosshub.com/download/ConEmuPack.140814.7z/c72a7b3f7eb5896d8dc1e88b940980c5
+
+msysgit
+https://github.com/msysgit/msysgit
+https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z
+
+mintty for msysgit
+http://code.google.com/p/mintty/
+http://code.google.com/p/mintty/downloads/list
+
+svn
+http://subversion.apache.org/
+http://sourceforge.net/projects/win32svn/files/1.8.5/apache22/svn-win32-1.8.5.zip/download
+
+Strawberry Perl
+http://strawberryperl.com/releases.html
+http://strawberryperl.com/download/5.16.2.1/strawberry-perl-5.16.2.1-32bit-portable.zip
