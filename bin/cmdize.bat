@@ -11,6 +11,30 @@
 ::
 :: SEE ALSO
 :: Proceed the following links to learn more the origins
+::
+:: .js
+:: http://forum.script-coding.com/viewtopic.php?pid=79210#p79210
+:: http://www.dostips.com/forum/viewtopic.php?p=33879#p33879
+::
+:: .vbs
+:: http://www.dostips.com/forum/viewtopic.php?p=33882#p33882
+:: http://www.dostips.com/forum/viewtopic.php?p=32485#p32485
+::
+:: .pl
+:: For details and better support see "pl2bat.bat" from Perl distribution
+::
+:: .ps1
+:: http://blogs.msdn.com/b/jaybaz_ms/archive/2007/04/26/powershell-polyglot.aspx
+:: http://stackoverflow.com/a/2611487/3627676
+::
+:: .hta and .html?
+:: http://forum.script-coding.com/viewtopic.php?pid=79322#p79322
+::
+:: .wsf
+:: http://www.dostips.com/forum/viewtopic.php?p=33963#p33963
+::
+:: COPYRIGHTS
+:: Copyright (c) 2014 Ildar Shaimordanov
 
 @echo off
 
@@ -53,10 +77,6 @@ goto :cmdize.loop.begin
 goto :EOF
 
 
-::
-:: .js
-:: http://forum.script-coding.com/viewtopic.php?pid=79210#p79210
-:: http://www.dostips.com/forum/viewtopic.php?p=33879#p33879
 :cmdize.js
 echo:@if ^(true == false^) @end /*!
 echo:@echo off
@@ -66,10 +86,6 @@ type "%~f1"
 goto :EOF
 
 
-::
-:: .vbs
-:: http://www.dostips.com/forum/viewtopic.php?p=33882#p33882
-:: http://www.dostips.com/forum/viewtopic.php?p=32485#p32485
 :cmdize.vbs
 copy /y nul + nul /a "%TEMP%\%~n0.$$" /a 1>nul
 
@@ -90,9 +106,6 @@ type "%~f1"
 goto :EOF
 
 
-::
-:: .pl
-:: For details and better support see "pl2bat.bat" from Perl distribution
 :cmdize.pl
 echo:@rem = '--*-Perl-*--
 echo:@echo off
@@ -104,10 +117,6 @@ type "%~f1"
 goto :EOF
 
 
-::
-:: .ps1
-:: http://blogs.msdn.com/b/jaybaz_ms/archive/2007/04/26/powershell-polyglot.aspx
-:: http://stackoverflow.com/a/2611487/3627676
 :cmdize.ps1
 echo:^<# :
 echo:@echo off
@@ -121,9 +130,6 @@ type "%~f1"
 goto :EOF
 
 
-::
-:: .hta and .html?
-:: http://forum.script-coding.com/viewtopic.php?pid=79322#p79322
 :cmdize.hta
 :cmdize.htm
 :cmdize.html
@@ -136,9 +142,6 @@ type "%~f1"
 goto :EOF
 
 
-::
-:: .wsf
-:: http://www.dostips.com/forum/viewtopic.php?p=33963#p33963
 :cmdize.wsf
 for /f "usebackq tokens=1,*" %%a in ( "%~f1" ) do (
 	echo:%%a :
@@ -155,8 +158,5 @@ for /f "usebackq tokens=1,*" %%a in ( "%~f1" ) do (
 )
 goto :EOF
 
-::
-:: COPYRIGHTS
-:: Copyright (c) 2014 Ildar Shaimordanov
 
 rem EOF
