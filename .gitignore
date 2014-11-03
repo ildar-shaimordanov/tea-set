@@ -1,6 +1,7 @@
 
 bin/*
 !bin/alias.bat
+!bin/cmdize.bat
 !bin/exe2exe.bat
 !bin/unalias.bat
 !bin/which.bat
