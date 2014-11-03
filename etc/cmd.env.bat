@@ -185,7 +185,7 @@ if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
 
 :: Integrate Git into prompt
 if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
-	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_
+	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_$g$s
 )
 
 :: Make ConEmu's environment variables available for child processes
