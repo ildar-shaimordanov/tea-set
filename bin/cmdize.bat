@@ -164,9 +164,9 @@ goto :EOF
 
 :cmdize.wsf
 for /f "usebackq tokens=1,2,* delims=?" %%a in ( "%~f1" ) do for /f "tokens=1,*" %%d in ( "%%b" ) do (
-	rem We use this code to transform the "<?xml?> declaration located 
-	rem at the very beginning of the file to the "polyglot" to do it 
-	rem acceptable by the batch file.
+	rem We use this code to transform the "<?xml?>" declaration 
+	rem located at the very beginning of the file to the "polyglot" 
+	rem form to do it acceptable by the batch file.
 	echo:%%a?%%d :
 	echo:: %%e ?^>^<!--
 	echo:@echo off
