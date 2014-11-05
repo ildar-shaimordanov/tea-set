@@ -5,7 +5,6 @@ bin/*
 !bin/exe2exe.bat
 !bin/unalias.bat
 !bin/which.bat
-!bin/x.bat
 !bin/README.md
 
 etc/clink/.history
