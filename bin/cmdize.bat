@@ -159,13 +159,18 @@ goto :EOF
 :cmdize.wsf
 for /f "usebackq tokens=1,*" %%a in ( "%~f1" ) do (
 	echo:%%a :
-	for /f "tokens=1,* delims=?>" %%c in ( "%%b" ) do (
-		echo:: %%c
+	for /f "tokens=1,* delims=?" %%c in ( "%%b" ) do (
+		if not "%%d" == "" echo:: %%c
 		echo:: ?^>^<!--
 		echo:@echo off
 		echo:"%%windir%%\System32\cscript.exe" //nologo "%%~f0?.wsf" %%*
 		echo:goto :EOF
-		echo:: --^>%%d
+		set /p "=: --" <nul
+		if "%%d" == "" (
+			echo:%%c
+		) else (
+			echo:%%d
+		)
 	)
 	more +1 <"%~f1"
 	goto :EOF
