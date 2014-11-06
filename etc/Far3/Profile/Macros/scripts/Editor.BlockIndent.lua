@@ -52,7 +52,9 @@ local Indent = function (IndentByTabSize, Forward)
 
 	repeat
 		editor.SetPosition(nil, line, 1, 0, 0, 1, ei.Overtype)
-		local s = editor.GetString(nil, 0, 0)
+-- patch 2.7 at http://forum.farmanager.com/viewtopic.php?p=125167#p125167
+--		local s = editor.GetString(nil, 0, 0)
+		local s = editor.GetString(nil, line, 0)
 		if not s or (loop and ((s.SelStart == 0) or (s.SelEnd ~= -1 and s.SelStart > s.SelEnd))) then
 			break
 		end
@@ -64,10 +66,14 @@ local Indent = function (IndentByTabSize, Forward)
 				x = x - 1
 			end
 			x = Forward and x + 1 or x
-			editor.SetString(nil, nil, s.StringText:sub(j), s.StringEOL)
-			for i=1,x,1 do editor.InsertText(nil,IndentStr) end
+-- patch 2.7 at http://forum.farmanager.com/viewtopic.php?p=125167#p125167
+--			editor.SetString(nil, nil, s.StringText:sub(j), s.StringEOL)
+--			for i=1,x,1 do editor.InsertText(nil,IndentStr) end
+			editor.SetString(nil, nil, IndentStr:rep(x)..s.StringText:sub(j), s.StringEOL)
 		end
 		line = line + 1
+-- http://forum.farmanager.com/viewtopic.php?p=125170#p125170
+		loop = ei.TotalLines >= line
 	until not loop
 
 	editor.SetPosition(nil, ei.CurLine, ei.CurPos, 0, ei.TopScreenLine, ei.LeftPos, ei.Overtype)
