@@ -45,10 +45,10 @@ F - white
 <assign name="def:Character" fore="#E" />
 <assign name="def:CharacterContent" fore="#E" />
 
-<assign name="def:Comment" fore="#3" />
+<assign name="def:Comment" fore="#7" />
 <assign name="def:CommentContent" fore="#7" style="1" />
 <assign name="def:CommentEdge" fore="#3" />
-<assign name="def:CommentDoc" fore="#7" />
+<assign name="def:CommentDoc" fore="#8" />
 <assign name="def:CommentDocContent" fore="#3" />
 <assign name="def:CommentDocEdge" fore="#3" />
 
