@@ -7,6 +7,10 @@ notepad2
 http://www.flos-freeware.ch/notepad2.html
 http://www.flos-freeware.ch/zip/notepad2_4.2.25_x86.zip
 
+notepad2-mod
+http://code.google.com/p/notepad2-mod/
+http://code.google.com/p/notepad2-mod/downloads/detail?name=Notepad2-mod.4.2.25.856_x86.zip
+
 Clink
 https://github.com/mridgers/clink
 https://github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2.zip

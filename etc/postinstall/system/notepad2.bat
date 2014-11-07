@@ -1,22 +1,46 @@
+:: http://www.flos-freeware.ch/doc/notepad2-Replacement.html
+
 @echo off
 
 setlocal
 
-set "v_key=HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe"
+set "np_registry=HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe"
 
-set "v_app="
-for /f "tokens=*" %%f in ( "%~dp0..\..\..\vendors\notepad2\Notepad2.exe" ) do set "v_app=%%~ff"
+if /i "%~1" == "/install"   call :np_add
+if /i "%~1" == "/uninstall" call :np_delete
 
-if not defined v_app (
-	echo:Notepad2 not found at "%~dp0..\..\..\vendors\notepad2\Notepad2.exe"
-	goto :EOF
-)
-
-if /i "%~1" == "/install"   reg add    "%v_key%" /v "Debugger" /t REG_SZ /d "\"%v_app%\" /z" /f
-if /i "%~1" == "/uninstall" reg delete "%v_key%" /f
-
-reg query "%v_key%"
+call :np_show
 
 endlocal
+goto :EOF
+
+
+:np_setup
+set "np_fullpath="
+for %%f in (
+	"%~dp0..\..\..\vendors\notepad2-mod\Notepad2.exe"
+	"%~dp0..\..\..\vendors\notepad2\Notepad2.exe"
+) do if exist "%%~ff" (
+	set "np_fullpath=%%~ff"
+	goto :EOF
+)
+echo:Notepad2 not found>&2
+exit /b 1
+
+
+:np_add
+call :np_setup || goto :EOF
+
+reg add "%np_registry%" /v "Debugger" /t REG_SZ /d "\"%np_fullpath%\" /z" /f
+goto :EOF
+
+
+:np_delete
+reg delete "%np_registry%" /f
+goto :EOF
+
+
+:np_show
+reg query "%np_registry%"
 goto :EOF
 
