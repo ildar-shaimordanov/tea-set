@@ -29,7 +29,7 @@ assumed the later versions are compatible):
 Far Manager v3.0 build 4040
 http://www.farmanager.com/download.php
 
-Visual Compare plugin 1.16.0 by Maxim Rusov
+Visual Compare plugin 1.16 and higher by Maxim Rusov
 http://plugring.farmanager.com/plugin.php?pid=856
 
 ]]
@@ -43,8 +43,11 @@ if not Plugin.Exist(guid) then return end;
 -- the item on the active panel
 local curr = APanel.Current;
 
--- the item on the passive panel (panelType=1)
+-- the same item on the passive panel (panelType=1)
 if Panel.FExist(1, curr) == 0 then return end;
+
+-- avoid pointing to the upper level directory
+if curr == '..' then curr = '' end;
 
 local lp = APanel.Left and APanel or PPanel;
 local rp = APanel.Left and PPanel or APanel;
