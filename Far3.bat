@@ -22,7 +22,7 @@ if not exist "%FAR_HOME%\Far.exe" (
 
 :: Path to the common directory for all FAR-related stuffs
 :: It can be redeclared in "cmd.env.bat"
-set "FAR_CONF=%~dp0Far3"
+set "FAR_CONF=%~dp0etc\Far3"
 
 :: FAR startup options
 :: It can be redeclared in "cmd.env.bat"
