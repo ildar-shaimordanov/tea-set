@@ -33,7 +33,7 @@ set "SHOW_BANNER_CMD=conemu home path"
 :: ========================================================================
 
 :: Tea-Set homedir
-for /f "tokens=*" %%p in ( "%~dp0" ) do set "TEA_HOME=%%~fp"
+for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
 
 :: Common paths
 set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
