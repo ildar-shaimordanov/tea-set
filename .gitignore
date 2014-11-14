@@ -4,6 +4,7 @@ bin/*
 !bin/ansi.bat
 !bin/cmdize.bat
 !bin/exe2exe.bat
+!bin/run-here.bat
 !bin/unalias.bat
 !bin/which.bat
 !bin/README.md
