@@ -8,7 +8,7 @@ if /i "%~1" == "/N" (
 
 if not defined FAR_NAME set "FAR_NAME=Far3"
 
-set "FAR_HOME=%~dp0..\vendors\%FAR_NAME%"
+set "FAR_HOME=%~dp0vendors\%FAR_NAME%"
 
 if not exist "%FAR_HOME%" (
 	call :error "%FAR_HOME% not found"

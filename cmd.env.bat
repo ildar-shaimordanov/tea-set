@@ -33,7 +33,7 @@ set "SHOW_BANNER_CMD=conemu home path"
 :: ========================================================================
 
 :: Tea-Set homedir
-for /f "tokens=*" %%p in ( "%~dp0.." ) do set "TEA_HOME=%%~fp"
+for /f "tokens=*" %%p in ( "%~dp0" ) do set "TEA_HOME=%%~fp"
 
 :: Common paths
 set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
@@ -172,17 +172,17 @@ if defined UNIX_HOME set "PATH=%UNIX_HOME%\bin;%PATH%"
 
 :: What is the HOME directory?
 :: http://gnuwin32.sourceforge.net/faq.html
-set "HOME=%TEA_HOME%"
+:: set "HOME=%TEA_HOME%"
 
 :: The program aborts with the message: cannot create file /tmp/...
 :: http://gnuwin32.sourceforge.net/faq.html
-set "TMPDIR=%TEMP%"
-set "TMP=%TEMP%"
+:: set "TMPDIR=%TEMP%"
+:: set "TMP=%TEMP%"
 
 :: How can I disable native language support?
 :: http://gnuwin32.sourceforge.net/faq.html
-set "LANG=en"
-set "LANGUAGE=en"
+:: set "LANG=en"
+:: set "LANGUAGE=en"
 
 :: ========================================================================
 ::
