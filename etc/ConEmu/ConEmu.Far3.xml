@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2014-11-14 04:29:44" build="141004">
+		<key name=".Vanilla" modified="2014-11-15 18:59:18" build="141004">
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
 			<value name="Update.CheckOnStartup" type="hex" data="00"/>
@@ -476,9 +476,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-				<key name="Tasks" modified="2014-10-24 09:23:21" build="141001">
+				<key name="Tasks" modified="2014-11-15 18:59:18" build="141004">
 				<value name="Count" type="dword" data="00000006"/>
-						<key name="Task1" modified="2014-11-14 04:12:39" build="141004">
+						<key name="Task1" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{Cmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
@@ -486,7 +486,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00005b54"/>
 				</key>
-						<key name="Task2" modified="2014-11-14 04:12:39" build="141004">
+						<key name="Task2" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
@@ -495,7 +495,7 @@
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\Far.bat"/>
 					<value name="Hotkey" type="dword" data="00125b54"/>
 				</key>
-						<key name="Task3" modified="2014-11-14 04:26:24" build="141004">
+						<key name="Task3" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
@@ -503,7 +503,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task4" modified="2014-11-14 04:26:24" build="141004">
+						<key name="Task4" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{Cygwin Terminal}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\x-cygwin\bin\mintty.exe&quot; -i /Cygwin-Terminal.ico -"/>
@@ -513,7 +513,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task5" modified="2014-11-14 04:26:24" build="141004">
+						<key name="Task5" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="PowerShell.exe"/>
@@ -523,7 +523,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task6" modified="2014-11-14 04:26:24" build="141004">
+						<key name="Task6" modified="2014-11-15 18:59:18" build="141004">
 					<value name="Name" type="string" data="{nnBackup}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="dword" data="00000000"/>
@@ -556,10 +556,10 @@
 					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
 				</key>
 			</key>
-				<key name="Apps" modified="2014-11-14 04:26:24" build="141004">
+				<key name="Apps" modified="2014-11-15 18:59:18" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-				<key name="Colors" modified="2014-11-14 04:26:24" build="141004">
+				<key name="Colors" modified="2014-11-15 18:59:18" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="01"/>
