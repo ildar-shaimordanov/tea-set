@@ -1,27 +1,33 @@
 
--- http://forum.farmanager.com/viewtopic.php?f=60&t=9174
+-- http://forum.farmanager.com/viewtopic.php?p=125855#p125855
 
-local map = {
-	['L'] = 0, -- CtrlAltL: Lower  0 - lower case   
-	['T'] = 1, -- CtrlAltT: Title  1 - Title Case   
-	['U'] = 2, -- CtrlAltU: Upper  2 - UPPER CASE   
-	['G'] = 3, -- CtrlAltG: Toggle 3 - tOGGLE cASE  
-	['C'] = 4, -- CtrlAltC: Cyclic 4 - Cyclic change
-};
+local shortcuts = {
+	["CtrlAltL"] = "Lower",
+	["CtrlAltT"] = "Title",
+	["CtrlAltU"] = "Upper",
+	["CtrlAltG"] = "Toggle",
+	["CtrlAltC"] = "Cyclic",
+}
+
+local desc = "Editor: Change Case";
 
 Macro {
+	description = desc .. ": Menu";
 	area = "Editor";
-	key = "/F4|[LR]Ctrl[LR]Alt[LTUGC]/";
-	description = "Editor: Edit Case";
+	key = "F4";
 	action = function()
-		local K = akey(1);
-		if K == 'F4' then
-			Plugin.Call('0E92FC81-4888-4297-A85D-31C79E0E0CEE');
-			return;
-		end;
-
-		local V = K:sub(8);
-
-		Plugin.Call( '0E92FC81-4888-4297-A85D-31C79E0E0CEE', map[V] );
+		Plugin.Call("0E92FC81-4888-4297-A85D-31C79E0E0CEE");
 	end
 }
+
+for key, cmd in pairs(shortcuts) do
+	Macro {
+		description = desc .. ": " .. cmd;
+		area = "Editor";
+		key = key;
+		action = function()
+			Plugin.Call("0E92FC81-4888-4297-A85D-31C79E0E0CEE", cmd);
+		end
+	}
+end
+
