@@ -82,16 +82,7 @@
 			<value name="StartFarEditors" type="hex" data="00"/>
 			<value name="StoreTaskbarkTasks" type="hex" data="01"/>
 			<value name="StoreTaskbarCommands" type="hex" data="01"/>
-			<value name="CmdLineHistory" type="multi"><line data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/><line data="{nnBackup}"/><line data="&quot;%ConEmuDir%\..\..\etc\Far3.bat&quot;"/><line data="{Far3}"/><line data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\etc\clink.bat&quot;"/><line data="{Cmd}"/><line data="cmd"/><line data="{Cmd.term}"/><line data="&quot;%ConEmuDir%\..\Far.bat&quot; Far30b4040.x86.20140810"/><line data="{cmd.term}"/><line data="{Far30b4040.x86.20140810}"/><line data="{Far30b4000.x86.20140714}"/><line data="{PowerShell}"/><line data="{Group7}"/><line data="{Cmd &amp; Clink}"/><line data="{Cygwin Terminal}"/><line data="{Group8}"/><line data="C:\PROGS\Far.bat Far30b4040.x86.20140810"/>	<line data="C:\PROGS\Far.bat Far30b4000.x86.20140714"/>	<line data="C:\PROGS\Far.bat Far30b3900.x86.20140513"/>	<line data="C:\PROGS\Far.bat Far3.0.3525"/>	<line data="&quot;&quot;C:\windows\system32\cmd.exe&quot;  &quot;"/>
-				<line data="&quot;&quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot;  &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\Far.bat&quot; Far3.0.3525 &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\nnsync.bat&quot; ce-www copy pause &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\nnsync.bat&quot; ce-progs copy pause &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\nnsync.bat&quot; ce-media copy pause &quot;"/>
-				<line data="&quot;&quot;C:\Windows\system32\cmd.exe&quot;  &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\Far.bat&quot; Far2.0.1807 &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\Far3.bat&quot;  &quot;"/>
-				<line data="&quot;&quot;C:\PROGS\Far2.bat&quot;  &quot;"/>
+			<value name="CmdLineHistory" type="multi">
 			</value>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
@@ -478,24 +469,24 @@
 			<value name="WndDragKey" type="dword" data="00121101"/>
 				<key name="Tasks" modified="2014-11-15 18:59:18" build="141004">
 				<value name="Count" type="dword" data="00000006"/>
-						<key name="Task1" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task1" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{Cmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
-					<value name="Hotkey" type="dword" data="00005b54"/>
+					<value name="Hotkey" type="dword" data="00001154"/>
 				</key>
-						<key name="Task2" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task2" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\Far.bat"/>
-					<value name="Hotkey" type="dword" data="00125b54"/>
+					<value name="Hotkey" type="dword" data="00121154"/>
 				</key>
-						<key name="Task3" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task3" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
@@ -503,7 +494,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task4" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task4" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{Cygwin Terminal}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\x-cygwin\bin\mintty.exe&quot; -i /Cygwin-Terminal.ico -"/>
@@ -513,7 +504,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task5" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task5" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="PowerShell.exe"/>
@@ -523,7 +514,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 				</key>
-						<key name="Task6" modified="2014-11-15 18:59:18" build="141004">
+						<key name="Task6" modified="2014-11-30 00:03:49" build="141004">
 					<value name="Name" type="string" data="{nnBackup}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="dword" data="00000000"/>
@@ -556,10 +547,10 @@
 					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
 				</key>
 			</key>
-				<key name="Apps" modified="2014-11-15 18:59:18" build="141004">
+				<key name="Apps" modified="2014-11-30 00:03:49" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-				<key name="Colors" modified="2014-11-15 18:59:18" build="141004">
+				<key name="Colors" modified="2014-11-30 00:03:49" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="01"/>

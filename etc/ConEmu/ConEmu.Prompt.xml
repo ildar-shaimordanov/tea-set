@@ -92,16 +92,6 @@
 			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
-				<line data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\etc\clink.bat&quot;"/>
-				<line data="{far3}"/>
-				<line data="{cmd.prompt}"/>
-				<line data="{cmd}"/>
-				<line data="{cmd} /dir C:\tmp"/>
-				<line data="{Far3}"/>
-				<line data="{Show ANSI colors}"/>
-				<line data="{PowerShell}"/>
-				<line data="{cmd (Admin)}"/>
-				<line data="c:\PROGS\clink\clink_x86 inject --profile c:\PROGS\etc\clink"/>
 			</value>
 			<value name="ShowHelpTooltips" type="hex" data="01"/>
 			<value name="Multi" type="hex" data="01"/>
@@ -549,23 +539,23 @@
 			<value name="WndDragKey" type="dword" data="00121101"/>
 			<key name="Tasks" modified="2014-11-15 18:57:46" build="141004">
 				<value name="Count" type="dword" data="0000000a"/>
-				<key name="Task1" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task1" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Cmd}"/>
-					<value name="Hotkey" type="dword" data="00005b54"/>
+					<value name="Hotkey" type="dword" data="00001154"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task2" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task2" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
-					<value name="Hotkey" type="dword" data="00125b54"/>
+					<value name="Hotkey" type="dword" data="00121154"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task3" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task3" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -573,7 +563,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task4" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task4" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{cmd (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -581,7 +571,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task5" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task5" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -589,7 +579,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task6" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task6" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{PowerShell (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -598,7 +588,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task7" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task7" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Git bash}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -607,7 +597,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k ver &amp; echo This is 32 bit cmd.exe -new_console:s50V"/>
 				</key>
-				<key name="Task8" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task8" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{cmd 64/32}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -616,7 +606,7 @@
 					<value name="Count" type="dword" data="00000002"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k ver &amp; echo This is 32 bit cmd.exe -new_console:s50V"/>
 				</key>
-				<key name="Task9" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task9" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Show ANSI colors}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -624,7 +614,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task10" modified="2014-11-15 18:57:46" build="141004">
+				<key name="Task10" modified="2014-11-30 00:04:26" build="141004">
 					<value name="Name" type="string" data="{Chocolatey (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -633,10 +623,10 @@
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2014-11-15 18:57:46" build="141004">
+			<key name="Apps" modified="2014-11-30 00:04:26" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-			<key name="Colors" modified="2014-11-15 18:57:46" build="141004">
+			<key name="Colors" modified="2014-11-30 00:04:26" build="141004">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 		</key>

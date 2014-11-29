@@ -4,6 +4,13 @@ Family home for:
 * clink
 * ConEmu
 * Far3
+* notepad2-mod
+* unxutils
+
+* cygwin
+* gnuwin32
+* gow-git
 * msysgit
-* notepad2
-* x-cygwin
+* win-bash
+
+* mintty (for msysgit)
