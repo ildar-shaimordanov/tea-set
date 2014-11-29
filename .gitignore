@@ -1,4 +1,3 @@
-
 bin/*
 !bin/alias.bat
 !bin/ansi.bat
