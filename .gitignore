@@ -9,6 +9,7 @@ bin/*
 !bin/which.bat
 !bin/README.md
 
+etc/zentea.enabled
 etc/clink/.history
 
 etc/Far3/Default.farconfig

@@ -163,7 +163,17 @@ Destination: {1}
 
 # =========================================================================
 
+$enabled = "$pwd\zentea.enabled";
+
+if ( ! ( Test-Path "$enabled" ) ) {
+	[System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" );
+	[System.Windows.Forms.MessageBox]::Show( "To enable execution create the file:`n$enabled.", "Disabled", 0, "Stop" );
+	exit;
+}
+
 $packages | % { install-package $_; } | Out-File "$pwd\zentea.log";
+
+Remove-Item -Force -Path "$enabled";
 
 # =========================================================================
 
