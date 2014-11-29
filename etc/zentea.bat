@@ -96,7 +96,7 @@ $packages = @(
 
 # =========================================================================
 
-$dstDir = [System.IO.Path]::GetFullPath("$pwd\..\..\vendors");
+$dstDir = [System.IO.Path]::GetFullPath("$pwd\..\vendors");
 $tmpDir = $pwd;
 
 $7zip_exe = "";
