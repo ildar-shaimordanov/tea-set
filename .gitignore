@@ -9,9 +9,10 @@ bin/*
 !bin/README.md
 
 etc/zentea.enabled
-etc/zentea.log
-etc/*.zip
+etc/*.log
 etc/*.7z
+etc/*.rar
+etc/*.zip
 etc/clink/.history
 
 etc/Far3/Default.farconfig
