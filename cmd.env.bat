@@ -116,12 +116,30 @@ set "PATH=%PATH%;%TEA_HOME%\opt\lame"
 ::
 :: ========================================================================
 
-for %%d in (
-	"C:\Program Files\Java\jdk"
-	"C:\Program Files (x86)\Java\jdk"
-	"C:\Program Files\Java\jre"
-	"C:\Program Files (x86)\Java\jre"
-) do if not defined JAVA_HOME for /d %%p in ( "%%~d*" ) do set "JAVA_HOME=%%p"
+set "JRE_HOME="
+for /f %%d in ( '
+	dir /b "C:\Program FIles\Java\jre*" "C:\Program Files (x86)\Java\jre*" ^| sort
+' ) do if exist "C:\Program FIles\Java\%%d" (
+	set "JRE_HOME=C:\Program FIles\Java\%%d"
+) else (
+	set "JRE_HOME=C:\Program FIles (x86)\Java\%%d"
+)
+
+set "JDK_HOME="
+for /f %%d in ( '
+	dir /b "C:\Program FIles\Java\jdk*" "C:\Program Files (x86)\Java\jdk*" ^| sort
+' ) do if exist "C:\Program FIles\Java\%%d" (
+	set "JDK_HOME=C:\Program FIles\Java\%%d"
+) else (
+	set "JDK_HOME=C:\Program FIles (x86)\Java\%%d"
+)
+
+
+if defined JDK_HOME (
+	set "JAVA_HOME=%JDK_HOME%"
+) else (
+	set "JAVA_HOME=%JRE_HOME%"
+)
 
 if defined JAVA_HOME set "PATH=%PATH%;%JAVA_HOME%\bin"
 
