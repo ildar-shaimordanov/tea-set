@@ -51,7 +51,7 @@ Event { group="DialogEvent";
        end
     end
     local hk = Object.GetHotkey(x[ItemIndex])
---    if Object.CheckHotkey(hk,x[ItemIndex]+1)==0 then return end
+    if Object.CheckHotkey(hk,x[ItemIndex]+1)==0 then return end
     local Pos = Object.CheckHotkey(hk,InitPos+1)
     if Pos~=0 then
       hDlg:send(F.DM_LISTSETCURPOS,ID,{SelectPos=y[Pos]})
