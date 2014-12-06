@@ -1,11 +1,14 @@
 
+local guid = 'D2F36B62-A470-418D-83A3-ED7A3710E5B5';
+
 Macro {
 	area = "Editor";
 	key = "AltL";
 	flags = "";
 	description = "Editor: List of types";
 	action = function()
-		Keys("F11 c 1")
+		Plugin.Call(guid, 1);
+		-- Keys("F11 c 1")
 	end
 }
 
@@ -15,7 +18,8 @@ Macro {
 	flags = "";
 	description = "Editor: Find pair brackets";
 	action = function()
-		Keys("F11 c 2")
+		Plugin.Call(guid, 2);
+		-- Keys("F11 c 2")
 	end
 }
 
@@ -25,7 +29,8 @@ Macro {
 	flags = "";
 	description = "Editor: Select a block with brackets";
 	action = function()
-		Keys("F11 c 3")
+		Plugin.Call(guid, 3);
+		-- Keys("F11 c 3")
 	end
 }
 
@@ -35,7 +40,8 @@ Macro {
 	flags = "";
 	description = "Editor: Select a block within brackets";
 	action = function()
-		Keys("F11 c 4")
+		Plugin.Call(guid, 4);
+		-- Keys("F11 c 4")
 	end
 }
 
@@ -45,7 +51,8 @@ Macro {
 	flags = "";
 	description = "Editor: List of functions";
 	action = function()
-		Keys("F11 c 5")
+		Plugin.Call(guid, 5);
+		-- Keys("F11 c 5")
 	end
 }
 
@@ -55,7 +62,8 @@ Macro {
 	flags = "";
 	description = "Editor: List of errors";
 	action = function()
-		Keys("F11 c 6")
+		Plugin.Call(guid, 6);
+		-- Keys("F11 c 6")
 	end
 }
 

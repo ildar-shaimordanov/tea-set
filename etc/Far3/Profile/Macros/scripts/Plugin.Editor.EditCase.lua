@@ -11,12 +11,14 @@ local shortcuts = {
 
 local desc = "Editor: Change Case";
 
+local guid = "0E92FC81-4888-4297-A85D-31C79E0E0CEE";
+
 Macro {
 	description = desc .. ": Menu";
 	area = "Editor";
 	key = "F4";
 	action = function()
-		Plugin.Call("0E92FC81-4888-4297-A85D-31C79E0E0CEE");
+		Plugin.Call(guid);
 	end
 }
 
@@ -26,7 +28,7 @@ for key, cmd in pairs(shortcuts) do
 		area = "Editor";
 		key = key;
 		action = function()
-			Plugin.Call("0E92FC81-4888-4297-A85D-31C79E0E0CEE", cmd);
+			Plugin.Call(guid, cmd);
 		end
 	}
 end
