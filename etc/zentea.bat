@@ -166,8 +166,8 @@ Destination: {1}
 $enabled = "$pwd\zentea.enabled";
 
 if ( ! ( Test-Path "$enabled" ) ) {
-	[System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" );
-	[System.Windows.Forms.MessageBox]::Show( "To enable execution create the file:`n$enabled.", "Disabled", 0, "Stop" );
+	[System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" ) >$Null;
+	[System.Windows.Forms.MessageBox]::Show( "To enable execution create the file:`n$enabled.", "Disabled", 0, "Stop" ) >$Null;
 	exit;
 }
 
