@@ -226,7 +226,7 @@ if defined PERL_HOME set "PATH=%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%P
 if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
 
 :: Integrate Git into prompt
-if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
+if /i "%~1" == "set-git-prompt" if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
 	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_$g$s
 )
 
