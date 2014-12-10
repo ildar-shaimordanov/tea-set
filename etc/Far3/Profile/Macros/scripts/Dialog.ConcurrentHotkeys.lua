@@ -1,6 +1,21 @@
 --http://forum.farmanager.com/viewtopic.php?f=15&t=9197
+
+--http://bugs.farmanager.com/view.php?id=2877
+--http://bugs.farmanager.com/view.php?id=2878
+--http://bugs.farmanager.com/view.php?id=2879
+--http://bugs.farmanager.com/view.php?id=2881
+
 local F = far.Flags
 local RAlt,LAlt,RCtrl,LCtrl,Shift = 0x1,0x2,0x4,0x8,0x10
+
+local function Pos2pos(hDlg, ID, Pos)
+  local ii = 0
+  for i,item in ipairs(far.GetDlgItem(hDlg, ID)[6]) do --[6]  Selected/ListItems: integer/table
+     if band(item.Flags,F.LIF_HIDDEN)==0 then
+       ii = ii+1; if ii==Pos then return i end
+     end
+  end
+end
 
 Event { group="DialogEvent"; description="Concurrent hotkeys menu filter";
   uid="33E83694-4F10-44A0-8CAD-C7DE90F5621C";
@@ -29,15 +44,27 @@ Event { group="DialogEvent"; description="Concurrent hotkeys menu filter";
 }
 
 local InitPos
-Event { group="DialogEvent"; description="helper for other handler";
+Event { group="DialogEvent"; description="Ctrl-<hotkey> to run hotkey";
   uid="5EB2CC1A-D563-4362-ACC2-20BE350EDDA4";
   condition=function(Event,param)
     return param.Msg==F.DN_CONTROLINPUT and Event==F.DE_DLGPROCINIT
-           and far.GetDlgItem(param.hDlg, param.Param1)[1]==F.DI_LISTBOX
-           --and (Area.Menu or Dlg.ItemType==F.DI_LISTBOX)
+       and far.GetDlgItem(param.hDlg, param.Param1)[1]==F.DI_LISTBOX
   end;
   action=function(Event,param)
-    InitPos = param.hDlg:send(F.DM_LISTINFO,param.Param1).SelectPos
+    local hDlg,ID,Input = param.hDlg,param.Param1,param.Param2
+    InitPos = hDlg:send(F.DM_LISTINFO,ID).SelectPos --helper for some other handler
+    ---
+    if Input.EventType==F.KEY_EVENT and Input.UnicodeChar~="" and band(Input.ControlKeyState,bor(RCtrl,LCtrl))~=0 then
+      if Object.CheckHotkey(Input.UnicodeChar)~=0 then
+        local hk,char = Object.GetHotkey():lower(),Input.UnicodeChar:lower()
+        if hk~=char and hk~=far.XLat(char) then
+          local Pos = Object.CheckHotkey(char)
+          if Pos==0 then return end
+          hDlg:send(F.DM_LISTSETCURPOS,ID,{SelectPos=Pos2pos(hDlg,ID,Pos)})
+        end
+        return param.hDlg:send"DM_CLOSE"
+      end
+    end
   end;
 }
 
@@ -51,15 +78,8 @@ Event { group="DialogEvent"; description="Goto next menu item with specified hot
     local hk = Object.GetHotkey()
     if Object.CheckHotkey(hk,ItemIndex+1)==0 and band(Mouse.LastCtrlState,bor(RAlt,LAlt))==0 then return end
     local Pos = Object.CheckHotkey(hk,InitPos+1)
-    if Pos~=0 then
-      local ii = 0
-      for i,item in ipairs(far.GetDlgItem(hDlg, ID)[6]) do --[6]  Selected/ListItems: integer/table
-         if band(item.Flags,F.LIF_HIDDEN)==0 then
-           ii = ii+1; if ii==Pos then Pos = i; break end
-         end
-      end
-      mf.postmacro(far.SendDlgMessage,hDlg,F.DM_LISTSETCURPOS,ID,{SelectPos=Pos})
-    end
+    if Pos==0 then Pos = Object.CheckHotkey(hk) end
+    mf.postmacro(far.SendDlgMessage,hDlg,F.DM_LISTSETCURPOS,ID,{SelectPos=Pos2pos(hDlg, ID, Pos)})
     return 0
   end;
 }
