@@ -22,10 +22,10 @@ end
 Event { group="DialogEvent"; description="Ctrl-<hotkey> to run hotkey";
   uid="5EB2CC1A-D563-4362-ACC2-20BE350EDDA4";
   condition=function(Event,param)
+    local ID,Input = param.Param1,param.Param2
     return param.Msg==F.DN_CONTROLINPUT and Event==F.DE_DLGPROCINIT
-       and param.Param2.EventType==F.KEY_EVENT
-       and param.Param2.UnicodeChar~="\0"
-       and far.GetDlgItem(param.hDlg, param.Param1)[1]==F.DI_LISTBOX
+       and Input.EventType==F.KEY_EVENT and Input.UnicodeChar~="\0"
+       and far.GetDlgItem(param.hDlg, ID)[1]==F.DI_LISTBOX
   end;
   action=function(Event,param)
     local hDlg,ID,Input = param.hDlg,param.Param1,param.Param2
@@ -48,13 +48,13 @@ Event { group="DialogEvent"; description="Goto next menu item with specified hot
   uid="D91B58E5-4C32-4384-B205-D7895A4EC037";
   condition=function(Event,param) return Event==F.DE_DLGPROCINIT end;
   action=function(Event,param)
-    local hDlg,ID,ItemIndex = param.hDlg,param.Param1,param.Param2
-    if param.Msg==F.DN_CONTROLINPUT then
+    local hDlg,ID = param.hDlg,param.Param1
+    if param.Msg==F.DN_CONTROLINPUT and param.Param2.EventType==F.KEY_EVENT then
       if far.GetDlgItem(hDlg, ID)[1]==F.DI_LISTBOX then
         InitPos = hDlg:send(F.DM_LISTINFO,ID).SelectPos
       end
     elseif param.Msg==F.DN_LISTHOTKEY then
-      local hk = getHK()
+      local hk,ItemIndex = getHK(),param.Param2
       if checkHK(hk,ItemIndex+1)==0 and band(Mouse.LastCtrlState,Alt)==0 then return end
       local Pos = checkHK(hk,InitPos+1)
       if Pos==0 then Pos = checkHK(hk) end
