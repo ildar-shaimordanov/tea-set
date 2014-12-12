@@ -1,106 +1,31 @@
+<# :
 @echo off
-
-if "%~1" == "" (
-	echo:Create EXE-file call redirector
-	echo:
-	echo:USAGE
-	echo:    %~n0 [/C] [/EXE NAME] command-line
-	echo:
-	echo:OPTIONS
-	echo:/C
-	echo:    Chdir to wrapper directory
-	echo:/EXE NAME
-	echo:    The name of the executable file
-	goto :EOF
-)
-
-for %%p in ( sed.exe base64.exe ) do if "%%~$PATH:p" == "" (
-	>&2 echo:%%p required
-	exit /b 1
-)
-
-for %%o in ( b i r ) do (
-	echo:>"%TEMP%\%~n0.txt"
-	sed -%%o "" "%TEMP%\%~n0.txt" >nul 2>nul || (
-		>&2 echo:sed: -%%o not supported
-		exit /b 1
-	)
-)
-
 setlocal
-
-set "exe_chdir="
-if /i "%~1" == "/C" (
-	set "exe_chdir=/\[ \]/s/\[ \]/[x]/"
-	shift /1
-)
-
-set "exe_name=%~nx1"
-if /i "%~1" == "/EXE" (
-	set "exe_name=%~nx2"
-	shift /1
-	shift /1
-)
-
-if not defined exe_name (
-	>&2 echo:Executable file not defined
-	endlocal
-	exit /b 1
-)
-
-
-::set "exe_cmd=%1 %2 %3 %4 %5 %6 %7 %8 %9"
-set "exe_cmd=%~1"
-:cmdline_loop_begin
-	shift /1
-	if "%~1" == "" goto cmdline_loop_end
-	set "exe_cmd=%exe_cmd% %1"
-goto cmdline_loop_begin
-:cmdline_loop_end
-
-
-:: http://www.dostips.com/DtTipsStringOperations.php#Function.strLen
-setlocal enabledelayedexpansion
-set "exe_str=A!exe_cmd!"
-set /a "exe_cmd_len=0"
-for /l %%a in ( 12, -1, 0 ) do (
-	set /a "exe_cmd_len|=1<<%%a"
-	for %%b in ( !exe_cmd_len! ) do if "!exe_str:~%%b,1!" == "" set /a "exe_cmd_len&=~1<<%%a"
-)
-endlocal & set "exe_cmd_len=%exe_cmd_len%"
-
-
-if %exe_cmd_len% gtr 270 (
-	>&2 echo:Provided string is longer than 270 chars
-	endlocal
-	exit /b 1
-)
-
-
-echo:Executable file:    [%exe_name%]
-echo:Executable command: [%exe_cmd%]
-if defined exe_chdir echo:Chdir to wrapper directory: [x]
-
-
-set "exe_cmd=%exe_cmd:\=\\\\%"
-set "exe_cmd=%exe_cmd:|=\|%"
-set "exe_cmd=%exe_cmd:/=\/%"
-set "exe_cmd=%exe_cmd:"=\"%"
-::set "exe_cmd=!exe_cmd:[=\[!"
-::set "exe_cmd=!exe_cmd:]=\]!"
-::set "exe_cmd=!exe_cmd:(=\(!"
-::set "exe_cmd=!exe_cmd:)=\)!"
-::set "exe_cmd=!exe_cmd:{=\{!"
-::set "exe_cmd=!exe_cmd:}=\}!"
-
-sed "0,/^::DATA/d" "%~f0" | base64 -d >"%exe_name%"
-sed -b -i -r "%exe_chdir%;/_{270}/s/_{%exe_cmd_len%}/%exe_cmd%/" "%exe_name%"
-
-endlocal
+set "POWERSHELL_BAT_ARGS=%*"
+if defined POWERSHELL_BAT_ARGS set "POWERSHELL_BAT_ARGS=%POWERSHELL_BAT_ARGS:"=\"%"
+endlocal & powershell -NoLogo -NoProfile -Command "$_ = $input; Invoke-Expression $( '$input = $_; $_ = \"\"; $args = @( &{ $args } %POWERSHELL_BAT_ARGS% );' + [String]::Join( [char]10, $( Get-Content \"%~f0\" ) ) )"
 goto :EOF
+#>
 
+# =========================================================================
 
-::DATA
+$ProgName = if ( $MyInvocation.MyCommand.Name ) { $MyInvocation.MyCommand.Name } else { "exe2exe" };
+
+$Version = "0.3 Beta";
+
+$Help = @"
+$ProgName Version $Version
+Create EXE-file call redirector
+
+$ProgName [ -c ] [ -exe name ] command-line
+
+-c    Chdir to wrapper directory
+-exe  The name of the executable file
+"@;
+
+# =========================================================================
+
+$image64 = @"
 TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAsAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABdFx3bGXZziBl2c4gZdnOIGXZziAx2c4jlVmGIGHZziFJpY2gZdnOIAAAA
@@ -182,3 +107,52 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+"@;
+
+# =========================================================================
+
+$chdir = $False;
+$exename = "";
+$cmdline = "";
+
+$i = 0;
+
+if ( $args[$i] -eq "-c" ) {
+	$chdir = $True;
+	$i++;
+}
+
+if ( $args[$i] -eq "-exe" ) {
+	$exename = $args[$i + 1];
+	$i += 2;
+} else {
+	$exename = $args[$i];
+}
+
+if ( ! $args ) {
+	Write-Host $Help;
+	exit;
+}
+
+$cmdline = [String]::Join( " ", $args[$i..$args.count] );
+
+# =========================================================================
+
+$image64 = [System.Convert]::FromBase64String($image64);
+$image64 = [System.Text.Encoding]::Default.GetString($image64);
+
+if ( $chdir ) {
+	$image64 = $image64 -replace "\[ \]", "[x]";
+}
+
+$pattern = "_" * 270;
+$padding = "_" * ( 270 - $cmdline.length );
+
+$image64 = $image64 -replace $pattern, ( $cmdline + $padding );
+$image64 = [System.Text.Encoding]::Default.GetBytes($image64);
+
+[IO.File]::WriteAllBytes($exename, $image64);
+
+# =========================================================================
+
+# EOF
