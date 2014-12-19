@@ -11,7 +11,9 @@ goto :EOF
 
 $ProgName = if ( $MyInvocation.MyCommand.Name ) { $MyInvocation.MyCommand.Name } else { "ANSI" };
 
-$Version = "0.2 Beta";
+$Version = "0.3 Beta";
+
+$DemoURL = "http://www.robvanderwoude.com/files/apple_ansi.txt";
 
 $Help = @"
 $ProgName [ --dos-colors ] [ --restore ] [ --no-new-line ] [text ...]
@@ -23,6 +25,9 @@ $ProgName [ --dos-colors ] [ --restore ] [ --no-new-line ] [text ...]
 --help        Print this help
 --man         Print the manual
 --version     Print the version
+
+--demo        Print demo with the file from the URL:
+              $DemoURL
 
 Parse the specified text from the command line or pipe and output it 
 accordingly the ANSI codes provided within the text.
@@ -503,6 +508,11 @@ for ($i = 0; $i -lt $args.count; $i++) {
 		}
 	"--version" {
 		Write-Host "$ProgName $Version";
+		exit;
+		}
+	"--demo" {
+		$wc = New-Object System.Net.WebClient;
+		$wc.DownloadString($DemoURL) | % { parse-ansi-string $_ };
 		exit;
 		}
 	"--restore" {
