@@ -121,61 +121,6 @@ http://www.robvanderwoude.com/ansi.php#AnsiArt
 
 # =========================================================================
 
-$AnsiColor = @( 
-	0,  4,  2,  6,  1,  5,  3,  7, 
-	8, 12, 10, 14,  9, 13, 11, 15
-);
-
-$DosColor = @(
-	0,  1,  2,  3,  4,  5,  6,  7, 
-	8,  9, 10, 11, 12, 13, 14, 15
-);
-
-$ColorIndex = $AnsiColor;
-$RestoreColors = $False;
-$PrintNewLine = $True;
-
-:parse_args
-for ($i = 0; $i -lt $args.count; $i++) {
-	switch ( $args[$i] ) {
-	"--help" {
-		Write-Host $Help;
-		exit;
-		}
-	"--man" {
-		Write-Host $Manual;
-		exit;
-		}
-	"--version" {
-		Write-Host "$ProgName $Version";
-		exit;
-		}
-	"--restore" {
-		$RestoreColors = $True;
-		break;
-		}
-	"--dos-colors" {
-		$ColorIndex = $DosColor;
-		break;
-		}
-	"--no-new-line" {
-		$PrintNewLine = $False;
-		break;
-		}
-	"" {
-		$i++;
-		break parse_args;
-		}
-	default {
-		break parse_args;
-		}
-	}
-}
-
-$args = $args[$i..$args.count];
-
-# =========================================================================
-
 $HostColor = @{};
 
 function save-host-colors {
@@ -528,6 +473,61 @@ function parse-ansi-string( [string]$string ) {
 		Write-Host;
 	}
 }
+
+# =========================================================================
+
+$AnsiColor = @( 
+	0,  4,  2,  6,  1,  5,  3,  7, 
+	8, 12, 10, 14,  9, 13, 11, 15
+);
+
+$DosColor = @(
+	0,  1,  2,  3,  4,  5,  6,  7, 
+	8,  9, 10, 11, 12, 13, 14, 15
+);
+
+$ColorIndex = $AnsiColor;
+$RestoreColors = $False;
+$PrintNewLine = $True;
+
+:parse_args
+for ($i = 0; $i -lt $args.count; $i++) {
+	switch ( $args[$i] ) {
+	"--help" {
+		Write-Host $Help;
+		exit;
+		}
+	"--man" {
+		Write-Host $Manual;
+		exit;
+		}
+	"--version" {
+		Write-Host "$ProgName $Version";
+		exit;
+		}
+	"--restore" {
+		$RestoreColors = $True;
+		break;
+		}
+	"--dos-colors" {
+		$ColorIndex = $DosColor;
+		break;
+		}
+	"--no-new-line" {
+		$PrintNewLine = $False;
+		break;
+		}
+	"" {
+		$i++;
+		break parse_args;
+		}
+	default {
+		break parse_args;
+		}
+	}
+}
+
+$args = $args[$i..$args.count];
 
 # =========================================================================
 
