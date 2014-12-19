@@ -25,7 +25,34 @@ $ProgName [ -c ] [ -exe name ] command-line
 
 # =========================================================================
 
-$image64 = @"
+$chdir = $False;
+$exename = "";
+$cmdline = "";
+
+$i = 0;
+
+if ( $args[$i] -eq "-c" ) {
+	$chdir = $True;
+	$i++;
+}
+
+if ( $args[$i] -eq "-exe" ) {
+	$exename = $args[$i + 1];
+	$i += 2;
+} else {
+	$exename = $args[$i];
+}
+
+if ( ! $args ) {
+	Write-Host $Help;
+	exit;
+}
+
+$cmdline = [String]::Join( " ", $args[$i..$args.count] );
+
+# =========================================================================
+
+$exewrapper = @"
 TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAsAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABdFx3bGXZziBl2c4gZdnOIGXZziAx2c4jlVmGIGHZziFJpY2gZdnOIAAAA
@@ -111,47 +138,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 # =========================================================================
 
-$chdir = $False;
-$exename = "";
-$cmdline = "";
-
-$i = 0;
-
-if ( $args[$i] -eq "-c" ) {
-	$chdir = $True;
-	$i++;
-}
-
-if ( $args[$i] -eq "-exe" ) {
-	$exename = $args[$i + 1];
-	$i += 2;
-} else {
-	$exename = $args[$i];
-}
-
-if ( ! $args ) {
-	Write-Host $Help;
-	exit;
-}
-
-$cmdline = [String]::Join( " ", $args[$i..$args.count] );
-
-# =========================================================================
-
-$image64 = [System.Convert]::FromBase64String($image64);
-$image64 = [System.Text.Encoding]::Default.GetString($image64);
+$exewrapper = [System.Convert]::FromBase64String($exewrapper);
+$exewrapper = [System.Text.Encoding]::Default.GetString($exewrapper);
 
 if ( $chdir ) {
-	$image64 = $image64 -replace "\[ \]", "[x]";
+	$exewrapper = $exewrapper -replace "\[ \]", "[x]";
 }
 
 $pattern = "_" * 270;
 $padding = "_" * ( 270 - $cmdline.length );
 
-$image64 = $image64 -replace $pattern, ( $cmdline + $padding );
-$image64 = [System.Text.Encoding]::Default.GetBytes($image64);
+$exewrapper = $exewrapper -replace $pattern, ( $cmdline + $padding );
+$exewrapper = [System.Text.Encoding]::Default.GetBytes($exewrapper);
 
-[IO.File]::WriteAllBytes($exename, $image64);
+[IO.File]::WriteAllBytes($exename, $exewrapper);
 
 # =========================================================================
 
