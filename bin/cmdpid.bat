@@ -23,7 +23,7 @@ goto :EOF
 
 
 :help
-echo:Calculates the Process ID of the Command Prompt 
-echo:and assigns it to the CMDPID variable.
+echo:Calculates the Process ID of the currently running script or
+echo:Command Prompt and stores in the environment variable CMDPID.
 echo:
 echo:Usage: %~n0
