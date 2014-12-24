@@ -25,7 +25,7 @@ $packages = @(
 	@{
 		"name" = "ConEmu";
 		"home" = "http://code.google.com/p/conemu-maximus5/";
-		"url" = "http://downloads.sourceforge.net/project/conemu/Preview/ConEmuPack.141126.7z";
+		"url" = "http://downloads.sourceforge.net/project/conemu/Preview/ConEmuPack.141221.7z";
 		"dir" = "ConEmu";
 	}
 
@@ -50,6 +50,13 @@ $packages = @(
 		"home" = "http://www.farmanager.com/";
 		"url" = "http://www.farmanager.com/files/Far30b4040.x86.20140810.7z";
 		"dir" = "Far3";
+	}
+
+	@{
+		"name" = "Far3bis";
+		"home" = "http://code.google.com/p/conemu-maximus5/";
+		"url" = "http://downloads.sourceforge.net/project/conemu/FarManager/Far3bis/far3.4219bis.x86.x64.7z";
+		"dir" = "Far3bis";
 	}
 
 	@{
