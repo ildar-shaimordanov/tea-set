@@ -353,17 +353,17 @@ function erase-line( [array]$mode ) {
 
 	switch ( $mode[0] ) {
 	0 {
-		# clear from cursor to end of screen.
+		# clear from cursor to end of line.
 		$s = " " * ( $w - $x );
 		break;
 		}
 	1 {
-		# clear from cursor to beginning of the screen.
+		# clear from cursor to beginning of the line.
 		$s = " " * $x;
 		break;
 		}
 	2 {
-		# clear entire screen.
+		# clear entire line.
 		$s = " " * $w;
 		break;
 		}
