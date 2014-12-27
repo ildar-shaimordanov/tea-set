@@ -11,7 +11,7 @@ goto :EOF
 
 $ProgName = if ( $MyInvocation.MyCommand.Name ) { $MyInvocation.MyCommand.Name } else { "ANSI" };
 
-$Version = "0.3 Beta";
+$Version = "0.4 Beta";
 
 $DemoURL = "http://www.robvanderwoude.com/files/apple_ansi.txt";
 
@@ -212,6 +212,13 @@ function set-ansi-color( [array]$colors ) {
 
 # =========================================================================
 
+function set-cursor( $x, $y ) {
+    [System.Console]::CursorTop = $y;
+    [System.Console]::CursorLeft = $x;
+}
+
+# =========================================================================
+
 function set-cursor-position( [array]$position, [string]$movement ) {
 	if ($position.count -ne 2 ) {
 		$position += 1;
@@ -285,8 +292,7 @@ function set-cursor-position( [array]$position, [string]$movement ) {
 		$col = [Math]::min( [Math]::max($col + $Host.UI.RawUI.WindowPosition.X, 0), $Host.UI.RawUI.BufferSize.Width - 1 );
 	}
 
-	[System.Console]::CursorTop = $row;
-	[System.Console]::CursorLeft = $col;
+	set-cursor $col $row;
 }
 
 # =========================================================================
@@ -319,8 +325,7 @@ function erase-display( [array]$mode ) {
 		}
 	1 {
 		# clear from cursor to beginning of the screen.
-		[System.Console]::CursorTop = $Host.UI.RawUI.WindowPosition.Y;
-		[System.Console]::CursorLeft = $Host.UI.RawUI.WindowPosition.X;
+		set-cursor $Host.UI.RawUI.WindowPosition.X $Host.UI.RawUI.WindowPosition.Y;
 
 		$s = " " * ( $y * $w + $x );
 		Write-Host -NoNewLine $s;
@@ -333,8 +338,7 @@ function erase-display( [array]$mode ) {
 	}
 
 	# Restore to the original cursor position
-	[System.Console]::CursorTop = $posY;
-	[System.Console]::CursorLeft = $posX;
+	set-cursor $posX $posY;
 }
 
 # =========================================================================
@@ -353,7 +357,7 @@ function erase-line( [array]$mode ) {
 
 	switch ( $mode[0] ) {
 	0 {
-		# clear from cursor to end of line.
+		# clear from cursor to end of the line.
 		$s = " " * ( $w - $x );
 		break;
 		}
@@ -373,14 +377,14 @@ function erase-line( [array]$mode ) {
 	}
 
 	if ( $mode[0] -ne 0 ) {
-		[System.Console]::CursorLeft = $Host.UI.RawUI.WindowPosition.X;
+		# Set the cursor to beginning of the line
+		set-cursor $Host.UI.RawUI.WindowPosition.X $posY;
 	}
 
 	Write-Host -NoNewLine $s;
 
 	# Restore to the original cursor position
-	[System.Console]::CursorTop = $posY;
-	[System.Console]::CursorLeft = $posX;
+	set-cursor $posX $posY;
 }
 
 # =========================================================================
