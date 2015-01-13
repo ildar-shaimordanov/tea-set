@@ -110,6 +110,8 @@ set "PATH=%PATH%;%TEA_HOME%\opt\flac-x32"
 
 set "PATH=%PATH%;%TEA_HOME%\opt\lame"
 
+set "PATH=%PATH%;%TEA_HOME%\opt\xmlstarlet"
+
 :: ========================================================================
 ::
 :: Java
