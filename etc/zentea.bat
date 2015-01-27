@@ -63,7 +63,7 @@ $packages = @(
 	@{
 		"name" = "Notepad2-mod";
 		"home" = "http://xhmikosr.github.io/notepad2-mod/";
-		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.935/Notepad2-mod.4.2.25.935_x86.zip";
+		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.940/Notepad2-mod.4.2.25.940_x86.zip";
 		"dir" = "notepad2-mod";
 		"postinstall" = {
 			function postinstall( [string]$dir ) {
