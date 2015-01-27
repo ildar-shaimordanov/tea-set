@@ -38,7 +38,7 @@ function git_prompt_filter()
             color = colors.dirty
         end
 
-        clink.prompt.value = string.gsub(clink.prompt.value, "{git}", color.."("..branch..")")
+        clink.prompt.value = string.gsub(clink.prompt.value, "{git}", color.."("..branch..")\x1b[0m")
         return true
     end
 
