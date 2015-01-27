@@ -25,14 +25,14 @@ $packages = @(
 	@{
 		"name" = "ConEmu";
 		"home" = "http://code.google.com/p/conemu-maximus5/";
-		"url" = "http://downloads.sourceforge.net/project/conemu/Preview/ConEmuPack.141221.7z";
+		"url" = "http://downloads.sourceforge.net/project/conemu/Alpha/ConEmuPack.150119a.7z";
 		"dir" = "ConEmu";
 	}
 
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		"url" = "https://github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2.zip";
+		"url" = "https://github.com/mridgers/clink/releases/download/0.4.3/clink_0.4.3.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
@@ -48,14 +48,15 @@ $packages = @(
 	@{
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
-		"url" = "http://www.farmanager.com/files/Far30b4040.x86.20140810.7z";
+		"url" = "http://www.farmanager.com/files/Far30b4242.x86.20150117.7z";
 		"dir" = "Far3";
 	}
 
 	@{
+		"skip" = $True;
 		"name" = "Far3bis";
 		"home" = "http://code.google.com/p/conemu-maximus5/";
-		"url" = "http://downloads.sourceforge.net/project/conemu/FarManager/Far3bis/far3.4219bis.x86.x64.7z";
+		"url" = "http://downloads.sourceforge.net/project/conemu/FarManager/Far3bis/far3.4254bis.x86.x64.7z";
 		"dir" = "Far3bis";
 	}
 
