@@ -1,2 +1,2 @@
 @echo off
-start "Command Prompt starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.Prompt.xml" /Icon "%~dp0etc\images\ConEmu.Prompt.ico" /NoSingle %*
+start "%~n0 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\%~n0.xml" /Icon "%~dp0etc\images\%~n0.ico" %*
