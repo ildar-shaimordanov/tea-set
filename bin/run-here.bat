@@ -19,6 +19,8 @@ if /i "%~1" == "/A" (
 	shift
 )
 
+set "run_classkey=%run_rootkey%\Software\Classes"
+
 :: /I, /U or /S
 set "run_action=%~1"
 shift
@@ -97,7 +99,7 @@ if not defined run_arguments set "run_arguments= "%%V""
 set "run_arguments=%run_arguments:"=\"%"
 
 for %%s in ( %run_subkey1% ) do (
-	reg add "%run_rootkey%\Software\Classes\%%s\shell\%run_menu%\command" /ve /d "\"%run_progpath%\"%run_arguments%" /f
+	reg add "%run_classkey%\%%s\shell\%run_menu%\command" /ve /d "\"%run_progpath%\"%run_arguments%" /f
 )
 goto :EOF
 
@@ -106,14 +108,14 @@ goto :EOF
 if /i "%run_menu%" == "cmd" goto :run_forbidden
 
 for %%s in ( %run_subkey1% ) do (
-	reg delete "%run_rootkey%\Software\Classes\%%s\shell\%run_menu%" /f
+	reg delete "%run_classkey%\%%s\shell\%run_menu%" /f
 )
 goto :EOF
 
 
 :run_show
 for %%s in ( %run_subkey1% ) do (
-	reg query "%run_rootkey%\Software\Classes\%%s\shell\%run_menu%" /s
+	reg query "%run_classkey%\%%s\shell\%run_menu%" /s
 )
 goto :EOF
 
