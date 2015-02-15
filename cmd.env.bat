@@ -63,6 +63,15 @@ if exist "%ANT_HOME%" set "PATH=%PATH%;%ANT_HOME%\bin"
 
 :: ========================================================================
 ::
+:: OpenLDAP
+::
+:: ========================================================================
+
+set "OPENLDAP_HOME=%TEA_HOME%\opt\OpenLDAP"
+if exist "%OPENLDAP_HOME%" set "PATH=%PATH%;%OPENLDAP_HOME%\bin;%OPENLDAP_HOME%\sbin"
+
+:: ========================================================================
+::
 :: IUM
 ::
 :: ========================================================================
@@ -95,8 +104,8 @@ if exist "%TEA_HOME%\opt\nodejs\node.exe" set "PATH=%PATH%;%TEA_HOME%\opt\nodejs
 ::
 :: ========================================================================
 
-set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-20141004-git-1c4c78e-win32-static\bin"
-:: set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-20141004-git-1c4c78e-win64-static\bin"
+set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-win32\bin"
+:: set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-win64\bin"
 
 set "PATH=%PATH%;%TEA_HOME%\opt\libav-win32\usr\bin"
 :: set "PATH=%PATH%;%TEA_HOME%\opt\libav-win64\usr\bin"
