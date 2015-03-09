@@ -32,7 +32,7 @@ $packages = @(
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		"url" = "https://github.com/mridgers/clink/releases/download/0.4.3/clink_0.4.3.zip";
+		"url" = "https://github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
