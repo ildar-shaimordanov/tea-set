@@ -104,8 +104,8 @@ $packages = @(
 
 # =========================================================================
 
-$dstDir = [System.IO.Path]::GetFullPath("$pwd\..\vendors");
-$tmpDir = $pwd;
+$vendorsDir = [System.IO.Path]::GetFullPath("$pwd\..\vendors");
+$distribDir = "$pwd\distrib";
 
 $7zip_exe = "";
 
@@ -142,7 +142,7 @@ function extract-archive( [string]$filename, [string]$targetDir, [bool]$onlyFile
 }
 
 function install-package( $package ) {
-	$dstDir = $script:dstDir + "\" + $package.dir;
+	$dstDir = $script:vendorsDir + "\" + $package.dir;
 
 @"
 
@@ -159,7 +159,7 @@ Destination: {1}
 	}
 
 	New-Item -Force -ItemType Directory -Path $dstDir >$null;
-	$filename = download-archive $package.url $script:tmpDir;
+	$filename = download-archive $package.url $script:distribDir;
 	extract-archive $filename $dstDir ( !! $package.onlyFiles );
 
 	if ( $package.postinstall ) {
@@ -172,6 +172,7 @@ Destination: {1}
 # =========================================================================
 
 $enabled = "$pwd\zentea.enabled";
+$logfile = "$pwd\zentea.log";
 
 if ( ! ( Test-Path "$enabled" ) ) {
 	[System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" ) >$Null;
@@ -179,7 +180,7 @@ if ( ! ( Test-Path "$enabled" ) ) {
 	exit;
 }
 
-$packages | % { install-package $_; } | Out-File "$pwd\zentea.log";
+$packages | % { install-package $_; } | Out-File $logfile;
 
 Remove-Item -Force -Path "$enabled";
 

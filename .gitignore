@@ -11,9 +11,10 @@ bin/*
 
 etc/zentea.enabled
 etc/*.log
-etc/*.7z
-etc/*.rar
-etc/*.zip
+etc/distrib/*.7z
+etc/distrib/*.zip
+etc/distrib/*.rar
+
 etc/clink/.history
 
 etc/Far3/Default.farconfig
