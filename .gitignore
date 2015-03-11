@@ -11,9 +11,8 @@ bin/*
 
 etc/zentea.enabled
 etc/*.log
-etc/distrib/*.7z
-etc/distrib/*.zip
-etc/distrib/*.rar
+etc/distrib/
+!etc/distrib/README
 
 etc/clink/.history
 
