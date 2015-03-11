@@ -15,10 +15,8 @@ $packages = @(
 		"url" = "http://downloads.sourceforge.net/sevenzip/7za920.zip";
 		"dir" = "7za";
 		"postinstall" = {
-			function postinstall( [string]$dir ) {
-				$script:7zip_exe = "$dir\7za.exe";
-			};
-			postinstall $args[0];
+			$dir = $args[0];
+			$script:7zip_exe = "$dir\7za.exe";
 		};
 	}
 
@@ -36,12 +34,10 @@ $packages = @(
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
-			function postinstall( [string]$dir ) {
-				ls $dir | 
-				? { $_.Attributes -eq "Directory" } | 
-				% { rmdir -Force -Path "$dir\$_"; };
-			};
-			postinstall $args[0];
+			$dir = $args[0];
+			ls $dir | 
+			? { $_.Attributes -eq "Directory" } | 
+			% { rmdir -Force -Path "$dir\$_"; };
 		};
 	}
 
@@ -66,15 +62,13 @@ $packages = @(
 		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.940/Notepad2-mod.4.2.25.940_x86.zip";
 		"dir" = "notepad2-mod";
 		"postinstall" = {
-			function postinstall( [string]$dir ) {
-				$ini = "$dir\Notepad2.ini";
-				mv -Force -Path "$ini" -Destination "$ini.orig";
-				& {
-					"[Notepad2]";
-					"Notepad2.ini=..\..\etc\notepad2\Notepad2.ini";
-				} | Out-File "$ini";
-			};
-			postinstall $args[0];
+			$dir = $args[0];
+			$ini = "$dir\Notepad2.ini";
+			mv -Force -Path "$ini" -Destination "$ini.orig";
+			& {
+				"[Notepad2]";
+				"Notepad2.ini=..\..\etc\notepad2\Notepad2.ini";
+			} | Out-File "$ini";
 		};
 	}
 
@@ -84,12 +78,10 @@ $packages = @(
 		"url" = "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip";
 		"dir" = "x-unxutils";
 		"postinstall" = {
-			function postinstall( [string]$dir ) {
-				$src = "$dir\usr\local\wbin\*";
-				$dst = "$dir\bin";
-				mv -Force -Path $src -Destination $dst;
-			};
-			postinstall $args[0];
+			$dir = $args[0];
+			$src = "$dir\usr\local\wbin\*";
+			$dst = "$dir\bin";
+			mv -Force -Path $src -Destination $dst;
 		};
 	}
 
@@ -144,14 +136,9 @@ function extract-archive( [string]$filename, [string]$targetDir, [bool]$onlyFile
 function install-package( $package ) {
 	$dstDir = $script:vendorsDir + "\" + $package.dir;
 
-@"
-
-=======================================================================
-
-Package: {0}
-Destination: {1}
-
-"@ -f $package.name, $dstDir;
+	"=================================================================";
+	"Package     : $($package.name)";
+	"Destination : $dstDir";
 
 	if ( $package.skip ) {
 		"Skipped";
@@ -162,11 +149,13 @@ Destination: {1}
 	$filename = download-archive $package.url $script:distribDir;
 	extract-archive $filename $dstDir ( !! $package.onlyFiles );
 
-	if ( $package.postinstall ) {
-		"`nInvoke command:";
-		$package.postinstall;
-		Invoke-Command -ScriptBlock $package.postinstall -ArgumentList $dstDir;
+	if ( ! $package.postinstall ) {
+		return;
 	}
+
+	"`nInvoke command:";
+	$package.postinstall;
+	Invoke-Command -ScriptBlock $package.postinstall -ArgumentList $dstDir;
 }
 
 # =========================================================================
@@ -182,7 +171,9 @@ if ( ! ( Test-Path "$enabled" ) ) {
 
 $packages | % { install-package $_; } | Out-File $logfile;
 
-Remove-Item -Force -Path "$enabled";
+if ( Test-Path $enabled ) {
+	Remove-Item -Force -Path "$enabled";
+}
 
 # =========================================================================
 
