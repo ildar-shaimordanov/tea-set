@@ -1,0 +1,17 @@
+
+1. Install Cygwin
+
+2. Run Cygwin first time and perform post-install activity
+
+3. Copy the content of Cygwin home dir to new home dir in tea-set
+find | xargs tar -cf - | ( cd "NEW-HOME-DIR" ; tar -xf - )
+
+4. Remove the current home dir
+cd ..
+rm -rf "$HOME"
+
+5. Create soft link to NEW-HOME-DIR
+ln -s "NEW-HOME-DIR" $USER
+
+6. Close the current Cygwin session
+

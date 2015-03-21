@@ -21,8 +21,7 @@ etc/Far3/Profile/Plugins/*
 etc/Far3/Profile/PluginsData/*
 etc/Far3/Profile/*.db*
 
-etc/postinstall/
-!etc/postinstall/system/
+etc/postinstall/GUI/
 
 etc/TLB/
 etc/wallpapers/
