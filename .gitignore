@@ -27,6 +27,15 @@ etc/postinstall/
 etc/TLB/
 etc/wallpapers/
 
+home/
+!home/.bash_profile
+!home/.bashrc
+!home/.git-completion.bash
+!home/.git-prompt.sh
+!home/.inputrc
+!home/.minttyrc
+!home/.profile
+
 FTP/
 GUI/
 WWW/
