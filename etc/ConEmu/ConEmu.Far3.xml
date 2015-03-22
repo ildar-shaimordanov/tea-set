@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2014-11-24 10:27:10" build="141004">
+		<key name=".Vanilla" modified="2015-03-22 12:40:02" build="150119a">
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
 			<value name="Update.CheckOnStartup" type="hex" data="00"/>
@@ -83,6 +83,9 @@
 			<value name="StoreTaskbarkTasks" type="hex" data="01"/>
 			<value name="StoreTaskbarCommands" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
+				<line data="{wscmd}"/>
+				<line data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
+				<line data="{nnBackup}"/>
 			</value>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
@@ -467,17 +470,18 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-				<key name="Tasks" modified="2014-11-15 18:59:18" build="141004">
+				<key name="Tasks" modified="2015-03-22 12:39:58" build="150119a">
 				<value name="Count" type="dword" data="00000006"/>
-						<key name="Task1" modified="2014-11-30 00:03:49" build="141004">
+						<key name="Task1" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{Cmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00001154"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task2" modified="2014-11-30 00:03:49" build="141004">
+						<key name="Task2" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
@@ -485,26 +489,29 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\Far.bat"/>
 					<value name="Hotkey" type="dword" data="00121154"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task3" modified="2014-11-30 00:03:49" build="141004">
+						<key name="Task3" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task4" modified="2014-11-30 00:03:49" build="141004">
-					<value name="Name" type="string" data="{Cygwin Terminal}"/>
+						<key name="Task4" modified="2015-03-22 12:39:58" build="150119a">
+					<value name="Name" type="string" data="{wscmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\x-cygwin\bin\mintty.exe&quot; -i /Cygwin-Terminal.ico -"/>
+					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\var\wscmd /debug"/>
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\nnsync.bat ce-progs copy pause"/>
 					<value name="Cmd3" type="string" data="%ConEmuDir%\..\nnsync.bat ce-www copy pause"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task5" modified="2014-11-30 00:03:49" build="141004">
+						<key name="Task5" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="PowerShell.exe"/>
@@ -513,8 +520,9 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task6" modified="2014-11-30 00:03:49" build="141004">
+						<key name="Task6" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{nnBackup}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="dword" data="00000000"/>
@@ -524,6 +532,7 @@
 					<value name="Cmd3" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\bin\nnsync.bat&quot; ce-media copy -cur_console:s1TVn"/>
 					<value name="Cmd4" type="string" data="C:\PROGS\nnsync.bat ce-www copy pause"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="Flags" type="dword" data="00000000"/>
 				</key>
 						<key name="Task7" modified="2014-09-21 12:54:18" build="140914">
 					<value name="Name" type="string" data="{Group7}"/>
@@ -547,10 +556,10 @@
 					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
 				</key>
 			</key>
-				<key name="Apps" modified="2014-11-30 00:03:49" build="141004">
+				<key name="Apps" modified="2015-03-22 12:39:58" build="150119a">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-				<key name="Colors" modified="2014-11-30 00:03:49" build="141004">
+				<key name="Colors" modified="2015-03-22 12:39:58" build="150119a">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="01"/>
@@ -624,6 +633,20 @@
 			<value name="Key.BufBottom" type="dword" data="00005d23"/>
 			<value name="Key.BufCursor" type="dword" data="00005d08"/>
 			<value name="FontOriginalKey" type="dword" data="00001104"/>
+			<value name="ProcessCmdStart" type="hex" data="01"/>
+			<value name="Multi.ShowSearch" type="hex" data="01"/>
+			<value name="UseScrollLock" type="hex" data="01"/>
+			<value name="CTS.ForceLocale" type="dword" data="00000000"/>
+			<value name="StatusBar.Hide.VisL" type="hex" data="01"/>
+			<value name="StatusBar.Hide.WVBack" type="hex" data="01"/>
+			<value name="StatusBar.Hide.WVDC" type="hex" data="01"/>
+			<value name="TabFlashChanged" type="dword" data="00000008"/>
+			<value name="TabModifiedSuffix" type="string" data="[*]"/>
+			<value name="Multi.SplitMaximize" type="dword" data="00005d0d"/>
+			<value name="Multi.Pause" type="dword" data="80808013"/>
+			<value name="Multi.GroupInput" type="dword" data="00005d47"/>
+			<value name="CloseZombiesKey" type="dword" data="00000000"/>
+			<value name="HighlightMouseSwitchX" type="dword" data="00005d58"/>
 		</key>
 		<value name="StopWarningConIme" type="dword" data="00000001"/>
 		<key name="shell" modified="2014-01-15 16:31:32" build="140109">
