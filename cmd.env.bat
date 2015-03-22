@@ -190,12 +190,12 @@ if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\c
 :: ========================================================================
 
 :: Set the location for unix tools as you want
-:: set "UNIX_HOME=%TEA_HOME%\vendors\x-cygwin"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\x-gnuwin32"
-set "UNIX_HOME=%TEA_HOME%\vendors\x-gow-git"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\x-msysgit"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\x-unxutils"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\x-win-bash"
+:: set "UNIX_HOME=%TEA_HOME%\vendors\cygwin"
+:: set "UNIX_HOME=%TEA_HOME%\vendors\gnuwin32"
+set "UNIX_HOME=%TEA_HOME%\vendors\gow-git"
+:: set "UNIX_HOME=%TEA_HOME%\vendors\msysgit"
+:: set "UNIX_HOME=%TEA_HOME%\vendors\unxutils"
+:: set "UNIX_HOME=%TEA_HOME%\vendors\win-bash"
 
 if defined UNIX_HOME set "PATH=%UNIX_HOME%\bin;%PATH%"
 
