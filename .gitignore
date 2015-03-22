@@ -12,7 +12,7 @@ bin/*
 etc/zentea.enabled
 etc/*.log
 etc/distrib/
-!etc/distrib/README
+!etc/**/README*
 
 etc/clink/.history
 
