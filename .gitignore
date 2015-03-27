@@ -31,6 +31,7 @@ home/
 !home/.bashrc
 !home/.git-completion.bash
 !home/.git-prompt.sh
+!home/.gitconfig
 !home/.inputrc
 !home/.minttyrc
 !home/.profile
