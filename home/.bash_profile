@@ -40,9 +40,9 @@ if [ -f "${HOME}/.bashrc" ] ; then
 fi
 
 # Set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/bin" ] ; then
-  PATH="${HOME}/bin:${PATH}"
-fi
+# if [ -d "${HOME}/bin" ] ; then
+#   PATH="${HOME}/bin:${PATH}"
+# fi
 
 # Set MANPATH so it includes users' private man if it exists
 # if [ -d "${HOME}/man" ]; then

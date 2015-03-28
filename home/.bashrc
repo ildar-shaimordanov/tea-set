@@ -213,12 +213,12 @@ export HISTFILESIZE=20000
 # alias cd=cd_func
 
 # Common aliases
-[ -f "${HOME}/.bash_aliases" ] \
-&& . "${HOME}/.bash_aliases"
+[ -f "${HOME}/.sh_aliases" ] \
+&& . "${HOME}/.sh_aliases"
 
 # IUM settings
-[ -f "${HOME}/.bash_functions" ] \
-&& . "${HOME}/.bash_functions"
+[ -f "${HOME}/.sh_functions" ] \
+&& . "${HOME}/.sh_functions"
 
 # Git settings
 [ -f "$HOME/.git-completion.bash" ] \
