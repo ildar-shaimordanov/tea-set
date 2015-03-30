@@ -17,6 +17,11 @@
 <filename weight="3">/\.(Cmd|Bat|nt|btm|sys)$/i</filename>
 </prototype>
 
+<prototype name="lua" group="main" description="Lua">
+<location link="schemes/lua.hrc"/>
+<filename>/\.(w?lua)$/i</filename>
+</prototype>
+
 <prototype name="shell" group="scripts" description="sh/ksh/bash script">
 <location link="schemes/sh.hrc"/>
 <filename>/\.(sh|spec)$/i</filename>
