@@ -216,7 +216,7 @@ export HISTFILESIZE=20000
 [ -f "${HOME}/.sh_aliases" ] \
 && . "${HOME}/.sh_aliases"
 
-# IUM settings
+# Common functions
 [ -f "${HOME}/.sh_functions" ] \
 && . "${HOME}/.sh_functions"
 
