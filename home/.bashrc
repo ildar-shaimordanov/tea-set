@@ -212,6 +212,98 @@ export HISTFILESIZE=20000
 # 
 # alias cd=cd_func
 
+# =========================================================================
+
+now() {
+	date "+${1:-%F %T}"
+}
+
+# =========================================================================
+
+# Perl version of sponge
+# http://backreference.org/2011/01/29/in-place-editing-of-files/
+# http://joeyh.name/code/moreutils/
+sponge() {
+	typeset FN="sponge"
+
+	if [ $# -ne 1 -o -z "$1" ]
+	then
+		cat <<HELP
+NAME
+	$FN - Soak up standard input and write to a file
+
+USAGE
+	command FILE | $FN FILE
+
+DESCRIPTION
+	The function reads standard input and writes it out to the 
+	specified file. Unlike a shell redirect, The function soaks up all 
+	its input before opening the output file. This allows constructing 
+	pipelines that read from and write to the same file.
+HELP
+		return
+	fi
+
+	perl -ne 'push @lines, $_; END { open(OUT, ">$file") or die "sponge: cannot open $file: $!\n"; print OUT @lines; close(OUT); }' -s -- -file="$1"
+#	perl -e '@lines = <>; open(OUT, ">$file") or die "sponge: cannot open $file: $!\n"; print OUT @lines; close(OUT);' -s -- -file="$1"
+}
+
+# =========================================================================
+
+j2() {
+	sed "N;s/\n/$1/"
+	#paste -sd "$1\n"
+}
+
+jn() {
+	sed ":a;N;s/\n/$1/;ta"
+	#paste -sd"$1"
+}
+
+# =========================================================================
+
+image2pdf() {
+	convert -adjoin -format pdf "$@"
+}
+
+img2pdf() {
+	jpegtopnm "${1:--}" | pnmtops -noturn | ps2pdf - "${2:--}"
+}
+
+# =========================================================================
+
+# http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
+cdf() {
+	[ $# -eq 1 ] || {
+		echo "Usage: cdf filename">&2
+		return 1
+	}
+
+	cd "$( [ -f "$1" ] && dirname "$1" || echo "$1" )"
+}
+
+# http://www.commandlinefu.com/commands/view/13604/change-directory-for-current-path-in-bash
+cdd() {
+	[ $# -eq 2 ] || {
+		echo "Usage: cdd old_dir new_dir">&2
+		return 1
+	}
+
+	cd "$( pwd | sed -e "s/$1/$2/" )"
+}
+
+# http://www.commandlinefu.com/commands/view/12669/create-a-directory-and-change-into-it-at-the-same-time
+mcd() {
+	[ $# -eq 1 ] || {
+		echo "Usage: mkcd dirname">&2
+		return 1
+	}
+
+	mkdir "$1" && cd "$1"
+}
+
+# =========================================================================
+
 # Common aliases
 [ -f "${HOME}/.sh_aliases" ] \
 && . "${HOME}/.sh_aliases"
@@ -219,6 +311,8 @@ export HISTFILESIZE=20000
 # Common functions
 [ -f "${HOME}/.sh_functions" ] \
 && . "${HOME}/.sh_functions"
+
+# =========================================================================
 
 # Git settings
 [ -f "$HOME/.git-completion.bash" ] \
@@ -229,5 +323,7 @@ export HISTFILESIZE=20000
 
 GIT_PS1_SHOWCOLORHINTS=1
 PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\$(__git_ps1)\n\$ "
+
+# =========================================================================
 
 # EOF
