@@ -38,28 +38,21 @@ for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
 :: Common paths
 set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
 
-:: 7-zip path
-set "SEVENZIP_HOME=%TEA_HOME%\vendors\7za"
-if exist "%SEVENZIP_HOME%" set "PATH=%PATH%;%SEVENZIP_HOME%"
-
 :: ========================================================================
 ::
-:: PuTTY, curl etc
+:: Autoloading from %TEA_HOME%\opt
 ::
 :: ========================================================================
 
-set "PATH=%PATH%;%TEA_HOME%\opt\PuTTY"
-set "PATH=%PATH%;%TEA_HOME%\opt\curl\bin"
+for /d %%d in ( "C:\PROGS\opt\*" ) do call :cmd.env.select.set.path "%%~d"
 
 :: ========================================================================
 ::
-:: Apache Ant
+:: 7-ZIP
 ::
 :: ========================================================================
 
-set "ANT_HOME=%TEA_HOME%\opt\apache-ant-1.9.3"
-:: set "ANT_HOME=%TEA_HOME%\opt\apache-ant-1.9.4"
-if exist "%ANT_HOME%" set "PATH=%PATH%;%ANT_HOME%\bin"
+call :cmd.env.set.home SEVENZIP_HOME "%TEA_HOME%\vendors\7za"
 
 :: ========================================================================
 ::
@@ -67,8 +60,7 @@ if exist "%ANT_HOME%" set "PATH=%PATH%;%ANT_HOME%\bin"
 ::
 :: ========================================================================
 
-set "OPENLDAP_HOME=%TEA_HOME%\opt\OpenLDAP"
-if exist "%OPENLDAP_HOME%" set "PATH=%PATH%;%OPENLDAP_HOME%\bin;%OPENLDAP_HOME%\sbin"
+call :cmd.env.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
 
 :: ========================================================================
 ::
@@ -76,10 +68,7 @@ if exist "%OPENLDAP_HOME%" set "PATH=%PATH%;%OPENLDAP_HOME%\bin;%OPENLDAP_HOME%\
 ::
 :: ========================================================================
 
-set "IUM_HOME=C:\IUM"
-if exist "%IUM_HOME%" set "PATH=%PATH%;%IUM_HOME%\bin"
-:: if exist "%IUM_HOME%\Solid" set "PATH=%PATH%;%IUM_HOME%\Solid\bin"
-:: if exist "%IUM_HOME%\mysql" set "PATH=%PATH%;%IUM_HOME%\mysql\bin"
+call :cmd.env.set.home IUM_HOME "C:\IUM"
 
 :: ========================================================================
 ::
@@ -87,89 +76,7 @@ if exist "%IUM_HOME%" set "PATH=%PATH%;%IUM_HOME%\bin"
 ::
 :: ========================================================================
 
-if exist "%TEA_HOME%\bin\www.bat" call "%TEA_HOME%\bin\www.bat" define
-if defined WWW_HOME set "PATH=%PATH%;%WWW_HOME%\usr\bin"
-
-:: ========================================================================
-::
-:: Node.JS
-::
-:: ========================================================================
-
-if exist "%TEA_HOME%\opt\nodejs\node.exe" set "PATH=%PATH%;%TEA_HOME%\opt\nodejs"
-
-:: ========================================================================
-::
-:: Multimedia processing (FFmpeg, Libav etc)
-::
-:: ========================================================================
-
-set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-win32\bin"
-:: set "PATH=%PATH%;%TEA_HOME%\opt\ffmpeg-win64\bin"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\libav-win32\usr\bin"
-:: set "PATH=%PATH%;%TEA_HOME%\opt\libav-win64\usr\bin"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\wavpack"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\vorbis-tools"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\flac-x32"
-:: set "PATH=%PATH%;%TEA_HOME%\opt\flac-x64"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\lame"
-
-set "PATH=%PATH%;%TEA_HOME%\opt\xmlstarlet"
-
-:: ========================================================================
-::
-:: Java
-::
-:: ========================================================================
-
-set "JRE_HOME="
-for /f %%d in ( '
-	dir /b "C:\Program FIles\Java\jre*" "C:\Program Files (x86)\Java\jre*" ^| sort
-' ) do if exist "C:\Program FIles\Java\%%d" (
-	set "JRE_HOME=C:\Program FIles\Java\%%d"
-) else (
-	set "JRE_HOME=C:\Program FIles (x86)\Java\%%d"
-)
-
-set "JDK_HOME="
-for /f %%d in ( '
-	dir /b "C:\Program FIles\Java\jdk*" "C:\Program Files (x86)\Java\jdk*" ^| sort
-' ) do if exist "C:\Program FIles\Java\%%d" (
-	set "JDK_HOME=C:\Program FIles\Java\%%d"
-) else (
-	set "JDK_HOME=C:\Program FIles (x86)\Java\%%d"
-)
-
-
-if defined JDK_HOME (
-	set "JAVA_HOME=%JDK_HOME%"
-) else (
-	set "JAVA_HOME=%JRE_HOME%"
-)
-
-if defined JAVA_HOME set "PATH=%PATH%;%JAVA_HOME%\bin"
-
-:: ========================================================================
-::
-:: VirtualBox
-::
-:: ========================================================================
-
-if exist "C:\Program Files\Oracle\VirtualBox" set "PATH=%PATH%;C:\Program Files\Oracle\VirtualBox"
-
-:: ========================================================================
-::
-:: SVN
-::
-:: ========================================================================
-
-set "SVN_HOME=%TEA_HOME%\opt\svn-1.8.5"
-if exist "%SVN_HOME%" set "PATH=%PATH%;%SVN_HOME%\bin"
+call :cmd.env.set.home WWW_HOME "%TEA_HOME%\WWW"
 
 :: ========================================================================
 ::
@@ -177,11 +84,11 @@ if exist "%SVN_HOME%" set "PATH=%PATH%;%SVN_HOME%\bin"
 ::
 :: ========================================================================
 
-:: set "GIT_HOME=C:\Program Files (x86)\Git"
-set "GIT_HOME=%TEA_HOME%\vendors\msysgit"
+:: set "GIT_HOME=%ProgramFiles(x86)%\Git"
+::set "GIT_HOME=%TEA_HOME%\vendors\msysgit"
 
 :: if exist "%GIT_HOME%" set "PATH=%PATH%;%GIT_HOME%\cmd"
-if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\cmd;%GIT_HOME%\share\vim\vim74;%PATH%"
+::if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\cmd;%GIT_HOME%\share\vim\vim74;%PATH%"
 
 :: ========================================================================
 ::
@@ -190,14 +97,12 @@ if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\c
 :: ========================================================================
 
 :: Set the location for unix tools as you want
-:: set "UNIX_HOME=%TEA_HOME%\vendors\cygwin"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\gnuwin32"
-set "UNIX_HOME=%TEA_HOME%\vendors\gow-git"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\msysgit"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\unxutils"
-:: set "UNIX_HOME=%TEA_HOME%\vendors\win-bash"
-
-if defined UNIX_HOME set "PATH=%UNIX_HOME%\bin;%PATH%"
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\cygwin" /p
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gnuwin32" /p
+call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gow-git" /p
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\msysgit" /p
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\unxutils" /p
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\win-bash" /p
 
 :: What is the HOME directory?
 :: http://gnuwin32.sourceforge.net/faq.html
@@ -228,6 +133,29 @@ if defined PERL_HOME set "PATH=%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%P
 
 :: ========================================================================
 ::
+:: VirtualBox
+::
+:: ========================================================================
+
+if exist "%ProgramFiles%\Oracle\VirtualBox" set "PATH=%PATH%;%ProgramFiles%\Oracle\VirtualBox"
+
+:: ========================================================================
+::
+:: Java
+::
+:: ========================================================================
+
+call :cmd.env.lookup.java jre
+call :cmd.env.lookup.java jdk
+
+if defined JDK_HOME (
+	call :cmd.env.set.home JAVA_HOME "%JDK_HOME%"
+) else if defined JRE_HOME (
+	call :cmd.env.set.home JAVA_HOME "%JRE_HOME%"
+)
+
+:: ========================================================================
+::
 :: Integration with ConEmu
 ::
 :: ========================================================================
@@ -250,6 +178,67 @@ if /i "%~1" == "set-git-prompt" if defined ConEmuBaseDir if exist "%ConEmuBaseDi
 :: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\ColorPrompt.cmd" (
 :: 	call "%ConEmuBaseDir%\ColorPrompt.cmd"
 :: )
+
+:: ========================================================================
+
+goto :EOF
+
+:: ========================================================================
+
+:cmd.env.lookup.java
+set "%~1_HOME="
+for /f %%d in ( '
+	dir /b "%ProgramFiles%\Java\%~1*" "%ProgramFiles(x86)%\Java\%~1*" ^| sort
+' ) do if exist "%ProgramFiles%\Java\%%d" (
+	set "%~1_HOME=%ProgramFiles%\Java\%%d"
+) else (
+	set "%~1_HOME=%ProgramFiles(x86)%\Java\%%d"
+)
+goto :EOF
+
+
+:cmd.env.set.home
+if defined %~1 goto :EOF
+
+:: Set all provided paths to %PATH%
+call :cmd.env.set.path "%~2\bin"     "%~3" && set "%~1=%~2"
+call :cmd.env.set.path "%~2\sbin"    "%~3" && set "%~1=%~2"
+call :cmd.env.set.path "%~2\usr\bin" "%~3" && set "%~1=%~2"
+call :cmd.env.set.path "%~2"         "%~3" && set "%~1=%~2"
+goto :EOF
+
+
+:cmd.env.select.set.path
+:: Only one of these paths will be appended to %PATH%
+call :cmd.env.set.path "%~1\bin" "%~2" && goto :EOF
+call :cmd.env.set.path "%~1\cmd" "%~2" && goto :EOF
+call :cmd.env.set.path "%~1"     "%~2" && goto :EOF
+goto :EOF
+
+
+:cmd.env.set.path
+:: Check if the path is not specified in %PATH% and contains executables
+call :cmd.env.check.path "%~1" || goto :EOF
+
+:: Append or prepend new path to %PATH%
+if /i "%~2" == "/P" (
+	set "PATH=%~1;%PATH%"
+) else (
+	set "PATH=%PATH%;%~1"
+)
+::if /i     "%~2" == "/P" set "PATH=%~1;%PATH%"
+::if /i not "%~2" == "/P" set "PATH=%PATH%;%~1"
+goto :EOF
+
+
+:cmd.env.check.path
+:: Skip if the path is specified in %PATH%
+for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
+
+:: Skiep if no executables in the path
+dir /b /a-d "%~1\*.exe" "%~1\*.bat" "%~1\*.cmd" >nul 2>nul
+
+goto :EOF
 
 :: ========================================================================
 
