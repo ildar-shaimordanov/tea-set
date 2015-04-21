@@ -40,14 +40,6 @@ set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
 
 :: ========================================================================
 ::
-:: Autoloading from %TEA_HOME%\opt
-::
-:: ========================================================================
-
-for /d %%d in ( "C:\PROGS\opt\*" ) do call :cmd.env.select.set.path "%%~d"
-
-:: ========================================================================
-::
 :: 7-ZIP
 ::
 :: ========================================================================
@@ -156,6 +148,14 @@ if defined JDK_HOME (
 
 :: ========================================================================
 ::
+:: Autoloading the rest of tools from %TEA_HOME%\opt
+::
+:: ========================================================================
+
+for /d %%d in ( "C:\PROGS\opt\*" ) do call :cmd.env.select.set.path "%%~d"
+
+:: ========================================================================
+::
 :: Integration with ConEmu
 ::
 :: ========================================================================
@@ -185,6 +185,7 @@ goto :EOF
 
 :: ========================================================================
 
+:: %~1 - one of them: jdk or jre
 :cmd.env.lookup.java
 set "%~1_HOME="
 for /f %%d in ( '
@@ -196,7 +197,11 @@ for /f %%d in ( '
 )
 goto :EOF
 
+:: ========================================================================
 
+:: %~1 - home name variable (looks like XXX_HOME)
+:: %~2 - the directory's path
+:: %~3 - /P to force prepending to %PATH%, or empty
 :cmd.env.set.home
 if defined %~1 goto :EOF
 
@@ -207,7 +212,10 @@ call :cmd.env.set.path "%~2\usr\bin" "%~3" && set "%~1=%~2"
 call :cmd.env.set.path "%~2"         "%~3" && set "%~1=%~2"
 goto :EOF
 
+:: ========================================================================
 
+:: %~1 - the directory's path
+:: %~2 - /P to force prepending to %PATH%, or empty
 :cmd.env.select.set.path
 :: Only one of these paths will be appended to %PATH%
 call :cmd.env.set.path "%~1\bin" "%~2" && goto :EOF
@@ -215,22 +223,22 @@ call :cmd.env.set.path "%~1\cmd" "%~2" && goto :EOF
 call :cmd.env.set.path "%~1"     "%~2" && goto :EOF
 goto :EOF
 
+:: ========================================================================
 
+:: %~1 - the directory's path
+:: %~2 - /P to force prepending to %PATH%, or empty
 :cmd.env.set.path
 :: Check if the path is not specified in %PATH% and contains executables
 call :cmd.env.check.path "%~1" || goto :EOF
 
 :: Append or prepend new path to %PATH%
-if /i "%~2" == "/P" (
-	set "PATH=%~1;%PATH%"
-) else (
-	set "PATH=%PATH%;%~1"
-)
-::if /i     "%~2" == "/P" set "PATH=%~1;%PATH%"
-::if /i not "%~2" == "/P" set "PATH=%PATH%;%~1"
+if /i     "%~2" == "/P" set "PATH=%~1;%PATH%"
+if /i not "%~2" == "/P" set "PATH=%PATH%;%~1"
 goto :EOF
 
+:: ========================================================================
 
+:: %~1 - the directory's path
 :cmd.env.check.path
 :: Skip if the path is specified in %PATH%
 for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
