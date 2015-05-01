@@ -5,11 +5,6 @@ if "%~1" == "" (
 	goto :shell.failed
 )
 
-if not exist "%~dp0\vendors\%~1\bin\bash.exe" (
-	>&2 echo:%~1 is not shell
-	goto :shell.failed
-)
-
 setlocal
 
 :: Proceed to the specified folder
@@ -33,9 +28,9 @@ for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do if exist "%~dp0vendors\%~1\%%~
 	goto :EOF
 )
 
-:: Try naked Bash
-if exist "%~dp0\vendors\%~1\bin\bash.exe" (
-	start "%~1 starting" "%~dp0vendors\%~1\bin\bash.exe" -l -i
+:: Try naked bash, ksh or sh
+for %%s in ( bash ksh sh ) do if exist "%~dp0\vendors\%~1\bin\%%~s.exe" (
+	start "%~1 starting" "%~dp0vendors\%~1\bin\%%~s.exe" -l -i
 	goto :EOF
 )
 
