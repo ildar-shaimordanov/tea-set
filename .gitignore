@@ -6,6 +6,7 @@ bin/*
 !bin/exe2exe*
 !bin/run-here.bat
 !bin/unalias.bat
+!bin/unpath.bat
 !bin/which.bat
 !bin/README*
 
