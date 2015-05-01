@@ -1,0 +1,8 @@
+BoldAsFont=no
+Rows=50
+ScrollbackLines=100000
+Transparency=low
+OpaqueWhenFocused=no
+ClicksPlaceCursor=no
+RightClickAction=paste
+FontHeight=10
