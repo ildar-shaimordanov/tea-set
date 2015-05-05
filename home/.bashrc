@@ -270,6 +270,18 @@ img2pdf() {
 	jpegtopnm "${1:--}" | pnmtops -noturn | ps2pdf - "${2:--}"
 }
 
+__conv_center2folder() {
+	convert "$1" -resize x300 "folder.jpg"
+}
+
+__conv_left2folder() {
+	convert "$1" -resize x300 -gravity west -crop '50%x300' "folder.jpg"
+}
+
+__conv_right2folder() {
+	convert "$1" -resize x300 -gravity east -crop '50%x300' "folder.jpg"
+}
+
 # =========================================================================
 
 # http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
