@@ -270,16 +270,16 @@ img2pdf() {
 	jpegtopnm "${1:--}" | pnmtops -noturn | ps2pdf - "${2:--}"
 }
 
-__conv_center2folder() {
-	convert "$1" -resize x300 "folder.jpg"
+__conv_image2folder() {
+	convert "$1" -resize '300x300>' "folder.jpg"
 }
 
 __conv_left2folder() {
-	convert "$1" -resize x300 -gravity west -crop '50%x300' "folder.jpg"
+	convert "$1" -resize '600x300>' -gravity west -crop '50%x100%' "folder.jpg"
 }
 
 __conv_right2folder() {
-	convert "$1" -resize x300 -gravity east -crop '50%x300' "folder.jpg"
+	convert "$1" -resize '600x300>' -gravity east -crop '50%x100%' "folder.jpg"
 }
 
 # =========================================================================
