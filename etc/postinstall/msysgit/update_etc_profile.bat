@@ -1,10 +1,10 @@
 @echo off
 
-copy /b "%~dp0..\..\..\vendors\msysgit\etc\profile" profile.orig
+copy /b "%~dp0..\..\..\vendors\msysgit\etc\profile" "%~dp0profile.orig"
 
 (
 	echo:# Set new home dir
-	echo:HOME='%~dp0..\..\..\home'
+	echo:HOME="$^( cd / ; cd "$^( pwd -W ^)/../../home" ; pwd ^)"
 	echo:
-	type profile.orig
+	type "%~dp0profile.orig"
 ) >"%~dp0..\..\..\vendors\msysgit\etc\profile"
