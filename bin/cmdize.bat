@@ -144,6 +144,7 @@ echo:setlocal
 echo:set "POWERSHELL_BAT_ARGS=%%*"
 echo:if defined POWERSHELL_BAT_ARGS set "POWERSHELL_BAT_ARGS=%%POWERSHELL_BAT_ARGS:"=\"%%"
 echo:endlocal ^& powershell -NoLogo -NoProfile -Command "$_ = $input; Invoke-Expression $( '$input = $_; $_ = \"\"; $args = @( &{ $args } %%POWERSHELL_BAT_ARGS%% );' + [String]::Join( [char]10, $( Get-Content \"%%~f0\" ) ) )"
+echo:rem endlocal ^& powershell -NoLogo -NoProfile -Command "$input | &{ [ScriptBlock]::Create( ( Get-Content \"%%~f0\" ) -join [char]10 ).Invoke( @( &{ $args } %%POWERSHELL_BAT_ARGS%% ) ) }"
 echo:goto :EOF
 echo:#^>
 type "%~f1"
