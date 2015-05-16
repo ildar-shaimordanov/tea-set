@@ -20,8 +20,8 @@ pause
 goto :EOF
 
 :start.mintty
-start "%~n0 starting" "%~dp0vendors\%~n0\bin\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~n0-Terminal.ico" -
-::start "%~n0 starting" "%~dp0vendors\%~n0\bin\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~n0-Terminal.ico" -h start "%~dp0vendors\%~n0\bin\bash.exe" -l -i
+start "%~n0 starting" "%~dp0vendors\%~n0\bin\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~n0.ico" -
+::start "%~n0 starting" "%~dp0vendors\%~n0\bin\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~n0.ico" -h start "%~dp0vendors\%~n0\bin\bash.exe" -l -i
 goto :EOF
 
 :start.bash
