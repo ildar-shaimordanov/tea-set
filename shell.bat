@@ -10,8 +10,8 @@ setlocal
 :: Proceed to the specified folder
 if not "%~2" == "" pushd "%~2" || goto :EOF
 
-:: Run in the specified directory
-set "CHERE_INVOKING=%CD%"
+:: Set the shell specific parameters if it is necessary
+if exist "%~dpn0.%~1.bat" call "%~dpn0.%~1.bat"
 
 :: Set the home dir
 set "HOME=%~dp0home"
