@@ -11,7 +11,7 @@ setlocal
 if not "%~2" == "" pushd "%~2" || goto :EOF
 
 :: Set the shell specific parameters if it is necessary
-if exist "%~dpn0.%~1.bat" call "%~dpn0.%~1.bat"
+if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 
 :: Set the home dir
 set "HOME=%~dp0home"
