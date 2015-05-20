@@ -551,7 +551,7 @@
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="Hotkey" type="dword" data="00121154"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
+					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\shell.bat&quot; prompt -new_console:bn"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>

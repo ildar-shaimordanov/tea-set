@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2015-03-22 12:40:02" build="150119a">
+		<key name=".Vanilla" modified="2015-05-20 20:37:06" build="150119a">
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
 			<value name="Update.CheckOnStartup" type="hex" data="00"/>
@@ -83,9 +83,9 @@
 			<value name="StoreTaskbarkTasks" type="hex" data="01"/>
 			<value name="StoreTaskbarCommands" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
-				<line data="{wscmd}"/>
 				<line data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
 				<line data="{nnBackup}"/>
+				<line data="{wscmd}"/>
 			</value>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
@@ -484,7 +484,7 @@
 						<key name="Task2" modified="2015-03-22 12:39:58" build="150119a">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\ConEmu.Prompt.bat&quot; -new_console:bn"/>
+					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\shell.bat&quot; prompt -new_console:bn"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\Far.bat"/>
