@@ -34,7 +34,7 @@ for %%s in ( bash ksh sh ) do if exist "%~dp0\vendors\%~1\bin\%%~s.exe" (
 	goto :EOF
 )
 
->&2 echo:Cannot find the shell binary -- aborting.
+>&2 echo:Cannot find the specified shell "%~1".
 
 :shell.failed
 >&2 pause
