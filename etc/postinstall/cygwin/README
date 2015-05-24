@@ -3,20 +3,29 @@
 
 2. Run Cygwin first time and perform post-install activity
 
+---------------------------------------------------------------------------
 
-The following commands should be executed one by one. They do:
-- Modify /etc/passwd
-- Remove the current home dir
-- Create soft link to NEW-HOME-DIR
+The simplest way (not portable)
+
+3. Modify /etc/passwd
 
 cd "NEW-HOME-DIR"
 sed -i "/$USERNAME/ s|^\(.*\):.*:\(.*\)|\1:$(pwd):\2|" /etc/passwd
 
+4. Close the current Cygwin session
+
+---------------------------------------------------------------------------
+
+The more complicated but portable way
+
+3. Remove the current home dir
+
 cd ~/..
 rm -rf "$HOME"
 
-ln -s "$OLDPWD" $USERNAME
+4. Create soft link to NEW-HOME-DIR
 
+ln -s "NEW-HOME-DIR" $USERNAME
 
-6. Close the current Cygwin session
+5. Close the current Cygwin session
 
