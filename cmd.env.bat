@@ -185,6 +185,11 @@ goto :EOF
 
 :: ========================================================================
 
+:: This routine looks for the latest version of JDK or JRE installed on 
+:: the PC and sets the environment variable (JDK_HOME or JRE_HOME, 
+:: respectively) to the appropriate path. It considers all java versions 
+:: are installed by default under %ProgramFiles% and %ProgramFiles(x86)%.
+::
 :: %~1 - one of them: jdk or jre
 :cmd.env.lookup.java
 set "%~1_HOME="
@@ -199,6 +204,21 @@ goto :EOF
 
 :: ========================================================================
 
+:: This routine sets home name variable (looks like XXX_HOME) to the 
+:: directory's path and adds paths to %PATH%. 
+::
+:: Do nothing, if the home variable is already defined. 
+::
+:: The routine looks for binaries located in the subdirectories (listed 
+:: below) under the home directory and adds them to %PATH% in the case 
+:: binaries are found there. 
+::
+:: Subdirectories are looked for binaries and all of then added to %PATH%: 
+:: "bin", "sbin", "usr\bin", ".".
+::
+:: By default, all the paths are appended to %PATH%. In the case when 
+:: paths should to be prepended, use "/P" option.
+::
 :: %~1 - home name variable (looks like XXX_HOME)
 :: %~2 - the directory's path
 :: %~3 - /P to force prepending to %PATH%, or empty
@@ -214,17 +234,32 @@ goto :EOF
 
 :: ========================================================================
 
+:: The routine looks for binaries located in the subdirectories (listed 
+:: below) and adds the first found subdirectory to %PATH%. 
+::
+:: Subdirectories are looked for binaries and all of then added to %PATH%: 
+:: "bin", "usr\bin", "cmd", ".".
+::
+:: By default, all the paths are appended to %PATH%. In the case when 
+:: paths should to be prepended, use "/P" option.
+::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
 :cmd.env.select.set.path
 :: Only one of these paths will be appended to %PATH%
-call :cmd.env.set.path "%~1\bin" "%~2" && goto :EOF
-call :cmd.env.set.path "%~1\cmd" "%~2" && goto :EOF
-call :cmd.env.set.path "%~1"     "%~2" && goto :EOF
+call :cmd.env.set.path "%~1\bin"     "%~2" && goto :EOF
+call :cmd.env.set.path "%~1\usr\bin" "%~2" && goto :EOF
+call :cmd.env.set.path "%~1\cmd"     "%~2" && goto :EOF
+call :cmd.env.set.path "%~1"         "%~2" && goto :EOF
 goto :EOF
 
 :: ========================================================================
 
+:: Checks the provided directory if it is new and adds to %PATH%.
+::
+:: By default, all the paths are appended to %PATH%. In the case when 
+:: paths should to be prepended, use "/P" option.
+::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
 :cmd.env.set.path
@@ -238,12 +273,17 @@ goto :EOF
 
 :: ========================================================================
 
+:: Checks the provided directory if it is new in %PATH%.
+::
+:: Returns ERRORLEVEL == 1 if path is found in %PATH% or no executables in 
+:: the specified path, otherwise 0.
+::
 :: %~1 - the directory's path
 :cmd.env.check.path
 :: Skip if the path is specified in %PATH%
 for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
 
-:: Skiep if no executables in the path
+:: Skip if no executables in the path
 dir /b /a-d "%~1\*.exe" "%~1\*.bat" "%~1\*.cmd" >nul 2>nul
 
 goto :EOF
