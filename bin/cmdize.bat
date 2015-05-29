@@ -84,10 +84,11 @@ goto :EOF
 
 
 :cmdize.js
-echo:@if ^(true == false^) @end /*!
+echo:0^</*! ::
 echo:@echo off
 echo:"%%windir%%\System32\cscript.exe" //nologo //e:javascript "%%~f0" %%*
-echo:goto :EOF */
+echo:::node "%%~f0" %%*
+echo:goto :EOF */0;
 type "%~f1"
 goto :EOF
 
