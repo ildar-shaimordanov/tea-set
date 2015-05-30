@@ -59,6 +59,12 @@ if "%~1" == "" (
 :cmdize.loop.begin
 if "%~1" == "" goto :cmdize.loop.end
 
+if /i "%~1" == "/js" (
+	set "CMDIZE_ENGINE_JS=%~2"
+	shift
+	goto :cmdize.loop.continue
+)
+
 if not exist "%~f1" (
 	echo:%~n0: File not found: "%~1">&2
 	goto :cmdize.loop.continue
@@ -84,10 +90,16 @@ goto :EOF
 
 
 :cmdize.js
+if not defined CMDIZE_ENGINE_JS set "CMDIZE_ENGINE_JS=cscript"
+set "CMDIZE_ENGINE_JSOPTS="
+for %%e in ( "%CMDIZE_ENGINE_JS%" ) do (
+	if /i "%%~ne" == "cscript" set "CMDIZE_ENGINE_JSOPTS=//nologo //e:javascript"
+	if /i "%%~ne" == "wscript" set "CMDIZE_ENGINE_JSOPTS=//nologo //e:javascript"
+)
+
 echo:0^</*! ::
 echo:@echo off
-echo:"%%windir%%\System32\cscript.exe" //nologo //e:javascript "%%~f0" %%*
-echo:::node "%%~f0" %%*
+echo:%CMDIZE_ENGINE_JS% %CMDIZE_ENGINE_JSOPTS% "%%~f0" %%*
 echo:goto :EOF */0;
 type "%~f1"
 goto :EOF
