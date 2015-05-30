@@ -14,6 +14,13 @@
 :: "<?xml?>" declaration for wsf-files is expected.
 :: "Option Explicit" and "<?xml?>" in a single line only are supported.
 :: BOM is not supported at all.
+
+:: It is possible to select an engine for JavaScript and VBScript via the 
+:: command line options /JS and /VBS, respectively. If it is not pointed 
+:: especially, CSCRIPT is used as the default engine for both JavaScript 
+:: and VBScript files. Another valid engine is WSCRIPT. Additionally for 
+:: JavaScript files it is possible to set another engine such as NodeJS, 
+:: Rhino etc.
 ::
 :: SEE ALSO
 :: Proceed the following links to learn more the origins
@@ -41,7 +48,7 @@
 :: http://www.dostips.com/forum/viewtopic.php?p=33963#p33963
 ::
 :: COPYRIGHTS
-:: Copyright (c) 2014 Ildar Shaimordanov
+:: Copyright (c) 2014, 2015 Ildar Shaimordanov
 
 @echo off
 
