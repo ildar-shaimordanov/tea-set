@@ -181,7 +181,7 @@ goto :EOF
 :cmdize.html
 echo:^<!-- :
 echo:@echo off
-echo:start "" "%%windir%%\System32\mshta.exe" "%%~f0" %%*
+echo:start "" mshta "%%~f0" %%*
 echo:goto :EOF
 echo:--^>
 type "%~f1"
