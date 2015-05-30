@@ -14,7 +14,7 @@
 :: "<?xml?>" declaration for wsf-files is expected.
 :: "Option Explicit" and "<?xml?>" in a single line only are supported.
 :: BOM is not supported at all.
-
+::
 :: It is possible to select an engine for JavaScript and VBScript via the 
 :: command line options /JS and /VBS, respectively. If it is not pointed 
 :: especially, CSCRIPT is used as the default engine for both JavaScript 
