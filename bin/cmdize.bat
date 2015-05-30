@@ -21,6 +21,7 @@
 :: .js
 :: http://forum.script-coding.com/viewtopic.php?pid=79210#p79210
 :: http://www.dostips.com/forum/viewtopic.php?p=33879#p33879
+:: https://gist.github.com/ildar-shaimordanov/88d7a5544c0eeacaa3bc
 ::
 :: .vbs
 :: http://www.dostips.com/forum/viewtopic.php?p=33882#p33882
