@@ -15,12 +15,13 @@
 :: "Option Explicit" and "<?xml?>" in a single line only are supported.
 :: BOM is not supported at all.
 ::
-:: It is possible to select an engine for JavaScript and VBScript via the 
-:: command line options /JS and /VBS, respectively. If it is not pointed 
-:: especially, CSCRIPT is used as the default engine for both JavaScript 
-:: and VBScript files. Another valid engine is WSCRIPT. Additionally for 
-:: JavaScript files it is possible to set another engine such as NodeJS, 
-:: Rhino etc.
+:: It is possible to select an engine for JavaScript, VBScript and WSF via 
+:: the command line options /E. If it is not pointed especially, CSCRIPT 
+:: is used as the default engine for all JavaScript, VBScript and WSF 
+:: files. Another valid engine is WSCRIPT. Additionally for JavaScript 
+:: files it is possible to set another engine such as NodeJS, Rhino etc. 
+:: The predefined option /E DEFAULT resets any previously set engines to 
+:: the default value. 
 ::
 :: SEE ALSO
 :: Proceed the following links to learn more the origins
@@ -67,14 +68,9 @@ if "%~1" == "" (
 :cmdize.loop.begin
 if "%~1" == "" goto :cmdize.loop.end
 
-if /i "%~1" == "/js" (
-	set "CMDIZE_ENGINE_JS=%~2"
-	shift
-	goto :cmdize.loop.continue
-)
-
-if /i "%~1" == "/vbs" (
-	set "CMDIZE_ENGINE_VBS=%~2"
+if /i "%~1" == "/e" (
+	set "CMDIZE_ENGINE="
+	if /i not "%~2" == "default" set "CMDIZE_ENGINE=%~2"
 	shift
 	goto :cmdize.loop.continue
 )
@@ -104,16 +100,16 @@ goto :EOF
 
 
 :cmdize.js
-if not defined CMDIZE_ENGINE_JS set "CMDIZE_ENGINE_JS=cscript"
-set "CMDIZE_ENGINE_JSOPTS="
-for %%e in ( "%CMDIZE_ENGINE_JS%" ) do (
-	if /i "%%~ne" == "cscript" set "CMDIZE_ENGINE_JSOPTS=//nologo //e:javascript"
-	if /i "%%~ne" == "wscript" set "CMDIZE_ENGINE_JSOPTS=//nologo //e:javascript"
+if not defined CMDIZE_ENGINE set "CMDIZE_ENGINE=cscript"
+set "CMDIZE_ENGINE_OPTS="
+for %%e in ( "%CMDIZE_ENGINE%" ) do (
+	if /i "%%~ne" == "cscript" set "CMDIZE_ENGINE_OPTS=//nologo //e:javascript"
+	if /i "%%~ne" == "wscript" set "CMDIZE_ENGINE_OPTS=//nologo //e:javascript"
 )
 
 echo:0^</*! ::
 echo:@echo off
-echo:%CMDIZE_ENGINE_JS% %CMDIZE_ENGINE_JSOPTS% "%%~f0" %%*
+echo:%CMDIZE_ENGINE% %CMDIZE_ENGINE_OPTS% "%%~f0" %%*
 echo:goto :EOF */0;
 type "%~f1"
 goto :EOF
@@ -127,17 +123,12 @@ goto :EOF
 
 
 :cmdize.vbs
-if not defined CMDIZE_ENGINE_VBS set "CMDIZE_ENGINE_VBS=cscript"
-set "CMDIZE_ENGINE_VBSOPTS="
-for %%e in ( "%CMDIZE_ENGINE_VBS%" ) do (
-	if /i "%%~ne" == "cscript" set "CMDIZE_ENGINE_VBSOPTS=//nologo //e:vbscript"
-	if /i "%%~ne" == "wscript" set "CMDIZE_ENGINE_VBSOPTS=//nologo //e:vbscript"
-)
+if not defined CMDIZE_ENGINE set "CMDIZE_ENGINE=cscript"
 
 copy /y nul + nul /a "%TEMP%\%~n0.$$" /a 1>nul
 
 call :cmdize.vbs.h @echo off
-call :cmdize.vbs.h %CMDIZE_ENGINE_VBS% %CMDIZE_ENGINE_VBSOPTS% "%%%%~f0" %%%%*
+call :cmdize.vbs.h %CMDIZE_ENGINE% //nologo //e:vbscript "%%%%~f0" %%%%*
 call :cmdize.vbs.h goto :EOF
 
 del /q "%TEMP%\%~n0.$$"
@@ -198,6 +189,8 @@ goto :EOF
 
 
 :cmdize.wsf
+if not defined CMDIZE_ENGINE set "CMDIZE_ENGINE=cscript"
+
 for /f "usebackq tokens=1,2,* delims=?" %%a in ( "%~f1" ) do for /f "tokens=1,*" %%d in ( "%%b" ) do (
 	rem We use this code to transform the "<?xml?>" declaration 
 	rem located at the very beginning of the file to the "polyglot" 
@@ -205,7 +198,7 @@ for /f "usebackq tokens=1,2,* delims=?" %%a in ( "%~f1" ) do for /f "tokens=1,*"
 	echo:%%a?%%d :
 	echo:: %%e ?^>^<!--
 	echo:@echo off
-	echo:"%%windir%%\System32\cscript.exe" //nologo "%%~f0?.wsf" %%*
+	echo:%CMDIZE_ENGINE% //nologo "%%~f0?.wsf" %%*
 	echo:goto :EOF
 	echo:: --%%c
 	more +1 <"%~f1"
