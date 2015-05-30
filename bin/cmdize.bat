@@ -66,6 +66,12 @@ if /i "%~1" == "/js" (
 	goto :cmdize.loop.continue
 )
 
+if /i "%~1" == "/vbs" (
+	set "CMDIZE_ENGINE_VBS=%~2"
+	shift
+	goto :cmdize.loop.continue
+)
+
 if not exist "%~f1" (
 	echo:%~n0: File not found: "%~1">&2
 	goto :cmdize.loop.continue
@@ -114,10 +120,17 @@ goto :EOF
 
 
 :cmdize.vbs
+if not defined CMDIZE_ENGINE_VBS set "CMDIZE_ENGINE_VBS=cscript"
+set "CMDIZE_ENGINE_VBSOPTS="
+for %%e in ( "%CMDIZE_ENGINE_VBS%" ) do (
+	if /i "%%~ne" == "cscript" set "CMDIZE_ENGINE_VBSOPTS=//nologo //e:vbscript"
+	if /i "%%~ne" == "wscript" set "CMDIZE_ENGINE_VBSOPTS=//nologo //e:vbscript"
+)
+
 copy /y nul + nul /a "%TEMP%\%~n0.$$" /a 1>nul
 
 call :cmdize.vbs.h @echo off
-call :cmdize.vbs.h "%%%%windir%%%%\System32\cscript.exe" //nologo //e:vbscript "%%%%~f0" %%%%*
+call :cmdize.vbs.h %CMDIZE_ENGINE_VBS% %CMDIZE_ENGINE_VBSOPTS% "%%%%~f0" %%%%*
 call :cmdize.vbs.h goto :EOF
 
 del /q "%TEMP%\%~n0.$$"
