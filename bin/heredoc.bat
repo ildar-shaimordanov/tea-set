@@ -1,20 +1,33 @@
 @echo off
 
-if "%~1" == "" (
+:: http://forum.script-coding.com/viewtopic.php?pid=94390#p94390
+if not defined CMDCALLER (
+	(echo on & goto) 2>nul
+	call set "CMDCALLER=%%~f0"
+	call "%~f0" %*
+	set "CMDCALLER="
+)
+if /i "%CMDCALLER%" == "%%~f0" set "CMDCALLER="
+
+
+if defined CMDCALLER (
+	call :heredoc %*
+	goto :EOF
+)
+
+
 call :heredoc :HEREDOCHELP & goto :EOF
 heredoc: attempt to embed the idea of heredoc to batch scripts.
 
 There are few ways for using this solution:
 
-1. call heredoc :LABEL [FILENAME] & goto :LABEL
-Calling the external script "heredoc.bat" passing the heredoc LABEL and 
-the name of the caller file. "FILENAME" is optional argument. The special 
-environment variable "%HEREDOCFILE%" set to the filename of the caller 
-script allows to avoid passing it as the second argument. 
+1. call heredoc :LABEL & goto :LABEL
+Calling the external script "heredoc.bat" passing the heredoc LABEL. 
 
 2. call :heredoc :LABEL & goto :LABEL
 Embed the subroutine ":heredoc" into yuor script.
 
+NOTES:
 Both LABEL and :LABEL forms are possible. Instead of "goto :LABEL" it is 
 possible to use "goto" with another label, or "goto :EOF", or "exit /b".
 
@@ -27,17 +40,15 @@ caret "^".
 Additionally, parantheses "(" and ")" should be escaped, as well, if they 
 are part of the heredoc content within parantheses of the script block.
 :HEREDOCHELP
-rem
-)
+
 
 :: http://stackoverflow.com/a/15032476/3627676
-:heredoc LABEL [FILENAME]
+:heredoc LABEL
 setlocal enabledelayedexpansion
-if not defined HEREDOCFILE set "HEREDOCFILE=%~f2"
-if not defined HEREDOCFILE set "HEREDOCFILE=%~f0"
+if not defined CMDCALLER set "CMDCALLER=%~f0"
 set go=
 for /f "delims=" %%A in ( '
-	findstr /n "^" "%HEREDOCFILE%"
+	findstr /n "^" "%CMDCALLER%"
 ' ) do (
 	set "line=%%A"
 	set "line=!line:*:=!"
