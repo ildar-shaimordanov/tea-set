@@ -1,14 +1,14 @@
-@echo off
-
 :: http://forum.script-coding.com/viewtopic.php?pid=94390#p94390
-if not defined CMDCALLER (
+@if not defined CMDCALLER @(
 	(echo on & goto) 2>nul
 	call set "CMDCALLER=%%~f0"
 	call "%~f0" %*
 	set "CMDCALLER="
 )
-if /i "%CMDCALLER%" == "%%~f0" set "CMDCALLER="
+@if /i "%CMDCALLER%" == "%%~f0" set "CMDCALLER="
 
+
+@echo off
 
 if defined CMDCALLER (
 	call :heredoc %*
@@ -57,8 +57,8 @@ for /f "delims=" %%A in ( '
 		if /i "!line!" == "!go!" goto :EOF
 		echo:!line!
 	) else (
-		rem delims are ( ) > & | TAB , ; = SPACE
-		for /f "tokens=1-3 delims=()>&|	,;= " %%i in ( "!line!" ) do (
+		rem delims are @ ( ) > & | TAB , ; = SPACE
+		for /f "tokens=1-3 delims=@()>&|	,;= " %%i in ( "!line!" ) do (
 			if /i "%%i %%j %%k" == "call :heredoc %1" set "go=%%k"
 			if /i "%%i %%j %%k" == "call heredoc %1" set "go=%%k"
 			if defined go if not "!go:~0,1!" == ":" set "go=:!go!"
