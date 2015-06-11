@@ -91,8 +91,8 @@ call :cmd.env.set.home WWW_HOME "%TEA_HOME%\WWW"
 :: Set the location for unix tools as you want
 ::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\cygwin" /p
 ::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gnuwin32" /p
-call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gow-git" /p
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\msysgit" /p
+::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gow-git" /p
+call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\msysgit" /p
 ::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\unxutils" /p
 ::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\win-bash" /p
 
@@ -163,11 +163,6 @@ for /d %%d in ( "C:\PROGS\opt\*" ) do call :cmd.env.select.set.path "%%~d"
 :cmd.env.integration
 
 if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
-
-:: Integrate Git into prompt
-if /i "%~1" == "set-git-prompt" if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
-	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_$g$s
-)
 
 :: Make ConEmu's environment variables available for child processes
 :: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
