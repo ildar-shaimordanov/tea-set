@@ -18,7 +18,12 @@ set "HOME=%~dp0home"
 
 :: Check if ConEmu is available
 if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\%~1.xml" (
-	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\%~1.xml" /Icon "%~dp0etc\images\%~1.ico" %*
+	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\%~1.xml" /Icon "%~dp0etc\images\%~1.ico"
+	goto :EOF
+)
+
+if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\ConEmu.xml" (
+	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" {%~1}
 	goto :EOF
 )
 
