@@ -23,7 +23,7 @@ if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\%~1.xml" (
 )
 
 if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\ConEmu.xml" (
-	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" /cmd {%~1}
+	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" /cmd "{%~1}"
 	goto :EOF
 )
 
