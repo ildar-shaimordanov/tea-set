@@ -369,6 +369,28 @@ cd()
 		return 2 ;;
 	esac
 }
+# =========================================================================
+
+# https://github.com/rprichard/winpty
+#
+# Creating alias to winpty, the package providing interface between Window 
+# console and Unix-like pty used in cygwin, msysgit and others.
+case "$OSTYPE" in
+cygwin )
+	# Presume that winpty is under CYGROOT/../winpty
+	WINPTY="$( cygpath "$( cygpath -m / )/../winpty" )"
+	;;
+msys )
+	# Presume that winpty is under MSYSROOT/../winpty
+	WINPTY="$( cd "$( cd / ; pwd -W )/../winpty" ; pwd )"
+	;;
+esac
+if test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console"
+then
+	"$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
+	&& alias console="$WINPTY/$OSTYPE/console"
+fi
+unset WINPTY
 
 # =========================================================================
 
