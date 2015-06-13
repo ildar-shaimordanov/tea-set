@@ -405,14 +405,17 @@ unset WINPTY
 # =========================================================================
 
 # Git settings
-[ -f "$HOME/.git-completion.bash" ] \
-&& . "$HOME/.git-completion.bash"
+if ! declare -F | grep -c _git
+then
+	[ -f "$HOME/.git-completion.bash" ] \
+	&& . "$HOME/.git-completion.bash"
 
-[ -f "$HOME/.git-prompt.sh" ] \
-&& . "$HOME/.git-prompt.sh"
+	[ -f "$HOME/.git-prompt.sh" ] \
+	&& . "$HOME/.git-prompt.sh"
 
-GIT_PS1_SHOWCOLORHINTS=1
-PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\$ "
+	GIT_PS1_SHOWCOLORHINTS=1
+	PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\$ "
+fi
 
 # =========================================================================
 
