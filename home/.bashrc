@@ -287,7 +287,7 @@ __conv_right2folder() {
 # http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
 cdf() {
 	[ $# -eq 1 ] || {
-		echo "Usage: cdf filename">&2
+		echo "Usage: $FUNCNAME filename">&2
 		return 1
 	}
 
@@ -297,7 +297,7 @@ cdf() {
 # http://www.commandlinefu.com/commands/view/13604/change-directory-for-current-path-in-bash
 cdd() {
 	[ $# -eq 2 ] || {
-		echo "Usage: cdd old_dir new_dir">&2
+		echo "Usage: $FUNCNAME old_dir new_dir">&2
 		return 1
 	}
 
@@ -305,9 +305,9 @@ cdd() {
 }
 
 # http://www.commandlinefu.com/commands/view/12669/create-a-directory-and-change-into-it-at-the-same-time
-mcd() {
+mkcd() {
 	[ $# -eq 1 ] || {
-		echo "Usage: mkcd dirname">&2
+		echo "Usage: $FUNCNAME dirname">&2
 		return 1
 	}
 
@@ -339,6 +339,11 @@ mcd() {
 #
 cd()
 {
+	local CDOPTS
+	local old
+	local new
+	local dir
+
 	OPTIND=1
 	while getopts "LP" opt
 	do
@@ -369,28 +374,24 @@ cd()
 		return 2 ;;
 	esac
 }
+
 # =========================================================================
 
-# https://github.com/rprichard/winpty
-#
-# Creating alias to winpty, the package providing interface between Window 
-# console and Unix-like pty used in cygwin, msysgit and others.
-case "$OSTYPE" in
-cygwin )
-	# Presume that winpty is under CYGROOT/../winpty
-	WINPTY="$( cygpath "$( cygpath -m / )/../winpty" )"
-	;;
-msys )
-	# Presume that winpty is under MSYSROOT/../winpty
-	WINPTY="$( cd "$( cd / ; pwd -W )/../winpty" ; pwd )"
-	;;
-esac
-if test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console"
-then
-	"$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
-	&& alias console="$WINPTY/$OSTYPE/console"
-fi
-unset WINPTY
+# pwd -W for cygwin
+pwd -W >/dev/null 2>&1 || pwd() {
+	if [ "$1" == "-W" ]
+	then
+		cygpath -m "$PWD"
+		return $?
+	fi
+
+	builtin pwd "$@"
+}
+
+# =========================================================================
+
+# Support Git-for-Windows
+echo $PATH | grep -q '/mingw32/bin' || PATH="/mingw32/bin:$PATH"
 
 # =========================================================================
 
@@ -405,13 +406,30 @@ unset WINPTY
 # =========================================================================
 
 # Git settings
-if ! declare -F | grep -c _git
+if ! declare -F | grep -q _git
 then
-	[ -f "$HOME/.git-completion.bash" ] \
-	&& . "$HOME/.git-completion.bash"
+	if [ -f "/mingw32/share/git/completion/git-completion.bash" ]
+	then
+		. "/mingw32/share/git/completion/git-completion.bash"
+	elif [ -f "/etc/git-completion.bash" ]
+	then
+		. "/etc/git-completion.bash"
+	elif [ -f "$HOME/.git-completion.bash" ]
+	then
+		. "$HOME/.git-completion.bash"
+	fi
 
-	[ -f "$HOME/.git-prompt.sh" ] \
-	&& . "$HOME/.git-prompt.sh"
+
+	if [ -f "/mingw32/share/git/completion/git-prompt.sh" ]
+	then
+		. "/mingw32/share/git/completion/git-prompt.sh"
+	elif [ -f "/etc/git-prompt.sh" ]
+	then
+		. "/etc/git-prompt.sh"
+	elif [ -f "$HOME/.git-prompt.sh" ]
+	then
+		. "$HOME/.git-prompt.sh"
+	fi
 
 	GIT_PS1_SHOWCOLORHINTS=1
 	PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\$ "
