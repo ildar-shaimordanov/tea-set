@@ -24,7 +24,7 @@
 # User dependent .profile file
 
 # Set user-defined locale
-which locale 2>&1 >/dev/null && export LANG="$(locale -uU)"
+which locale >/dev/null 2>&1 && export LANG="$(locale -uU)"
 
 # This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
 # exists.
