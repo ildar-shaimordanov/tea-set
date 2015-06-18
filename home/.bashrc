@@ -378,20 +378,22 @@ cd()
 # =========================================================================
 
 # pwd -W for cygwin
-pwd -W >/dev/null 2>&1 || pwd() {
-	if [ "$1" == "-W" ]
-	then
+uname | grep -iq cygwin && pwd() {
+	case "$1" in
+	-W )
 		cygpath -m "$PWD"
-		return $?
-	fi
-
-	builtin pwd "$@"
+		;;
+	* )
+		builtin pwd "$@"
+		;;
+	esac
 }
 
 # =========================================================================
 
 # Support Git-for-Windows
-echo $PATH | grep -q '/mingw32/bin' || PATH="/mingw32/bin:$PATH"
+echo $PATH | grep -q '/mingw32/bin' || test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH"
+echo $PATH | grep -q '/mingw64/bin' || test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH"
 
 # =========================================================================
 
