@@ -34,6 +34,14 @@ esac
 
 # User dependent .bash_profile file
 
+# =========================================================================
+
+# Support Git-for-Windows
+echo $PATH | grep -q '/mingw32/bin' || { test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH" ; }
+echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH" ; }
+
+# =========================================================================
+
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"

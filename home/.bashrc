@@ -391,12 +391,6 @@ uname | grep -iq cygwin && pwd() {
 
 # =========================================================================
 
-# Support Git-for-Windows
-echo $PATH | grep -q '/mingw32/bin' || test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH"
-echo $PATH | grep -q '/mingw64/bin' || test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH"
-
-# =========================================================================
-
 # Common aliases
 [ -f "${HOME}/.sh_aliases" ] \
 && . "${HOME}/.sh_aliases"

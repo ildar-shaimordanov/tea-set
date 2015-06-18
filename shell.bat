@@ -17,24 +17,30 @@ if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 set "HOME=%~dp0home"
 
 :: Check if ConEmu is available
-if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\%~1.xml" (
+if exist "%~dp0vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\%~1.xml" (
 	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\%~1.xml" /Icon "%~dp0etc\images\%~1.ico"
 	goto :EOF
 )
 
-if exist "%~dp0\vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\ConEmu.xml" (
+if exist "%~dp0vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\ConEmu.xml" (
 	start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" /cmd "{%~1}"
+	goto :EOF
+)
+
+:: Check if git-bash launcher is available
+if exist "%~dp0vendors\%~1\git-bash.exe" (
+	start "%~1 starting" "%~dp0vendors\%~1\git-bash.exe"
 	goto :EOF
 )
 
 :: Check if mintty is available
 for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do if exist "%~dp0vendors\%~1\%%~s\mintty.exe" (
-	start "%~1 starting" "%~dp0vendors\%~1\%%~s\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~1.ico" -
+	start "%~1 starting" "%~dp0vendors\%~1\%%~s\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~1.ico" /%%~s/bash --login -i
 	goto :EOF
 )
 
 :: Try naked bash, ksh or sh
-for %%s in ( bash ksh sh ) do if exist "%~dp0\vendors\%~1\bin\%%~s.exe" (
+for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 	start "%~1 starting" "%~dp0vendors\%~1\bin\%%~s.exe" -l -i
 	goto :EOF
 )
