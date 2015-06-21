@@ -80,18 +80,6 @@ set "far_ConEmuDir=%far_PluginDir%\ConEmu"
 set "far_ConEmuFile=%far_ConEmuDir%\ConEmu.dll"
 set "far_ConEmuBuild="
 
-set "far_cmd_del=rd /s /q "%far_ConEmuDir%""
-set "far_cmd_copy=robocopy "%ConEmuDir%\plugins\ConEmu" "%far_ConEmuDir%" /S /E >nul"
-
-if not exist "%far_ConEmuFile%" (
-	echo:
-	echo:*** WARNING ***
-	echo:No ConEmu plugin found
-	echo:
-	call :conemu_plugin_copy
-	goto :EOF
-)
-
 for %%f in ( powershell.exe robocopy.exe ) do if "%%~$PATH:f" == "" (
 	echo:
 	echo:*** ERROR ***
@@ -101,6 +89,18 @@ for %%f in ( powershell.exe robocopy.exe ) do if "%%~$PATH:f" == "" (
 	echo:From : "%ConEmuDir%\plugins\ConEmu"
 	echo:To   : "%far_ConEmuDir%"
 	echo:
+	goto :EOF
+)
+
+set "far_cmd_del=rd /s /q "%far_ConEmuDir%""
+set "far_cmd_copy=robocopy "%ConEmuDir%\plugins\ConEmu" "%far_ConEmuDir%" /S /E >nul"
+
+if not exist "%far_ConEmuFile%" (
+	echo:
+	echo:*** WARNING ***
+	echo:No ConEmu plugin found
+	echo:
+	call :conemu_plugin_copy
 	goto :EOF
 )
 
@@ -125,9 +125,7 @@ echo:Using of another version of ConEmu can cause errors
 echo:It is extremely recommended to update the plugin for Far Manager
 echo:
 
-:: How to check if file is locked
-:: http://stackoverflow.com/a/24994480/3627676
-powershell -NoLogo -NoProfile -Command "try { [IO.File]::OpenWrite('%far_ConEmuFile%').Close(); } catch { exit 1; }" && call :conemu_plugin_del && call :conemu_plugin_copy && goto :EOF
+call :conemu_plugin_lockstate && call :conemu_plugin_del && call :conemu_plugin_copy && goto :EOF
 
 echo:
 echo:Perhaps, the plugin is locked by another application (Far Manager or 
@@ -138,6 +136,14 @@ echo:%far_cmd_del%
 echo:%far_cmd_copy%
 echo:
 
+goto :EOF
+
+:: ========================================================================
+
+:conemu_plugin_lockstate
+:: How to check if file is locked
+:: http://stackoverflow.com/a/24994480/3627676
+powershell -NoLogo -NoProfile -Command "try { [IO.File]::OpenWrite('%far_ConEmuFile%').Close(); } catch { exit 1; }"
 goto :EOF
 
 :: ========================================================================
