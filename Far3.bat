@@ -34,8 +34,15 @@ if defined SHOW_BANNER_FAR if exist "%~dp0cmd.banner.bat" call "%~dp0cmd.banner.
 
 if not exist "%FAR_HOME%\Far.exe.ini" (
 	echo:
-	echo:*** Copying Far Manager global configuration
-	copy /b "%FAR_CONF%\Far.exe.ini" "%FAR_HOME%\Far.exe.ini" || (
+	echo:*** "%FAR_HOME%\Far.exe.ini" not found
+	if exist "%FAR_CONF%\Far.exe.ini" (
+		echo:*** Copying from "%FAR_CONF%\Far.exe.ini"
+		copy /b "%FAR_CONF%\Far.exe.ini" "%FAR_HOME%\Far.exe.ini"
+	) else (
+		echo:*** Creating
+		call :far.exe.ini_create >"%FAR_HOME%\Far.exe.ini"
+	)
+	if errorlevel 1 (
 		call :error "Cannot copy %FAR_CONF%\Far.exe.ini to %FAR_HOME%"
 		goto :EOF
 	)
@@ -65,6 +72,26 @@ echo:%~1
 echo:
 call :usage
 pause
+goto :EOF
+
+:: ========================================================================
+
+:far.exe.ini_create
+echo:
+echo:[General]
+echo:
+echo:UseSystemProfiles=0
+echo:
+echo:UserProfileDir=%%FARHOME%%\..\..\etc\Far3\Profile
+echo:UserLocalProfileDir=%%FARHOME%%\..\..\etc\Far3\Profile
+echo:
+echo:TemplateProfile=%%FARHOME%%\..\..\etc\Far3\Default.farconfig
+echo:
+echo:GlobalUserMenuDir=%%FARHOME%%\..\..\etc\Far3
+echo:
+echo:DefaultLanguage=Russian
+echo:
+echo:ReadOnlyConfig=0
 goto :EOF
 
 :: ========================================================================
