@@ -1,7 +1,6 @@
 --http://forum.farmanager.com/viewtopic.php?f=15&t=9197
-
+-- requires FAR 3 build 4215 (http://bugs.farmanager.com/view.php?id=2878)
 --http://bugs.farmanager.com/view.php?id=2877
---http://bugs.farmanager.com/view.php?id=2878
 --http://bugs.farmanager.com/view.php?id=2879
 --http://bugs.farmanager.com/view.php?id=2881
 
@@ -10,13 +9,15 @@ local checkHK,getHK = Object.CheckHotkey,Object.GetHotkey
 local RAlt,LAlt,RCtrl,LCtrl,Shift = 0x1,0x2,0x4,0x8,0x10
 local Ctrl,Alt = bor(RCtrl,LCtrl),bor(RAlt,LAlt)
 
-local function Pos2pos(hDlg, ID, Pos)
-  local ii = 0
+local function P2p(hDlg, ID) --"visible" Pos -> "total" pos
+  local P,p,ii = {},{},0
   for i,item in ipairs(far.GetDlgItem(hDlg, ID)[6]) do --[6]  Selected/ListItems: integer/table
-     if band(item.Flags,F.LIF_HIDDEN)==0 then
-       ii = ii+1; if ii==Pos then return i end
-     end
+    if band(item.Flags,F.LIF_HIDDEN)==0 then
+      ii = ii+1
+      P[i],p[ii] = ii,i
+    end
   end
+  return p,P
 end
 
 Event { group="DialogEvent"; description="Ctrl-<hotkey> to run hotkey";
@@ -36,7 +37,7 @@ Event { group="DialogEvent"; description="Ctrl-<hotkey> to run hotkey";
       if hk~=char and hk~=far.XLat(char) then
         local Pos = checkHK(char)
         if Pos==0 then return end
-        hDlg:send(F.DM_LISTSETCURPOS,ID,{SelectPos=Pos2pos(hDlg,ID,Pos)})
+        hDlg:send(F.DM_LISTSETCURPOS,ID,{SelectPos=P2p(hDlg,ID)[Pos]})
       end
       return param.hDlg:send"DM_CLOSE"
     end
@@ -44,7 +45,7 @@ Event { group="DialogEvent"; description="Ctrl-<hotkey> to run hotkey";
 }
 
 local InitPos
-Event { group="DialogEvent"; description="Goto next menu item with specified hotkey";
+Event { group="DialogEvent"; description="Alt-<hotkey> to pos to menu item (cycle through same hotkeys)";
   uid="D91B58E5-4C32-4384-B205-D7895A4EC037";
   condition=function(Event,param) return Event==F.DE_DLGPROCINIT end;
   action=function(Event,param)
@@ -55,10 +56,11 @@ Event { group="DialogEvent"; description="Goto next menu item with specified hot
       end
     elseif param.Msg==F.DN_LISTHOTKEY then
       local hk,ItemIndex = getHK(),param.Param2
-      if checkHK(hk,ItemIndex+1)==0 and band(Mouse.LastCtrlState,Alt)==0 then return end
-      local Pos = checkHK(hk,InitPos+1)
+      local p,P = P2p(hDlg, ID)
+      if checkHK(hk,P[ItemIndex]+1)==0 and band(Mouse.LastCtrlState,Alt)==0 then return end
+      local Pos = checkHK(hk,P[InitPos]+1)
       if Pos==0 then Pos = checkHK(hk) end
-      mf.postmacro(far.SendDlgMessage,hDlg,F.DM_LISTSETCURPOS,ID,{SelectPos=Pos2pos(hDlg, ID, Pos)})
+      mf.postmacro(far.SendDlgMessage,hDlg,F.DM_LISTSETCURPOS,ID,{SelectPos=p[Pos]})
       return 0
     end
   end;
@@ -74,26 +76,29 @@ Event { group="DialogEvent"; description="Concurrent hotkeys menu filter";
   action=function(Event,param)
     local hDlg,ID,ItemIndex = param.hDlg,param.Param1,param.Param2
     if hDlg:send(F.DM_LISTINFO,ID).ItemsNumber~=Object.ItemCount then return end --macro api item indexes does not count hidden items
+    --local P = select(2,P2p(hDlg, ID)); ItemIndex = P[ItemIndex]
     local hk = getHK() --ItemIndex
     if checkHK(hk,ItemIndex+1)~=0 then
       hDlg:send(F.DM_SHOWDIALOG,0)
-      local list = far.GetDlgItem(hDlg, ID)[6] --[6]  Selected/ListItems: integer/table 
+      local list = far.GetDlgItem(hDlg, ID)[6] --[6]  Selected/ListItems: integer/table
+      local item
       for i=#list,1,-1 do
         if getHK(i)~=hk then
-          local item = list[i]
+          item = list[i]
           hDlg:send(F.DM_LISTUPDATE, ID,{Index=i,Text=item.Text,Flags=bor(item.Flags,F.LIF_HIDDEN)})
         end
       end
       hDlg:send(F.DM_SHOWDIALOG,1)
       Menu.Filter(4) --подправить высоту списка под количество элементов
-      return 0
+      if Object.ItemCount==1 then return param.hDlg:send"DM_CLOSE" end
+      return item and 0 or nil
     end
   end;
 }
 
 local hDlg,ID
 Macro { description="Reset filters";
-  area="Dialog Menu MainMenu UserMenu Disks"; key="Esc F10";
+  area="Dialog Menu UserMenu Disks"; key="Esc F10";
   uid="3DE219F0-7B83-453B-A1FA-E780640F7093";
   condition=function()
     hDlg = far.AdvControl"ACTL_GETWINDOWINFO".Id
