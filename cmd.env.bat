@@ -46,7 +46,8 @@ set "SHOW_BANNER_CMD=conemu home path"
 for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
 
 :: Common paths
-set "PATH=%PATH%;%TEA_HOME%\bin;%TEA_HOME%\var"
+call :cmd.env.set.path "%TEA_HOME%\bin"
+call :cmd.env.set.path "%TEA_HOME%\var"
 
 :: ========================================================================
 ::
