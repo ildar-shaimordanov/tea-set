@@ -22,8 +22,8 @@ $packages = @(
 
 	@{
 		"name" = "ConEmu";
-		"home" = "http://code.google.com/p/conemu-maximus5/";
-		"url" = "http://downloads.sourceforge.net/project/conemu/Alpha/ConEmuPack.150119a.7z";
+		"home" = "https://github.com/Maximus5/ConEmu/";
+		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v15.06.10/ConEmuPack.150610.7z";
 		"dir" = "ConEmu";
 	}
 
