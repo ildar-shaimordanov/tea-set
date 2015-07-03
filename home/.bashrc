@@ -271,15 +271,15 @@ img2pdf() {
 }
 
 __conv_image2folder() {
-	convert "$1" -resize '300x300>' "folder.jpg"
+	convert "${1:-cover-front.jpg}" -resize '300x300>' "folder.jpg"
 }
 
 __conv_left2folder() {
-	convert "$1" -resize '600x300>' -gravity west -crop '50%x100%' "folder.jpg"
+	convert "${1:-cover-front.jpg}" -resize '600x300>' -gravity west -crop '50%x100%' "folder.jpg"
 }
 
 __conv_right2folder() {
-	convert "$1" -resize '600x300>' -gravity east -crop '50%x100%' "folder.jpg"
+	convert "${1:-cover-front.jpg}" -resize '600x300>' -gravity east -crop '50%x100%' "folder.jpg"
 }
 
 # =========================================================================
