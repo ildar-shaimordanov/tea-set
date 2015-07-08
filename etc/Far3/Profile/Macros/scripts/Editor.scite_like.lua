@@ -1,6 +1,6 @@
--- http://forum.farmanager.com/viewtopic.php?f=15&t=9191
-
 -- Started 2014-12-01 by Shmuel Zeigerman
+-- http://forum.farmanager.com/viewtopic.php?f=15&t=9191
+-- http://forum.farmanager.com/viewtopic.php?p=126100#p126100
 
 -- Imitate the feature of typing/erasing on multiple lines at once (like the SciTE editor does).
 -- * Select a vertical block 1 character wide.
@@ -41,6 +41,9 @@ Event {
               lnum = lnum + 1
             end
             editor.UndoRedo(nil,F.EUR_END)
+            editor.Select(nil,"BTYPE_COLUMN",EI.BlockStartLine,
+              cur.SelStart + (char and 1 or (key=="BS" and EI.CurPos>1 and -1) or 0),
+              1,lnum-EI.BlockStartLine)
             editor.Redraw()
             return true
           end
