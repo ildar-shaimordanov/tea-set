@@ -8,7 +8,8 @@ Macro {
 	description = "Editor: List of types";
 	action = function()
 		Plugin.Call(guid, 1);
-		-- Keys("F11 c 1")
+		-- Keys("F11 c 1");
+		if export.GetGlobalInfo().MinFarVersion[4] > 4242 then Keys("Enter"); end; -- workaround for Far3 build 4400
 	end
 }
 
