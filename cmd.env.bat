@@ -163,7 +163,7 @@ if defined JDK_HOME (
 ::
 :: ========================================================================
 
-for /d %%d in ( "C:\PROGS\opt\*" ) do call :cmd.env.select.set.path "%%~d"
+for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :cmd.env.select.set.path "%%~d"
 
 :: ========================================================================
 ::
