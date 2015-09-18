@@ -176,6 +176,10 @@ type "%~f1"
 goto :EOF
 
 
+:: I don't know the root cause of the issue but for some reasons cmd.exe 
+:: is not able to see the first label from below. Others are fine. That's 
+:: why these comments are included into this script -- they do allow to 
+:: launch the script with no issues similar to this.
 :cmdize.hta
 :cmdize.htm
 :cmdize.html
