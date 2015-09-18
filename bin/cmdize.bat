@@ -99,6 +99,10 @@ goto :cmdize.loop.begin
 goto :EOF
 
 
+:: Convert the javascript file. 
+:: The environment variable %CMDIZE_ENGINE% allows to declare another 
+:: engine (cscript, wscript, node etc). 
+:: The default value is cscript.
 :cmdize.js
 if not defined CMDIZE_ENGINE set "CMDIZE_ENGINE=cscript"
 set "CMDIZE_ENGINE_OPTS="
@@ -115,6 +119,10 @@ type "%~f1"
 goto :EOF
 
 
+:: Convert the vbscript file. 
+:: The environment variable %CMDIZE_ENGINE% allows to declare another 
+:: engine (cscript or wscript). 
+:: The default value is cscript. 
 :cmdize.vbs.h
 set /p "=::'" <nul
 type "%TEMP%\%~n0.$$"
@@ -151,6 +159,7 @@ for /f "tokens=1,* delims=]" %%r in ( ' call "%windir%\System32\find.exe" /n /v 
 goto :EOF
 
 
+:: Convert the perl file.
 :cmdize.pl
 echo:@rem = '--*-Perl-*--
 echo:@echo off
@@ -162,6 +171,7 @@ type "%~f1"
 goto :EOF
 
 
+:: Convert the powershell file. 
 :cmdize.ps1
 echo:^<# :
 echo:@echo off
@@ -176,6 +186,8 @@ type "%~f1"
 goto :EOF
 
 
+:: Convert the html file. 
+:: Supportable file extensions are .hta, .htm and .html. 
 :cmdize.hta
 :cmdize.htm
 :cmdize.html
@@ -188,6 +200,10 @@ type "%~f1"
 goto :EOF
 
 
+:: Convert the wsf file. 
+:: The environment variable %CMDIZE_ENGINE% allows to declare another 
+:: engine (cscript or wscript). 
+:: The default value is cscript.
 :cmdize.wsf
 if not defined CMDIZE_ENGINE set "CMDIZE_ENGINE=cscript"
 
