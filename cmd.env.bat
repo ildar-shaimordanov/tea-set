@@ -24,6 +24,7 @@ set "CMD_ENV_LOADED=1"
 :: ========================================================================
 
 doskey alias=if "$1" == "" ( doskey /macros ) else ( doskey $* )
+doskey unalias=doskey $1=
 doskey cmd.env="%~f0"
 doskey cmd.banner="%~dp0cmd.banner.bat"
 
@@ -38,16 +39,11 @@ set "SHOW_BANNER_CMD=conemu home path"
 
 :: ========================================================================
 ::
-:: Environment settings
+:: Tea-Set
 ::
 :: ========================================================================
 
-:: Tea-Set homedir
-for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
-
-:: Common paths
-call :cmd.env.set.path "%TEA_HOME%\bin"
-call :cmd.env.set.path "%TEA_HOME%\var"
+for /f "tokens=*" %%p in ( "%~dp0." ) do call :cmd.env.set.home TEA_HOME "%%~fp"
 
 :: ========================================================================
 ::
@@ -99,13 +95,18 @@ call :cmd.env.set.home WWW_HOME "%TEA_HOME%\WWW"
 ::
 :: ========================================================================
 
-:: Set the location for unix tools as you want
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\cygwin" /p
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gnuwin32" /p
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\gow-git" /p
-call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\msysgit" /p
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\unxutils" /p
-::call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\win-bash" /p
+:: Set the first existing location for unix tools.
+:: The minus symbol "-" in the front of the package names inverts the 
+:: directory as not existing.
+for %%f in (
+	"-cygwin"
+	"-git-for-windows"
+	"-gnuwin32"
+	"-gow-git"
+	"msysgit"
+	"-unxutils"
+	"-win-bash"
+) do call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\%%~f" /P
 
 :: What is the HOME directory?
 :: http://gnuwin32.sourceforge.net/faq.html
@@ -130,9 +131,11 @@ call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\msysgit" /p
 
 :: set "PERL_HOME=%TEA_HOME%\vendors\strawberryPerl-5.8.8.3"
 set "PERL_HOME=%TEA_HOME%\vendors\StrawberryPerl-5.16.2"
-
-:: if defined PERL_HOME set "PATH=%PATH%;%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%PERL_HOME%\c\bin"
-if defined PERL_HOME set "PATH=%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%PERL_HOME%\c\bin;%PATH%"
+for %%f in ( 
+	"c" 
+	"perl" 
+	"perl\site" 
+) do call :cmd.env.select.path "%PERL_HOME%\%%~f" /P
 
 :: ========================================================================
 ::
@@ -140,7 +143,7 @@ if defined PERL_HOME set "PATH=%PERL_HOME%\perl\site\bin;%PERL_HOME%\perl\bin;%P
 ::
 :: ========================================================================
 
-if exist "%ProgramFiles%\Oracle\VirtualBox" set "PATH=%PATH%;%ProgramFiles%\Oracle\VirtualBox"
+call :cmd.env.select.path "%ProgramFiles%\Oracle\VirtualBox"
 
 :: ========================================================================
 ::
@@ -163,7 +166,7 @@ if defined JDK_HOME (
 ::
 :: ========================================================================
 
-for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :cmd.env.select.set.path "%%~d"
+for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :cmd.env.select.path "%%~d"
 
 :: ========================================================================
 ::
@@ -251,7 +254,8 @@ goto :EOF
 ::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
-:cmd.env.select.set.path
+:cmd.env.select.path
+
 :: Only one of these paths will be appended to %PATH%
 call :cmd.env.set.path "%~1\bin"     "%~2" && goto :EOF
 call :cmd.env.set.path "%~1\usr\bin" "%~2" && goto :EOF
