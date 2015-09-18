@@ -26,7 +26,7 @@ set "CMD_ENV_LOADED=1"
 doskey alias=if "$1" == "" ( doskey /macros ) else ( doskey $* )
 doskey unalias=doskey $1=
 doskey cmd.env="%~f0"
-doskey cmd.banner="%~dp0cmd.banner.bat"
+doskey cmd.banner="%~dp0cmd.banner.bat" $*
 
 :: ========================================================================
 ::
