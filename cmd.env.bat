@@ -75,7 +75,7 @@ call :cmd.env.set.home IUM_HOME "C:\IUM"
 ::
 :: ========================================================================
 
-call :cmd.env.set.home WWW_HOME "%TEA_HOME%\WWW"
+call :cmd.env.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
 
 :: ========================================================================
 ::
