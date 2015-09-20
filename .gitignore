@@ -4,10 +4,12 @@ bin/*
 !bin/cmdize.bat
 !bin/cmdpid.bat
 !bin/exe2exe*
+!bin/ftpd.bat
 !bin/run-here.bat
 !bin/unalias.bat
 !bin/unpath.bat
 !bin/which.bat
+!bin/www.bat
 !bin/README*
 
 etc/zentea.enabled
