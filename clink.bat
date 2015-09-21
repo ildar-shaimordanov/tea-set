@@ -5,6 +5,4 @@ if exist "%~dp0vendors\clink\clink_x%PROCESSOR_ARCHITECTURE:~-2%.exe" "%~dp0vend
 if exist "%~dp0cmd.env.bat" call "%~dp0cmd.env.bat"
 
 :: Integrate Git into prompt
-if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
-	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_$g$s
-)
+call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && prompt $p$s{git}$_$g$s
