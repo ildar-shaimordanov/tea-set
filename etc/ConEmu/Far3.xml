@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2015-07-24 14:21:49" build="150610">
+		<key name=".Vanilla" modified="2015-09-21 03:08:13" build="150610">
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
 			<value name="Update.CheckOnStartup" type="hex" data="00"/>
@@ -81,11 +81,8 @@
 			<value name="StartFarFolders" type="hex" data="00"/>
 			<value name="StartFarEditors" type="hex" data="00"/>
 			<value name="StoreTaskbarkTasks" type="hex" data="01"/>
-			<value name="StoreTaskbarCommands" type="hex" data="01"/>
+			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="CmdLineHistory" type="multi">
-				<line data="{nnBackup}"/>
-				<line data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
-				<line data="{wscmd}"/>
 			</value>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
@@ -470,9 +467,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-				<key name="Tasks" modified="2015-07-24 14:21:49" build="150610">
+				<key name="Tasks" modified="2015-09-21 03:08:13" build="150610">
 				<value name="Count" type="dword" data="00000006"/>
-						<key name="Task1" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task1" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{Cmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
@@ -481,7 +478,7 @@
 					<value name="Hotkey" type="dword" data="00001154"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task2" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task2" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{Cmd.Prompt}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\shell.bat&quot; prompt -new_console:bn"/>
@@ -491,7 +488,7 @@
 					<value name="Hotkey" type="dword" data="00121154"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task3" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task3" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
@@ -500,7 +497,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task4" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task4" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{wscmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\var\wscmd /debug"/>
@@ -511,7 +508,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task5" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task5" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="PowerShell.exe"/>
@@ -522,7 +519,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task6" modified="2015-07-24 14:21:49" build="150610">
+						<key name="Task6" modified="2015-09-21 03:08:13" build="150610">
 					<value name="Name" type="string" data="{nnBackup}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="dword" data="00000000"/>
@@ -556,10 +553,10 @@
 					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
 				</key>
 			</key>
-				<key name="Apps" modified="2015-07-24 14:21:49" build="150610">
+				<key name="Apps" modified="2015-09-21 03:08:13" build="150610">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-				<key name="Colors" modified="2015-07-24 14:21:49" build="150610">
+				<key name="Colors" modified="2015-09-21 03:08:13" build="150610">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="01"/>
@@ -650,7 +647,7 @@
 			<value name="Multi.CloseConfirmFlags" type="hex" data="07"/>
 			<value name="DownShowExOnTopMessage" type="hex" data="00"/>
 			<value name="EnvironmentSet" type="multi"/>
-			<key name="HotKeys" modified="2015-07-24 14:21:49" build="150610">
+			<key name="HotKeys" modified="2015-09-21 03:08:13" build="150610">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
