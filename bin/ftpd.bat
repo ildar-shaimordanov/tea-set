@@ -2,7 +2,7 @@
 
 setlocal
 
-set "FTP_HOME=%~dp0..\vendors\FTP-0.9.53"
+set "FTP_HOME=%~dp0..\vendors\FTP"
 
 set "FTP_PROC_NAME=FileZilla Server"
 set "FTP_CTRL_NAME=FileZilla Server Interface"
