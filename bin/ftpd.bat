@@ -14,7 +14,7 @@ if /i "%~1" == "start" for /f "tokens=2 delims==>" %%d in ( '
 )
 
 for %%a in ( install uninstall start stop ) do if /i "%~1" == "%%~a" (
-	"%FTP_HOME%\%FTP_NAME%" /%~1
+	"%FTP_HOME%\%FTP_NAME%" /%%~a
 	endlocal
 	goto :EOF
 
@@ -40,14 +40,17 @@ if /i "%~1" == "control" (
 :: More command line arguments
 :: https://wiki.filezilla-project.org/Command-line_arguments_%28Server%29
 echo:Usage:
-echo:    %~n0 INSTALL^|UNINSTALL^|START^|STOP^|STATUS^|CONTROL
+echo:	%~n0 INSTALL ^| UNINSTALL
+echo:	%~n0 START ^| STOP
+echo:	%~n0 STATUS ^| CONTROL
 echo:
-echo:INSTALL   - install or uninstall the service
+echo:INSTALL		install or uninstall the service
 echo:UNINSTALL
-echo:START     - start or stop the server
+echo:START		start or stop the server as the service
 echo:STOP
-echo:STATUS    - check the status of processes and services
-echo:CONTROL   - launch the controlling client
+echo:STATUS		check the status of processes and services
+echo:CONTROL		launch the controlling client
 
 endlocal
 
+:: EOF
