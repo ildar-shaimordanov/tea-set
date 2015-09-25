@@ -160,8 +160,8 @@ function install-package( $package ) {
 
 # =========================================================================
 
-$enabled = "$pwd\zentea.enabled";
-$logfile = "$pwd\zentea.log";
+$enabled = "$pwd\candy-for-tea.enabled";
+$logfile = "$pwd\candy-for-tea.log";
 
 if ( ! ( Test-Path "$enabled" ) ) {
 	[System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" ) >$Null;
