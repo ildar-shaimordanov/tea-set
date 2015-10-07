@@ -76,7 +76,7 @@ $packages = @(
 		"name" = "UnxUtils";
 		"home" = "http://unxutils.sourceforge.met/";
 		"url" = "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip";
-		"dir" = "x-unxutils";
+		"dir" = "unxutils";
 		"postinstall" = {
 			$dir = $args[0];
 			$src = "$dir\usr\local\wbin\*";
@@ -89,7 +89,7 @@ $packages = @(
 		"name" = "UnxUtils Updates";
 		"home" = "http://unxutils.sourceforge.met/";
 		"url" = "http://unxutils.sourceforge.net/UnxUpdates.zip";
-		"dir" = "x-unxutils\bin";
+		"dir" = "unxutils\bin";
 	}
 
 );

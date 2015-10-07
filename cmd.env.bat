@@ -203,7 +203,7 @@ goto :EOF
 :cmd.env.lookup.java
 set "%~1_HOME="
 for /f %%d in ( '
-	dir /b "%ProgramFiles%\Java\%~1*" "%ProgramFiles(x86)%\Java\%~1*" ^| sort
+	dir /b "%ProgramFiles%\Java\%~1*" "%ProgramFiles(x86)%\Java\%~1*" 2^>nul ^| sort
 ' ) do if exist "%ProgramFiles%\Java\%%d" (
 	set "%~1_HOME=%ProgramFiles%\Java\%%d"
 ) else (
