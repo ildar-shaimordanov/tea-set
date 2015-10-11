@@ -161,6 +161,12 @@ goto :EOF
 
 :: Convert the perl file.
 :cmdize.pl
+if /i "%CMDIZE_ENGINE%" == "cmd" (
+	echo:@echo off
+	echo:perl -x -S "%%~dpn0.pl" %%*
+	goto :EOF
+)
+
 echo:@rem = '--*-Perl-*--
 echo:@echo off
 echo:perl -x -S "%%~f0" %%*
