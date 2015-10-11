@@ -49,6 +49,7 @@ if not exist "%FAR_HOME%\Far.exe.ini" (
 )
 
 echo:Starting %FAR_NAME%
+echo:[ %DATE% %TIME% ]
 
 "%FAR_HOME%\Far.exe" %FAR_OPTS% %1 %2 %3 %4 %5 %6 %7 %8 %9
 
