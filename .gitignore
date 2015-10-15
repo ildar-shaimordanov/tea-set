@@ -15,6 +15,7 @@ bin/*
 etc/zentea.enabled
 etc/*.log
 etc/distrib/
+etc/misc/
 !etc/**/README*
 
 etc/clink/.history
