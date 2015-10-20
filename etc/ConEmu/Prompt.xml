@@ -540,7 +540,7 @@
 			<key name="Tasks" modified="2014-11-15 18:57:46" build="141004">
 				<value name="Count" type="dword" data="0000000a"/>
 				<key name="Task1" modified="2014-11-30 00:04:26" build="141004">
-					<value name="Name" type="string" data="{Cmd}"/>
+					<value name="Name" type="string" data="{Prompt}"/>
 					<value name="Hotkey" type="dword" data="00001154"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="%COMSPEC% /k &quot;%ConEmuDir%\..\..\clink.bat&quot;"/>
@@ -548,7 +548,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 				<key name="Task2" modified="2014-11-30 00:04:26" build="141004">
-					<value name="Name" type="string" data="{Cmd.Prompt}"/>
+					<value name="Name" type="string" data="{Prompt.New}"/>
 					<value name="Hotkey" type="dword" data="00121154"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\shell.bat&quot; prompt -new_console:bn"/>
