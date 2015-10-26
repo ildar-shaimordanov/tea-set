@@ -18,22 +18,10 @@ if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 set "HOME=%~dp0home"
 
 :: Check if ConEmu is available
-if exist "%~dp0vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\%~1.xml" (
-	call :conemu.check.config "%~dp0etc\ConEmu\%~1.xml" && (
-		start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\%~1.xml" /Icon "%~dp0etc\images\%~1.ico"
-		goto :EOF
-	)
-)
-
-if exist "%~dp0vendors\ConEmu\ConEmu.exe" if exist "%~dp0etc\ConEmu\ConEmu.xml" (
-	call :conemu.check.config "%~dp0etc\ConEmu\ConEmu.xml" "/confname:%~1" && (
-		start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" /Config "%~1"
-		goto :EOF
-	)
-	call :conemu.check.config "%~dp0etc\ConEmu\ConEmu.xml" "/taskname:%~1" && (
-		start "%~1 starting" "%~dp0vendors\ConEmu\ConEmu.exe" /LoadCfgFile "%~dp0etc\ConEmu\ConEmu.xml" /Icon "%~dp0etc\images\ConEmu.ico" /Cmd "{%~1}"
-		goto :EOF
-	)
+if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
+	call :conemu FILE "%~1" && goto :EOF
+	call :conemu CONF "%~1" && goto :EOF
+	call :conemu TASK "%~1" && goto :EOF
 )
 
 :: Check if git-bash launcher is available
@@ -60,8 +48,39 @@ for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 >&2 pause
 exit /b 1
 
-:conemu.check.config
-cscript //nologo //e:javascript "%~f0" %*
+:conemu
+setlocal
+
+if "%~1" == "FILE" (
+	set "conemu_cfgfile=%~dp0etc\ConEmu\%~2.xml"
+) else (
+	set "conemu_cfgfile=%~dp0etc\ConEmu\ConEmu.xml"
+)
+
+if not exist "%conemu_cfgfile%" (
+	endlocal
+	exit /b 1
+)
+
+cscript //nologo //e:javascript "%~f0" "%conemu_cfgfile%" %* || (
+	endlocal
+	exit /b 1
+)
+
+set "ConEmuArgs=/LoadCfgFile "%conemu_cfgfile%""
+if exist "%~dp0etc\images\%~2.ico" (
+	set "ConEmuArgs=%ConEmuArgs% /Icon "%~dp0etc\images\%~2.ico""
+) else if exist "%~dp0etc\images\ConEmu.ico" (
+	set "ConEmuArgs=%ConEmuArgs% /Icon "%~dp0etc\images\ConEmu.ico""
+)
+
+if "%~1" == "CONF" (
+	set "ConEmuArgs=%ConEmuArgs% /Config "%~2""
+) else if "%~1" == "TASK" (
+	set "ConEmuArgs=%ConEmuArgs% /Cmd "{%~2}""
+)
+
+endlocal && start "%~2 starting" "%~dp0vendors\ConEmu\ConEmu.exe" %ConEmuArgs%
 goto :EOF
 
 */0;
@@ -76,21 +95,22 @@ var exit = exit || function(exitCode)
 	WScript.Quit(exitCode);
 };
 
-if ( WScript.Arguments.Unnamed.length == 0 ) {
+if ( WScript.Arguments.length != 3 ) {
 	alert('Usage: ' + WScript.ScriptName + ' filename options');
 	exit(1);
 }
 
-var filename = WScript.Arguments.Unnamed.item(0);
-var confname = WScript.Arguments.Named.item('CONFNAME') || '.Vanilla';
-var taskname = WScript.Arguments.Named.item('TASKNAME') || '';
+var filename = WScript.Arguments.item(0);
+
+var ctrl = WScript.Arguments.item(1);
+var name = WScript.Arguments.item(2);
 
 var xpathstr = '/key[@name="Software"]/key[@name="ConEmu"]' 
-	+ '/key[lower-case(@name)=lower-case("' + confname + '")]' 
+	+ '/key[lower-case(@name)=lower-case("' + ( ctrl == 'CONF' ? name : '.Vanilla' ) + '")]' 
 	+ '/key[@name="Tasks"]/key';
 
-if ( taskname ) {
-	xpathstr += '/value[@name="Name"][lower-case(@data)=lower-case("{' + taskname + '}")]';
+if ( ctrl == 'TASK' ) {
+	xpathstr += '/value[@name="Name"][lower-case(@data)=lower-case("' + name + '")]';
 }
 
 // Comparison in XPath is case sensitive. Using of "lower-case" XPath 
