@@ -112,7 +112,7 @@ var xpathstr = '/key[@name="Software"]/key[@name="ConEmu"]'
 	+ '/key[@name="Tasks"]/key';
 
 if ( ctrl == 'TASK' ) {
-	xpathstr += '/value[@name="Name"][lower-case(@data)=lower-case("' + name + '")]';
+	xpathstr += '/value[@name="Name"][lower-case(@data)=lower-case("{' + name + '}")]';
 }
 
 // Comparison in XPath is case sensitive. Using of "lower-case" XPath 
