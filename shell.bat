@@ -66,8 +66,6 @@ goto :EOF
 
 */0;
 
-var debug = 0;
-
 var alert = alert || function(msg)
 {
 	WScript.Echo(msg);
@@ -79,7 +77,7 @@ var exit = exit || function(exitCode)
 };
 
 if ( WScript.Arguments.Unnamed.length == 0 ) {
-	alert('Usage: ' + WScript.ScriptName + ' options');
+	alert('Usage: ' + WScript.ScriptName + ' filename options');
 	exit(1);
 }
 
@@ -87,23 +85,25 @@ var filename = WScript.Arguments.Unnamed.item(0);
 var confname = WScript.Arguments.Named.item('CONFNAME') || '.Vanilla';
 var taskname = WScript.Arguments.Named.item('TASKNAME') || '';
 
-var xpath = '/key[@name="Software"]/key[@name="ConEmu"]/key[lower-case(@name)=lower-case("' + confname + '")]/key[@name="Tasks"]/key';
+var xpathstr = '/key[@name="Software"]/key[@name="ConEmu"]' 
+	+ '/key[lower-case(@name)=lower-case("' + confname + '")]' 
+	+ '/key[@name="Tasks"]/key';
 
 if ( taskname ) {
-	xpath += '/value[@name="Name"][lower-case(@data)=lower-case("{' + taskname + '}")]';
+	xpathstr += '/value[@name="Name"][lower-case(@data)=lower-case("{' + taskname + '}")]';
 }
 
 // Comparison in XPath is case sensitive. Using of "lower-case" XPath 
 // function could be good solution to escape differencies between "abc",
 // "ABC" and so on. Unfortunately, "lower-case" is a part of XPath 2.0 and 
 // is not supportable by MS JScript. To resolve this issue we introduce 
-// the partial workaround replacement with the available XPath 1.0 
-// function "translate". 
+// the partial workaround replacement with the function "translate", 
+// available in XPath 1.0. 
 // See for details: http://stackoverflow.com/a/1625859/3627676
-xpath = xpath.replace(/lower-case\(([^()]+)\)/g, 'translate($1, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")');
-
-debug && alert('FILENAME = ' + filename);
-debug && alert('XPATHSTR = ' + xpath);
+xpathstr = xpathstr.replace(
+	/lower-case\(([^()]+)\)/g, 
+	'translate($1, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")'
+);
 
 var e;
 try {
@@ -111,12 +111,10 @@ try {
 	xmldoc.setProperty('SelectionLanguage', 'XPath');
 	xmldoc.load(filename);
 
-	var xml = xmldoc.selectNodes(xpath);
+	var xml = xmldoc.selectNodes(xpathstr);
 } catch(e) {
 	// If a file or XML are bad, exit with error immediately
 	exit(1);
 }
-
-debug && alert('LEN = ' + xml.length);
 
 exit( xml.length != 0 ? 0 : 1 );
