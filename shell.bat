@@ -44,9 +44,11 @@ for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 
 >&2 echo:Cannot find the specified shell "%~1".
 
+
 :shell.failed
 >&2 pause
 exit /b 1
+
 
 :conemu
 setlocal
