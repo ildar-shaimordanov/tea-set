@@ -31,9 +31,8 @@ if exist "%~dp0vendors\%~1\git-bash.exe" (
 )
 
 :: Check if mintty is available
-for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do if exist "%~dp0vendors\%~1\%%~s\mintty.exe" (
-	start "%~1 starting" "%~dp0vendors\%~1\%%~s\mintty.exe" -c "%HOME%\.minttyrc" -i "%~dp0etc\images\%~1.ico" /%%~s/bash --login -i
-	goto :EOF
+for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do (
+	call :mintty "%~1" "%%~s" && goto :EOF
 )
 
 :: Try naked bash, ksh or sh
@@ -48,6 +47,30 @@ for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 :shell.failed
 >&2 pause
 exit /b 1
+
+
+:mintty
+setlocal
+
+set "mintty_bin=%~dp0vendors\%~1\%~2\mintty.exe"
+
+if not exist "%mintty_bin%" (
+	endlocal
+	exit /b 1
+)
+
+if not exist "%HOME%\.minttyrc" if exist "%~dp0etc\mintty\default.settings" (
+	copy /b "%~dp0etc\mintty\default.settings" "%HOME%\.minttyrc"
+)
+
+set "mintty_args=-c "%HOME%\.minttyrc""
+
+if exist "%~dp0etc\images\%~1.ico" (
+	set "mintty_args=%mintty_args% -i "%~dp0etc\images\%~1.ico""
+)
+
+endlocal && start "%~1 starting" "%mintty_bin%" %mintty_args% /%~2/bash --login -i
+goto :EOF
 
 
 :conemu
