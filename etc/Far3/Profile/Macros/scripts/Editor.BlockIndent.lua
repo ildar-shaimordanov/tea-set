@@ -80,10 +80,14 @@ local Indent = function (IndentByTabSize, Forward)
 	editor.UndoRedo(nil, F.EUR_END)
 end
 
+-- patch for Far 3.0 build 4444
+-- comment or remove unsupported flags = "DisableOutput"
+-- http://forum.farmanager.com/viewtopic.php?p=133237#p133237
+
 Macro {
 	area = "Editor";
 	key = "ShiftTab";
-	flags = "DisableOutput";
+	--flags = "DisableOutput";
 	description = "Editor: Indent right by tab size";
 	action = function()
 		Indent(true, true)
@@ -93,7 +97,7 @@ Macro {
 Macro {
 	area = "Editor";
 	key = "ShiftBS";
-	flags = "DisableOutput";
+	--flags = "DisableOutput";
 	description = "Editor: Indent left by tab size";
 	action = function()
 		Indent(true, false)
@@ -103,7 +107,7 @@ Macro {
 NoMacro {
 	area = "Editor";
 	key = "";
-	flags = "DisableOutput";
+	--flags = "DisableOutput";
 	description = "Editor: Indent right by space";
 	action = function()
 		Indent(false, true)
@@ -113,7 +117,7 @@ NoMacro {
 NoMacro {
 	area = "Editor";
 	key = "";
-	flags = "DisableOutput";
+	--flags = "DisableOutput";
 	description = "Editor: Indent left by space";
 	action = function()
 		Indent(false, false)
