@@ -478,17 +478,17 @@
 					<value name="Hotkey" type="dword" data="00001154"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task2" modified="2015-10-20 08:41:27" build="150610">
+						<key name="Task2" modified="2015-10-29 14:33:45" build="150610">
 					<value name="Name" type="string" data="{Prompt.New}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\shell.bat&quot; prompt -new_console:bn"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="%ConEmuDir%\..\Far.bat"/>
-					<value name="Hotkey" type="dword" data="00121154"/>
+					<value name="Hotkey" type="dword" data="00101154"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task3" modified="2015-10-20 08:41:27" build="150610">
+						<key name="Task3" modified="2015-10-29 14:33:45" build="150610">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\Far3.bat&quot;"/>
@@ -497,7 +497,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task4" modified="2015-10-20 08:41:27" build="150610">
+						<key name="Task4" modified="2015-10-29 14:33:45" build="150610">
 					<value name="Name" type="string" data="{wscmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\..\var\wscmd /debug"/>
@@ -508,7 +508,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task5" modified="2015-10-20 08:41:27" build="150610">
+						<key name="Task5" modified="2015-10-29 14:33:45" build="150610">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data="PowerShell.exe"/>
@@ -519,7 +519,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-						<key name="Task6" modified="2015-10-20 08:41:27" build="150610">
+						<key name="Task6" modified="2015-10-29 14:33:45" build="150610">
 					<value name="Name" type="string" data="{nnBackup}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="dword" data="00000000"/>
@@ -553,10 +553,10 @@
 					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
 				</key>
 			</key>
-				<key name="Apps" modified="2015-10-20 08:41:27" build="150610">
+				<key name="Apps" modified="2015-10-29 14:33:45" build="150610">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-				<key name="Colors" modified="2015-10-20 08:41:27" build="150610">
+				<key name="Colors" modified="2015-10-29 14:33:45" build="150610">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="01"/>
