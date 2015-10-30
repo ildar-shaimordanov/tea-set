@@ -12,22 +12,24 @@ setlocal
 if not "%~2" == "" pushd "%~2" || goto :EOF
 
 :: Set the shell specific parameters if it is necessary
+set "SHELL_RUNNER="
+
 if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 
 :: Set the home dir
 set "HOME=%~dp0home"
+
+:: Check if specific runner exists
+if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
+	start "%~1 starting" "%~dp0vendors\%~1\%SHELL_RUNNER%"
+	goto :EOF
+)
 
 :: Check if ConEmu is available
 if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
 	call :conemu FILE "%~1" && goto :EOF
 	call :conemu CONF "%~1" && goto :EOF
 	call :conemu TASK "%~1" && goto :EOF
-)
-
-:: Check if git-bash launcher is available
-if exist "%~dp0vendors\%~1\git-bash.exe" (
-	start "%~1 starting" "%~dp0vendors\%~1\git-bash.exe"
-	goto :EOF
 )
 
 :: Check if mintty is available
