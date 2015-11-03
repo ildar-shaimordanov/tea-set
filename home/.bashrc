@@ -391,6 +391,161 @@ uname | grep -iq cygwin && pwd() {
 
 # =========================================================================
 
+# http://stackoverflow.com/q/8800578/100073
+# https://retracile.net/blog/2013/06/01/22.00
+# http://www.colordiff.org/
+cdiff() {
+	[ $# -gt 0 ] || {
+		cat - <<HELP
+Usage: $FUNCNAME [OPTION]... FILES
+
+Wrapper for diff to colorize output of diff for better readability.
+Try "diff --help" for more information.
+
+ENVIRONMENT VARIABLES
+
+The following environment variables are used to customize colors of the 
+separate parts of the diff output. Values of each variables are ANSI 
+escape codes. Names and resposibility of each variable correspond to the 
+the configuration parameters "color.diff.<slot>" in "git config":
+
+CDIFF_META
+Metainformation (names of compared files)
+
+CDIFF_FRAG
+Hunk header (line numbers of changed lines)
+
+CDIFF_OLD 
+Removed lines
+
+CDIFF_NEW
+Added lines
+
+CDIFF_MOD
+Modified lines
+HELP
+		return
+	}
+
+	# Colors
+	local diff_c_white='\x1b[37;1m'
+	local diff_c_red='\x1b[31m'
+	local diff_c_green='\x1b[32m'
+	local diff_c_blue='\x1b[34m'
+	local diff_c_cyan='\x1b[36m'
+	local diff_c_reset='\x1b[0m'
+
+	# Blocks
+	local diff_b_meta="${CDIFF_META:-$diff_c_white}"
+	local diff_b_frag="${CDIFF_FRAG:-$diff_c_cyan}"
+	local diff_b_old="${CDIFF_OLD:-$diff_c_red}"
+	local diff_b_new="${CDIFF_NEW:-$diff_c_green}"
+	local diff_b_mod="${CDIFF_MOD:-$diff_c_blue}"
+
+	# Schemes
+	local diff_s_normal="
+		# diff ...
+		# File headers
+		/^[A-Za-z]/ s/^/$diff_b_meta/;
+
+		# Difference headers
+		/^[0-9]/ s/^/$diff_b_frag/;
+
+		# Changed lines
+		/^< / s/^/$diff_b_old/;
+		/^> / s/^/$diff_b_new/;
+	"
+	local diff_s_context="
+		# diff -c ...
+		# File headers
+		/^[A-Za-z0-9]/ s/^/$diff_b_meta/;
+		/^\**$/ s/^/$diff_b_meta/;
+
+		# File or difference headers 
+		/^\*\*\* / {
+			/\*\*\*\*$/! s/^/$diff_b_meta/;
+			/\*\*\*\*$/  s/^/$diff_b_frag/;
+		};
+		/^--- / {
+			/----$/! s/^/$diff_b_meta/;
+			/----$/  s/^/$diff_b_frag/;
+		};
+
+		# Changed lines
+		/^! / s/^/$diff_b_mod/;
+		/^- / s/^/$diff_b_old/;
+		/^+ / s/^/$diff_b_new/;
+	"
+	local diff_s_unified="
+		# diff -u ...
+		# File headers
+		/^[A-Za-z]/ s/^/$diff_b_meta/;
+		/^--- / s/^/$diff_b_meta/;
+		/^+++ / s/^/$diff_b_meta/;
+
+		# Difference headers
+		/^@@ [^@]* [^@]* @@/ s/^/$diff_b_frag/;
+
+		# Changed lines
+		/^-/ s/^/$diff_b_old/;
+		/^+/ s/^/$diff_b_new/;
+	"
+	local diff_s_rcs="
+		# diff -n ...
+		# Difference headers
+		/^[ad][0-9][0-9]* [0-9][0-9]*\$/ {
+			/^d/ s/^/$diff_b_old/;
+			/^a/ s/^/$diff_b_new/;
+		}
+	"
+	local diff_s_sidebyside="
+		# diff -y ...
+		# Changed lines
+		/^.* <\$/ s/^/$diff_b_old/;
+		/^[\t ]*>[\t ].*/ s/^/$diff_b_new/;
+		#/^\t\t\t\t\t\t\t[ ][ ][ ][ ][ ][ ]>\t.*/ s/^/$diff_b_new/;
+	"
+
+	local diff_scheme="$diff_s_normal"
+
+	for opt in "$@"
+	do
+		case "$opt" in
+		--)
+			break;
+			;;
+		-c|-C|--context)
+			diff_scheme="$diff_s_context"
+			;;
+		-u|-U|--unified)
+			diff_scheme="$diff_s_unified"
+			;;
+		--normal)
+			diff_scheme="$diff_s_normal"
+			;;
+		-e|--ed)
+			diff_scheme=""
+			;;
+		-n|--rcs)
+			diff_scheme="$diff_s_rcs"
+			;;
+		-y|--side-by-side)
+			diff_scheme="$diff_s_sidebyside"
+			;;
+		esac
+	done
+
+	[ -z "$diff_scheme" ] && {
+		/usr/bin/env diff "$@"
+		return $?
+	}
+
+	diff_scheme="$diff_scheme; s/\$/$diff_c_reset/"
+	/usr/bin/env diff "$@" | sed "$diff_scheme"
+}
+
+# =========================================================================
+
 # Common aliases
 [ -f "${HOME}/.sh_aliases" ] \
 && . "${HOME}/.sh_aliases"
