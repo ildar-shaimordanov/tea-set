@@ -394,7 +394,7 @@ uname | grep -iq cygwin && pwd() {
 # http://stackoverflow.com/q/8800578/100073
 # https://retracile.net/blog/2013/06/01/22.00
 # http://www.colordiff.org/
-cdiff() {
+diff() {
 	[ $# -gt 0 ] || {
 		cat - <<HELP
 Usage: $FUNCNAME [OPTION]... FILES
@@ -511,25 +511,29 @@ HELP
 	for opt in "$@"
 	do
 		case "$opt" in
-		--)
-			break;
+		--help )
+			diff_scheme=""
+			break
 			;;
-		-c|-C|--context)
+		-- )
+			break
+			;;
+		-c | -C | --context )
 			diff_scheme="$diff_s_context"
 			;;
-		-u|-U|--unified)
+		-u | -U |--unified )
 			diff_scheme="$diff_s_unified"
 			;;
-		--normal)
+		--normal )
 			diff_scheme="$diff_s_normal"
 			;;
-		-e|--ed)
+		-e | --ed )
 			diff_scheme=""
 			;;
-		-n|--rcs)
+		-n | --rcs )
 			diff_scheme="$diff_s_rcs"
 			;;
-		-y|--side-by-side)
+		-y | --side-by-side )
 			diff_scheme="$diff_s_sidebyside"
 			;;
 		esac
