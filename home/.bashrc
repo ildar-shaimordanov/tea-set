@@ -550,6 +550,10 @@ HELP
 
 # =========================================================================
 
+# Common variables
+[ -f "${HOME}/.sh_environment" ] \
+&& . "${HOME}/.sh_environment"
+
 # Common aliases
 [ -f "${HOME}/.sh_aliases" ] \
 && . "${HOME}/.sh_aliases"
