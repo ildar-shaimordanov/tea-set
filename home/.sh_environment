@@ -2,7 +2,17 @@
 
 # =========================================================================
 
-export LESS="-R"
+export LESS='-R'
+
+# Few ways to customize Ant:
+# 1. Create alias ant with the particular command line options.
+# 2. Export ANT_ARGS environment variable with the command line options.
+# 3. Create ${HOME}/.ant.properties with prefedined properties.
+#    This file allows to override some properties without editing 
+#    Build.xml and without typing -D on each invocation. 
+#    This way, build.xml should be able to read properties from this file.
+# 4. Any combination of all the stuff above.
+export ANT_ARGS='-find build.xml -emacs -Dium.install.dir=/opt/SIU'
 
 # =========================================================================
 
