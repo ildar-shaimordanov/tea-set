@@ -2,8 +2,8 @@
 
 if /i "%~1" == "/N" (
 	set "FAR_NAME=%~2"
-	shift
-	shift
+	shift /1
+	shift /1
 )
 
 if not defined FAR_NAME set "FAR_NAME=Far3"
