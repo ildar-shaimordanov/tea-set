@@ -11,13 +11,13 @@ setlocal
 :: Proceed to the specified folder
 if not "%~2" == "" pushd "%~2" || goto :EOF
 
+:: Set the home dir
+set "HOME=%~dp0home"
+
 :: Set the shell specific parameters if it is necessary
 set "SHELL_RUNNER="
 
 if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
-
-:: Set the home dir
-set "HOME=%~dp0home"
 
 :: Check if specific runner exists
 if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
