@@ -82,7 +82,7 @@ for %%b in (
 	SETLOCAL SHIFT START TIME TITLE TYPE VER VERIFY VOL 
 ) do if /i "%~1" == "%%~b" (
 	echo:"%~1" is internal
-	goto :which_arg_continue
+	if not defined which_all goto :which_arg_continue
 )
 
 set "which_ext="
