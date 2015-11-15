@@ -92,8 +92,8 @@ F - white
 <assign name="def:TODO" fore="#0" back="#6" />
 <assign name="def:Debug" fore="#0" back="#6" />
 
-<assign name="def:URI" fore="#C" style="2" />
-<assign name="def:EMail" fore="#E" style="2" />
+<assign name="def:URI" fore="#C" style="0" />
+<assign name="def:EMail" fore="#E" style="0" />
 
 <assign name="def:Date" fore="#E" />
 <assign name="def:Time" fore="#A" />
