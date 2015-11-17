@@ -518,10 +518,10 @@ HELP
 		-- )
 			break
 			;;
-		-c | -C | --context )
+		-c | -C | --context | --context=* )
 			diff_scheme="$diff_s_context"
 			;;
-		-u | -U |--unified )
+		-u | -U |--unified | --unified=* )
 			diff_scheme="$diff_s_unified"
 			;;
 		--normal )
