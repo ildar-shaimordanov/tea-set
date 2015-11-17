@@ -427,6 +427,12 @@ HELP
 		return
 	}
 
+	# Do not colorize if is piped
+	[ -t 1 ] || {
+		/usr/bin/env diff "$@"
+		return $?
+	}
+
 	# Colors
 	local diff_c_white='\x1b[37;1m'
 	local diff_c_red='\x1b[31m'
