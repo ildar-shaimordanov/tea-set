@@ -402,6 +402,20 @@ Usage: $FUNCNAME [OPTION]... FILES
 Wrapper for diff to colorize output of diff for better readability.
 Try "diff --help" for more information.
 
+OPTIONS
+
+Diff options
+
+All options will be passed to "diff".
+
+Coloring options
+
+--color[=WHEN], --colour[=WHEN]
+
+Controls the colorizing method. WHEN is "always", "never" or "auto" (the 
+default value if not specified explicitly). To make affect globally, set 
+one of these values to CDIFF_COLOR environment variable.
+
 ENVIRONMENT VARIABLES
 
 The following environment variables are used to customize colors of the 
@@ -423,14 +437,13 @@ Added lines
 
 CDIFF_MOD
 Modified lines
+
+CDIFF_COLOR
+Colorizing method does effect on all runs; assumes the same values as for 
+the "--color" option. The default value is "auto" and can be superseded by 
+the explicit mention in the "--color" option. 
 HELP
 		return
-	}
-
-	# Do not colorize if is piped
-	[ -t 1 ] || {
-		/usr/bin/env diff "$@"
-		return $?
 	}
 
 	# Colors
@@ -514,44 +527,78 @@ HELP
 
 	local diff_scheme="$diff_s_normal"
 
-	for opt in "$@"
+	# Assume "auto" if not specified
+	local CDIFF_COLOR="${CDIFF_COLOR-auto}"
+
+	local -a args
+
+	while [ $# -gt 0 ]
 	do
-		case "$opt" in
-		--help )
-			diff_scheme=""
-			break
+		case "$1" in
+		--color | --colour )
+			CDIFF_COLOR=auto
 			;;
-		-- )
-			break
+		--color=* | --colour=* )
+			CDIFF_COLOR="${1#*=}"
 			;;
-		-c | -C | --context | --context=* )
-			diff_scheme="$diff_s_context"
-			;;
-		-u | -U |--unified | --unified=* )
-			diff_scheme="$diff_s_unified"
-			;;
-		--normal )
-			diff_scheme="$diff_s_normal"
-			;;
-		-e | --ed )
-			diff_scheme=""
-			;;
-		-n | --rcs )
-			diff_scheme="$diff_s_rcs"
-			;;
-		-y | --side-by-side )
-			diff_scheme="$diff_s_sidebyside"
+		* )
+			case "$1" in
+			--help | -v | --version )
+				diff_scheme=""
+				break
+				;;
+			-- )
+				break
+				;;
+			-c | -C | --context | --context=* )
+				diff_scheme="$diff_s_context"
+				;;
+			-u | -U |--unified | --unified=* )
+				diff_scheme="$diff_s_unified"
+				;;
+			--normal )
+				diff_scheme="$diff_s_normal"
+				;;
+			-e | --ed )
+				diff_scheme=""
+				;;
+			-n | --rcs )
+				diff_scheme="$diff_s_rcs"
+				;;
+			-y | --side-by-side )
+				diff_scheme="$diff_s_sidebyside"
+				;;
+			esac
+			args+=( "$1" )
 			;;
 		esac
+		shift
 	done
 
+	case "$CDIFF_COLOR" in
+	always )
+		# Do nothing over defined by options
+		;;
+	never )
+		diff_scheme=""
+		;;
+	auto )
+		test -t 1 || diff_scheme=""
+		;;
+	* )
+		echo "Invalid argument '$CDIFF_COLOR' for --color" >&2
+		return 2
+		;;
+	esac
+
+	args+=( "$@" )
+
 	[ -z "$diff_scheme" ] && {
-		/usr/bin/env diff "$@"
+		env diff "${args[@]}"
 		return $?
 	}
 
-	diff_scheme="$diff_scheme; s/\$/$diff_c_reset/"
-	/usr/bin/env diff "$@" | sed "$diff_scheme"
+	env diff "${args[@]}" | sed "$diff_scheme; s/\$/$diff_c_reset/"
 }
 
 # =========================================================================
