@@ -521,8 +521,9 @@ HELP
 		# diff -y ...
 		# Changed lines
 		/^.* <\$/ s/^/$diff_b_old/;
-		/^[\t ]*>[\t ].*/ s/^/$diff_b_new/;
-		#/^\t\t\t\t\t\t\t[ ][ ][ ][ ][ ][ ]>\t.*/ s/^/$diff_b_new/;
+		/^.*[\t ]*|\t.*$/ s/^/$diff_b_mod/;
+		/^[\t ]*>$/ s/^/$diff_b_new/;
+		/^[\t ]*>\t.*/ s/^/$diff_b_new/;
 	"
 
 	local diff_scheme="$diff_s_normal"
