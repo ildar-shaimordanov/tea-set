@@ -509,8 +509,27 @@ HELP
 		/^-/ s/^/$diff_b_old/;
 		/^+/ s/^/$diff_b_new/;
 	"
+	local diff_s_ed="
+		# diff -e ...
+		# File headers
+		/^diff \(-e\|--ed\) / s/^/$diff_b_meta/;
+		/^Common subdirectories: / s/^/$diff_b_meta/;
+		/^Only in / s/^/$diff_b_meta/;
+
+		# Difference headers
+		/^\([0-9][0-9]*,\)\?[0-9][0-9]*[acd]\$/ {
+			/a\$/ s/^/$diff_b_new/;
+			/c\$/ s/^/$diff_b_mod/;
+			/d\$/ s/^/$diff_b_old/;
+		}
+	"
 	local diff_s_rcs="
 		# diff -n ...
+		# File headers
+		/^diff \(-n\|--rcs\) / s/^/$diff_b_meta/;
+		/^Common subdirectories: / s/^/$diff_b_meta/;
+		/^Only in / s/^/$diff_b_meta/;
+
 		# Difference headers
 		/^[ad][0-9][0-9]* [0-9][0-9]*\$/ {
 			/^d/ s/^/$diff_b_old/;
@@ -519,6 +538,9 @@ HELP
 	"
 	local diff_s_sidebyside="
 		# diff -y ...
+		/^diff \(-y\|--side-by-side\) / s/^/$diff_b_meta/;
+		/^Only in / s/^/$diff_b_meta/;
+
 		# Changed lines
 		/^.* <\$/ s/^/$diff_b_old/;
 		/^.*[\t ]*|\t.*$/ s/^/$diff_b_mod/;
@@ -575,7 +597,7 @@ HELP
 				diff_scheme="$diff_s_normal"
 				;;
 			-e | --ed )
-				diff_scheme=""
+				diff_scheme="$diff_s_ed"
 				;;
 			-n | --rcs )
 				diff_scheme="$diff_s_rcs"
