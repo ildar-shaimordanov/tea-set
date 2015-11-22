@@ -412,9 +412,9 @@ Coloring options
 
 --color[=WHEN], --colour[=WHEN]
 
-Controls the colorizing method. WHEN is "always", "never" or "auto" (the 
-default value if not specified explicitly). To make affect globally, set 
-one of these values to CDIFF_COLOR environment variable.
+Controls the colorizing method. WHEN is "always" (the default value if not 
+specified explicitly), "never" or "auto". To make affect globally, set one 
+of these values to CDIFF_COLOR environment variable.
 
 ENVIRONMENT VARIABLES
 
@@ -441,7 +441,7 @@ Modified lines
 CDIFF_COLOR
 Colorizing method does effect on all runs; assumes the same values as for 
 the "--color" option. The default value is "auto" and can be superseded by 
-the explicit mention in the "--color" option. 
+the "--color" option.
 HELP
 		return
 	}
@@ -528,7 +528,18 @@ HELP
 	local diff_scheme="$diff_s_normal"
 
 	# Assume "auto" if not specified
-	local CDIFF_COLOR="${CDIFF_COLOR-auto}"
+	local CDIFF_COLOR="${CDIFF_COLOR:-auto}"
+
+	# Validate environment variable
+	case "$CDIFF_COLOR" in
+	always | never | auto )
+		# Do nothing: it is valid value
+		;;
+	* )
+		echo "Invalid value '$CDIFF_COLOR' in CDIFF_COLOR" >&2
+		return 2
+		;;
+	esac
 
 	local -a args
 
@@ -536,7 +547,7 @@ HELP
 	do
 		case "$1" in
 		--color | --colour )
-			CDIFF_COLOR=auto
+			CDIFF_COLOR=always
 			;;
 		--color=* | --colour=* )
 			CDIFF_COLOR="${1#*=}"
