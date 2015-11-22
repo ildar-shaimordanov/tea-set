@@ -565,6 +565,9 @@ HELP
 			-c | -C | --context | --context=* )
 				diff_scheme="$diff_s_context"
 				;;
+			-p | --show-c-function )
+				diff_scheme="$diff_s_context"
+				;;
 			-u | -U |--unified | --unified=* )
 				diff_scheme="$diff_s_unified"
 				;;
