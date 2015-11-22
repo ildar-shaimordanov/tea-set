@@ -547,6 +547,13 @@ HELP
 	while [ $# -gt 0 ]
 	do
 		case "$1" in
+		--help | -v | --version )
+			diff_scheme=""
+			break
+			;;
+		-- )
+			break
+			;;
 		--color | --colour )
 			CDIFF_COLOR=always
 			;;
@@ -555,13 +562,6 @@ HELP
 			;;
 		* )
 			case "$1" in
-			--help | -v | --version )
-				diff_scheme=""
-				break
-				;;
-			-- )
-				break
-				;;
 			-c | -C* | --context | --context=* )
 				diff_scheme="$diff_s_context"
 				;;
