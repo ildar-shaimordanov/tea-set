@@ -515,6 +515,7 @@ HELP
 		/^diff \(-e\|--ed\) / s/^/$diff_b_meta/;
 		/^Common subdirectories: / s/^/$diff_b_meta/;
 		/^Only in / s/^/$diff_b_meta/;
+		/^Files .* differ\$/ s/^/$diff_b_meta/;
 
 		# Difference headers
 		/^\([0-9][0-9]*,\)\?[0-9][0-9]*[acd]\$/ {
@@ -529,6 +530,7 @@ HELP
 		/^diff \(-n\|--rcs\) / s/^/$diff_b_meta/;
 		/^Common subdirectories: / s/^/$diff_b_meta/;
 		/^Only in / s/^/$diff_b_meta/;
+		/^Files .* differ\$/ s/^/$diff_b_meta/;
 
 		# Difference headers
 		/^[ad][0-9][0-9]* [0-9][0-9]*\$/ {
@@ -538,8 +540,11 @@ HELP
 	"
 	local diff_s_sidebyside="
 		# diff -y ...
+		# File headers
 		/^diff \(-y\|--side-by-side\) / s/^/$diff_b_meta/;
+		/^Common subdirectories: / s/^/$diff_b_meta/;
 		/^Only in / s/^/$diff_b_meta/;
+		/^Files .* differ\$/ s/^/$diff_b_meta/;
 
 		# Changed lines
 		/^.* <\$/ s/^/$diff_b_old/;
