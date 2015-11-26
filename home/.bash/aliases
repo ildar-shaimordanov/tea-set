@@ -1,0 +1,156 @@
+#!/bin/bash
+
+# Aliases
+#
+# Some people use a different file for aliases
+# if [ -f "${HOME}/.bash_aliases" ]; then
+#   source "${HOME}/.bash_aliases"
+# fi
+#
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+#
+# Interactive operation...
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+#
+# Default to human readable figures
+# alias df='df -h'
+# alias du='du -h'
+#
+# Misc :)
+# alias less='less -r'                          # raw control characters
+# alias whence='type -a'                        # where, of a sort
+# alias grep='grep --color'                     # show differences in colour
+# alias egrep='egrep --color=auto'              # show differences in colour
+# alias fgrep='fgrep --color=auto'              # show differences in colour
+#
+# Some shortcuts for different directory listings
+# alias ls='ls -hF --color=tty'                 # classify files in colour
+# alias dir='ls --color=auto --format=vertical'
+# alias vdir='ls --color=auto --format=long'
+# alias ll='ls -l'                              # long list
+# alias la='ls -A'                              # all but . and ..
+# alias l='ls -CF'                              #
+
+# Some versions do not support colorizing
+if grep --color -V >/dev/null 2>&1
+then
+	alias grep='grep --color'               # show differences in colour
+	alias egrep='egrep --color=auto'        # show differences in colour
+	alias fgrep='fgrep --color=auto'        # show differences in colour
+fi
+
+# alias agrep='grep -a'
+
+# Some shortcuts for different directory listings
+# alias ls='ls -hF --color=tty'                 # classify files in colour
+alias ls='ls --color=tty'
+# alias dir='ls --color=auto --format=vertical'
+# alias vdir='ls --color=auto --format=long'
+alias ll='ls -l'                                # long list
+alias la='ls -A'                                # all but . and ..
+alias l='ls -CF'                                #
+
+# =========================================================================
+
+# Windows only (Cygwin or MSys)
+case "$( uname | tr [:upper:] [:lower:] )" in
+cygwin* | msys* | mingw* )
+	alias ps='ps -W'
+	;;
+esac
+
+# =========================================================================
+
+# https://github.com/rprichard/winpty
+#
+# Creating alias to winpty, the package providing interface between Window 
+# console and Unix-like pty used in cygwin, msysgit and others.
+case "$( uname | tr [:upper:] [:lower:] )" in
+cygwin* )
+	# Presume that winpty is under CYGROOT/../winpty
+	WINPTY="$( cygpath "$( cygpath -m / )/../winpty" )"
+	;;
+msys* | mingw* | windows* )
+	# Presume that winpty is under MSYSROOT/../winpty
+	WINPTY="$( cd "$( cd / ; pwd -W )/../winpty" ; pwd )"
+	;;
+esac
+
+test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console" \
+&& "$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
+&& alias console="$WINPTY/$OSTYPE/console"
+
+unset WINPTY
+
+# =========================================================================
+
+# Ant related aliases
+
+# Few ways to customize Ant:
+# 1. Create alias ant with the particular command line options.
+# 2. Export ANT_ARGS environment variable with the command line options.
+# 3. Create ${HOME}/.ant.properties with prefedined properties.
+#    This file allows to override some properties without editing 
+#    Build.xml and without typing -D on each invocation. 
+#    This way, build.xml should be able to read properties from this file.
+# 4. Any combination of all the stuff above.
+# alias ant='ant -find build.xml -emacs ium.install.dir=/opt/SIU'
+
+# =========================================================================
+
+# Git aliases
+if which git >/dev/null 2>&1
+then
+	# http://gitimmersion.com/lab_11.html
+	alias gs='git status'
+	# alias ga='git add'
+	alias gb='git branch'
+	# http://stackoverflow.com/a/11585743/3627676
+	# alias gbn='git name-rev --name-only HEAD'
+	# alias gc='git commit'
+	alias gd='git diff'
+	alias go='git checkout'
+	alias gl='git log'
+	alias gli='git log --color --graph --oneline'
+	alias gla='git log --color --graph --oneline --decorate --all'
+	# alias gk='gitk --all&'
+	# alias gx='gitx --all'
+	# alias got='git'
+	# alias get='git'
+
+	alias ggu='git config --local remote.origin.url'
+	alias ggn='git config --local remote.origin.url | sed "s|.*/||;s|\..*||"'
+	alias ggr='git rev-parse --show-toplevel'
+	alias ggb='git rev-parse --abbrev-ref HEAD'
+fi
+
+# =========================================================================
+
+case "$( uname | tr [:upper:] [:lower:] )" in
+cygwin* )
+	alias cdgb='cd /cygdrive/u/var/git/broker/'
+	alias cdge='cd /cygdrive/u/var/git/ernie/'
+	alias cdgg='cd /cygdrive/u/var/git/gfm/'
+	alias cdgk='cd /cygdrive/u/var/git/kpn_eium/'
+	alias cdgr='cd /cygdrive/u/var/git/kpn_rtc/'
+	alias cdgl='cd /cygdrive/u/var/git/lgi/'
+	;;
+msys* | mingw* | windows* )
+	alias cdgb='cd /u/var/git/broker/'
+	alias cdge='cd /u/var/git/ernie/'
+	alias cdgg='cd /u/var/git/gfm/'
+	alias cdgk='cd /u/var/git/kpn_eium/'
+	alias cdgr='cd /u/var/git/kpn_rtc/'
+	alias cdgl='cd /u/var/git/lgi/'
+	;;
+esac
+
+# =========================================================================
+
+# EOF

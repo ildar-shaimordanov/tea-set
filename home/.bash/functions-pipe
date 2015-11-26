@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# =========================================================================
+
+# Perl version of sponge
+# http://backreference.org/2011/01/29/in-place-editing-of-files/
+# http://joeyh.name/code/moreutils/
+sponge() {
+	typeset FN="sponge"
+
+	if [ $# -ne 1 -o -z "$1" ]
+	then
+		cat <<HELP
+NAME
+	$FN - Soak up standard input and write to a file
+
+USAGE
+	command FILE | $FN FILE
+
+DESCRIPTION
+	The function reads standard input and writes it out to the 
+	specified file. Unlike a shell redirect, The function soaks up all 
+	its input before opening the output file. This allows constructing 
+	pipelines that read from and write to the same file.
+HELP
+		return
+	fi
+
+	perl -ne 'push @lines, $_; END { open(OUT, ">$file") or die "sponge: cannot open $file: $!\n"; print OUT @lines; close(OUT); }' -s -- -file="$1"
+#	perl -e '@lines = <>; open(OUT, ">$file") or die "sponge: cannot open $file: $!\n"; print OUT @lines; close(OUT);' -s -- -file="$1"
+}
+
+# =========================================================================
+
+j2() {
+	sed "N;s/\n/$1/"
+	#paste -sd "$1\n"
+}
+
+jn() {
+	sed ":a;N;s/\n/$1/;ta"
+	#paste -sd"$1"
+}
+
+# =========================================================================
+
+# EOF
