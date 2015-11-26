@@ -128,6 +128,9 @@ then
 	if [ -f "/mingw32/share/git/completion/git-completion.bash" ]
 	then
 		. "/mingw32/share/git/completion/git-completion.bash"
+	elif [ -f "/mingw64/share/git/completion/git-completion.bash" ]
+	then
+		. "/mingw64/share/git/completion/git-completion.bash"
 	elif [ -f "/etc/git-completion.bash" ]
 	then
 		. "/etc/git-completion.bash"
@@ -140,6 +143,9 @@ then
 	if [ -f "/mingw32/share/git/completion/git-prompt.sh" ]
 	then
 		. "/mingw32/share/git/completion/git-prompt.sh"
+	elif [ -f "/mingw64/share/git/completion/git-prompt.sh" ]
+	then
+		. "/mingw64/share/git/completion/git-prompt.sh"
 	elif [ -f "/etc/git-prompt.sh" ]
 	then
 		. "/etc/git-prompt.sh"
