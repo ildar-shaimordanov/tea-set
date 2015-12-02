@@ -56,6 +56,9 @@ alias ll='ls -l'                                # long list
 alias la='ls -A'                                # all but . and ..
 alias l='ls -CF'                                #
 
+# http://www.pixelbeat.org/settings/.bashrc
+alias hd='od -Ax -tx1z -v'
+
 # =========================================================================
 
 # Windows only (Cygwin or MSys)
