@@ -29,10 +29,18 @@ ln -s "NEW-HOME-DIR" $USERNAME
 
 5. Close the current Cygwin session
 
+---------------------------------------------------------------------------
 
-"NEW-HOME-DIR" refers to the "home" directory under $TEA_HOME. It can be 
-set automatically from the command assuming cygwin is installed to the 
-directory "$TEA_HOME/vendors/cygwin".
+Another and portable way
 
-echo "$( cygpath -m ~ )/../../../../home" | cygpath -f -
-echo "$( cygpath -lw / )/../../home" | cygpath -f -
+3. backup CYGWIN-DIR/etc/profile to here
+
+4. open CYGWIN-DIR/etc/profile and add at the most beginning of the file 
+   the following lines
+
+# Set new home dir
+HOME="$( ../bin/cygpath -w / | ../bin/sed 's/vendors.*/home/' | ../bin/cygpath -uf - )"
+
+
+5. Save the changes to the file
+
