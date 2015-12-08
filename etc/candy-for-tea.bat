@@ -30,7 +30,7 @@ $packages = @(
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		"url" = "https://github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4.zip";
+		"url" = "https://github.com/mridgers/clink/releases/download/0.4.5/clink_0.4.5.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
@@ -44,7 +44,6 @@ $packages = @(
 	@{
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
-#-		"url" = "http://www.farmanager.com/files/Far30b4400.x86.20150709.7z";
 		"url" = "http://www.farmanager.com/files/Far30b4444.x86.20151024.7z";
 		"dir" = "Far3";
 	}
@@ -60,7 +59,7 @@ $packages = @(
 	@{
 		"name" = "Notepad2-mod";
 		"home" = "http://xhmikosr.github.io/notepad2-mod/";
-		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.940/Notepad2-mod.4.2.25.940_x86.zip";
+		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.964/Notepad2-mod.4.2.25.964_x64.zip";
 		"dir" = "notepad2-mod";
 		"postinstall" = {
 			$dir = $args[0];
