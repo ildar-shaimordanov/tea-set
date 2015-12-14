@@ -21,16 +21,16 @@ if not exist "%FAR_HOME%\Far.exe" (
 )
 
 :: Path to the common directory for all FAR-related stuffs
-:: It can be redeclared in "cmd.env.bat"
+:: It can be redeclared in "shellenv.bat"
 set "FAR_CONF=%~dp0etc\Far3"
 
 :: FAR startup options
-:: It can be redeclared in "cmd.env.bat"
+:: It can be redeclared in "shellenv.bat"
 set "FAR_OPTS=/w /p"%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Plugins\ConEmu""
 
-if exist "%~dp0cmd.env.bat" call "%~dp0cmd.env.bat"
+if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
-if defined SHOW_BANNER_FAR if exist "%~dp0cmd.banner.bat" call "%~dp0cmd.banner.bat" %SHOW_BANNER_FAR%
+if defined SHOW_BANNER_FAR if exist "%~dp0shellinfo.bat" call "%~dp0shellinfo.bat" %SHOW_BANNER_FAR%
 
 if not exist "%FAR_HOME%\Far.exe.ini" (
 	echo:
