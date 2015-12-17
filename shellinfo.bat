@@ -9,7 +9,7 @@
 
 setlocal
 
-set "banner_list=set path doskey alias home conemu far"
+set "shellinfo.list=set path doskey alias home conemu far"
 
 if "%~1" == "" (
 	echo:Show the actual environment ^(variables and/or aliases^)
@@ -18,43 +18,43 @@ if "%~1" == "" (
 	echo:%~n0 PATTERN ...
 	echo:
 	echo:Available patterns:
-	echo:%banner_list%
+	echo:%shellinfo.list%
 
 	goto :EOF
 )
 
-:banner_loop_1
+:shellinfo.loop_1
 if "%~1" == "" goto :EOF
 
-for %%m in ( %banner_list% ) do if /i "%~1" == "%%m" call :show_%%m & echo:
+for %%m in ( %shellinfo.list% ) do if /i "%~1" == "%%m" call :shellinfo.%%m & echo:
 shift /1
 
-goto :banner_loop_1
+goto :shellinfo.loop_1
 
 :: ========================================================================
 
-:show_set
+:shellinfo.set
 set
 goto :EOF
 
-:show_path
+:shellinfo.path
 for %%a in ( "%PATH:;=" "%" ) do echo:%%~a
 goto :EOF
 
-:show_doskey
-:show_alias
+:shellinfo.doskey
+:shellinfo.alias
 doskey /macros
 goto :EOF
 
-:show_home
+:shellinfo.home
 set | findstr /i /b "[^=]*HOME="
 goto :EOF
 
-:show_conemu
+:shellinfo.conemu
 set | findstr /i /b "ConEmu"
 goto :EOF
 
-:show_far
+:shellinfo.far
 set | findstr /i /b "FAR"
 goto :EOF
 

@@ -13,7 +13,7 @@
 ::
 :: ========================================================================
 
-if defined CMD_ENV_LOADED goto :cmd.env.integration
+if defined CMD_ENV_LOADED goto :shellenv.integration
 
 set "CMD_ENV_LOADED=1"
 
@@ -43,7 +43,7 @@ set "SHOW_BANNER_CMD=conemu home path"
 ::
 :: ========================================================================
 
-for /f "tokens=*" %%p in ( "%~dp0." ) do call :cmd.env.set.home TEA_HOME "%%~fp"
+for /f "tokens=*" %%p in ( "%~dp0." ) do call :shellenv.set.home TEA_HOME "%%~fp"
 
 :: ========================================================================
 ::
@@ -51,7 +51,7 @@ for /f "tokens=*" %%p in ( "%~dp0." ) do call :cmd.env.set.home TEA_HOME "%%~fp"
 ::
 :: ========================================================================
 
-call :cmd.env.set.home SEVENZIP_HOME "%TEA_HOME%\vendors\7za"
+call :shellenv.set.home SEVENZIP_HOME "%TEA_HOME%\vendors\7za"
 
 :: ========================================================================
 ::
@@ -59,7 +59,7 @@ call :cmd.env.set.home SEVENZIP_HOME "%TEA_HOME%\vendors\7za"
 ::
 :: ========================================================================
 
-call :cmd.env.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
+call :shellenv.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
 
 :: ========================================================================
 ::
@@ -67,7 +67,7 @@ call :cmd.env.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
 ::
 :: ========================================================================
 
-call :cmd.env.set.home IUM_HOME "C:\IUM"
+call :shellenv.set.home IUM_HOME "C:\IUM"
 
 :: ========================================================================
 ::
@@ -75,19 +75,7 @@ call :cmd.env.set.home IUM_HOME "C:\IUM"
 ::
 :: ========================================================================
 
-call :cmd.env.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
-
-:: ========================================================================
-::
-:: Git
-::
-:: ========================================================================
-
-:: set "GIT_HOME=%ProgramFiles(x86)%\Git"
-::set "GIT_HOME=%TEA_HOME%\vendors\msysgit"
-
-:: if exist "%GIT_HOME%" set "PATH=%PATH%;%GIT_HOME%\cmd"
-::if exist "%GIT_HOME%" set "PATH=%GIT_HOME%\bin;%GIT_HOME%\mingw\bin;%GIT_HOME%\cmd;%GIT_HOME%\share\vim\vim74;%PATH%"
+call :shellenv.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
 
 :: ========================================================================
 ::
@@ -101,12 +89,14 @@ call :cmd.env.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
 for %%f in (
 	"-cygwin"
 	"-git-for-windows"
+	"-git-for-windows-32"
+	"-git-for-windows-64"
 	"-gnuwin32"
-	"-gow-git"
+	"-gow"
 	"msysgit"
 	"-unxutils"
 	"-win-bash"
-) do call :cmd.env.set.home UNIX_HOME "%TEA_HOME%\vendors\%%~f" /P
+) do call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%%~f" /P
 
 :: What is the HOME directory?
 :: http://gnuwin32.sourceforge.net/faq.html
@@ -135,7 +125,7 @@ for %%f in (
 	"c" 
 	"perl" 
 	"perl\site" 
-) do call :cmd.env.select.path "%PERL_HOME%\%%~f" /P
+) do call :shellenv.select.path "%PERL_HOME%\%%~f" /P
 
 :: ========================================================================
 ::
@@ -143,7 +133,7 @@ for %%f in (
 ::
 :: ========================================================================
 
-call :cmd.env.select.path "%ProgramFiles%\Oracle\VirtualBox"
+call :shellenv.select.path "%ProgramFiles%\Oracle\VirtualBox"
 
 :: ========================================================================
 ::
@@ -151,13 +141,13 @@ call :cmd.env.select.path "%ProgramFiles%\Oracle\VirtualBox"
 ::
 :: ========================================================================
 
-call :cmd.env.lookup.java jre
-call :cmd.env.lookup.java jdk
+call :shellenv.lookup.java jre
+call :shellenv.lookup.java jdk
 
 if defined JDK_HOME (
-	call :cmd.env.set.home JAVA_HOME "%JDK_HOME%"
+	call :shellenv.set.home JAVA_HOME "%JDK_HOME%"
 ) else if defined JRE_HOME (
-	call :cmd.env.set.home JAVA_HOME "%JRE_HOME%"
+	call :shellenv.set.home JAVA_HOME "%JRE_HOME%"
 )
 
 :: ========================================================================
@@ -166,7 +156,7 @@ if defined JDK_HOME (
 ::
 :: ========================================================================
 
-for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :cmd.env.select.path "%%~d"
+for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :shellenv.select.path "%%~d"
 
 :: ========================================================================
 ::
@@ -174,7 +164,7 @@ for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :cmd.env.select.path "%%~d"
 ::
 :: ========================================================================
 
-:cmd.env.integration
+:shellenv.integration
 
 if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
 
@@ -200,7 +190,7 @@ goto :EOF
 :: are installed by default under %ProgramFiles% and %ProgramFiles(x86)%.
 ::
 :: %~1 - one of them: jdk or jre
-:cmd.env.lookup.java
+:shellenv.lookup.java
 set "%~1_HOME="
 for /f %%d in ( '
 	dir /b "%ProgramFiles%\Java\%~1*" "%ProgramFiles(x86)%\Java\%~1*" 2^>nul ^| sort
@@ -231,14 +221,14 @@ goto :EOF
 :: %~1 - home name variable (looks like XXX_HOME)
 :: %~2 - the directory's path
 :: %~3 - /P to force prepending to %PATH%, or empty
-:cmd.env.set.home
+:shellenv.set.home
 if defined %~1 goto :EOF
 
 :: Set all provided paths to %PATH%
-call :cmd.env.set.path "%~2\bin"     "%~3" && set "%~1=%~2"
-call :cmd.env.set.path "%~2\sbin"    "%~3" && set "%~1=%~2"
-call :cmd.env.set.path "%~2\usr\bin" "%~3" && set "%~1=%~2"
-call :cmd.env.set.path "%~2"         "%~3" && set "%~1=%~2"
+call :shellenv.set.path "%~2\bin"     "%~3" && set "%~1=%~2"
+call :shellenv.set.path "%~2\sbin"    "%~3" && set "%~1=%~2"
+call :shellenv.set.path "%~2\usr\bin" "%~3" && set "%~1=%~2"
+call :shellenv.set.path "%~2"         "%~3" && set "%~1=%~2"
 goto :EOF
 
 :: ========================================================================
@@ -254,13 +244,13 @@ goto :EOF
 ::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
-:cmd.env.select.path
+:shellenv.select.path
 
 :: Only one of these paths will be appended to %PATH%
-call :cmd.env.set.path "%~1\bin"     "%~2" && goto :EOF
-call :cmd.env.set.path "%~1\usr\bin" "%~2" && goto :EOF
-call :cmd.env.set.path "%~1\cmd"     "%~2" && goto :EOF
-call :cmd.env.set.path "%~1"         "%~2" && goto :EOF
+call :shellenv.set.path "%~1\bin"     "%~2" && goto :EOF
+call :shellenv.set.path "%~1\usr\bin" "%~2" && goto :EOF
+call :shellenv.set.path "%~1\cmd"     "%~2" && goto :EOF
+call :shellenv.set.path "%~1"         "%~2" && goto :EOF
 goto :EOF
 
 :: ========================================================================
@@ -272,9 +262,9 @@ goto :EOF
 ::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
-:cmd.env.set.path
+:shellenv.set.path
 :: Check if the path is not specified in %PATH% and contains executables
-call :cmd.env.check.path "%~1" || goto :EOF
+call :shellenv.check.path "%~1" || goto :EOF
 
 :: Append or prepend new path to %PATH%
 if /i     "%~2" == "/P" set "PATH=%~1;%PATH%"
@@ -289,7 +279,7 @@ goto :EOF
 :: the specified path, otherwise 0.
 ::
 :: %~1 - the directory's path
-:cmd.env.check.path
+:shellenv.check.path
 :: Skip if the path is specified in %PATH%
 for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
 
