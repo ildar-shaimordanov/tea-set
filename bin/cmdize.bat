@@ -76,7 +76,7 @@ if not exist "%~f1" (
 	goto :cmdize.loop.continue
 )
 
-for %%x in ( .js .vbs .pl .ps1 .hta .htm .html .wsf ) do (
+for %%x in ( .js .vbs .pl .ps1 .py .hta .htm .html .wsf ) do (
 	if /i "%~x1" == "%%~x" (
 		call :cmdize%%~x "%~1" >"%~dpn1.bat"
 		goto :cmdize.loop.continue
@@ -187,6 +187,23 @@ echo:endlocal ^& powershell -NoLogo -NoProfile -Command "$_ = $input; Invoke-Exp
 echo:rem endlocal ^& powershell -NoLogo -NoProfile -Command "$input | &{ [ScriptBlock]::Create( ( Get-Content \"%%~f0\" ) -join [char]10 ).Invoke( @( &{ $args } %%POWERSHELL_BAT_ARGS%% ) ) }"
 echo:goto :EOF
 echo:#^>
+type "%~f1"
+goto :EOF
+
+
+:: Convert the python file.
+:cmdize.py
+:: Ascetic way is shorter but less flexible
+:: Uncomment the following 3 lines if it is more preferrable
+:: echo:@python -x "%%~f0" %%* ^& @goto :EOF
+:: type "%~f1"
+:: goto :EOF
+echo:0^<0# : ^^
+echo:"""
+echo:@echo off
+echo:python "%%~f0" %%*
+echo:goto :EOF
+echo:"""
 type "%~f1"
 goto :EOF
 
