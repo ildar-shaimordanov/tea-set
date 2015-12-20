@@ -42,6 +42,10 @@
 :: http://blogs.msdn.com/b/jaybaz_ms/archive/2007/04/26/powershell-polyglot.aspx
 :: http://stackoverflow.com/a/2611487/3627676
 ::
+:: .py
+:: http://stackoverflow.com/a/29881143/3627676
+:: http://stackoverflow.com/a/17468811/3627676
+::
 :: .hta and .html?
 :: http://forum.script-coding.com/viewtopic.php?pid=79322#p79322
 ::
