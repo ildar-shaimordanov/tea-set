@@ -135,24 +135,17 @@ fi
 
 # =========================================================================
 
-case "$( uname | tr [:upper:] [:lower:] )" in
-cygwin* )
-	alias cdgb='cd /cygdrive/u/var/git/broker/'
-	alias cdge='cd /cygdrive/u/var/git/ernie/'
-	alias cdgg='cd /cygdrive/u/var/git/gfm/'
-	alias cdgk='cd /cygdrive/u/var/git/kpn_eium/'
-	alias cdgr='cd /cygdrive/u/var/git/kpn_rtc/'
-	alias cdgl='cd /cygdrive/u/var/git/lgi/'
-	;;
-msys* | mingw* | windows* )
-	alias cdgb='cd /u/var/git/broker/'
-	alias cdge='cd /u/var/git/ernie/'
-	alias cdgg='cd /u/var/git/gfm/'
-	alias cdgk='cd /u/var/git/kpn_eium/'
-	alias cdgr='cd /u/var/git/kpn_rtc/'
-	alias cdgl='cd /u/var/git/lgi/'
-	;;
-esac
+# /cygdrive if cygwin default settings or emty string otherwise
+drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
+
+alias cdgb="cd $drive_prefix/u/var/git/broker/"
+alias cdge="cd $drive_prefix/u/var/git/ernie/"
+alias cdgg="cd $drive_prefix/u/var/git/gfm/"
+alias cdgk="cd $drive_prefix/u/var/git/kpn_eium/"
+alias cdgr="cd $drive_prefix/u/var/git/kpn_rtc/"
+alias cdgl="cd $drive_prefix/u/var/git/lgi/"
+
+unset drive_prefix
 
 # =========================================================================
 

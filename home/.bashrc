@@ -104,20 +104,15 @@ export HISTFILESIZE=20000
 
 if [ -d "${HOME}/.bash" ]
 then
-	# Common settings
-	[ -f "${HOME}/.bash/settings" ] \
-	&& . "${HOME}/.bash/settings"
-
-	# Common functions
-	for f in $( ls ${HOME}/.bash/functions-* )
+	# Common settings, functions and aliases in this order
+	for f in \
+		"${HOME}/.bash/settings" \
+		$( ls ${HOME}/.bash/functions-* 2>/dev/null ) \
+		"${HOME}/.bash/aliases"
 	do
-		[ -e "$f" ] \
+		[ -f "$f" ] \
 		&& . "$f"
 	done
-
-	# Common aliases
-	[ -f "${HOME}/.bash/aliases" ] \
-	&& . "${HOME}/.bash/aliases"
 fi
 
 # =========================================================================
