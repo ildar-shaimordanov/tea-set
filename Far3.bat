@@ -6,6 +6,8 @@ if /i "%~1" == "/N" (
 	shift /1
 )
 
+if exist "%~dp0vendors\%~nx0" call "%~dp0vendors\Far3.bat"
+
 if not defined FAR_NAME set "FAR_NAME=Far3"
 
 set "FAR_HOME=%~dp0vendors\%FAR_NAME%"

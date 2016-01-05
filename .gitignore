@@ -12,7 +12,7 @@ bin/*
 !bin/www.bat
 !bin/README*
 
-etc/zentea.enabled
+etc/candy-for-tea.enabled
 etc/*.log
 etc/distrib/
 etc/misc/
@@ -28,7 +28,6 @@ etc/Far3/Profile/*.db*
 etc/postinstall/GUI/
 
 etc/TLB/
-etc/wallpapers/
 
 home/
 !home/.bash_profile
