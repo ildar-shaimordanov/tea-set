@@ -3,66 +3,128 @@
 -- http://forum.farmanager.com/viewtopic.php?p=126100#p126100
 
 -- Imitate the feature of typing/erasing on multiple lines at once (like the SciTE editor does).
--- * Select a vertical block 1 character wide.
--- * Position the cursor on any line covered with the block, on the block position or rightward from it.
+-- * Select a vertical block 0 or 1 character wide.
+-- * Position the cursor on any line covered with the block.
 -- * Type or delete (Del, BS) the text.
 
-local F=far.Flags
-local Map = {Space=" ", Tab="\t", BackSlash="\\"}
+-- OPTIONS -----------------------------------------------------------------------------------------
+
+  -- Replace the block with entered character; delete the block contents on pressing Del or BS.
+  -- This option works for vertical blocks with width >= 2.
+local OptReplaceBlock = true
+
+  -- Use Alt codes e.g. Alt+64 --> @. (This feature is still experimental).
+local OptUseAltCodes = false
+
+  -- Reset selection on cursor key moves (only with non-persistent blocks)
+local OptCursorMoveResetsBlock = true
+
+-- END OF OPTIONS ----------------------------------------------------------------------------------
+
+local F = far.Flags
+local band = (bit or bit64).band
+local CharMap = {Space=" ", ShiftSpace=" ", Tab="\t",     BackSlash="\\",
+                 Add="+",   Subtract="-",   Multiply="*", Divide="/",     Decimal="."}
+local KeyMap = {Num2="Down", Num4="Left", Num6="Right", Num8="Up", NumDel="Del", ShiftIns="CtrlV", ShiftNum0="CtrlV"}
 
 Event {
   group="EditorInput";
   action=function(Rec)
-    if Rec.EventType==F.KEY_EVENT and Rec.KeyDown and Rec.ControlKeyState%0x10==0 then
-      local EI=editor.GetInfo()
-      if EI and EI.BlockType==F.BTYPE_COLUMN then
-        local cur = editor.GetString()
-        if cur and cur.SelStart>0 and cur.SelEnd<=cur.SelStart and EI.CurPos>=cur.SelStart then
-          local key = far.InputRecordToName(Rec)
-          local char = key and (Map[key] or key:match("^.$"))
-          if key=="Del" or key=="BS" or key=="Left" or key=="Right" or char then
-            local lnum = EI.BlockStartLine
-            local newpos, clean = nil, true
-            while true do
-              local line = editor.GetString(nil,lnum)
-              if not line or line.SelStart <= 0 then break end
-              local pos = editor.TabToReal(nil,lnum,EI.CurTabPos)
-              local s = line.StringText
-              if key == "Del" then
-                if pos <= line.StringLength then
-                  if clean then editor.UndoRedo(nil,F.EUR_BEGIN); clean=false end
-                  editor.SetString(nil, lnum, s:sub(1,pos-1)..s:sub(pos+1))
-                end
-              elseif key == "Right" then
-                newpos = EI.CurPos + 1
-              elseif key == "Left" then
-                if pos == 1 then return true end
-                newpos = EI.CurPos - 1
-              elseif key == "BS" then
-                if pos == 1 then return true end
-                if pos <= line.StringLength+1 then
-                  if clean then editor.UndoRedo(nil,F.EUR_BEGIN); clean=false end
-                  editor.SetString(nil, lnum, s:sub(1,pos-2)..s:sub(pos))
-                end
-                newpos = EI.CurPos - 1
-              elseif char then
-                if pos > line.StringLength+1 then
-                  s = s..(" "):rep(pos-line.StringLength-1)
-                end
-                if clean then editor.UndoRedo(nil,F.EUR_BEGIN); clean=false end
-                editor.SetString(nil, lnum, s:sub(1,pos-1)..char..s:sub(pos+EI.Overtype))
-                newpos = EI.CurPos + 1
-              end
-              lnum = lnum + 1
-            end
-            if not clean then editor.UndoRedo(nil,F.EUR_END) end
-            if newpos then editor.SetPosition(nil, EI.CurLine, newpos) end
-            editor.Select(nil, "BTYPE_COLUMN", EI.BlockStartLine, newpos or cur.SelStart, 1, lnum-EI.BlockStartLine)
-            editor.Redraw()
-            return true
+    if Rec.EventType ~= F.KEY_EVENT then return false end
+
+    local EI = editor.GetInfo()
+    if not (EI and EI.BlockType==F.BTYPE_COLUMN and band(EI.CurState,F.ECSTATE_LOCKED)==0) then return false end
+
+    local uc = Rec.UnicodeChar
+    local altchar = OptUseAltCodes and not Rec.KeyDown and Rec.VirtualKeyCode==18 and uc~="" and uc~="\0" and uc
+    local key = not altchar and far.InputRecordToName(Rec)
+    key = KeyMap[key] or key
+
+    if OptCursorMoveResetsBlock and band(EI.Options,F.EOPT_PERSISTENTBLOCKS)==0 then
+      if key=="Left" or key=="Right" or key=="Up" or Key=="Down" then return false end
+    end
+   
+    if not (altchar or key=="CtrlV" or (Rec.KeyDown and band(Rec.ControlKeyState,0x0F)==0)) then return false end
+    local cur = editor.GetString()
+    local BlockWidth = cur and cur.SelStart>0 and cur.SelEnd-cur.SelStart+1
+    if not (BlockWidth and (OptReplaceBlock or BlockWidth<=1)) then return false end
+
+    local char = altchar or key and (CharMap[key] or key:match("^.$"))
+    local text = char
+    if key=="CtrlV" then
+      local clip = far.PasteFromClipboard()
+      text = clip and clip:match("^([^\r\n]*)\r?\n?$")
+      if not text then return false end
+    end
+    local textlen = text and text:len() or 0
+
+    local delblock = OptReplaceBlock and BlockWidth>1
+    if delblock and not (text or key=="Del" or key=="BS") then return false end
+
+    if not (text or key=="Del" or key=="BS" or key=="Left" or key=="Right" or key=="Up" or key=="Down") then return false end
+
+    if (key=="BS" or key=="Left") and EI.CurPos==1 then return true end
+
+    if key=="Up" then
+      if EI.CurLine==1 then return true end
+      if EI.CurLine==EI.BlockStartLine then return false end
+    elseif key=="Down" then
+      if EI.CurLine==EI.TotalLines then return true end
+      local line = editor.GetString(nil,EI.CurLine+1)
+      if not line or line.SelStart <= 0 then return false end
+    end
+
+    local lnum = EI.BlockStartLine
+    local clean = true
+    local BlockStartRealPos, BlockStartTabPos
+    while true do
+      local line = editor.GetString(nil,lnum)
+      if not line or line.SelStart <= 0 then break end
+      BlockStartRealPos = BlockStartRealPos or line.SelStart
+      BlockStartTabPos = BlockStartTabPos or editor.RealToTab(nil,lnum,BlockStartRealPos)
+      local pos = editor.TabToReal(nil,lnum,EI.CurTabPos)
+      local s, len, newS = line.StringText, line.StringLength, nil
+      if delblock then
+        if key == "Del" or key == "BS" then
+          if line.SelStart <= len then newS = s:sub(1,line.SelStart-1)..s:sub(line.SelEnd+1) end
+        elseif text then
+          if line.SelStart > len+1 then newS = s..(" "):rep(line.SelStart-len-1)..text
+          else newS = s:sub(1,line.SelStart-1)..text..s:sub(line.SelEnd+1)
+          end
+        end
+      else
+        if key == "Del" then
+          if pos <= len then newS = s:sub(1,pos-1)..s:sub(pos+1) end
+        elseif key == "BS" then
+          if pos <= len+1 then newS = s:sub(1,pos-2)..s:sub(pos) end
+        elseif text then
+          if pos > len+1 then newS = s..(" "):rep(pos-len-1)..text
+          else newS = s:sub(1,pos-1)..text..s:sub(pos+(EI.Overtype~=0 and textlen or 0))
           end
         end
       end
+      if newS then
+        if clean then editor.UndoRedo(nil,F.EUR_BEGIN); clean=false; end
+        editor.SetString(nil, lnum, newS)
+      end
+      lnum = lnum + 1
     end
+    if not clean then editor.UndoRedo(nil,F.EUR_END) end
+
+    local textlen = text and text:len() or 0
+    local realX, tabX, newY
+    if delblock then
+      realX = BlockStartRealPos + textlen
+      tabX = BlockStartTabPos + textlen
+      newY = EI.CurLine
+    else
+      realX = math.max(1, EI.CurPos + ((key=="Right") and 1 or (key=="BS" or key=="Left") and -1 or textlen))
+      tabX = editor.RealToTab(nil, EI.CurLine, realX)
+      newY = math.max(1, EI.CurLine + (key=="Up" and -1 or key=="Down" and 1 or 0))
+    end
+    editor.SetPosition(nil, newY, realX)
+    editor.Select(nil, "BTYPE_COLUMN", EI.BlockStartLine, tabX, 1, lnum-EI.BlockStartLine)
+    editor.Redraw()
+    return true
   end;
 }
