@@ -6,7 +6,7 @@ if /i "%~1" == "/N" (
 	shift /1
 )
 
-if exist "%~dp0vendors\%~nx0" call "%~dp0vendors\Far3.bat"
+if not defined FAR_NAME if exist "%~dp0vendors\%~nx0" call "%~dp0vendors\Far3.bat"
 
 if not defined FAR_NAME set "FAR_NAME=Far3"
 
@@ -28,7 +28,7 @@ set "FAR_CONF=%~dp0etc\Far3"
 
 :: FAR startup options
 :: It can be redeclared in "shellenv.bat"
-set "FAR_OPTS=/w /p"%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Plugins\ConEmu""
+set "FAR_OPTS=/w /p "%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Plugins\ConEmu""
 
 if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
