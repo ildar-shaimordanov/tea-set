@@ -13,11 +13,11 @@ today() {
 }
 
 tomorrow() {
-	today +1 day
+	today "+1 day $@"
 }
 
 yesterday() {
-	today -1 day
+	today "-1 day $@"
 }
 
 # =========================================================================
