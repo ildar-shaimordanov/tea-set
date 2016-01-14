@@ -1,9 +1,0 @@
-
-1. Install MSysGit
-
-2. Proceed to this directory "%TEA_HOME%\etc\postinstall\msysgit"
-
-3. Run the script "update_etc_profile.bat"
-
-4. Close the current MSysGit session
-
