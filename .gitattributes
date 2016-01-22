@@ -1,0 +1,10 @@
+* text=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.txt text
+*.xml text
+*.properties text
+*.pl text
+*.sh text
