@@ -190,7 +190,9 @@ goto :EOF
 :: are installed by default under %ProgramFiles% and %ProgramFiles(x86)%.
 ::
 :: %~1 - one of them: jdk or jre
+
 :shellenv.lookup.java
+
 set "%~1_HOME="
 for /f %%d in ( '
 	dir /b "%ProgramFiles%\Java" "%ProgramFiles(x86)%\Java" 2^>nul ^| findstr "%~1" ^| sort
@@ -221,7 +223,9 @@ goto :EOF
 :: %~1 - home name variable (looks like XXX_HOME)
 :: %~2 - the directory's path
 :: %~3 - /P to force prepending to %PATH%, or empty
+
 :shellenv.set.home
+
 if defined %~1 goto :EOF
 
 :: Set all provided paths to %PATH%
@@ -244,6 +248,7 @@ goto :EOF
 ::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
+
 :shellenv.select.path
 
 :: Only one of these paths will be appended to %PATH%
@@ -262,7 +267,9 @@ goto :EOF
 ::
 :: %~1 - the directory's path
 :: %~2 - /P to force prepending to %PATH%, or empty
+
 :shellenv.set.path
+
 :: Check if the path is not specified in %PATH% and contains executables
 call :shellenv.check.path "%~1" || goto :EOF
 
@@ -279,7 +286,9 @@ goto :EOF
 :: the specified path, otherwise 0.
 ::
 :: %~1 - the directory's path
+
 :shellenv.check.path
+
 :: Skip if the path is specified in %PATH%
 for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
 
