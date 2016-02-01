@@ -142,7 +142,7 @@ alias cdgb="cd $drive_prefix/u/var/git/broker/"
 alias cdge="cd $drive_prefix/u/var/git/ernie/"
 alias cdgg="cd $drive_prefix/u/var/git/gfm/"
 alias cdgk="cd $drive_prefix/u/var/git/kpn_eium/"
-alias cdgr="cd $drive_prefix/u/var/git/kpn_rtc/"
+alias cdgi="cd $drive_prefix/u/var/git/ium-tools/"
 alias cdgl="cd $drive_prefix/u/var/git/lgi/"
 
 unset drive_prefix
