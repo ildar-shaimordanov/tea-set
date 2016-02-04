@@ -149,8 +149,13 @@ then
 		. "$HOME/.git-prompt.sh"
 	fi
 
-	GIT_PS1_SHOWCOLORHINTS=1
-	PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\$ "
+	if declare -F __git_ps1 >/dev/null
+	then
+		GIT_PS1_SHOWCOLORHINTS=1
+		PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\\\$ "
+	else
+		PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\\\$ "
+	fi
 fi
 
 # =========================================================================
