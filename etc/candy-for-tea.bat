@@ -28,6 +28,14 @@ $packages = @(
 	}
 
 	@{
+		"name" = "ConsoleZ";
+		"home" = "https://github.com/cbucher/console";
+		"url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x86.1.16.0.16038.zip";
+		"url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x64.1.16.0.16038.zip";
+		"dir" = "ConsoleZ";
+	}
+
+	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
 		"url" = "https://github.com/mridgers/clink/releases/download/0.4.5/clink_0.4.5.zip";
