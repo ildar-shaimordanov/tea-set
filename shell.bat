@@ -24,19 +24,18 @@ if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
 	start "%~1 starting" "%~dp0vendors\%~1\%SHELL_RUNNER%"
 	goto :EOF
 )
+:: Check if ConEmu is available
+if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
+	call :conemu FILE "%~1" && goto :EOF
+	call :conemu CONF "%~1" && goto :EOF
+	call :conemu TASK "%~1" && goto :EOF
+)
 
 :: Check if ConsoleZ is available
 if exist "%~dp0vendors\ConsoleZ.bat" call "%~dp0vendors\ConsoleZ.bat"
 if defined CONSOLEZ_NAME if exist "%~dp0vendors\%CONSOLEZ_NAME%\Console.exe" if exist "%~dp0etc\ConsoleZ\%~1.xml" (
 	start "%~1 starting" "%~dp0vendors\%CONSOLEZ_NAME%\Console.exe" -c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1"
 	goto :EOF
-)
-
-:: Check if ConEmu is available
-if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
-	call :conemu FILE "%~1" && goto :EOF
-	call :conemu CONF "%~1" && goto :EOF
-	call :conemu TASK "%~1" && goto :EOF
 )
 
 :: Check if mintty is available
