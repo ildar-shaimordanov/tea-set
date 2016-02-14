@@ -24,6 +24,7 @@ if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
 	start "%~1 starting" "%~dp0vendors\%~1\%SHELL_RUNNER%"
 	goto :EOF
 )
+
 :: Check if ConEmu is available
 if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
 	call :conemu FILE "%~1" && goto :EOF
