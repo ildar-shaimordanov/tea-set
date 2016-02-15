@@ -1,5 +1,7 @@
 @echo off
 
+set "FAR_NAME="
+
 if /i "%~1" == "/N" (
 	set "FAR_NAME=%~2"
 	shift /1
