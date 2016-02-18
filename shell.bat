@@ -14,34 +14,31 @@ if not "%~2" == "" pushd "%~2" || goto :EOF
 :: Set the home dir
 set "HOME=%~dp0home"
 
-:: Set the shell specific parameters if it is necessary
-set "SHELL_RUNNER="
-
-if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
-
 :: Check if specific runner exists
+set "SHELL_RUNNER="
+if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
 	start "%~1 starting" "%~dp0vendors\%~1\%SHELL_RUNNER%"
 	goto :EOF
 )
 
 :: Check if ConEmu is available
-if exist "%~dp0vendors\ConEmu\ConEmu.exe" (
-	call :conemu FILE "%~1" && goto :EOF
-	call :conemu CONF "%~1" && goto :EOF
-	call :conemu TASK "%~1" && goto :EOF
+set "SHELL_NAME=ConEmu"
+if exist "%~dp0vendors\ConEmu.bat" call "%~dp0vendors\ConEmu.bat"
+if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
+	call :shell.conemu "%~1" && goto :EOF
 )
 
 :: Check if ConsoleZ is available
+set "SHELL_NAME=ConsoleZ"
 if exist "%~dp0vendors\ConsoleZ.bat" call "%~dp0vendors\ConsoleZ.bat"
-if defined CONSOLEZ_NAME if exist "%~dp0vendors\%CONSOLEZ_NAME%\Console.exe" if exist "%~dp0etc\ConsoleZ\%~1.xml" (
-	start "%~1 starting" "%~dp0vendors\%CONSOLEZ_NAME%\Console.exe" -c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1"
-	goto :EOF
+if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
+	call :shell.consolez "%~1" && goto :EOF
 )
 
 :: Check if mintty is available
 for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do (
-	call :mintty "%~1" "%%~s" && goto :EOF
+	call :shell.mintty "%~1" "%%~s" && goto :EOF
 )
 
 :: Try naked bash, ksh or sh
@@ -58,7 +55,7 @@ for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 exit /b 1
 
 
-:mintty
+:shell.mintty
 setlocal
 
 set "mintty_bin=%~dp0vendors\%~1\%~2\mintty.exe"
@@ -82,7 +79,20 @@ endlocal && start "%~1 starting" "%mintty_bin%" %mintty_args% /%~2/bash --login 
 goto :EOF
 
 
-:conemu
+:shell.consolez
+if not exist "%~dp0etc\ConsoleZ\%~1.xml" exit /b 1
+start "%~1 starting" "%~dp0vendors\%SHELL_NAME%\Console.exe" -c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1"
+goto :EOF
+
+
+:shell.conemu
+call :shell.conemu.2 FILE "%~1" && goto :EOF
+call :shell.conemu.2 CONF "%~1" && goto :EOF
+call :shell.conemu.2 TASK "%~1" && goto :EOF
+exit /b 1
+
+
+:shell.conemu.2
 setlocal
 
 if "%~1" == "FILE" (
@@ -114,7 +124,7 @@ if "%~1" == "CONF" (
 	set "ConEmuArgs=%ConEmuArgs% /Cmd "{%~2}""
 )
 
-endlocal && start "%~2 starting" "%~dp0vendors\ConEmu\ConEmu.exe" %ConEmuArgs%
+endlocal && start "%~2 starting" "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" %ConEmuArgs%
 goto :EOF
 
 */0;
