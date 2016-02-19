@@ -16,52 +16,75 @@ set "HOME=%~dp0home"
 
 :: ========================================================================
 
-:: Check if specific runner exists
-set "SHELL_RUNNER="
-if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
-if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
-	start "%~1 starting" "%~dp0vendors\%~1\%SHELL_RUNNER%"
+set "SHELL_NAME=%~1"
+set "SHELL_ARGS="
+
+if exist "%~dp0vendors\%~1.bat" call "%~dp0vendors\%~1.bat"
+
+:: ========================================================================
+
+:: Check if there is git-bash
+if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\git-bash.exe" (
+	call :shell.git-bash.prepare "%~1"
+	call :shell.start "%~1" "git-bash.exe"
 	goto :EOF
 )
 
 :: ========================================================================
 
-:: Check if mintty is available
-for %%s in (
+:: Check if there is mintty
+if defined SHELL_NAME for %%s in (
 	bin
 	usr\bin
 	usr\local\bin
-) do (
-	call :shell.mintty "%~1" "%%~s" && goto :EOF
+) do if exist "%~dp0vendors\%SHELL_NAME%\%%s\mintty.exe" (
+	call :shell.mintty.prepare "%~1" %%s
+	call :shell.start "%~1" "%%s\mintty.exe"
+	goto :EOF
 )
 
 :: ========================================================================
 
 :: Check if ConEmu is available
 set "SHELL_NAME=ConEmu"
+set "SHELL_ARGS="
+
 if exist "%~dp0vendors\ConEmu.bat" call "%~dp0vendors\ConEmu.bat"
-if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
-	call :shell.conemu "%~1" && goto :EOF
+
+if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
+	call :shell.conemu.prepare "%~1" && (
+		call :shell.start "%~1" "ConEmu.exe"
+		goto :EOF
+	)
 )
 
 :: ========================================================================
 
 :: Check if ConsoleZ is available
 set "SHELL_NAME=ConsoleZ"
+set "SHELL_ARGS="
+
 if exist "%~dp0vendors\ConsoleZ.bat" call "%~dp0vendors\ConsoleZ.bat"
-if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
-	call :shell.consolez "%~1" && goto :EOF
+
+if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
+	call :shell.consolez.prepare "%~1" && (
+		call :shell.start "%~1" "Console.exe"
+		goto :EOF
+	)
 )
 
 :: ========================================================================
 
+set "SHELL_NAME=%~1"
+set "SHELL_ARGS=-l -i"
+
 :: Try bare bash, ksh or sh
-for %%s in (
+for %%s in ( 
 	bash
 	ksh
 	sh
-) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
-	start "%~1 starting" "%~dp0vendors\%~1\bin\%%~s.exe" -l -i
+) do if exist "%~dp0vendors\%SHELL_NAME%\bin\%%~s.exe" (
+	call :shell.start "%~1" "bin\%%~s.exe"
 	goto :EOF
 )
 
@@ -69,55 +92,59 @@ for %%s in (
 
 >&2 echo:Cannot find the specified shell "%~1".
 
-:: ========================================================================
-
 :shell.failed
 >&2 pause
 exit /b 1
 
 :: ========================================================================
 
-:shell.mintty
-setlocal
+:shell.start
+start "%SHELL_NAME% starting" "%~dp0vendors\%SHELL_NAME%\%~2" %SHELL_ARGS%
+goto :EOF
 
-set "mintty_bin=%~dp0vendors\%~1\%~2\mintty.exe"
+:: ========================================================================
 
-if not exist "%mintty_bin%" (
-	endlocal
-	exit /b 1
-)
+:shell.git-bash.prepare
+goto :EOF
 
+:: ========================================================================
+
+:shell.bare.prepare
+set "SHELL_ARGS=--login -i"
+goto :EOF
+
+:: ========================================================================
+
+:shell.mintty.prepare
 if not exist "%HOME%\.minttyrc" if exist "%~dp0etc\mintty\default.settings" (
 	copy /b "%~dp0etc\mintty\default.settings" "%HOME%\.minttyrc"
 )
 
-set "mintty_args=-c "%HOME%\.minttyrc""
+set "SHELL_ARGS=-c "%HOME%\.minttyrc""
 
 if exist "%~dp0etc\images\%~1.ico" (
-	set "mintty_args=%mintty_args% -i "%~dp0etc\images\%~1.ico""
+	set "SHELL_ARGS=%SHELL_ARGS% -i "%~dp0etc\images\%~1.ico""
 )
 
-endlocal && start "%~1 starting" "%mintty_bin%" %mintty_args% /%~2/bash --login -i
-exit /b 0
+set "SHELL_ARGS=%SHELL_ARGS% /%~2/bash --login -i"
+goto :EOF
 
 :: ========================================================================
 
-:shell.consolez
+:shell.consolez.prepare
 if not exist "%~dp0etc\ConsoleZ\%~1.xml" exit /b 1
-start "%~1 starting" "%~dp0vendors\%SHELL_NAME%\Console.exe" -c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1"
-exit /b 0
+set "SHELL_ARGS=-c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1""
+goto :EOF
 
 :: ========================================================================
 
-:shell.conemu
-call :shell.conemu.prepare.2 FILE "%~1" && goto :EOF
-call :shell.conemu.prepare.2 CONF "%~1" && goto :EOF
-call :shell.conemu.prepare.2 TASK "%~1" && goto :EOF
-exit /b 1
+:shell.conemu.prepare
+call :shell.conemu.prepare.args FILE "%~1" && goto :EOF
+call :shell.conemu.prepare.args CONF "%~1" && goto :EOF
+call :shell.conemu.prepare.args TASK "%~1" && goto :EOF
+goto :EOF
 
-:shell.conemu.prepare.2
-setlocal
-
+:shell.conemu.prepare.args
 if "%~1" == "FILE" (
 	set "SHELL_ARGS=%~dp0etc\ConEmu\%~2.xml"
 ) else (
@@ -147,8 +174,7 @@ if "%~1" == "CONF" (
 	set "SHELL_ARGS=%SHELL_ARGS% /Cmd "{%~2}""
 )
 
-endlocal && start "%~2 starting" "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" %SHELL_ARGS%
-exit /b 0
+goto :EOF
 
 :: ========================================================================
 
