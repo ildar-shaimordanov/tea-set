@@ -14,6 +14,8 @@ if not "%~2" == "" pushd "%~2" || goto :EOF
 :: Set the home dir
 set "HOME=%~dp0home"
 
+:: ========================================================================
+
 :: Check if specific runner exists
 set "SHELL_RUNNER="
 if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
@@ -22,12 +24,27 @@ if defined SHELL_RUNNER if exist "%~dp0vendors\%~1\%SHELL_RUNNER%" (
 	goto :EOF
 )
 
+:: ========================================================================
+
+:: Check if mintty is available
+for %%s in (
+	bin
+	usr\bin
+	usr\local\bin
+) do (
+	call :shell.mintty "%~1" "%%~s" && goto :EOF
+)
+
+:: ========================================================================
+
 :: Check if ConEmu is available
 set "SHELL_NAME=ConEmu"
 if exist "%~dp0vendors\ConEmu.bat" call "%~dp0vendors\ConEmu.bat"
 if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
 	call :shell.conemu "%~1" && goto :EOF
 )
+
+:: ========================================================================
 
 :: Check if ConsoleZ is available
 set "SHELL_NAME=ConsoleZ"
@@ -36,24 +53,29 @@ if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
 	call :shell.consolez "%~1" && goto :EOF
 )
 
-:: Check if mintty is available
-for %%s in ( "bin" "usr\bin" "usr\local\bin" ) do (
-	call :shell.mintty "%~1" "%%~s" && goto :EOF
-)
+:: ========================================================================
 
-:: Try naked bash, ksh or sh
-for %%s in ( bash ksh sh ) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
+:: Try bare bash, ksh or sh
+for %%s in (
+	bash
+	ksh
+	sh
+) do if exist "%~dp0vendors\%~1\bin\%%~s.exe" (
 	start "%~1 starting" "%~dp0vendors\%~1\bin\%%~s.exe" -l -i
 	goto :EOF
 )
 
+:: ========================================================================
+
 >&2 echo:Cannot find the specified shell "%~1".
 
+:: ========================================================================
 
 :shell.failed
 >&2 pause
 exit /b 1
 
+:: ========================================================================
 
 :shell.mintty
 setlocal
@@ -76,56 +98,59 @@ if exist "%~dp0etc\images\%~1.ico" (
 )
 
 endlocal && start "%~1 starting" "%mintty_bin%" %mintty_args% /%~2/bash --login -i
-goto :EOF
+exit /b 0
 
+:: ========================================================================
 
 :shell.consolez
 if not exist "%~dp0etc\ConsoleZ\%~1.xml" exit /b 1
 start "%~1 starting" "%~dp0vendors\%SHELL_NAME%\Console.exe" -c "%~dp0etc\ConsoleZ\%~1.xml" -t "%~1"
-goto :EOF
+exit /b 0
 
+:: ========================================================================
 
 :shell.conemu
-call :shell.conemu.2 FILE "%~1" && goto :EOF
-call :shell.conemu.2 CONF "%~1" && goto :EOF
-call :shell.conemu.2 TASK "%~1" && goto :EOF
+call :shell.conemu.prepare.2 FILE "%~1" && goto :EOF
+call :shell.conemu.prepare.2 CONF "%~1" && goto :EOF
+call :shell.conemu.prepare.2 TASK "%~1" && goto :EOF
 exit /b 1
 
-
-:shell.conemu.2
+:shell.conemu.prepare.2
 setlocal
 
 if "%~1" == "FILE" (
-	set "conemu_cfgfile=%~dp0etc\ConEmu\%~2.xml"
+	set "SHELL_ARGS=%~dp0etc\ConEmu\%~2.xml"
 ) else (
-	set "conemu_cfgfile=%~dp0etc\ConEmu\ConEmu.xml"
+	set "SHELL_ARGS=%~dp0etc\ConEmu\ConEmu.xml"
 )
 
-if not exist "%conemu_cfgfile%" (
+if not exist "%SHELL_ARGS%" (
 	endlocal
 	exit /b 1
 )
 
-cscript //nologo //e:javascript "%~f0" "%conemu_cfgfile%" %* || (
+cscript //nologo //e:javascript "%~f0" "%SHELL_ARGS%" %* || (
 	endlocal
 	exit /b 1
 )
 
-set "ConEmuArgs=/LoadCfgFile "%conemu_cfgfile%""
+set "SHELL_ARGS=/LoadCfgFile "%SHELL_ARGS%""
 if exist "%~dp0etc\images\%~2.ico" (
-	set "ConEmuArgs=%ConEmuArgs% /Icon "%~dp0etc\images\%~2.ico""
+	set "SHELL_ARGS=%SHELL_ARGS% /Icon "%~dp0etc\images\%~2.ico""
 ) else if exist "%~dp0etc\images\ConEmu.ico" (
-	set "ConEmuArgs=%ConEmuArgs% /Icon "%~dp0etc\images\ConEmu.ico""
+	set "SHELL_ARGS=%SHELL_ARGS% /Icon "%~dp0etc\images\ConEmu.ico""
 )
 
 if "%~1" == "CONF" (
-	set "ConEmuArgs=%ConEmuArgs% /Config "%~2""
+	set "SHELL_ARGS=%SHELL_ARGS% /Config "%~2""
 ) else if "%~1" == "TASK" (
-	set "ConEmuArgs=%ConEmuArgs% /Cmd "{%~2}""
+	set "SHELL_ARGS=%SHELL_ARGS% /Cmd "{%~2}""
 )
 
-endlocal && start "%~2 starting" "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" %ConEmuArgs%
-goto :EOF
+endlocal && start "%~2 starting" "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" %SHELL_ARGS%
+exit /b 0
+
+:: ========================================================================
 
 */0;
 
