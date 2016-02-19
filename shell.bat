@@ -99,7 +99,7 @@ exit /b 1
 :: ========================================================================
 
 :shell.start
-start "%SHELL_NAME% starting" "%~dp0vendors\%SHELL_NAME%\%~2" %SHELL_ARGS%
+start "Starting %~1 (%SHELL_NAME%)" "%~dp0vendors\%SHELL_NAME%\%~2" %SHELL_ARGS%
 goto :EOF
 
 :: ========================================================================
