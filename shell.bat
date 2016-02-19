@@ -14,6 +14,9 @@ if not "%~2" == "" pushd "%~2" || goto :EOF
 :: Set the home dir
 set "HOME=%~dp0home"
 
+:: Set the environment specific for this shell/terminal
+if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
+
 :: ========================================================================
 
 set "SHELL_NAME=%~1"
