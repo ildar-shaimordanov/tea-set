@@ -9,7 +9,10 @@ if "%~1" == "" (
 setlocal
 
 :: Proceed to the specified folder
-if not "%~2" == "" pushd "%~2" || goto :EOF
+if not "%~2" == "" pushd "%~2" || (
+	>&2 echo:Unable cd "%~2"
+	goto :shell.failed
+)
 
 :: Set the home dir
 set "HOME=%~dp0home"
@@ -78,10 +81,10 @@ if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
 
 :: ========================================================================
 
+:: Try bare bash, ksh or sh
 set "SHELL_NAME=%~1"
 set "SHELL_ARGS=-l -i"
 
-:: Try bare bash, ksh or sh
 for %%s in ( 
 	bash
 	ksh
@@ -94,6 +97,8 @@ for %%s in (
 :: ========================================================================
 
 >&2 echo:Cannot find the specified shell "%~1".
+
+:: ========================================================================
 
 :shell.failed
 >&2 pause
