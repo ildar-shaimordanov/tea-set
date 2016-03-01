@@ -88,12 +88,13 @@ call :shellenv.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
 :: directory as not existing.
 for %%f in (
 	"-cygwin"
-	"-git-for-windows"
-	"-git-for-windows-32"
-	"-git-for-windows-64"
 	"-gnuwin32"
 	"-gow"
 	"msysgit"
+	"-PortableGit-2.6.3-32-bit"
+	"-PortableGit-2.6.3-64-bit"
+	"-PortableGit-2.7.1.2-32-bit"
+	"-PortableGit-2.7.1.2-64-bit"
 	"-unxutils"
 	"-win-bash"
 ) do call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%%~f" /P
