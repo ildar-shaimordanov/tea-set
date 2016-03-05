@@ -120,8 +120,7 @@ for %%f in (
 ::
 :: ========================================================================
 
-:: set "PERL_HOME=%TEA_HOME%\vendors\strawberryPerl-5.8.8.3"
-set "PERL_HOME=%TEA_HOME%\vendors\StrawberryPerl-5.16.2"
+set "PERL_HOME=%TEA_HOME%\vendors\StrawberryPerl"
 for %%f in ( 
 	"c" 
 	"perl" 
