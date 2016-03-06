@@ -141,8 +141,8 @@ call :shellenv.select.path "%ProgramFiles%\Oracle\VirtualBox"
 ::
 :: ========================================================================
 
-call :shellenv.lookup.java jre
-call :shellenv.lookup.java jdk
+call :shellenv.lookup.java JRE
+call :shellenv.lookup.java JDK
 
 if defined JDK_HOME (
 	call :shellenv.set.home JAVA_HOME "%JDK_HOME%"
@@ -189,13 +189,13 @@ goto :EOF
 :: respectively) to the appropriate path. It considers all java versions 
 :: are installed by default under %ProgramFiles% and %ProgramFiles(x86)%.
 ::
-:: %~1 - one of them: jdk or jre
+:: %~1 - one of them: JDK or JRE
 
 :shellenv.lookup.java
 
 set "%~1_HOME="
 for /f %%d in ( '
-	dir /b "%ProgramFiles%\Java" "%ProgramFiles(x86)%\Java" 2^>nul ^| findstr "%~1" ^| sort
+	dir /b "%ProgramFiles%\Java" "%ProgramFiles(x86)%\Java" 2^>nul ^| findstr /i "%~1" ^| sort
 ' ) do if exist "%ProgramFiles%\Java\%%d" (
 	set "%~1_HOME=%ProgramFiles%\Java\%%d"
 ) else (
