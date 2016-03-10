@@ -1,28 +1,20 @@
 @echo off
 
-set "FAR_NAME="
+setlocal
 
-if /i "%~1" == "/N" (
-	set "FAR_NAME=%~2"
-	shift /1
-	shift /1
-)
+set "FAR_NAME=Far3"
 
-if not defined FAR_NAME if exist "%~dp0vendors\%~nx0" call "%~dp0vendors\Far3.bat"
+if exist "%~dp0vendors\Far3.bat" call "%~dp0vendors\Far3.bat"
 
-if not defined FAR_NAME set "FAR_NAME=Far3"
+if defined FAR_NAME if exist "%~dp0vendors\%FAR_NAME%\Far.exe" goto :continue
 
+call :error "Can't identify Far3 by name %FAR_NAME%"
+goto :EOF
+
+:: ========================================================================
+
+:continue
 set "FAR_HOME=%~dp0vendors\%FAR_NAME%"
-
-if not exist "%FAR_HOME%" (
-	call :error "%FAR_HOME% not found"
-	goto :EOF
-)
-
-if not exist "%FAR_HOME%\Far.exe" (
-	call :error "%FAR_HOME%\Far.exe not found"
-	goto :EOF
-)
 
 :: Path to the common directory for all FAR-related stuffs
 :: It can be redeclared in "shellenv.bat"
@@ -35,6 +27,8 @@ set "FAR_OPTS=/w /p"%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Pl
 if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
 if defined SHOW_BANNER_FAR if exist "%~dp0shellinfo.bat" call "%~dp0shellinfo.bat" %SHOW_BANNER_FAR%
+
+:: ========================================================================
 
 if not exist "%FAR_HOME%\Far.exe.ini" (
 	echo:
@@ -52,29 +46,23 @@ if not exist "%FAR_HOME%\Far.exe.ini" (
 	)
 )
 
+:: ========================================================================
+
 echo:Starting %FAR_NAME%
 echo:[ %DATE% %TIME% ]
 
-"%FAR_HOME%\Far.exe" %FAR_OPTS% %1 %2 %3 %4 %5 %6 %7 %8 %9
+"%FAR_HOME%\Far.exe" %FAR_OPTS% %*
 
 echo:Terminating...
 goto :EOF
 
 :: ========================================================================
 
-:usage
-echo:Usage: %~n0 /N FAR_NAME
-goto :EOF
-
-:: ========================================================================
-
 :error
-echo:
-echo:*** CRITICAL ERROR ***
-echo:%~1
-echo:
-call :usage
-pause
+>&2 (
+	echo:CRITICAL ERROR: %~1
+	pause
+)
 goto :EOF
 
 :: ========================================================================
