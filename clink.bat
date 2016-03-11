@@ -2,7 +2,7 @@
 
 set "CLINK_NAME=clink"
 
-if exist "%~dp0vendors\clink.bat" call "%~dp0vendors\clink.bat"
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app clink
 
 if not defined CLINK_NAME goto :continue
 if not exist "%~dp0vendors\%CLINK_NAME%\clink.bat" goto :continue

@@ -79,25 +79,15 @@ call :shellenv.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
 
 :: ========================================================================
 ::
-:: Unix tools (Cygwin, GoW, GnuWin32, MSysGit, UnixUtils, Win-Bash etc)
+:: Unix tools (Cygwin, GoW, GnuWin32, MSysGit, Git_Bash, UnixUtils, Win-Bash etc)
 ::
 :: ========================================================================
 
-:: Set the first existing location for unix tools.
-:: The minus symbol "-" in the front of the package names inverts the 
-:: directory as not existing.
-for %%f in (
-	"-cygwin"
-	"-gnuwin32"
-	"-gow"
-	"msysgit"
-	"-PortableGit-2.6.3-32-bit"
-	"-PortableGit-2.6.3-64-bit"
-	"-PortableGit-2.7.1.2-32-bit"
-	"-PortableGit-2.7.1.2-64-bit"
-	"-unxutils"
-	"-win-bash"
-) do call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%%~f" /P
+set "UNIX_NAME=unxutils"
+
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Unix
+
+if defined UNIX_NAME call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%UNIX_NAME%" /P
 
 :: What is the HOME directory?
 :: http://gnuwin32.sourceforge.net/faq.html
@@ -120,8 +110,12 @@ for %%f in (
 ::
 :: ========================================================================
 
-set "PERL_HOME=%TEA_HOME%\vendors\StrawberryPerl"
-for %%f in ( 
+set "PERL_NAME=StrawberryPerl"
+
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Perl
+
+if defined PERL_NAME set "PERL_HOME=%TEA_HOME%\vendors\%PERL_NAME%"
+if defined PERL_NAME for %%f in ( 
 	"c" 
 	"perl" 
 	"perl\site" 

@@ -4,7 +4,7 @@ setlocal
 
 set "FAR_NAME=Far3"
 
-if exist "%~dp0vendors\Far3.bat" call "%~dp0vendors\Far3.bat"
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Far3
 
 if defined FAR_NAME if exist "%~dp0vendors\%FAR_NAME%\Far.exe" goto :continue
 

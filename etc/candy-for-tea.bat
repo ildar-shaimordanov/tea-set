@@ -23,22 +23,25 @@ $packages = @(
 	@{
 		"name" = "ConEmu";
 		"home" = "https://github.com/Maximus5/ConEmu/";
-		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.01.11/ConEmuPack.160111.7z";
+		# "url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.01/ConEmuPack.160301.7z";
+		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.08/ConEmuPack.160308.7z"
 		"dir" = "ConEmu";
 	}
 
 	@{
+		"Skip" = "$True";
 		"name" = "ConsoleZ";
 		"home" = "https://github.com/cbucher/console";
-		"url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x86.1.16.0.16038.zip";
-		"url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x64.1.16.0.16038.zip";
+		# "url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x86.1.16.0.16038.zip";
+		# "url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x64.1.16.0.16038.zip";
 		"dir" = "ConsoleZ";
 	}
 
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		"url" = "https://github.com/mridgers/clink/releases/download/0.4.5/clink_0.4.5.zip";
+		# "url" = "https://github.com/mridgers/clink/releases/download/0.4.5/clink_0.4.5.zip";
+		"url" = "https://github.com/mridgers/clink/releases/download/0.4.7/clink_0.4.7.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
@@ -52,7 +55,8 @@ $packages = @(
 	@{
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
-		"url" = "http://www.farmanager.com/files/Far30b4499.x86.20160101.7z";
+		# "url" = "http://www.farmanager.com/files/Far30b4499.x86.20160101.7z";
+		"url" = "http://www.farmanager.com/files/Far30b4545.x86.20160210.7z";
 		"dir" = "Far3";
 	}
 

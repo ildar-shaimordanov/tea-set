@@ -46,6 +46,6 @@ opt/
 
 var/
 
-vendors/
+vendors/*
 !vendors/README*
-!vendors/package_list.txt
+!vendors/identify.bat

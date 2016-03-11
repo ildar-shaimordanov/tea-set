@@ -25,7 +25,7 @@ if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 set "SHELL_NAME=%~1"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\%~1.bat" call "%~dp0vendors\%~1.bat"
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell "%~1"
 
 :: ========================================================================
 
@@ -55,7 +55,7 @@ if defined SHELL_NAME for %%s in (
 set "SHELL_NAME=ConEmu"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\ConEmu.bat" call "%~dp0vendors\ConEmu.bat"
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell ConEmu
 
 if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
 	call :shell.conemu.prepare "%~1" && (
@@ -70,7 +70,7 @@ if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
 set "SHELL_NAME=ConsoleZ"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\ConsoleZ.bat" call "%~dp0vendors\ConsoleZ.bat"
+if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell ConsoleZ
 
 if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
 	call :shell.consolez.prepare "%~1" && (
