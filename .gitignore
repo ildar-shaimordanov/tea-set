@@ -20,7 +20,6 @@ etc/misc/
 
 etc/clink/.history
 
-etc/Far3/Default.farconfig
 etc/Far3/Profile/Plugins/*
 etc/Far3/Profile/PluginsData/*
 etc/Far3/Profile/*.db*
