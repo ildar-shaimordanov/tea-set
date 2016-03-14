@@ -34,8 +34,8 @@ if /i "%~1 %~2" == "shell Git" (
 )
 
 if /i "%~1 %~2" == "shell ConEmu" (
-	rem set "SHELL_NAME=ConEmuPack.160301"
 	rem set "SHELL_NAME=ConEmuPack.160308"
+	rem set "SHELL_NAME=ConEmuPack.160313"
 )
 
 if /i "%~1 %~2" == "shell ConsoleZ" (
