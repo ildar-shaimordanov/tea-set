@@ -4,6 +4,19 @@ Macro {
 	key = "";
 	flags = "RunAfterFARStart";
 	action = function()
-		Keys("e c h o : & e c h o : [ Space % D A T E % Space % T I M E % Space ] & e c h o : Enter");
+		-- The idea with turn off/on key bar was borrowed from
+		-- http://forum.farmanager.com/viewtopic.php?p=127121#p127121
+		local toggleKeyBar = Far.GetConfig"Screen.KeyBar" and "CtrlB"
+		Keys(toggleKeyBar)
+
+		panel.GetUserScreen()
+
+		os.setlocale("", "time")
+		io.write(string.format("[ %s ]\n\n", os.date()))
+
+		panel.SetUserScreen()
+
+		Keys(toggleKeyBar)
+		-- Keys("e c h o : & e c h o : [ Space % D A T E % Space % T I M E % Space ] & e c h o : Enter");
 	end;
 }
