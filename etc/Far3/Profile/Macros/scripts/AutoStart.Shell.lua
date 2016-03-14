@@ -11,8 +11,14 @@ Macro {
 
 		panel.GetUserScreen()
 
+		-- save the current locale
+		local l = os.setlocale()
+
 		os.setlocale("", "time")
 		io.write(string.format("[ %s ]\n\n", os.date()))
+
+		-- restore previous locale
+		os.setlocale(l)
 
 		panel.SetUserScreen()
 
