@@ -28,7 +28,7 @@ etc/postinstall/GUI/
 
 etc/TLB/
 
-home/
+home/*
 !home/.bash_profile
 !home/.bashrc
 !home/.git-completion.bash
@@ -40,7 +40,7 @@ home/
 
 GUI/
 
-opt/
+opt/*
 !opt/README*
 
 var/

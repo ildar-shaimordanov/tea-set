@@ -97,16 +97,30 @@ img2pdf() {
 	jpegtopnm "${1:--}" | pnmtops -noturn | ps2pdf - "${2:--}"
 }
 
-__conv_image2folder() {
-	convert "${1:-cover-front.jpg}" -resize '300x300>' "folder.jpg"
-}
+cover2folder() {
+	local resize="300x300>"
+	local gravity=""
+	local crop=""
 
-__conv_left2folder() {
-	convert "${1:-cover-front.jpg}" -resize '600x300>' -gravity west -crop '50%x100%' "folder.jpg"
-}
+	case "$1" in
+	-l | -r )
+		resize="600x300>"
+		crop="50%x100%"
 
-__conv_right2folder() {
-	convert "${1:-cover-front.jpg}" -resize '600x300>' -gravity east -crop '50%x100%' "folder.jpg"
+		case "$1" in
+		-l ) gravity="west" ;;
+		-r ) gravity="east" ;;
+		esac
+
+		shift
+		;;
+	esac
+
+	convert "${1:-cover-front.jpg}" \
+		-resize "$resize" \
+		${gravity:+-gravity "$gravity"} \
+		${crop:+-crop "$crop"} \
+		"folder.jpg"
 }
 
 # =========================================================================
