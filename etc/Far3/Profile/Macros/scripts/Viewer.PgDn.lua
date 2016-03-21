@@ -11,7 +11,7 @@
 ]]
 
 Macro {
-	area = "Viewer";
+	area = "Viewer QView";
 	key = "PgDn";
 	description = "Viewer: Smart scrolling using PgDn";
 	action = function()
