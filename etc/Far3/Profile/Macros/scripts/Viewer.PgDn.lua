@@ -1,4 +1,7 @@
 
+-- Published at:
+-- http://forum.farmanager.com/viewtopic.php?p=120135#p120135
+
 -- Modification of the original script taken from:
 -- https://code.google.com/p/farmanager/source/browse/trunk/addons/Macros/View.PgDn.lua
 
