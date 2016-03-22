@@ -149,13 +149,27 @@ then
 		. "$HOME/.git-prompt.sh"
 	fi
 
+	PS1="\[\e]0;\w\a\]"			# current dir in title
+
+	PS1="${PS1}\n"				# new line
+	PS1="${PS1}\[\e[32m\]"			# color: dark green
+	PS1="${PS1}\u@\h "			# user@host <space>
+
+	PS1="${PS1}\[\e[35m\]"			# color: purple
+	PS1="${PS1}${MSYSTEM:-$OSTYPE} "	# $MSYSTEM/$OSTYPE <space>
+
+	PS1="${PS1}\[\e[33m\]"			# color: dark yellow
+	PS1="${PS1}\w"				# current dir
+
+	PS1="${PS1}\[\e[0m\]"			# color: reset to default
 	if declare -F __git_ps1 >/dev/null
 	then
 		GIT_PS1_SHOWCOLORHINTS=1
-		PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\` __git_ps1 \`\n\\\$ "
-	else
-		PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\\\$ "
+		PS1="${PS1}\` __git_ps1 \`"	# git status
 	fi
+
+	PS1="${PS1}\n"				# new line
+	PS1="${PS1}\\\$ "			# $ <space>
 fi
 
 # =========================================================================
