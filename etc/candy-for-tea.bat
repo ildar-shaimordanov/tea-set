@@ -24,12 +24,13 @@ $packages = @(
 		"name" = "ConEmu";
 		"home" = "https://github.com/Maximus5/ConEmu/";
 		# "url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.08/ConEmuPack.160308.7z";
-		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.13/ConEmuPack.160313.7z";
+		# "url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.13/ConEmuPack.160313.7z";
+		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.04.16/ConEmuPack.160416.7z";
 		"dir" = "ConEmu";
 	}
 
 	@{
-		"Skip" = "$True";
+		"Skip" = $True;
 		"name" = "ConsoleZ";
 		"home" = "https://github.com/cbucher/console";
 		# "url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x86.1.16.0.16038.zip";
