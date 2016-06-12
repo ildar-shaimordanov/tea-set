@@ -23,9 +23,7 @@ $packages = @(
 	@{
 		"name" = "ConEmu";
 		"home" = "https://github.com/Maximus5/ConEmu/";
-		# "url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.08/ConEmuPack.160308.7z";
-		# "url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.13/ConEmuPack.160313.7z";
-		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.04.16/ConEmuPack.160416.7z";
+		"url" = "https://github.com/Maximus5/ConEmu/releases/download/v16.03.13/ConEmuPack.160313.7z";
 		"dir" = "ConEmu";
 	}
 
@@ -41,7 +39,6 @@ $packages = @(
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		# "url" = "https://github.com/mridgers/clink/releases/download/0.4.5/clink_0.4.5.zip";
 		"url" = "https://github.com/mridgers/clink/releases/download/0.4.7/clink_0.4.7.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
