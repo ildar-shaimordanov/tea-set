@@ -29,12 +29,12 @@
 -->
 
 <!--
+-->
 <prototype name="shell" group="scripts" description="sh/ksh/bash script">
 <location link="schemes/sh.hrc"/>
 <filename>/\.(sh|spec)$/i</filename>
 <filename>/^PKGBUILD$/i</filename>
 <firstline weight='2'>/^\#(!\s*.+sh\b)/</firstline>
 </prototype>
--->
 
 </hrc>
