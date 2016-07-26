@@ -2,7 +2,12 @@
 <hrc>
 
 <!--  IUM languages  -->
-<prototype name="ium.config" group="IUM" description="IUM Config">
+<prototype name="ium.boobs" group="IUM" description="IUM boobs">
+<location link="schemes/ium/ium.boobs.hrc"/>
+<filename>/\.(boobs)$/i</filename>
+</prototype>
+
+<prototype name="ium.config" group="IUM" description="IUM config">
 <location link="schemes/ium/ium.config.hrc"/>
 <filename>/\.(config)$/i</filename>
 </prototype>
