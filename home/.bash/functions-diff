@@ -6,6 +6,15 @@
 # https://retracile.net/blog/2013/06/01/22.00
 # http://www.colordiff.org/
 diff() {
+	# Colors
+	local diff_c_reset='\x1b[0m'
+
+	local diff_b_meta="1;37"	# white
+	local diff_b_frag="36"		# cyan
+	local diff_b_old="31"		# red
+	local diff_b_new="32"		# green
+	local diff_b_mod="34"		# blue
+
 	[ $# -gt 0 ] || {
 		cat - <<HELP
 Usage: $FUNCNAME [OPTION]... FILES
@@ -37,19 +46,19 @@ the configuration parameters "color.diff.<slot>" used in "git config".
 Values are integers in decimal representation and can be concatenated with 
 semicolons. Further these values are assembled into ANSI escape codes.
 
-meta=1;37
+meta=$diff_b_meta
 Metainformation (names of compared files)
 
-frag=36
+frag=$diff_b_frag
 Hunk header (line numbers of changed lines)
 
-old=31
+old=$diff_b_old
 Removed lines
 
-new=32
+new=$diff_b_new
 Added lines
 
-mod=34
+mod=$diff_b_mod
 Modified lines
 
 CDIFF_WHEN
@@ -60,16 +69,7 @@ HELP
 		return
 	}
 
-	# Colors
-	local diff_c_reset='\x1b[0m'
-
 	# Blocks
-	local diff_b_meta="1;37"	# white
-	local diff_b_frag="36"		# cyan
-	local diff_b_old="31"		# red
-	local diff_b_new="32"		# green
-	local diff_b_mod="34"		# blue
-
 	local CDIFF_COLORS="${CDIFF_COLORS:-meta=$diff_b_meta:frag=$diff_b_frag:old=$diff_b_old:new=$diff_b_new:mod=$diff_b_mod}"
 
 	local c
