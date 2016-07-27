@@ -25,31 +25,34 @@ Coloring options
 
 Controls the colorizing method. WHEN is "always" (the default value if not 
 specified explicitly), "never" or "auto". To make affect globally, set one 
-of these values to CDIFF_COLOR environment variable.
+of these values to CDIFF_WHEN environment variable.
 
 ENVIRONMENT VARIABLES
 
-The following environment variables are used to customize colors of the 
-separate parts of the diff output. Values of each variables are ANSI 
-escape codes. Names and resposibility of each variable correspond to the 
-the configuration parameters "color.diff.<slot>" in "git config":
+CDIFF_COLORS
+This environment variable is used to specify colors to highlight the 
+separate parts of the diff output. Its value is a colon-separated list of 
+capabilities. Names and responsibility of each capability correspond to 
+the configuration parameters "color.diff.<slot>" used in "git config". 
+Values are integers in decimal representation and can be concatenated with 
+semicolons. Further these values are assembled into ANSI escape codes.
 
-CDIFF_META
+meta=1;37
 Metainformation (names of compared files)
 
-CDIFF_FRAG
+frag=36
 Hunk header (line numbers of changed lines)
 
-CDIFF_OLD 
+old=31
 Removed lines
 
-CDIFF_NEW
+new=32
 Added lines
 
-CDIFF_MOD
+mod=34
 Modified lines
 
-CDIFF_COLOR
+CDIFF_WHEN
 Colorizing method does effect on all runs; assumes the same values as for 
 the "--color" option. The default value is "auto" and can be superseded by 
 the "--color" option.
@@ -58,19 +61,29 @@ HELP
 	}
 
 	# Colors
-	local diff_c_white='\x1b[37;1m'
-	local diff_c_red='\x1b[31m'
-	local diff_c_green='\x1b[32m'
-	local diff_c_blue='\x1b[34m'
-	local diff_c_cyan='\x1b[36m'
 	local diff_c_reset='\x1b[0m'
 
 	# Blocks
-	local diff_b_meta="${CDIFF_META:-$diff_c_white}"
-	local diff_b_frag="${CDIFF_FRAG:-$diff_c_cyan}"
-	local diff_b_old="${CDIFF_OLD:-$diff_c_red}"
-	local diff_b_new="${CDIFF_NEW:-$diff_c_green}"
-	local diff_b_mod="${CDIFF_MOD:-$diff_c_blue}"
+	local diff_b_meta="1;37"	# white
+	local diff_b_frag="36"		# cyan
+	local diff_b_old="31"		# red
+	local diff_b_new="32"		# green
+	local diff_b_mod="34"		# blue
+
+	local CDIFF_COLORS="${CDIFF_COLORS:-meta=$diff_b_meta:frag=$diff_b_frag:old=$diff_b_old:new=$diff_b_new:mod=$diff_b_mod}"
+
+	local c
+	for c in $( echo "$CDIFF_COLORS" | sed 's/:/\n/g' )
+	do
+		[ -n "${c#*=}" ] || break
+		eval "diff_b_${c%%=*}='${c#*=}'"
+	done
+
+	diff_b_meta="\\x1b[${diff_b_meta}m"
+	diff_b_frag="\\x1b[${diff_b_frag}m"
+	diff_b_old="\\x1b[${diff_b_old}m"
+	diff_b_new="\\x1b[${diff_b_new}m"
+	diff_b_mod="\\x1b[${diff_b_mod}m"
 
 	# Schemes
 	local diff_s_normal="
@@ -167,15 +180,15 @@ HELP
 	local diff_scheme="$diff_s_normal"
 
 	# Assume "auto" if not specified
-	local CDIFF_COLOR="${CDIFF_COLOR:-auto}"
+	local CDIFF_WHEN="${CDIFF_WHEN:-auto}"
 
 	# Validate environment variable
-	case "$CDIFF_COLOR" in
+	case "$CDIFF_WHEN" in
 	always | never | auto )
 		# Do nothing: it is valid value
 		;;
 	* )
-		echo "Invalid value '$CDIFF_COLOR' in CDIFF_COLOR" >&2
+		echo "Invalid value '$CDIFF_WHEN' in CDIFF_WHEN" >&2
 		return 2
 		;;
 	esac
@@ -193,10 +206,10 @@ HELP
 			break
 			;;
 		--color | --colour )
-			CDIFF_COLOR=always
+			CDIFF_WHEN=always
 			;;
 		--color=* | --colour=* )
-			CDIFF_COLOR="${1#*=}"
+			CDIFF_WHEN="${1#*=}"
 			;;
 		* )
 			case "$1" in
@@ -228,7 +241,7 @@ HELP
 		shift
 	done
 
-	case "$CDIFF_COLOR" in
+	case "$CDIFF_WHEN" in
 	always )
 		# Do nothing over defined by options
 		;;
@@ -239,7 +252,7 @@ HELP
 		test -t 1 || diff_scheme=""
 		;;
 	* )
-		echo "Invalid argument '$CDIFF_COLOR' for --color" >&2
+		echo "Invalid argument '$CDIFF_WHEN' for --color" >&2
 		return 2
 		;;
 	esac
