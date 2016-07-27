@@ -73,7 +73,7 @@ HELP
 	local CDIFF_COLORS="${CDIFF_COLORS:-meta=$diff_b_meta:frag=$diff_b_frag:old=$diff_b_old:new=$diff_b_new:mod=$diff_b_mod}"
 
 	local c
-	for c in $( echo "$CDIFF_COLORS" | sed 's/:/\n/g' )
+	for c in ${CDIFF_COLORS//:/ }
 	do
 		[ -n "${c#*=}" ] || break
 		eval "diff_b_${c%%=*}='${c#*=}'"
