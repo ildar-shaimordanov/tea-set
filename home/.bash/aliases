@@ -131,21 +131,19 @@ then
 	alias ggn='git config --local remote.origin.url | sed "s|.*/||;s|\..*||"'
 	alias ggr='git rev-parse --show-toplevel'
 	alias ggb='git rev-parse --abbrev-ref HEAD'
+
+	# /cygdrive if cygwin default settings or emty string otherwise
+	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
+
+	alias cdgb="cd $drive_prefix/u/var/git/broker/"
+	alias cdge="cd $drive_prefix/u/var/git/ernie/"
+	alias cdgg="cd $drive_prefix/u/var/git/gfm/"
+	alias cdgk="cd $drive_prefix/u/var/git/kpn_eium/"
+	alias cdgi="cd $drive_prefix/u/var/git/ium-tools/"
+	alias cdgl="cd $drive_prefix/u/var/git/lgi/"
+
+	unset drive_prefix
 fi
-
-# =========================================================================
-
-# /cygdrive if cygwin default settings or emty string otherwise
-drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
-
-alias cdgb="cd $drive_prefix/u/var/git/broker/"
-alias cdge="cd $drive_prefix/u/var/git/ernie/"
-alias cdgg="cd $drive_prefix/u/var/git/gfm/"
-alias cdgk="cd $drive_prefix/u/var/git/kpn_eium/"
-alias cdgi="cd $drive_prefix/u/var/git/ium-tools/"
-alias cdgl="cd $drive_prefix/u/var/git/lgi/"
-
-unset drive_prefix
 
 # =========================================================================
 
