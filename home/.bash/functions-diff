@@ -265,6 +265,7 @@ HELP
 	}
 
 	env diff "${args[@]}" | sed "$diff_scheme; s/\$/$diff_c_reset/"
+	return $PIPESTATUS
 }
 
 # =========================================================================
