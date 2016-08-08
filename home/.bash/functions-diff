@@ -219,7 +219,7 @@ HELP
 			-p | --show-c-function )
 				diff_scheme="$diff_s_context"
 				;;
-			-u | -U* |--unified | --unified=* )
+			-u | -U* | --unified | --unified=* )
 				diff_scheme="$diff_s_unified"
 				;;
 			--normal )
@@ -241,14 +241,19 @@ HELP
 		shift
 	done
 
+	args+=( "$@" )
+
+	# Validate the option and re-define the function behavior
 	case "$CDIFF_WHEN" in
 	always )
 		# Do nothing over defined by options
 		;;
 	never )
+		# Skip colorizing
 		diff_scheme=""
 		;;
 	auto )
+		# Check if piped
 		test -t 1 || diff_scheme=""
 		;;
 	* )
@@ -256,8 +261,6 @@ HELP
 		return 2
 		;;
 	esac
-
-	args+=( "$@" )
 
 	[ -z "$diff_scheme" ] && {
 		env diff "${args[@]}"
