@@ -5,8 +5,8 @@ if /i "%~1 %~2" == "app clink" (
 )
 
 if /i "%~1 %~2" == "app Far3" (
-	rem set "FAR_NAME=Far30b4499.x86.20160101"
-	rem set "FAR_NAME=Far30b4545.x86.20160210"
+	rem set "FAR_NAME=Far30b4700.x86.20160611"
+	rem set "FAR_NAME=Far30b4747.x86.20160802"
 )
 
 if /i "%~1 %~2" == "app Perl" (
@@ -19,8 +19,10 @@ if /i "%~1 %~2" == "app Unix" (
 	rem set "UNIX_NAME=gnuwin32"
 	set "UNIX_NAME=gow"
 	rem set "UNIX_NAME=msysgit"
-	rem set "UNIX_NAME=PortableGit-2.7.2-32-bit"
-	rem set "UNIX_NAME=PortableGit-2.7.2-64-bit"
+	rem set "UNIX_NAME=Git-2.9.3-32-bit"
+	rem set "UNIX_NAME=Git-2.9.3-64-bit"
+	rem set "UNIX_NAME=PortableGit-2.9.3-32-bit"
+	rem set "UNIX_NAME=PortableGit-2.9.3-64-bit"
 	rem set "UNIX_NAME=unxutils"
 	rem set "UNIX_NAME=win-bash"
 )
@@ -29,8 +31,10 @@ if /i "%~1 %~2" == "app Unix" (
 
 if /i "%~1 %~2" == "shell Git" (
 	rem set "SHELL_NAME=msysgit"
-	rem set "SHELL_NAME=PortableGit-2.7.2-32-bit"
-	rem set "SHELL_NAME=PortableGit-2.7.2-64-bit"
+	rem set "SHELL_NAME=Git-2.9.3-32-bit"
+	rem set "SHELL_NAME=Git-2.9.3-64-bit"
+	rem set "SHELL_NAME=PortableGit-2.9.3-32-bit"
+	rem set "SHELL_NAME=PortableGit-2.9.3-64-bit"
 )
 
 if /i "%~1 %~2" == "shell ConEmu" (
