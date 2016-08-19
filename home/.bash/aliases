@@ -120,6 +120,7 @@ then
 	alias gd='git diff'
 	alias go='git checkout'
 	alias gl='git log'
+	alias gll='git log --name-status'
 	alias gli='LESS="-RS" git log --color --graph --oneline'
 	alias gla='LESS="-RS" git log --color --graph --oneline --decorate --all'
 	# alias gk='gitk --all&'
