@@ -54,7 +54,8 @@ $packages = @(
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
 		# "url" = "http://www.farmanager.com/files/Far30b4700.x86.20160611.7z";
-		"url" = "http://www.farmanager.com/files/Far30b4747.x86.20160802.7z"
+		# "url" = "http://www.farmanager.com/files/Far30b4747.x86.20160802.7z";
+		"url" = "http://farmanager.com/files/Far30b4774.x86.20160902.7z";
 		"dir" = "Far3";
 	}
 

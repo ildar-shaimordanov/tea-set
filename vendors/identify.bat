@@ -7,6 +7,7 @@ if /i "%~1 %~2" == "app clink" (
 if /i "%~1 %~2" == "app Far3" (
 	rem set "FAR_NAME=Far30b4700.x86.20160611"
 	rem set "FAR_NAME=Far30b4747.x86.20160802"
+	rem set "FAR_NAME=Far30b4774.x86.20160902"
 )
 
 if /i "%~1 %~2" == "app Perl" (
