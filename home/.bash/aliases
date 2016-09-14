@@ -103,7 +103,7 @@ unset WINPTY
 #    Build.xml and without typing -D on each invocation. 
 #    This way, build.xml should be able to read properties from this file.
 # 4. Any combination of all the stuff above.
-# alias ant='ant -find build.xml -emacs ium.install.dir=/opt/SIU'
+# alias ant='ant -find build.xml -emacs -Dium.install.dir=/opt/SIU'
 
 # =========================================================================
 

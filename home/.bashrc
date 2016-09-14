@@ -120,34 +120,36 @@ fi
 # Git settings
 if ! declare -F | grep -q _git
 then
-	if [ -f "/mingw32/share/git/completion/git-completion.bash" ]
-	then
-		. "/mingw32/share/git/completion/git-completion.bash"
-	elif [ -f "/mingw64/share/git/completion/git-completion.bash" ]
-	then
-		. "/mingw64/share/git/completion/git-completion.bash"
-	elif [ -f "/etc/git-completion.bash" ]
-	then
-		. "/etc/git-completion.bash"
-	elif [ -f "$HOME/.git-completion.bash" ]
-	then
-		. "$HOME/.git-completion.bash"
-	fi
+	for f in \
+		"$HOME/.git-completion.bash" \
+		"/etc/git-completion.bash" \
+		"/mingw64/share/git/completion/git-completion.bash" \
+		"/mingw32/share/git/completion/git-completion.bash" \
 
+	do
+		if [ -f "$f" ]
+		then
+			. "$f"
+			break
+		fi
+	done
 
-	if [ -f "/mingw32/share/git/completion/git-prompt.sh" ]
-	then
-		. "/mingw32/share/git/completion/git-prompt.sh"
-	elif [ -f "/mingw64/share/git/completion/git-prompt.sh" ]
-	then
-		. "/mingw64/share/git/completion/git-prompt.sh"
-	elif [ -f "/etc/git-prompt.sh" ]
-	then
-		. "/etc/git-prompt.sh"
-	elif [ -f "$HOME/.git-prompt.sh" ]
-	then
-		. "$HOME/.git-prompt.sh"
-	fi
+	for f in \
+		"$HOME/.git-prompt.sh" \
+		"/etc/git-prompt.sh" \
+		"/mingw64/share/git/completion/git-prompt.sh" \
+		"/mingw32/share/git/completion/git-prompt.sh" \
+
+	do
+		if [ -f "$f" ]
+		then
+			. "$f"
+			break
+		fi
+	done
+
+	unset f
+
 
 	PS1="\[\e]0;\w\a\]"			# current dir in title
 
