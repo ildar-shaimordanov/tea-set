@@ -74,22 +74,27 @@ esac
 #
 # Creating alias to winpty, the package providing interface between Window 
 # console and Unix-like pty used in cygwin, msysgit and others.
-case "$( uname | tr [:upper:] [:lower:] )" in
-cygwin* )
-	# Presume that winpty is under CYGROOT/../winpty
-	WINPTY="$( cygpath "$( cygpath -m / )/../winpty" )"
-	;;
-msys* | mingw* | windows* )
-	# Presume that winpty is under MSYSROOT/../winpty
-	WINPTY="$( cd "$( cd / ; pwd -W )/../winpty" ; pwd )"
-	;;
-esac
+if which winpty > /dev/null 2>&1
+then
+	alias console="$( which winpty )"
+else
+	case "$( uname | tr [:upper:] [:lower:] )" in
+	cygwin* )
+		# Presume that winpty is under CYGROOT/../winpty
+		WINPTY="$( cygpath "$( cygpath -m / )/../winpty" )"
+		;;
+	msys* | mingw* | windows* )
+		# Presume that winpty is under MSYSROOT/../winpty
+		WINPTY="$( cd "$( cd / ; pwd -W )/../winpty" ; pwd )"
+		;;
+	esac
 
-test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console" \
-&& "$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
-&& alias console="$WINPTY/$OSTYPE/console"
+	test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console" \
+	&& "$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
+	&& alias console="$WINPTY/$OSTYPE/console"
 
-unset WINPTY
+	unset WINPTY
+fi
 
 # =========================================================================
 
