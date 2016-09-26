@@ -63,11 +63,21 @@ call :shellenv.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
 
 :: ========================================================================
 ::
-:: IUM
+:: IUM Sandbox
 ::
 :: ========================================================================
 
-call :shellenv.set.home IUM_HOME "C:\IUM"
+if exist "C:\IUM\etc\sandbox-release" (
+	for /f "usebackq eol=# delims=; tokens=1,2,*" %%a in (
+		"C:\IUM\etc\sandbox-release"
+	) do if not "%%~a" == "" (
+		rem 1. do attempt to assign to the sandbox drive
+		call :shellenv.set.home IUM_HOME "%%~a"
+	) else if not "%%~b" == "" (
+		rem 2. do attempt to assign to the sandbox path
+		call :shellenv.set.home IUM_HOME "%%~b"
+	)
+)
 
 :: ========================================================================
 ::
