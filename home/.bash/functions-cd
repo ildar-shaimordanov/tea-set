@@ -4,7 +4,7 @@
 
 # http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
 cdf() {
-	[ $# -eq 1 ] || {
+	[ $# -ge 1 ] || {
 		echo "Usage: $FUNCNAME filename">&2
 		return 1
 	}
@@ -14,7 +14,7 @@ cdf() {
 
 # http://www.commandlinefu.com/commands/view/13604/change-directory-for-current-path-in-bash
 cdd() {
-	[ $# -eq 2 ] || {
+	[ $# -ge 2 ] || {
 		echo "Usage: $FUNCNAME old_dir new_dir">&2
 		return 1
 	}
