@@ -9,6 +9,8 @@ msys*)
 esac
 ## echo "${BASH_SOURCE[@]}"
 
+# =========================================================================
+
 # To the extent possible under law, the author(s) have dedicated all 
 # copyright and related and neighboring rights to this software to the 
 # public domain worldwide. This software is distributed without any warranty. 
@@ -42,6 +44,10 @@ echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw6
 
 # =========================================================================
 
+PATH="$PATH:$HOME/bin"
+
+# =========================================================================
+
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
@@ -61,5 +67,7 @@ fi
 # if [ -d "${HOME}/info" ]; then
 #   INFOPATH="${HOME}/info:${INFOPATH}"
 # fi
+
+# =========================================================================
 
 # EOF
