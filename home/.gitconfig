@@ -4,3 +4,7 @@
 	filemode = false
 [color]
 	ui = true
+[alias]
+	amend = commit --amend
+	uncommit = reset HEAD^
+	undo = reset --soft HEAD^
