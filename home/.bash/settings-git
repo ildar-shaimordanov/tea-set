@@ -1,0 +1,63 @@
+#! ~/.bash/settings-git
+
+# =========================================================================
+
+# Git settings
+declare -F | grep -q _git && return
+
+for f in \
+	"$HOME/.git-completion.bash" \
+	"/etc/git-completion.bash" \
+	"/mingw64/share/git/completion/git-completion.bash" \
+	"/mingw32/share/git/completion/git-completion.bash" \
+
+do
+	if [ -f "$f" ]
+	then
+		. "$f"
+		break
+	fi
+done
+
+for f in \
+	"$HOME/.git-prompt.sh" \
+	"/etc/git-prompt.sh" \
+	"/mingw64/share/git/completion/git-prompt.sh" \
+	"/mingw32/share/git/completion/git-prompt.sh" \
+
+do
+	if [ -f "$f" ]
+	then
+		. "$f"
+		break
+	fi
+done
+
+unset f
+
+
+PS1="\[\e]0;\w\a\]"			# current dir in title
+
+PS1="${PS1}\n"				# new line
+PS1="${PS1}\[\e[32m\]"			# color: dark green
+PS1="${PS1}\u@\h "			# user@host <space>
+
+PS1="${PS1}\[\e[35m\]"			# color: purple
+PS1="${PS1}${MSYSTEM:-$OSTYPE} "	# $MSYSTEM/$OSTYPE <space>
+
+PS1="${PS1}\[\e[33m\]"			# color: dark yellow
+PS1="${PS1}\w"				# current dir
+
+PS1="${PS1}\[\e[0m\]"			# color: reset to default
+if declare -F __git_ps1 >/dev/null
+then
+	GIT_PS1_SHOWCOLORHINTS=1
+	PS1="${PS1}\` __git_ps1 \`"	# git status
+fi
+
+PS1="${PS1}\n"				# new line
+PS1="${PS1}\\\$ "			# $ <space>
+
+# =========================================================================
+
+# EOF

@@ -1,4 +1,4 @@
-#!/bin/bash
+#! ~/.bashrc
 
 # Workaround to avoid the existing issue of sourcing from /etc/profile
 # https://github.com/msysgit/msysgit/pull/231
@@ -106,74 +106,16 @@ export HISTFILESIZE=20000
 
 if [ -d "${HOME}/.bash" ]
 then
-	# Common settings, functions and aliases in this order
+	# Environment, functions, some setings and aliases: in this order
 	for f in \
-		"${HOME}/.bash/settings" \
+		"${HOME}/.bash/environ" \
 		$( ls ${HOME}/.bash/functions-* 2>/dev/null ) \
+		$( ls ${HOME}/.bash/settings-* 2>/dev/null ) \
 		"${HOME}/.bash/aliases"
 	do
 		[ -f "$f" ] \
 		&& . "$f"
 	done
-fi
-
-# =========================================================================
-
-# Git settings
-if ! declare -F | grep -q _git
-then
-	for f in \
-		"$HOME/.git-completion.bash" \
-		"/etc/git-completion.bash" \
-		"/mingw64/share/git/completion/git-completion.bash" \
-		"/mingw32/share/git/completion/git-completion.bash" \
-
-	do
-		if [ -f "$f" ]
-		then
-			. "$f"
-			break
-		fi
-	done
-
-	for f in \
-		"$HOME/.git-prompt.sh" \
-		"/etc/git-prompt.sh" \
-		"/mingw64/share/git/completion/git-prompt.sh" \
-		"/mingw32/share/git/completion/git-prompt.sh" \
-
-	do
-		if [ -f "$f" ]
-		then
-			. "$f"
-			break
-		fi
-	done
-
-	unset f
-
-
-	PS1="\[\e]0;\w\a\]"			# current dir in title
-
-	PS1="${PS1}\n"				# new line
-	PS1="${PS1}\[\e[32m\]"			# color: dark green
-	PS1="${PS1}\u@\h "			# user@host <space>
-
-	PS1="${PS1}\[\e[35m\]"			# color: purple
-	PS1="${PS1}${MSYSTEM:-$OSTYPE} "	# $MSYSTEM/$OSTYPE <space>
-
-	PS1="${PS1}\[\e[33m\]"			# color: dark yellow
-	PS1="${PS1}\w"				# current dir
-
-	PS1="${PS1}\[\e[0m\]"			# color: reset to default
-	if declare -F __git_ps1 >/dev/null
-	then
-		GIT_PS1_SHOWCOLORHINTS=1
-		PS1="${PS1}\` __git_ps1 \`"	# git status
-	fi
-
-	PS1="${PS1}\n"				# new line
-	PS1="${PS1}\\\$ "			# $ <space>
 fi
 
 # =========================================================================

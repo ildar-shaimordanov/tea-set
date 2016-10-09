@@ -1,4 +1,4 @@
-#!/bin/bash
+#! ~/.bash_profile
 
 # Workaround to avoid the existing issue of sourcing from /etc/profile
 # https://github.com/msysgit/msysgit/pull/231
