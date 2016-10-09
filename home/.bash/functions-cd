@@ -29,7 +29,7 @@ mkcd() {
 		return 1
 	}
 
-	mkdir "$1" && cd "$1"
+	mkdir -p "$1" && cd "$1"
 }
 
 # http://code.metager.de/source/xref/gnu/bash/examples/functions/ksh-cd
