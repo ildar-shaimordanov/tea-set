@@ -35,11 +35,10 @@ chr() {
 
 # =========================================================================
 
+# Repeating a string the particular number of times
+# $1 - string
+# $2 - number
 rep() {
-	[ $# -ge 2 ] || {
-		echo "Usage: rep string times"
-		return
-	}
 	local s
 	printf -v s "%${2}s"
 	echo "${s// /$1}"
