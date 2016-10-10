@@ -1,0 +1,50 @@
+#! ~/.bash/functions-strings
+
+# =========================================================================
+
+# String testing functions
+# $1 - haystack
+# $2 - needle
+# string-XXX functions return 0, if test is successful, 1 - otherwise
+contains() {
+	! command test "$1" = "${1/$2/}"
+}
+
+starts-with() {
+	! command test "$1" = "${1#$2}"
+}
+
+ends-with() {
+	! command test "$1" = "${1%$2}"
+}
+
+# =========================================================================
+
+# http://www.pixelbeat.org/settings/.bashrc
+
+ord() {
+	printf "0x%x" "'$1"
+}
+
+chr() {
+	local s
+	printf -v s '\\%03o' "$1"
+	printf $s
+#	printf $( printf '\\%03o\\n' "$1" )
+}
+
+# =========================================================================
+
+# Repeating a string the particular number of times
+# $1 - string
+# $2 - number
+rep() {
+	local s
+	printf -v s "%${2}s"
+	echo "${s// /$1}"
+#	printf "%${2}s" | sed "s/ /${1}/g"
+}
+
+# =========================================================================
+
+# EOF
