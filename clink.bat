@@ -4,8 +4,11 @@ set "CLINK_NAME=clink"
 
 if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app clink
 
-if not defined CLINK_NAME goto :continue
-if not exist "%~dp0vendors\%CLINK_NAME%\clink.bat" goto :continue
+if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
+set "HOME=%~dp0home"
+
+if not defined CLINK_NAME goto :EOF
+if not exist "%~dp0vendors\%CLINK_NAME%\clink.bat" goto :EOF
 
 :: ========================================================================
 
@@ -14,11 +17,6 @@ call "%~dp0vendors\%CLINK_NAME%\clink.bat" inject --quiet --profile "%~dp0etc\cl
 
 :: Integrate Git into prompt
 prompt $p$s{git}$_$g$s
-
-:: ========================================================================
-
-:continue
-if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
 :: ========================================================================
 
