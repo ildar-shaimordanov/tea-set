@@ -1,7 +1,7 @@
 
 if /i "%~1 %~2" == "app clink" (
-	rem set "CLINK_NAME=clink_0.4.5"
 	rem set "CLINK_NAME=clink_0.4.7"
+	rem set "CLINK_NAME=clink_0.4.8"
 )
 
 if /i "%~1 %~2" == "app Far3" (
