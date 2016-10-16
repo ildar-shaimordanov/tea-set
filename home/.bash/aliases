@@ -132,12 +132,16 @@ then
 	# /cygdrive if cygwin default settings or emty string otherwise
 	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
 
+	# Do cd to some specific git repos
 	alias cdgg="cd $drive_prefix/u/var/git/globetouch/"
 	alias cdgk="cd $drive_prefix/u/var/git/kpn_eium/"
 	alias cdgi="cd $drive_prefix/u/var/git/ium-tools/"
 	alias cdgl="cd $drive_prefix/u/var/git/lgi/"
 
 	unset drive_prefix
+
+	# Do cd to the git root dir (if it's possible
+	alias cdggr='cd "$( ggr )"'
 fi
 
 # =========================================================================
