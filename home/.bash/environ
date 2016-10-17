@@ -17,6 +17,7 @@ export LESS='-R'
 ANT_ARGS="-find build.xml"
 ANT_ARGS="${ANT_ARGS} -emacs"
 ANT_ARGS="${ANT_ARGS} -Dium.install.dir=/opt/SIU"
+ANT_ARGS="${ANT_ARGS} -Dusing.git="
 #ANT_ARGS="${ANT_ARGS} -logger org.apache.tools.ant.listener.AnsiColorLogger"
 
 export ANT_ARGS
