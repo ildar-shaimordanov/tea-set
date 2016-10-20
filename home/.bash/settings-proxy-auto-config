@@ -1,0 +1,41 @@
+#! ~/.bash/settings-proxy-auto-config
+
+# =========================================================================
+
+# Look for the default route and take the internal IP address
+# Assume 192.168.* is the network not requiring the proxy
+# Network Destination        Netmask          Gateway       Interface  Metric
+#           0.0.0.0          0.0.0.0      192.168.1.1    192.168.1.101     25
+
+netstat -r \
+| grep -w '0.0.0.0' \
+| awk '{ print $4 }' \
+| grep -q '^192.168' && return
+
+# =========================================================================
+
+# $proxy_auto_config - (mandatory) address of proxy auto-config file
+# $proxy_http_index  - (optional) index of HTTP proxy in the 0-based proxy list
+# $proxy_https_index - (optional) index of HTTPS proxy in the 0-based proxy list
+
+[ -f ~/.bash/.settings-proxy-auto-config ] \
+&& . ~/.bash/.settings-proxy-auto-config
+
+[ -z "$proxy_auto_config" ] && return
+
+# =========================================================================
+
+# Look for the strings "PROXY (.*)"
+
+proxy_list=( $(
+	wget -qO - "$proxy_auto_config" \
+	| grep -Eow 'PROXY [^"; ]+' \
+	| sed 's/^.* //; /^SETTINGS$/d'
+) )
+
+export http_proxy="${proxy_list[${proxy_http_index:-0}]}"
+export HTTPS_PROXY="${proxy_list[${proxy_https_index:-0}]}"
+
+# =========================================================================
+
+# EOF
