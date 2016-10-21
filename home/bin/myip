@@ -41,7 +41,7 @@ done
 show_usage() {
 	cat - <<HELP
 USAGE
-  $( basename ) [OPTIONS]
+  $( basename "$0" ) [OPTIONS]
 
 DESCRIPTION
   Display the internal and external IP addresses
