@@ -160,7 +160,7 @@ if "%~1" == "" (
 	rem command | 2 ext
 
 	for /f "tokens=1,* delims==" %%a in ( '
-		2^>nul assoc ".%~1"
+		2^>nul assoc ".%~n1"
 	' ) do for /f "tokens=1,* delims==" %%c in ( '
 		2^>nul ftype "%%b"
 	' ) do (
@@ -170,6 +170,7 @@ if "%~1" == "" (
 		set "pipeext=%%a"
 
 	)
+	if not "%~x1" == "" set "pipeext=%~x1"
 
 	shift /1
 
