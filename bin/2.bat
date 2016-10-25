@@ -76,6 +76,14 @@
 ::HELP set "pipetmpsave=findstr "$""
 ::HELP
 ::HELP
+::HELP CONFIGURATION
+::HELP
+::HELP Using the file "2-settings.bat" located in the same directory 
+::HELP allows to configure the global environment variables of the main 
+::HELP script. It is good place for setting such kind of variables as 
+::HELP %pipetempdir%, %pipetempname% and %pipetempsave%. 
+::HELP
+::HELP
 ::HELP SEE ALSO
 ::HELP
 ::HELP ASSOC /?
@@ -106,6 +114,8 @@ set "pipetmpdir=%TEMP%"
 set "pipetmpname=pipe.%RANDOM%"
 set "pipetmpfile="
 set "pipetmpsave=more"
+
+if exist "%~dpn0-settings.bat" call "%~dpn0-settings.bat"
 
 :: ========================================================================
 
