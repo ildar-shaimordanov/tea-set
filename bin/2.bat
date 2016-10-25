@@ -81,7 +81,7 @@
 ::HELP Using the file "2-settings.bat" located in the same directory 
 ::HELP allows to configure the global environment variables of the main 
 ::HELP script. It is good place for setting such kind of variables as 
-::HELP %pipetempdir%, %pipetempname% and %pipetempsave%. 
+::HELP %pipetmpdir%, %pipetmpname% and %pipetmpsave%. 
 ::HELP
 ::HELP
 ::HELP SEE ALSO
