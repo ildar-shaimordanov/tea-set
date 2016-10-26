@@ -105,17 +105,17 @@ setlocal
 set "pipedbg="
 set "pipedry="
 
-set "pipecmd="
-set "pipecmdopts="
-set "pipetitle="
-set "pipeext="
-
 set "pipetmpdir=%TEMP%"
 set "pipetmpname=pipe.%RANDOM%"
 set "pipetmpfile="
 set "pipetmpsave=more"
 
 if exist "%~dpn0-settings.bat" call "%~dpn0-settings.bat"
+
+set "pipecmd="
+set "pipecmdopts="
+set "pipetitle="
+set "pipeext="
 
 :: ========================================================================
 
