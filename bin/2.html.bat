@@ -8,7 +8,7 @@
 set "pipecmd="%~dp0..\GUI\FirefoxPortable\App\Firefox\firefox.exe" -profile "%~dp0..\GUI\FirefoxPortable\Data\profile" %%*"
 
 :: Set the extension to recognize the data type
-set "pipeext=.html"
+::set "pipeext=.html"
 
 :: Set the alternative tempfile saver
-:: set "pipetmpsave=findstr "$""
+::set "pipetmpsave=findstr "$""

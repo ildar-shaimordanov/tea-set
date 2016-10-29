@@ -161,6 +161,7 @@ if "%~1" == "" (
 	call :pipe-configure "%~dpn0.%~n1.bat" "%~x1"
 
 	set "pipetitle=[app = %~n1]"
+	if not defined pipeext set "pipeext=%~n1"
 	if not "%~x1" == "" set "pipeext=%~x1"
 
 	shift /1
