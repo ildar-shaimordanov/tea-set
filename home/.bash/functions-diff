@@ -9,7 +9,7 @@ diff() {
 	# Colors
 	local diff_c_reset='\x1b[0m'
 
-	local diff_b_meta="1;37"	# white
+	local diff_b_meta="40;1;37"	# white
 	local diff_b_frag="36"		# cyan
 	local diff_b_old="31"		# red
 	local diff_b_new="32"		# green
