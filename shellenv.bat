@@ -120,7 +120,7 @@ if defined UNIX_NAME call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%UNIX
 ::
 :: ========================================================================
 
-set "PERL_NAME=StrawberryPerl"
+set "PERL_NAME=Perl"
 
 if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Perl
 
