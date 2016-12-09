@@ -2,9 +2,10 @@
 <hrc>
 
 <!--  IUM languages  -->
-<prototype name="ium.boobs" group="IUM" description="IUM boobs">
-<location link="schemes/ium/ium.boobs.hrc"/>
-<filename>/\.(boobs)$/i</filename>
+<prototype name="ium.basic" group="IUM" description="IUM Basic">
+<location link="schemes/ium/ium.basic.hrc"/>
+<filename>/\.(bas)$/i</filename>
+<firstline weight="4">/^((:\s*)?'\s*|\#\!.*)fbasic/</firstline>
 </prototype>
 
 <prototype name="ium.config" group="IUM" description="IUM config">
@@ -12,12 +13,10 @@
 <filename>/\.(config)$/i</filename>
 </prototype>
 
-<!--
 <prototype name="jScript" group="inet" description="JavaScript">
 <location link="schemes/jscript.hrc"/>
 <filename>/\.(js|mocha)$/i</filename>
 </prototype>
--->
 
 <!--
 <prototype name="Batch" group="scripts" description="Batch/Config.sys/NTcmd">
