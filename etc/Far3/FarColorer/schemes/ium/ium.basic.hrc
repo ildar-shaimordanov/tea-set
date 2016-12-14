@@ -65,63 +65,74 @@
 
 	<!-- Keywords -->
 	<keywords ignorecase="no" region="Keyword">
+		<word name="accounting"/>
+		<word name="all"/>
+		<word name="and"/>
 		<word name="begin"/>
+		<word name="bin2str"/>
 		<word name="call"/>
 		<word name="case"/>
 		<word name="catch"/>
+		<word name="ceil"/>
 		<word name="class"/>
 		<word name="const"/>
+		<word name="contains"/>
+		<word name="critical"/>
+		<word name="debug2"/>
+		<word name="debug3"/>
+		<word name="debug4"/>
+		<word name="debug"/>
+		<word name="default"/>
 		<word name="else"/>
+		<word name="ends"/>
 		<word name="end"/>
+		<word name="error"/>
 		<word name="export"/>
+		<word name="false"/>
+		<word name="floor"/>
 		<word name="for"/>
 		<word name="if"/>
 		<word name="import"/>
 		<word name="include"/>
+		<word name="info"/>
 		<word name="let"/>
+		<word name="managed"/>
+		<word name="max"/>
+		<word name="min"/>
+		<word name="moduloceil"/>
+		<word name="modulofloor"/>
+		<word name="moduloround"/>
+		<word name="nme"/>
 		<word name="node"/>
-		<word name="on"/>
+		<word name="null"/>
 		<word name="onerror"/>
 		<word name="onmatch"/>
 		<word name="onnotmatch"/>
+		<word name="on"/>
+		<word name="or"/>
 		<word name="print"/>
+		<word name="remove"/>
 		<word name="require"/>
 		<word name="return"/>
+		<word name="round"/>
 		<word name="rulechain"/>
+		<word name="sessionserver"/>
+		<word name="snme"/>
+		<word name="snmetype"/>
+		<word name="starts"/>
+		<word name="str2bin"/>
 		<word name="switch"/>
 		<word name="synchronized"/>
+		<word name="systime"/>
 		<word name="then"/>
+		<word name="true"/>
 		<word name="try"/>
 		<word name="type"/>
 		<word name="unless"/>
 		<word name="var"/>
-
-	<!-- Predefined arguments -->
-
-		<!-- rulechain -->
-		<word name="managed"/>
-
-		<!-- print -->
-		<word name="critical"/>
-		<word name="accounting"/>
-		<word name="error"/>
 		<word name="warning"/>
-		<word name="info"/>
-		<word name="debug"/>
-		<word name="debug2"/>
-		<word name="debug3"/>
-		<word name="debug4"/>
-
-		<word name="all"/>
-
-		<!-- if/unless/case -->
-		<word name="and"/>
-		<word name="or"/>
-
+		<word name="with"/>
 		<word name="within"/>
-		<word name="starts"/>
-		<word name="ends"/>
-		<word name="contains"/>
 	</keywords>
 
 </scheme>

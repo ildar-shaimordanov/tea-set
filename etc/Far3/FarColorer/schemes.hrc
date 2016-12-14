@@ -13,6 +13,11 @@
 <filename>/\.(config)$/i</filename>
 </prototype>
 
+<prototype name="pegjs" group="rare" description="PEGjs">
+<location link="schemes/ium/pegjs.hrc"/>
+<filename>/\.(pegjs)$/i</filename>
+</prototype>
+
 <prototype name="jScript" group="inet" description="JavaScript">
 <location link="schemes/jscript.hrc"/>
 <filename>/\.(js|mocha)$/i</filename>
