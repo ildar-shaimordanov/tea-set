@@ -25,7 +25,7 @@ local msg_text = "FIle modified, everything will be lost"
 
 Macro {
 	area = "Editor";
-	key = "CtrlF4";
+	key = "CtrlR";
 	flags = "";
 	description = "Editor: Reload a file";
 	action = function()
