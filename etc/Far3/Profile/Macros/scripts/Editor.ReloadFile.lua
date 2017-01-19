@@ -14,7 +14,6 @@ local EDITOR_MODIFIED = 0x00000008
 
 local MSG_WARNING  = 0x00000001
 local MSG_OKCANCEL = 0x00020000
-local MSG_YESNO    = 0x00040000
 
 ---------------------------------------------------------------------------
 
