@@ -8,3 +8,5 @@
 	amend = commit --amend
 	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
+	show-root = rev-parse --show-toplevel
+	show-url = config --local remote.origin.url
