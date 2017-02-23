@@ -33,13 +33,15 @@ $packages = @(
 		"home" = "https://github.com/cbucher/console";
 		# "url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x86.1.16.0.16038.zip";
 		# "url" = "https://github.com/cbucher/console/releases/download/1.16.0/ConsoleZ.x64.1.16.0.16038.zip";
+		# "url" = "https://github.com/cbucher/console/releases/download/1.18.0/ConsoleZ.x64.1.18.0.17048.zip";
+		# "url" = "https://github.com/cbucher/console/releases/download/1.18.0/ConsoleZ.x86.1.18.0.17048.zip";
 		"dir" = "ConsoleZ";
 	}
 
 	@{
 		"name" = "Clink";
 		"home" = "http://mridgers.github.io/clink";
-		"url" = "https://github.com/mridgers/clink/releases/download/0.4.7/clink_0.4.7.zip";
+		"url" = "https://github.com/mridgers/clink/releases/download/0.4.8/clink_0.4.8.zip";
 		"dir" = "clink";
 		"onlyFiles" = $True;
 		"postinstall" = {
@@ -53,9 +55,8 @@ $packages = @(
 	@{
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
-		# "url" = "http://www.farmanager.com/files/Far30b4700.x86.20160611.7z";
-		# "url" = "http://www.farmanager.com/files/Far30b4747.x86.20160802.7z";
-		"url" = "http://farmanager.com/files/Far30b4774.x86.20160902.7z";
+		# "url" = "http://farmanager.com/files/Far30b4774.x86.20160902.7z";
+		"url" = "http://www.farmanager.com/files/Far30b4900.x86.20170221.7z";
 		"dir" = "Far3";
 	}
 
@@ -70,7 +71,7 @@ $packages = @(
 	@{
 		"name" = "Notepad2-mod";
 		"home" = "http://xhmikosr.github.io/notepad2-mod/";
-		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.964/Notepad2-mod.4.2.25.964_x64.zip";
+		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.985/Notepad2-mod.4.2.25.985_x86.zip";
 		"dir" = "notepad2-mod";
 		"postinstall" = {
 			$dir = $args[0];
