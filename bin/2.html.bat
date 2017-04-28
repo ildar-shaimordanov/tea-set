@@ -1,4 +1,3 @@
-0</*! ::
 
 :: Mozilla Command Line Options
 :: https://developer.mozilla.org/en-US/docs/Mozilla/Command_Line_Options
@@ -12,8 +11,4 @@ set "pipecmd="%~dp0..\GUI\FirefoxPortable\App\Firefox\firefox.exe" -profile "%~d
 ::set "pipeext=.html"
 
 :: Set the alternative tempfile saver
-set "pipetmpsave=cscript //nologo //e:javascript "%~f0""
-
-goto :EOF */0;
-
-WScript.StdOut.Write(WScript.StdIn.ReadAll());
+::set "pipetmpsave=findstr "$""

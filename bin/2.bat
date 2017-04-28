@@ -1,3 +1,5 @@
+0</*! ::
+
 ::HELP Redirects output of command line tools to GUI application.
 ::HELP
 ::HELP
@@ -69,11 +71,10 @@
 ::HELP The command line tool used for capturing output of commands and 
 ::HELP redirecting to a resulting file. By default it is set as follows: 
 ::HELP
-::HELP set "pipetmpsave=more"
+::HELP set "pipetmpsave=cscript //nologo //e:javascript "%~f0""
 ::HELP
-::HELP Another possible setting is:
-::HELP
-::HELP set "pipetmpsave=findstr "$""
+::HELP You don't need to modify this variable, unless you need to specify 
+::HELP another tool to capture input.
 ::HELP
 ::HELP
 ::HELP CONFIGURATION
@@ -108,7 +109,7 @@ set "pipedry="
 set "pipetmpdir=%TEMP%"
 set "pipetmpname=pipe.%RANDOM%"
 set "pipetmpfile="
-set "pipetmpsave=more"
+set "pipetmpsave=cscript //nologo //e:javascript "%~f0""
 
 if exist "%~dpn0-settings.bat" call "%~dpn0-settings.bat"
 
@@ -271,6 +272,9 @@ set pipe
 echo:
 goto :EOF
 
-:: ========================================================================
+*/0;
+WScript.StdOut.Write(WScript.StdIn.ReadAll());
 
-:: EOF
+// ========================================================================
+
+// EOF
