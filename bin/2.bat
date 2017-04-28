@@ -68,7 +68,7 @@
 ::HELP %pipetmpsave%
 ::HELP
 ::HELP (Optional)
-::HELP The command line tool used for capturing output of commands and 
+::HELP The command line tool used for capturing the output of commands and 
 ::HELP redirecting to a resulting file. By default it is set as follows: 
 ::HELP
 ::HELP set "pipetmpsave=cscript //nologo //e:javascript "%~f0""
