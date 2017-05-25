@@ -138,9 +138,6 @@ then
 	# cd to home dir for gits used at work
 	alias cdgw="cd $drive_prefix/u/var/git"
 
-	# cd to the root dir of the current repo
-	alias cdgr='cd $( ggr )'
-
 	unset drive_prefix
 
 	# Do cd to the git root dir (if it's possible
