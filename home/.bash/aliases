@@ -133,10 +133,10 @@ then
 	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
 
 	# cd to home dir for personal gits
-	alias cdgp='cd $HOME/../var/git'
+	alias cdgp='cd $HOME/../var/git && ls'
 
 	# cd to home dir for gits used at work
-	alias cdgw="cd $drive_prefix/u/var/git"
+	alias cdgw="cd $drive_prefix/u/var/git && ls"
 
 	unset drive_prefix
 
