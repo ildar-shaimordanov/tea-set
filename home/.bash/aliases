@@ -146,4 +146,16 @@ fi
 
 # =========================================================================
 
+if which perl >/dev/null 2>&1
+then
+	# `whichpm` reports the filesystem path of Perl modules by module 
+	# (package) name, similar to what the Unix `which` utility does 
+	# for binaries.
+	# See also:
+	# https://github.com/mklement0/whichpm
+	alias whichpm='perldoc -lm'
+fi
+
+# =========================================================================
+
 # EOF
