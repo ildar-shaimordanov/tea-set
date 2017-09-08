@@ -42,7 +42,7 @@ paragrep() {
 	then
 		cat <<HELP
 NAME
-	$FN - Multiline grep like filter
+	$FN - grep-like filter for searching matches in paragraphs
 
 USAGE
 	$FN BEGIN-OF-PARA PATTERN [FILE]...
