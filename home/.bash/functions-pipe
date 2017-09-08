@@ -32,6 +32,40 @@ HELP
 
 # =========================================================================
 
+# TODO!!!
+# 1. Extend with END-OF-PARA
+# 2. Rewrite entirely on Perl
+paragrep() {
+	typeset FN="paragrep"
+
+	if [ $# -lt 2 -o -z "$1" ]
+	then
+		cat <<HELP
+NAME
+	$FN - Multiline grep like filter
+
+USAGE
+	$FN BEGIN-OF-PARA PATTERN [FILE]...
+
+DESCRIPTION
+	The function assumes input consists of paragraphs and outputs the 
+	paragraphs matching the PATTERN. Paragraph is identified by the 
+	BEGIN-OF-PARA regular expression. 
+HELP
+		return
+	fi
+
+	perl -ne '
+	if ( m/$begin_of_para/ ) {
+		print $line if defined $line && $line =~ /$match_pattern/;
+		$line = "";
+	}
+	$line .= $_;
+	' -s -- -begin_of_para="$1" -match_pattern="$2" "${@:3}"
+}
+
+# =========================================================================
+
 j2() {
 	sed "N;s/\n/$1/"
 	#paste -sd "$1\n"
