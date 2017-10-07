@@ -27,6 +27,17 @@ cover2folder() {
 
 		shift
 		;;
+	-u | -d )
+		resize="300x600>"
+		crop="100%x50%"
+
+		case "$1" in
+		-u ) gravity="north" ;;
+		-d ) gravity="south" ;;
+		esac
+
+		shift
+		;;
 	esac
 
 	convert "${1:-cover-front.jpg}" \
