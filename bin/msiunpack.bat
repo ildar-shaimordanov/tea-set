@@ -8,7 +8,7 @@ setlocal
 set "MSI_FILE=%~f1"
 set "MSI_TARGET=%~f2"
 
-msieec /a "%MSI_FILE%" TARGETDIR="%MSI_TARGET%"
+msiexec /a "%MSI_FILE%" TARGETDIR="%MSI_TARGET%"
 
 endlocal
 goto :EOF
