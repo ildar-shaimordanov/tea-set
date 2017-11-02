@@ -49,7 +49,7 @@
         <setting key="Editor" name="EditOpenedForWrite" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="EditorCursorBeyondEOL" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="ExpandTabs" type="qword" value="0000000000000000"/>
-        <setting key="Editor" name="ExternalEditorName" type="text" value=""/>
+        <setting key="Editor" name="ExternalEditorName" type="text" value="notepad &quot;!\!.!&quot;"/>
         <setting key="Editor" name="F8CPs" type="text" value=""/>
         <setting key="Editor" name="FileSizeLimit" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="KeepEditorEOL" type="qword" value="0000000000000001"/>
@@ -280,7 +280,7 @@
         <setting key="VMenu" name="RBtnClick" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="AutoDetectCodePage" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="DefaultCodePage" type="qword" value="00000000000004E3"/>
-        <setting key="Viewer" name="ExternalViewerName" type="text" value=""/>
+        <setting key="Viewer" name="ExternalViewerName" type="text" value="notepad &quot;!\!.!&quot;"/>
         <setting key="Viewer" name="F8CPs" type="text" value=""/>
         <setting key="Viewer" name="IsWrap" type="qword" value="0000000000000000"/>
         <setting key="Viewer" name="MaxLineSize" type="qword" value="0000000000002710"/>
@@ -1519,7 +1519,7 @@
                     <key name="folders" description="">
                         <key name="d">
                             <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%TEA_HOME%\var\.DEVEL"/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\var\git"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
@@ -1597,6 +1597,13 @@
                         <key name="hv">
                             <value name="Description" type="text" value=""/>
                             <value name="Directory" type="text" value="%TEA_HOME%\vendors"/>
+                            <value name="Flags" type="qword" value="0000000000000000"/>
+                            <value name="HostFile" type="text" value=""/>
+                            <value name="Param" type="text" value=""/>
+                        </key>
+                        <key name="hvg">
+                            <value name="Description" type="text" value=""/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\var\git"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
