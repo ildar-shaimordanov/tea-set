@@ -42,7 +42,7 @@ netstat -rn \
 # Look for the strings "PROXY (.*)".
 
 proxy_list=( $(
-	timeout 2
+	timeout 2 \
 	wget -qO - "$proxy_auto_config" \
 	| grep -Eow 'PROXY [^"; ]+' \
 	| sed 's/^.* //; /^SETTINGS$/d'
