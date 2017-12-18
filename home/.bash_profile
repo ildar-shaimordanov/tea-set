@@ -38,20 +38,33 @@ esac
 
 # =========================================================================
 
-# Support Git-for-Windows
-echo $PATH | grep -q '/mingw32/bin' || { test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH" ; }
-echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH" ; }
-
-# =========================================================================
-
 PATH="$PATH:$HOME/bin"
 
 # =========================================================================
+
+# Clean the variable reserved for custom MOTD before using it. See the 
+# details below to understand the concept of this feature.
+unset BASH_PROFILE_MOTD
 
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
+
+# Either "~/.bashrc" or any of "~/.bash/*" can define its own MOTD 
+# (message of the day). They should be added (either prepended or 
+# appended) to the "$BASH_PROFILE_MOTD" variable. Each MOTD should be 
+# correct shell code taht will be executed after sourcing all "~/.bash/*" 
+# and "~/.bashrc" files. The easiest way to declare MOTD is as follows:
+#
+# BASH_PROFILE_MOTD="$BASH_PROFILE_MOTD
+# : some code here if needed
+# cat <<MOTD
+# some text here
+# MOTD
+# : another code if needed
+# "
+eval "$BASH_PROFILE_MOTD"
 
 # Set PATH so it includes user's private bin if it exists
 # if [ -d "${HOME}/bin" ] ; then

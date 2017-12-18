@@ -53,4 +53,14 @@ export HTTPS_PROXY="${proxy_list[${proxy_https_index:-0}]}"
 
 # =========================================================================
 
+BASH_PROFILE_MOTD="$BASH_PROFILE_MOTD
+cat <<EOD
+Proxy settings:
+http_proxy  = [$http_proxy]
+HTTPS_PROXY = [$HTTPS_PROXY]
+EOD
+"
+
+# =========================================================================
+
 # EOF

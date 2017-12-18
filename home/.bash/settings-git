@@ -2,6 +2,12 @@
 
 # =========================================================================
 
+# Support Git-for-Windows
+echo $PATH | grep -q '/mingw32/bin' || { test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH" ; }
+echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH" ; }
+
+# =========================================================================
+
 # Git settings
 declare -F | grep -q _git && return
 
