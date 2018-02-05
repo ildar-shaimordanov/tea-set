@@ -67,7 +67,7 @@ esac
 # console and Unix-like pty used in cygwin, msysgit and others.
 if which winpty > /dev/null 2>&1
 then
-	alias console="$( which winpty )"
+	alias winpty="$( which winpty )"
 else
 	case "$( uname | tr [:upper:] [:lower:] )" in
 	cygwin* )
@@ -80,9 +80,13 @@ else
 		;;
 	esac
 
-	test -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console" \
-	&& "$WINPTY/$OSTYPE/console" >/dev/null 2>&1 \
-	&& alias console="$WINPTY/$OSTYPE/console"
+	if [ -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/console" ]
+	then
+		alias winpty="$WINPTY/$OSTYPE/console"
+	elif [ -n "$WINPTY" -a -x "$WINPTY/$OSTYPE/bin/winpty" ]
+	then
+		alias winpty="$WINPTY/$OSTYPE/bin/winpty"
+	fi
 
 	unset WINPTY
 fi
