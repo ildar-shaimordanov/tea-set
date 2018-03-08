@@ -31,6 +31,7 @@ local tarball_ext = {
 }
 
 local function is_file(f, ext)
+	f = f:lower()
 	for i = 1, #ext do
 		if f:match("("..ext[i]..")$") then return true end
 	end
