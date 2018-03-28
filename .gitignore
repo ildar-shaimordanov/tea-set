@@ -14,6 +14,7 @@ bin/*
 
 etc/candy-for-tea.enabled
 etc/*.log
+etc/ConEmu/
 etc/distrib/
 etc/misc/
 !etc/**/README*
