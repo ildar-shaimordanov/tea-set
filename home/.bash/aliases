@@ -129,7 +129,7 @@ then
 	# alias get='git'
 
 	alias ggu='git config --local remote.origin.url'
-	alias ggn='git config --local remote.origin.url | sed "s|.*/||;s|\..*||"'
+	alias ggn='git config --local remote.origin.url | sed "s|.*/||;s|\.[^.]*$||"'
 	alias ggr='git rev-parse --show-toplevel'
 	alias ggb='git rev-parse --abbrev-ref HEAD'
 
