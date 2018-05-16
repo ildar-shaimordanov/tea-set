@@ -131,6 +131,7 @@ then
 	alias ggu='git config --local remote.origin.url'
 	alias ggn='git config --local remote.origin.url | sed "s|.*/||;s|\.[^.]*$||"'
 	alias ggr='git rev-parse --show-toplevel'
+	alias ggg='git rev-parse --git-dir'
 	alias ggb='git rev-parse --abbrev-ref HEAD'
 
 	# /cygdrive if cygwin default settings or emty string otherwise

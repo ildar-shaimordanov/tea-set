@@ -9,4 +9,5 @@
 	uncommit = reset HEAD^
 	undo = reset --soft HEAD^
 	show-root = rev-parse --show-toplevel
+	show-git = rev-parse --git-dir
 	show-url = config --local remote.origin.url
