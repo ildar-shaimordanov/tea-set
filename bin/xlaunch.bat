@@ -7,6 +7,6 @@ for /d %%d in (
 ) do if exist "%%~d" for %%n in (
 	XLaunch
 ) do if exist "%%~d\%%~n.exe" (
-	start "" "%%~d\XLaunch.exe" -run "%~dp0..\etc\misc\xsrv\xsrv-multiwindow.xlaunch"
+	start "" "%%~d\%%~n.exe" -run "%~dp0..\etc\misc\xsrv\xsrv-multiwindow.xlaunch"
 	goto :EOF
 )
