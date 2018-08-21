@@ -117,6 +117,7 @@ $7zip_exe = "";
 function download-archive( [string]$url, [string]$targetDir ) {
 	$filename = "$targetDir\" + [System.IO.Path]::GetFileName($url);
 	if ( ! ( Test-Path $filename ) ) {
+		[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
 		$webclient = New-Object System.Net.WebClient;
 		$webclient.DownloadFile($url, $filename);
 	}
