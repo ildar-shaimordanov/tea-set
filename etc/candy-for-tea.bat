@@ -84,6 +84,23 @@ $packages = @(
 	}
 
 	@{
+		"skip" = $True;
+		"name" = "Notepad3";
+		"home" = "https://www.rizonesoft.com/downloads/notepad3/";
+		"url" = "https://github.com/rizonesoft/Notepad3/releases/download/RELEASE_4.18.512.992/Notepad3_4.18.512.992.zip";
+		"dir" = "notepad";
+		"postinstall" = {
+			$dir = $args[0];
+			$ini = "$dir\Notepad3.ini";
+			mv -Force -Path "$ini" -Destination "$ini.orig";
+			& {
+				"[Notepad2]";
+				"Notepad2.ini=..\..\etc\notepad\Notepad.ini";
+			} | Out-File "$ini";
+		};
+	}
+
+	@{
 		"name" = "UnxUtils";
 		"home" = "http://unxutils.sourceforge.met/";
 		"url" = "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip";
