@@ -78,7 +78,7 @@ $packages = @(
 			mv -Force -Path "$ini" -Destination "$ini.orig";
 			& {
 				"[Notepad2]";
-				"Notepad2.ini=..\..\etc\notepad2\Notepad2.ini";
+				"Notepad2.ini=..\..\etc\notepad\Notepad.ini";
 			} | Out-File "$ini";
 		};
 	}
