@@ -25,9 +25,7 @@ etc/Far3/Profile/Plugins/*
 etc/Far3/Profile/PluginsData/*
 etc/Far3/Profile/*.db*
 
-etc/postinstall/GUI/
-
-etc/TLB/
+GUI/
 
 home/*
 !home/.bash_profile
@@ -36,10 +34,7 @@ home/*
 !home/.git-prompt.sh
 !home/.gitconfig
 !home/.inputrc
-!home/.minttyrc
 !home/.profile
-
-GUI/
 
 opt/*
 !opt/README*
