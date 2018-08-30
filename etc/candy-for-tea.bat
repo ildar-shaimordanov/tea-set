@@ -55,16 +55,8 @@ $packages = @(
 	@{
 		"name" = "Far3";
 		"home" = "http://www.farmanager.com/";
-		"url" = "https://farmanager.com/files/Far30b5225.x86.20180604.7z";
+		"url" = "https://farmanager.com/files/Far30b5254.x86.20180805.7z";
 		"dir" = "Far3";
-	}
-
-	@{
-		"skip" = $True;
-		"name" = "Far3bis";
-		"home" = "http://code.google.com/p/conemu-maximus5/";
-		"url" = "http://downloads.sourceforge.net/project/conemu/FarManager/Far3bis/far3.4254bis.x86.x64.7z";
-		"dir" = "Far3bis";
 	}
 
 	@{
