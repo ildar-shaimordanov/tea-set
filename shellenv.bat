@@ -136,8 +136,8 @@ call :shellenv.select.path "%ProgramFiles%\Oracle\VirtualBox"
 ::
 :: ========================================================================
 
-call :shellenv.lookup.java JDK_HOME jdk "Java Development Kit"
-call :shellenv.lookup.java JRE_HOME jre "Java Runtime Environment"
+call :shellenv.lookup.jdk
+call :shellenv.lookup.jre
 
 if defined JDK_HOME (
 	call :shellenv.set.home JAVA_HOME "%JDK_HOME%"
@@ -179,16 +179,24 @@ goto :EOF
 
 :: ========================================================================
 
-:: This routine looks for the latest version of JDK or JRE installed on 
-:: the PC and sets the environment variable (JDK_HOME or JRE_HOME, 
-:: respectively) to the appropriate path. Initially it looks for paths in 
-:: Windows Registry. If nothing is found there, it tries to find all Java 
+:: These routines look for the latest version of JDK or JRE installed on 
+:: the PC and set the environment variable (JDK_HOME or JRE_HOME, 
+:: respectively) to the appropriate path. Initially they look for paths in 
+:: Windows Registry. If nothing is found there, they try to find all Java 
 :: directories under %ProgramFiles% and %ProgramFiles(x86)% and set to the 
 :: latest one.
 ::
 :: %~1 - variable name (JDK_HOME or JRE_HOME)
 :: %~2 - engine name (jdk or jre)
 :: %~3 - registry name ("Java Development Kit" or "Java Runtime Environment")
+
+:shellenv.lookup.jdk
+call :shellenv.lookup.java JDK_HOME jdk "Java Development Kit"
+goto :EOF
+
+:shellenv.lookup.jre
+call :shellenv.lookup.java JRE_HOME jre "Java Runtime Environment"
+goto :EOF
 
 :shellenv.lookup.java
 set "%~1="
