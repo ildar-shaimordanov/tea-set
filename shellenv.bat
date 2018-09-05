@@ -145,8 +145,8 @@ call :shellenv.select.path "%ProgramFiles%\Oracle\VirtualBox"
 ::
 :: ========================================================================
 
-call :shellenv.lookup.java JRE
-call :shellenv.lookup.java JDK
+call :shellenv.lookup.java JDK_HOME jdk "Java Development Kit"
+call :shellenv.lookup.java JRE_HOME jre "Java Runtime Environment"
 
 if defined JDK_HOME (
 	call :shellenv.set.home JAVA_HOME "%JDK_HOME%"
@@ -190,20 +190,33 @@ goto :EOF
 
 :: This routine looks for the latest version of JDK or JRE installed on 
 :: the PC and sets the environment variable (JDK_HOME or JRE_HOME, 
-:: respectively) to the appropriate path. It considers all java versions 
-:: are installed by default under %ProgramFiles% and %ProgramFiles(x86)%.
+:: respectively) to the appropriate path. Initially it looks for paths in 
+:: Windows Registry. If nothing is found there, it tries to find all Java 
+:: directories under %ProgramFiles% and %ProgramFiles(x86)% and set to the 
+:: latest one.
 ::
-:: %~1 - one of them: JDK or JRE
+:: %~1 - variable name (JDK_HOME or JRE_HOME)
+:: %~2 - engine name (jdk or jre)
+:: %~3 - registry name ("Java Development Kit" or "Java Runtime Environment")
 
 :shellenv.lookup.java
+set "%~1="
 
-set "%~1_HOME="
+for %%q in (
+	"HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\%~3"
+	"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\JavaSoft\%~3"
+) do for /f "tokens=1,2,*" %%a in ( '
+	reg query "%%~q" /v "JavaHome" /s 2^>nul ^| find "JavaHome"
+' ) do if exist "%%~c" (
+	set "%~1=%%~c"
+)
+
 for /f %%d in ( '
-	dir /b "%ProgramFiles%\Java" "%ProgramFiles(x86)%\Java" 2^>nul ^| findstr /i "%~1" ^| sort
+	dir /b "%ProgramFiles%\Java" "%ProgramFiles(x86)%\Java" 2^>nul ^| findstr /i "%~2" ^| sort
 ' ) do if exist "%ProgramFiles%\Java\%%d" (
-	set "%~1_HOME=%ProgramFiles%\Java\%%d"
+	set "%~1=%ProgramFiles%\Java\%%d"
 ) else (
-	set "%~1_HOME=%ProgramFiles(x86)%\Java\%%d"
+	set "%~1=%ProgramFiles(x86)%\Java\%%d"
 )
 goto :EOF
 
@@ -229,7 +242,6 @@ goto :EOF
 :: %~3 - /P to force prepending to %PATH%, or empty
 
 :shellenv.set.home
-
 if defined %~1 goto :EOF
 
 :: Set all provided paths to %PATH%
