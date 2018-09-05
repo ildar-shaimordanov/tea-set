@@ -26,7 +26,7 @@ set "FAR_OPTS=/w /p"%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Pl
 
 if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
-if defined SHOW_BANNER_FAR if exist "%~dp0shellinfo.bat" call "%~dp0shellinfo.bat" %SHOW_BANNER_FAR%
+if exist "%~dp0shellinfo.bat" call "%~dp0shellinfo.bat" conemu far home path
 
 :: ========================================================================
 
