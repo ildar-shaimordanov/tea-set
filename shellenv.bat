@@ -244,10 +244,14 @@ goto :EOF
 if defined %~1 goto :EOF
 
 :: Set all provided paths to %PATH%
-call :shellenv.set.path "%~2\bin"     "%~3" && set "%~1=%~2"
-call :shellenv.set.path "%~2\sbin"    "%~3" && set "%~1=%~2"
-call :shellenv.set.path "%~2\usr\bin" "%~3" && set "%~1=%~2"
-call :shellenv.set.path "%~2"         "%~3" && set "%~1=%~2"
+for %%p in (
+	"%~2\bin"
+	"%~2\sbin"
+	"%~2\usr\bin"
+	"%~2"
+) do (
+	call :shellenv.set.path "%%~fp" "%~3" && set "%~1=%~2"
+)
 goto :EOF
 
 :: ========================================================================
@@ -267,10 +271,14 @@ goto :EOF
 :shellenv.select.path
 
 :: Only one of these paths will be appended to %PATH%
-call :shellenv.set.path "%~1\bin"     "%~2" && goto :EOF
-call :shellenv.set.path "%~1\usr\bin" "%~2" && goto :EOF
-call :shellenv.set.path "%~1\cmd"     "%~2" && goto :EOF
-call :shellenv.set.path "%~1"         "%~2" && goto :EOF
+for %%p in (
+	"%~1\bin"
+	"%~1\usr\bin"
+	"%~1\cmd"
+	"%~1"
+) do (
+	call :shellenv.set.path "%%~fp" "%~2" && goto :EOF
+)
 goto :EOF
 
 :: ========================================================================
