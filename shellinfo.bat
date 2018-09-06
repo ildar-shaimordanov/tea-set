@@ -7,9 +7,7 @@
 
 @echo off
 
-setlocal
-
-set "shellinfo.list=set path doskey alias home conemu far"
+if /i "%~1" == "list" goto :shellinfo_list
 
 if "%~1" == "" (
 	echo:Show the actual environment ^(variables and/or aliases^)
@@ -18,18 +16,24 @@ if "%~1" == "" (
 	echo:%~n0 PATTERN ...
 	echo:
 	echo:Available patterns:
-	echo:%shellinfo.list%
+	call :shellinfo_list
 
 	goto :EOF
 )
 
-:shellinfo.loop_1
+:shellinfo_loop_1
 if "%~1" == "" goto :EOF
 
-for %%m in ( %shellinfo.list% ) do if /i "%~1" == "%%m" call :shellinfo.%%m & echo:
+for /f %%m in ( '"%~f0" list' ) do if /i "%~1" == "%%m" call :shellinfo.%%m & echo:
 shift /1
 
-goto :shellinfo.loop_1
+goto :shellinfo_loop_1
+
+:: ========================================================================
+
+:shellinfo_list
+for /f "tokens=2 delims=." %%p in ( 'findstr /i /b ":shellinfo\." "%~f0"' ) do echo:%%~p
+goto :EOF
 
 :: ========================================================================
 
