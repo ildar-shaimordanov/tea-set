@@ -56,8 +56,10 @@
 :: .wsf
 :: http://www.dostips.com/forum/viewtopic.php?p=33963#p33963
 ::
+:: .kix
+::
 :: COPYRIGHTS
-:: Copyright (c) 2014, 2015, 2016 Ildar Shaimordanov
+:: Copyright (c) 2014, 2015, 2016, 2018 Ildar Shaimordanov
 
 @echo off
 
@@ -84,7 +86,7 @@ if not exist "%~f1" (
 	goto :cmdize.loop.continue
 )
 
-for %%x in ( .js .vbs .pl .sh .bash .ps1 .py .hta .htm .html .wsf ) do (
+for %%x in ( .js .vbs .pl .sh .bash .ps1 .py .hta .htm .html .wsf .kix ) do (
 	if /i "%~x1" == "%%~x" (
 		call :cmdize%%~x "%~1" >"%~dpn1.bat"
 		goto :cmdize.loop.continue
@@ -127,9 +129,7 @@ goto :EOF
 :: The environment variable %CMDIZE_ENGINE% allows to declare another 
 :: engine (cscript or wscript). 
 :: The default value is cscript. 
-:: The next label is duplicated intentionally to avoid error if this 
 :: script was saved in unix mode (EOL=LF).
-:cmdize.vbs.h
 :cmdize.vbs.h
 set /p "=::'" <nul
 type "%TEMP%\%~n0.$$"
@@ -263,6 +263,14 @@ for /f "usebackq tokens=1,2,* delims=?" %%a in ( "%~f1" ) do for /f "tokens=1,*"
 	goto :EOF
 )
 goto :EOF
+
+
+:: Comvert KiXtart file.
+:cmdize.kix
+echo:;@echo off
+echo:;kix32 "%%~f0" %%*
+echo:;goto :EOF
+type "%~f1"
 
 
 rem EOF
