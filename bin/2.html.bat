@@ -5,7 +5,7 @@
 :: firefox -h | more
 
 :: GUI application running string
-set "pipecmd="%~dp0..\GUI\FirefoxPortable\App\Firefox\firefox.exe" -profile "%~dp0..\GUI\FirefoxPortable\Data\profile" %%*"
+set "pipecmd="%~dp0..\GUI\FirefoxPortable\App\Firefox\firefox.exe" -profile "%~dp0..\etc\misc\FirefoxPortable-Data\profile" %%*"
 
 :: Set the extension to recognize the data type
 ::set "pipeext=.html"
