@@ -58,6 +58,9 @@ esac
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 # shopt -s cdspell
+#
+# Strip the ".exe" extension when use the bash autocompletion feature
+shopt -s completion_strip_exe
 
 # Completion options
 #
