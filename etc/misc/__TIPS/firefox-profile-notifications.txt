@@ -1,0 +1,59 @@
+# how do I stop firefox from notifying me about updates?
+
+https://superuser.com/a/1392487
+
+## open
+
+about:config
+
+## find
+
+app.update.url
+app.update.url.details
+app.update.url.manual
+
+## modify each prepending "xxx-"
+
+---
+
+# How do I remove the request for push notifications globally?
+
+https://www.reddit.com/r/firefox/comments/5augv2/how_do_i_remove_the_request_for_push/
+
+## open
+
+about:config
+
+## find
+
+dom.webnotifications.enabled
+dom.webnotifications.serviceworker.enabled
+dom.push.connection.enabled
+dom.push.enabled
+
+## modify setting them to false
+
+---
+
+# No More Notifications (If You Want) 
+
+https://blog.mozilla.org/firefox/no-notifications/
+
+## open
+
+about:preferences#privacy
+
+## find
+
+Permissions
+Location and/or Notifications
+
+## click the proper buttons
+
+Settings...
+
+## check in the box
+
+Block new requests asking to access your location
+Block new requests asking to allow notifications
+
