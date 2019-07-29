@@ -49,4 +49,53 @@ cover2folder() {
 
 # =========================================================================
 
+# Additional function, complementary to "declare -p", but shorter in
+# typing and produces more convenient output
+var() {
+	[ $# -eq 0 -a -n "$VAR_EVALED" ] && {
+		eval "$VAR_EVALED"
+		return $?
+	}
+
+	local format=""
+	local m=""
+	local a=""
+	local k=""
+
+	local opt
+	OPTIND=1
+	while getopts ":f:malk" opt
+	do
+		case "$opt" in
+		f ) format="$OPTARG" ;;	# redeclare formatting string
+		m ) m=1 ;;		# print the markers around the output
+		a ) a="[@]" ;;		# print as array
+		k ) k="!" ;;		# print array indexes
+		l ) k="#" ;;		# print length (string or array)
+		* ) echo "$FUNCNAME: Bad option: $OPTARG" >&2 ; return 2 ;;
+		esac
+	done
+	shift $(( $OPTIND - 1 ))
+
+	[ $# -gt 0 ] || {
+		echo "$FUNCNAME: Usage: [-f format] [-m] [-a] [-l|-k] name ..." >&2
+		return 1
+	}
+
+	VAR_EVALED="printf -- \"${format:-%s\\n}\""
+
+	local n
+	for n in "$@"
+	do
+		VAR_EVALED="$VAR_EVALED \"\${$k$n$a}\""
+	done
+
+	[ -n "$m" ] \
+	&& VAR_EVALED="echo '==== VAR BEGIN: $@';$VAR_EVALED;echo '==== VAR END: $@';"
+
+	eval "$VAR_EVALED"
+}
+
+# =========================================================================
+
 # EOF
