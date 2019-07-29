@@ -53,47 +53,69 @@ cover2folder() {
 # typing and produces more convenient output
 var() {
 	[ $# -eq 0 -a -n "$VAR_EVALED" ] && {
-		eval "$VAR_EVALED"
+		$FUNCNAME $VAR_EVALED
 		return $?
 	}
 
-	local format=""
-	local m=""
-	local a=""
-	local k=""
-
-	local opt
-	OPTIND=1
-	while getopts ":f:malk" opt
-	do
-		case "$opt" in
-		f ) format="$OPTARG" ;;	# redeclare formatting string
-		m ) m=1 ;;		# print the markers around the output
-		a ) a="[@]" ;;		# print as array
-		k ) k="!" ;;		# print array indexes
-		l ) k="#" ;;		# print length (string or array)
-		* ) echo "$FUNCNAME: Bad option: $OPTARG" >&2 ; return 2 ;;
-		esac
-	done
-	shift $(( $OPTIND - 1 ))
-
-	[ $# -gt 0 ] || {
-		echo "$FUNCNAME: Usage: [-f format] [-m] [-a] [-l|-k] name ..." >&2
+	[ $# -eq 0 -o "$1" == "-h" ] && {
+		echo "Usage: $FUNCNAME [-m] [-l] name ..." >&2
 		return 1
 	}
 
-	VAR_EVALED="printf -- \"${format:-%s\\n}\""
+	VAR_EVALED="$@"
 
-	local n
-	for n in "$@"
+	local mark	# mark output?
+	local len	# print length?
+
+	local arr	# array or assoc
+
+	local n1	# outer index
+	local n2	# inner index
+
+	local si	# string for parsed length
+	local sv	# string for parsed values or indexes
+
+	[ "$1" == "-m" ] && {
+		mark=1
+		shift
+	}
+
+	[ "$1" == "-l" ] && {
+		len=1
+		shift
+	}
+
+	[ -n "$mark" ] && echo "#### VAR BEGIN"
+
+	for n1 in "$@"
 	do
-		VAR_EVALED="$VAR_EVALED \"\${$k$n$a}\""
+		case "$( declare -p "$n1" 2>/dev/null )" in
+		''		) echo "$n1: not found" ; continue ;;
+		'declare -a'*	) arr="array" ;;
+		'declare -A'*	) arr="assoc" ;;
+		*		) arr="" ;;
+		esac
+
+		[ -n "$arr" ] || {
+			eval si="\${#$n1}"
+			eval sv="\${$n1}"
+			printf -- "%s%s = %s\n" "$n1" "${len:+:$si}" "$sv"
+			continue
+		}
+
+		eval si="\${#$n1[@]}"
+		eval sv="\${!$n1[@]}"
+		printf -- "%s: %s(%s)\n" "$n1" "$arr" "$si"
+
+		for n2 in $sv
+		do
+			eval si="\${#$n1[$n2]}"
+			eval sv="\${$n1[$n2]}"
+			printf -- " [%s%s] = %s\n" "$n2" "${len:+:$si}" "$sv"
+		done
 	done
 
-	[ -n "$m" ] \
-	&& VAR_EVALED="echo '==== VAR BEGIN: $@';$VAR_EVALED;echo '==== VAR END: $@';"
-
-	eval "$VAR_EVALED"
+	[ -n "$mark" ] && echo "#### VAR END"
 }
 
 # =========================================================================
