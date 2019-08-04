@@ -52,8 +52,8 @@ cover2folder() {
 # Additional function, complementary to "declare -p", but shorter in
 # typing and produces more convenient output
 var() {
-	[ $# -eq 0 -a -n "$VAR_EVALED" ] && {
-		$FUNCNAME $VAR_EVALED
+	[ $# -eq 0 -a -n "$VAR_OPTS" ] && {
+		$FUNCNAME $VAR_OPTS
 		return $?
 	}
 
@@ -62,7 +62,7 @@ var() {
 		return 1
 	}
 
-	VAR_EVALED="$@"
+	VAR_OPTS="$@"
 
 	local mark	# mark output?
 	local len	# print length?
