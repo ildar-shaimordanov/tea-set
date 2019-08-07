@@ -1,15 +1,4 @@
 bin/*
-!bin/alias.bat
-!bin/ansi.bat
-!bin/cmdize.bat
-!bin/cmdpid.bat
-!bin/exe2exe*
-!bin/ftpd.bat
-!bin/run-here.bat
-!bin/unalias.bat
-!bin/unpath.bat
-!bin/which.bat
-!bin/www.bat
 !bin/README*
 
 etc/candy-for-tea.enabled
