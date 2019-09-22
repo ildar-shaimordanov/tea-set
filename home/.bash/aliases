@@ -52,6 +52,13 @@ alias hd='od -Ax -tx1z -v'
 
 # =========================================================================
 
+if which colordiff > /dev/null 2>&1
+then
+	alias diff=colordiff
+fi
+
+# =========================================================================
+
 # Windows only (Cygwin or MSys)
 case "$( uname | tr [:upper:] [:lower:] )" in
 cygwin* | msys* | mingw* )
