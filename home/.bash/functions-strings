@@ -29,7 +29,7 @@ ord() {
 chr() {
 	local s
 	printf -v s '\\%03o' "$@"
-	printf $s
+	printf "$s"
 #	printf $( printf '\\%03o\\n' "$@" )
 }
 
@@ -41,7 +41,7 @@ chr() {
 rep() {
 	local s
 	printf -v s "%${2}s"
-	echo "${s// /$1}"
+	printf -- "${s// /$1}"
 #	printf "%${2}s" | sed "s/ /${1}/g"
 }
 
