@@ -52,13 +52,18 @@ cover2folder() {
 # Additional function, complementary to "declare -p", but shorter in
 # typing and produces more convenient output
 var() {
+	[ "$1" = "-r" ] && {
+		unset VAR_OPTS
+		return
+	}
+
 	[ $# -eq 0 -a -n "$VAR_OPTS" ] && {
 		$FUNCNAME $VAR_OPTS
 		return $?
 	}
 
 	[ $# -eq 0 -o "$1" == "-h" ] && {
-		echo "Usage: $FUNCNAME [-m] [-l] name ..." >&2
+		echo "Usage: $FUNCNAME [ -h | -r | [-m] [-l] name ... ]" >&2
 		return 1
 	}
 
