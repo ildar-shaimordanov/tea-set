@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-10-16 21:40:58" build="160313">
+		<key name=".Vanilla" modified="2019-10-16 21:43:29" build="160313">
 			<value name="SingleInstance" type="hex" data="01"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
@@ -79,7 +79,7 @@
 			<value name="SetDefaultTerminalStartupTSA" type="hex" data="00"/>
 			<value name="DefaultTerminalAgressive" type="hex" data="01"/>
 			<value name="DefaultTerminalNoInjects" type="hex" data="00"/>
-			<value name="DefaultTerminalNewWindow" type="hex" data="00"/>
+			<value name="DefaultTerminalNewWindow" type="hex" data="01"/>
 			<value name="DefaultTerminalConfirm" type="hex" data="01"/>
 			<value name="DefaultTerminalApps" type="string" data="explorer.exe"/>
 			<value name="ProcessAnsi" type="hex" data="01"/>
@@ -537,9 +537,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-			<key name="Tasks" modified="2019-10-16 21:40:58" build="160313">
+			<key name="Tasks" modified="2019-10-16 21:43:29" build="160313">
 				<value name="Count" type="long" data="11"/>
-				<key name="Task1" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task1" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{cmd}"/>
 					<value name="Hotkey" type="dword" data="00001154"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -548,7 +548,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task2" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task2" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Prompt}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -557,7 +557,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task3" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task3" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Prompt...}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -566,7 +566,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task4" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task4" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Far3}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -575,7 +575,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task5" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task5" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Far3...}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -584,7 +584,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task6" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task6" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{syncup}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -595,7 +595,7 @@
 					<value name="Count" type="long" data="3"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task7" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task7" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{wscmd}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -604,7 +604,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task8" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task8" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Cygwin}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -613,7 +613,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task9" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task9" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{Git}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -622,7 +622,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task10" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task10" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{flinux}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -631,7 +631,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task11" modified="2019-10-16 21:40:58" build="160313">
+				<key name="Task11" modified="2019-10-16 21:43:29" build="160313">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -641,10 +641,10 @@
 					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2019-10-16 21:40:58" build="160313">
+			<key name="Apps" modified="2019-10-16 21:43:29" build="160313">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2019-10-16 21:40:58" build="160313">
+			<key name="Colors" modified="2019-10-16 21:43:29" build="160313">
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="ProcessCmdStart" type="hex" data="01"/>
@@ -661,7 +661,7 @@
 			<value name="StatusBar.Hide.WVDC" type="hex" data="01"/>
 			<value name="TabFlashChanged" type="long" data="8"/>
 			<value name="TabModifiedSuffix" type="string" data="[*]"/>
-			<key name="HotKeys" modified="2019-10-16 21:40:58" build="160313">
+			<key name="HotKeys" modified="2019-10-16 21:43:29" build="160313">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
