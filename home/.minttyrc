@@ -6,3 +6,4 @@ OpaqueWhenFocused=no
 ClicksPlaceCursor=no
 RightClickAction=paste
 FontHeight=10
+BellType=0
