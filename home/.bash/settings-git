@@ -12,6 +12,7 @@ echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw6
 declare -F | grep -q _git && return
 
 for f in \
+	"/usr/share/bash-completion/completions/git" \
 	"$HOME/.git-completion.bash" \
 	"/etc/git-completion.bash" \
 	"/mingw64/share/git/completion/git-completion.bash" \
