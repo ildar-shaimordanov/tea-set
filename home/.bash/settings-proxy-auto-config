@@ -43,7 +43,7 @@ netstat -rn \
 
 proxy_list=( $(
 	timeout 5 \
-	wget -qO - "$proxy_auto_config" \
+	wget -qO - "$proxy_auto_config" -o /dev/null \
 	| grep -Eow 'PROXY [^"; ]+' \
 	| sed 's/^.* //; /^SETTINGS$/d'
 ) )
