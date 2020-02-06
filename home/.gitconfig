@@ -11,3 +11,6 @@
 	show-root = rev-parse --show-toplevel
 	show-git = rev-parse --git-dir
 	show-url = config --local remote.origin.url
+[pager]
+	branch = cat
+	diff = less -FR
