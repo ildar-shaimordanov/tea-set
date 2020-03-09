@@ -2,6 +2,7 @@
 	autocrlf = input
 	eol = lf
 	filemode = false
+	pager = less -FR
 [color]
 	ui = true
 [alias]
@@ -13,4 +14,6 @@
 	show-url = config --local remote.origin.url
 [pager]
 	branch = cat
-	diff = less -FR
+	config = cat
+	diff = less -R
+	log = less -R
