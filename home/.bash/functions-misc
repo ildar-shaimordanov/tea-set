@@ -10,7 +10,10 @@ clip() {
 	[ -t 0 ] || { cat - >/dev/clipboard ; return ; }
 
 	# clip '...'
-	[ $# -eq 0 ] || { clip | eval "$@" | clip ; return $? ; }
+#	[ $# -eq 0 ] || { clip | eval "$@" | clip ; return $? ; }
+
+	# simply output the clipboard
+	[ "$1" = "-h" ] || { cat /dev/clipboard ; return ; }
 
 	cat - <<USAGE
 Usage:
@@ -18,6 +21,18 @@ Usage:
     .... | clip
     clip '....'
 USAGE
+}
+
+# =========================================================================
+
+ip2hex() {
+	local ip
+	IFS="." read -ra ip <<<"$1"
+	printf "0x0001%02x%02x%02x%02x" "${ip[@]}"
+}
+
+hex2ip() {
+	printf "%d.%d.%d.%d" "0x${1:6:2}" "0x${1:8:2}" "0x${1:10:2}" "0x${1:12:2}"
 }
 
 # =========================================================================
