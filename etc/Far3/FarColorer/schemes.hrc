@@ -23,6 +23,17 @@
 <filename>/\.(js|mocha)$/i</filename>
 </prototype>
 
+<prototype name="perl" group="inet" description="Perl">
+<location link="schemes/perl.hrc"/>
+<filename>/\.(pl[sx]?|pm|pod|t|ph)$/i</filename>
+<firstline weight='2'>/^\#!\s*.+perl\b/</firstline>
+<firstline>/perl/i</firstline>
+<parameters>
+<param name="use-packages" value="true" description="Highlight perl packages"/>
+<param name="data-code" value="true" description="Treat __DATA__ sections as code"/>
+</parameters>
+</prototype>
+
 <!--
 <prototype name="Batch" group="scripts" description="Batch/Config.sys/NTcmd">
 <location link="schemes/batch.hrc"/>
