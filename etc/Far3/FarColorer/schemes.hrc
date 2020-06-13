@@ -18,10 +18,10 @@
 <filename>/\.(pegjs)$/i</filename>
 </prototype>
 
-<prototype name="jScript" group="inet" description="JavaScript">
+<!-- prototype name="jScript" group="inet" description="JavaScript">
 <location link="schemes/jscript.hrc"/>
 <filename>/\.(js|mocha)$/i</filename>
-</prototype>
+</prototype -->
 
 <prototype name="perl" group="inet" description="Perl">
 <location link="schemes/perl.hrc"/>
