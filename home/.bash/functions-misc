@@ -9,9 +9,6 @@ clip() {
 	# ... | clip
 	[ -t 0 ] || { cat - >/dev/clipboard ; return ; }
 
-	# clip '...'
-#	[ $# -eq 0 ] || { clip | eval "$@" | clip ; return $? ; }
-
 	# simply output the clipboard
 	[ "$1" = "-h" ] || { cat /dev/clipboard ; return ; }
 
@@ -19,7 +16,6 @@ clip() {
 Usage:
     clip | ....
     .... | clip
-    clip '....'
 USAGE
 }
 
