@@ -47,8 +47,36 @@ alias ll='ls -l'                                # long list
 alias la='ls -A'                                # all but . and ..
 alias l='ls -CF'                                #
 
-# http://www.pixelbeat.org/settings/.bashrc
-alias hd='od -Ax -tx1z -v'
+# =========================================================================
+
+# The following section provides 4 different implementations to display
+# file contents in ascii and hexadecimal. In fact, it's quite redundant
+# because the most of these tools are available in Linux and Cygwin-like
+# environments.
+if which od > /dev/null 2>&1
+then
+	# http://www.pixelbeat.org/settings/.bashrc
+	alias hd='od -Ax -tx1z -v'
+elif which hexdump > /dev/null 2>&1
+then
+	alias hd='hexdump -C'
+elif which xxd > /dev/null 2>&1
+then
+	alias hd='xxd -g1'
+else
+	# perl implementing xdd -g1
+	alias hd=xxd_g1
+	xxd_g1() {
+		perl -000 -e '
+		for ( <> =~ /.{1,16}/gs ) {
+			@d = unpack("H32") =~ /../g;
+			s/[^[:print:]]/./g;
+			printf "%08x: %-48s %s\n", $o, "@d", $_;
+			$o += 16;
+		}
+		'
+	}
+fi
 
 # =========================================================================
 
