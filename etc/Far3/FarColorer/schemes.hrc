@@ -2,20 +2,15 @@
 <hrc>
 
 <!--  IUM languages  -->
-<prototype name="ium.basic" group="IUM" description="IUM Basic">
-<location link="schemes/ium/ium.basic.hrc"/>
+<prototype name="ium.basic" group="rare.IUM" description="IUM Basic">
+<location link="schemes/rare-ium/ium.basic.hrc"/>
 <filename>/\.(bas)$/i</filename>
 <firstline weight="4">/^((:\s*)?'\s*|\#\!.*)fbasic/</firstline>
 </prototype>
 
-<prototype name="ium.config" group="IUM" description="IUM config">
-<location link="schemes/ium/ium.config.hrc"/>
+<prototype name="ium.config" group="rare.IUM" description="IUM config">
+<location link="schemes/rare-ium/ium.config.hrc"/>
 <filename>/\.(config)$/i</filename>
-</prototype>
-
-<prototype name="pegjs" group="rare" description="PEGjs">
-<location link="schemes/ium/pegjs.hrc"/>
-<filename>/\.(pegjs)$/i</filename>
 </prototype>
 
 <!-- prototype name="jScript" group="inet" description="JavaScript">
@@ -23,6 +18,7 @@
 <filename>/\.(js|mocha)$/i</filename>
 </prototype -->
 
+<!--
 <prototype name="perl" group="inet" description="Perl">
 <location link="schemes/perl.hrc"/>
 <filename weight="3">/\.(pl[sx]?|pm|pod|t|ph)$/i</filename>
@@ -33,6 +29,7 @@
 <param name="data-code" value="true" description="Treat __DATA__ sections as code"/>
 </parameters>
 </prototype>
+-->
 
 <!--
 <prototype name="Batch" group="scripts" description="Batch/Config.sys/NTcmd">
@@ -49,7 +46,6 @@
 -->
 
 <!--
--->
 <prototype name="shell" group="scripts" description="sh/ksh/bash script">
 <location link="schemes/sh.hrc"/>
 <filename>/\.(sh|spec)$/i</filename>
@@ -58,5 +54,6 @@
 <filename>/\.(ba|k|z)?shrc/</filename>
 <firstline weight='2'>/^\#(!\s*.+sh\b)/</firstline>
 </prototype>
+-->
 
 </hrc>
