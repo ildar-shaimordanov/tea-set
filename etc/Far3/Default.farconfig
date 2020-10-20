@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<farconfig version="3.0.4774">
+<farconfig version="3.0.5555">
     <generalconfig>
         <setting key="Cmdline" name="AutoComplete" type="qword" value="0000000000000000"/>
         <setting key="Cmdline" name="DelRemovesBlocks" type="qword" value="0000000000000001"/>
@@ -44,6 +44,7 @@
         <setting key="Editor" name="AutoIndent" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="BSLikeDel" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="CharCodeBase" type="qword" value="0000000000000001"/>
+        <setting key="Editor" name="CreateBackups" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="DefaultCodePage" type="qword" value="00000000000004E3"/>
         <setting key="Editor" name="DelRemovesBlocks" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="EditOpenedForWrite" type="qword" value="0000000000000001"/>
@@ -53,10 +54,12 @@
         <setting key="Editor" name="F8CPs" type="text" value=""/>
         <setting key="Editor" name="FileSizeLimit" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="KeepEditorEOL" type="qword" value="0000000000000001"/>
+        <setting key="Editor" name="NewFileUnixEOL" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="PersistentBlocks" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="ReadOnlyLock" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="SaveEditorPos" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="SaveEditorShortPos" type="qword" value="0000000000000001"/>
+        <setting key="Editor" name="SaveSafely" type="qword" value="0000000000000001"/>
         <setting key="Editor" name="SearchCursorAtEnd" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="SearchPickUpWord" type="qword" value="0000000000000000"/>
         <setting key="Editor" name="SearchRegexp" type="qword" value="0000000000000000"/>
@@ -103,9 +106,11 @@
         <setting key="Interface" name="TitleAddons" type="text" value="%Ver.%Build %Platform %Admin"/>
         <setting key="Interface" name="UseVk_oem_x" type="qword" value="0000000000000001"/>
         <setting key="Interface" name="ViewerTitleFormat" type="text" value="%Lng %File"/>
+        <setting key="Interface" name="VirtualTerminalRendering" type="qword" value="0000000000000000"/>
         <setting key="Interface.Completion" name="Append" type="qword" value="0000000000000000"/>
         <setting key="Interface.Completion" name="ModalList" type="qword" value="0000000000000000"/>
         <setting key="Interface.Completion" name="ShowList" type="qword" value="0000000000000001"/>
+        <setting key="Interface.Completion" name="UseEnvironment" type="qword" value="0000000000000001"/>
         <setting key="Interface.Completion" name="UseFilesystem" type="qword" value="0000000000000001"/>
         <setting key="Interface.Completion" name="UseHistory" type="qword" value="0000000000000001"/>
         <setting key="Interface.Completion" name="UsePath" type="qword" value="0000000000000001"/>
@@ -122,7 +127,7 @@
         <setting key="Macros" name="KeyRecordRCtrlDot" type="text" value="RCtrl."/>
         <setting key="Macros" name="KeyRecordRCtrlShiftDot" type="text" value="RCtrlShift."/>
         <setting key="Macros" name="ShowPlayIndicator" type="qword" value="0000000000000001"/>
-        <setting key="Masks" name="arc" type="text" value="*.rar,*.zip,*.[zj],*.[bg7x]z,*.[bg]zip,*.tar,*.t[agbx]z,*.ar[cj],*.r[0-9][0-9],*.a[0-9][0-9],*.bz2,*.cab,*.msi,*.jar,*.lha,*.lzh,*.ha,*.ac[bei],*.pa[ck],*.rk,*.cpio,*.rpm,*.zoo,*.hqx,*.sit,*.ice,*.uc2,*.ain,*.imp,*.777,*.ufa,*.boa,*.bs[2a],*.sea,*.hpk,*.ddi,*.x2,*.rkv,*.[lw]sz,*.h[ay]p,*.lim,*.sqz,*.chz"/>
+        <setting key="Masks" name="arc" type="text" value="*.rar,*.zip,*.[zj],*.[bg7x]z,*.[bg]zip,*.tar,*.t[agbx]z,*.ar[cj],*.r[0-9][0-9],*.a[0-9][0-9],*.bz2,*.cab,*.msi,*.[jwe]ar,*.lha,*.lzh,*.ha,*.ac[bei],*.pa[ck],*.rk,*.cpio,*.rpm,*.zoo,*.hqx,*.sit,*.ice,*.uc2,*.ain,*.imp,*.777,*.ufa,*.boa,*.bs[2a],*.sea,*.hpk,*.ddi,*.x2,*.rkv,*.[lw]sz,*.h[ay]p,*.lim,*.sqz,*.chz"/>
         <setting key="Masks" name="conf" type="text" value="*.cfg,*.cnf,*.conf,*.config,*.ini,*.dsk,*.reg"/>
         <setting key="Masks" name="data" type="text" value="*.dat"/>
         <setting key="Masks" name="exec" type="text" value="*.exe,*.com,*.bat,*.cmd,*.sh"/>
@@ -139,6 +144,7 @@
         <setting key="Panel" name="SelectFolders" type="qword" value="0000000000000001"/>
         <setting key="Panel" name="ShellRightLeftArrowsRule" type="qword" value="0000000000000000"/>
         <setting key="Panel" name="ShortcutAlwaysChdir" type="qword" value="0000000000000000"/>
+        <setting key="Panel" name="ShowBytes" type="qword" value="0000000000000001"/>
         <setting key="Panel" name="ShowHidden" type="qword" value="0000000000000000"/>
         <setting key="Panel" name="SortFolderExt" type="qword" value="0000000000000001"/>
         <setting key="Panel.Info" name="InfoComputerNameFormat" type="qword" value="0000000000000004"/>
@@ -183,6 +189,7 @@
         <setting key="Panel.Tree" name="AutoChangeFolder" type="qword" value="0000000000000000"/>
         <setting key="Panel.Tree" name="MinTreeCount" type="qword" value="0000000000000004"/>
         <setting key="Panel.Tree" name="TreeFileAttr" type="qword" value="0000000000000002"/>
+        <setting key="Panel.Tree" name="TurnOffCompletely" type="qword" value="0000000000000001"/>
         <setting key="PluginConfirmations" name="EvenIfOnlyOnePlugin" type="qword" value="0000000000000000"/>
         <setting key="PluginConfirmations" name="OpenFilePlugin" type="qword" value="0000000000000000"/>
         <setting key="PluginConfirmations" name="Prefix" type="qword" value="0000000000000000"/>
@@ -256,11 +263,17 @@
         <setting key="System" name="UseRegisteredTypes" type="qword" value="0000000000000001"/>
         <setting key="System" name="UseSystemCopy" type="qword" value="0000000000000001"/>
         <setting key="System" name="WindowMode" type="qword" value="0000000000000000"/>
+        <setting key="System" name="WindowMode.StickyX" type="qword" value="0000000000000001"/>
+        <setting key="System" name="WindowMode.StickyY" type="qword" value="0000000000000000"/>
         <setting key="System" name="WipeSymbol" type="qword" value="0000000000000000"/>
+        <setting key="System" name="WordDiv" type="text" value="~!%^&amp;*()+|{}:&quot;&lt;&gt;?`-=\[];&apos;,./"/>
         <setting key="System.Exception" name="FarEventSvc" type="text" value=""/>
         <setting key="System.Exception" name="Used" type="qword" value="0000000000000000"/>
         <setting key="System.Executor" name="BatchType" type="text" value=".BAT;.CMD;"/>
         <setting key="System.Executor" name="ComSpecParams" type="text" value="/C"/>
+        <setting key="System.Executor" name="Comspec" type="text" value="%COMSPEC%"/>
+        <setting key="System.Executor" name="ComspecArguments" type="text" value="/S /C &quot;{0}&quot;"/>
+        <setting key="System.Executor" name="ComspecCondition" type="text" value=""/>
         <setting key="System.Executor" name="ExcludeCmds" type="text" value=""/>
         <setting key="System.Executor" name="FullTitle" type="qword" value="0000000000000000"/>
         <setting key="System.Executor" name="NotQuotedShell" type="text" value="TCC.EXE;TCCLE.EXE"/>
@@ -275,16 +288,21 @@
         <setting key="System.KnownIDs" name="Netbox" type="text" value="42E4AEB1-A230-44F4-B33C-F195BB654931"/>
         <setting key="System.KnownIDs" name="Network" type="text" value="773B5051-7C5F-4920-A201-68051C4176A4"/>
         <setting key="System.Nowell" name="MoveRO" type="qword" value="0000000000000001"/>
+        <setting key="System.Sort" name="CaseSensitive" type="qword" value="0000000000000000"/>
+        <setting key="System.Sort" name="Collation" type="qword" value="0000000000000002"/>
+        <setting key="System.Sort" name="DigitsAsNumbers" type="qword" value="0000000000000001"/>
         <setting key="VMenu" name="LBtnClick" type="qword" value="0000000000000001"/>
         <setting key="VMenu" name="MBtnClick" type="qword" value="0000000000000002"/>
         <setting key="VMenu" name="RBtnClick" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="AutoDetectCodePage" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="DefaultCodePage" type="qword" value="00000000000004E3"/>
-        <setting key="Viewer" name="ExternalViewerName" type="text" value="notepad &quot;!\!.!&quot;"/>
+        <setting key="Viewer" name="DetectDumpMode" type="qword" value="0000000000000001"/>
+        <setting key="Viewer" name="ExternalViewerName" type="text" value=""/>
         <setting key="Viewer" name="F8CPs" type="text" value=""/>
-        <setting key="Viewer" name="IsWrap" type="qword" value="0000000000000000"/>
+        <setting key="Viewer" name="IsWrap" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="MaxLineSize" type="qword" value="0000000000002710"/>
         <setting key="Viewer" name="PersistentBlocks" type="qword" value="0000000000000001"/>
+        <setting key="Viewer" name="SaveViewMode" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="SaveViewerCodepage" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="SaveViewerPos" type="qword" value="0000000000000001"/>
         <setting key="Viewer" name="SaveViewerShortPos" type="qword" value="0000000000000001"/>
@@ -542,9 +560,9 @@
         <filetype mask="*.class" description="Java Class">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;jad -p &quot;!.!&quot;"/>
+            <command type="2" enabled="1" command="view:&lt;jd-cfr &quot;!.!&quot;"/>
             <command type="3" enabled="0" command=""/>
-            <command type="4" enabled="1" command="edit:&lt;jad -p &quot;!.!&quot;"/>
+            <command type="4" enabled="1" command="edit:&lt;jd-cfr &quot;!.!&quot;"/>
             <command type="5" enabled="0" command=""/>
         </filetype>
         <filetype mask="*.rtf" description="RTF">
@@ -558,7 +576,7 @@
         <filetype mask="*.pdf" description="PDF">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\vendors\cygwin\bin\gs -q -dNOPAUSE -dBATCH -P- -dSAFER -sDEVICE=ps2write -sOutputFile=- -f &quot;!.!&quot; | %TEA_HOME%\vendors\cygwin\bin\gs -q -dNODISPLAY -P- -dSAFER -dDELAYBIND -dWRITESYSTEMDICT -dSIMPLE -c save -f ps2ascii.ps - -c quit"/>
+            <command type="2" enabled="1" command="view:&lt;pdftotext &quot;!.!&quot; -"/>
             <command type="3" enabled="0" command=""/>
             <command type="4" enabled="0" command=""/>
             <command type="5" enabled="0" command=""/>
@@ -581,9 +599,6 @@
         </filetype>
     </associations>
     <pluginhotkeys>
-        <plugin key="%FARPROFILE%/Plugins/S&amp;R/s_and_r.dll">
-            <hotkey menu="plugins" guid="00000000-0000-0000-0000-000000000000" hotkey="&amp;"/>
-        </plugin>
         <plugin key="1E26A927-5135-48C6-88B2-845FB8945484">
             <hotkey menu="drive" guid="61026851-2643-4C67-BF80-D3C77A3AE830" hotkey="0"/>
         </plugin>
@@ -602,9 +617,6 @@
         <plugin key="894EAABB-C57F-4549-95FC-4AC6F3102A36">
             <hotkey menu="plugins" guid="DCEFBFC8-9C43-49E5-ABE6-875FED184652" hotkey="="/>
         </plugin>
-        <plugin key="8E11EA75-0303-4374-AC60-D1E38F865449">
-            <hotkey menu="plugins" guid="3D5E7985-3B5D-4777-A572-BA7C621B3731" hotkey="^"/>
-        </plugin>
         <plugin key="B77C964B-E31E-4D4C-8FE5-D6B0C6853E7C">
             <hotkey menu="drive" guid="F98C70B3-A1AE-4896-9388-C5C8E05013B7" hotkey="1"/>
         </plugin>
@@ -614,8 +626,11 @@
         <plugin key="DEEC52C3-AC76-4AD3-A6EF-CAFC33BD4C05">
             <hotkey menu="plugins" guid="D0D889F1-E47F-4508-9254-AD1432F7905C" hotkey="\"/>
         </plugin>
-        <plugin key="F250C12A-78E2-4ABC-A784-3FDD3156E415">
-            <hotkey menu="plugins" guid="9340F8E5-F4A1-4BE2-A146-0A4968A3D16C" hotkey="$"/>
+        <plugin key="Plugins/_Downloaded/S&amp;R/s_and_r.dll">
+            <hotkey menu="plugins" guid="00000000-0000-0000-0000-000000000000" hotkey="&amp;"/>
+        </plugin>
+        <plugin key="Plugins/_Downloaded/calc/bin/calc.dll">
+            <hotkey menu="plugins" guid="00000000-0000-0000-0000-000000000000" hotkey="="/>
         </plugin>
     </pluginhotkeys>
     <filters>
@@ -629,17 +644,16 @@
         <hierarchicalconfig>
             <key name="Highlight">
                 <key name="Group0">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000400"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit italic"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000001"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000400"/>
                     <value name="MarkChar" type="qword" value="000000000000003E"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -651,23 +665,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit italic"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000000"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group1">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000002"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000008" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000002"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -679,23 +694,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group10">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000007" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags=""/>
@@ -707,23 +723,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000000"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group11">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000004" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags=""/>
@@ -735,23 +752,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000000"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group12">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000000" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags=""/>
@@ -763,23 +781,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000000"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group2">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000004"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000008" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000004"/>
                     <value name="MarkChar" type="qword" value="000000000000002A"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -791,23 +810,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group3">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000010"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF00000F" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000010"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -819,23 +839,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group4">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000010"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000010"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -847,23 +868,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group5">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="0000000B" foreground="FF000000" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -875,23 +897,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group6">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF00000D" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -903,23 +926,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group7">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000006" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -931,23 +955,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group8">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000010"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF00000F" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000001"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000010"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
@@ -959,23 +984,24 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000001"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000000"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
                 <key name="Group9">
+                    <value name="AttrClear" type="qword" value="0000000000000000"/>
+                    <value name="AttrSet" type="qword" value="0000000000000000"/>
                     <value name="ContinueProcessing" type="qword" value="0000000000000000"/>
                     <value name="CursorColor" type="color" background="00000003" foreground="FF000002" flags="fg4bit bg4bit"/>
-                    <value name="DateAfter" type="hex" value="00,00,00,00,00,00,00,00"/>
-                    <value name="DateBefore" type="hex" value="00,00,00,00,00,00,00,00"/>
                     <value name="DateRelative" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeAfter" type="qword" value="0000000000000000"/>
+                    <value name="DateTimeBefore" type="qword" value="0000000000000000"/>
                     <value name="DateType" type="qword" value="0000000000000000"/>
-                    <value name="ExcludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="HardLinksAbove" type="qword" value="0000000000000000"/>
                     <value name="HardLinksBelow" type="qword" value="0000000000000000"/>
-                    <value name="IgnoreMask" type="qword" value="0000000000000000"/>
-                    <value name="IncludeAttributes" type="qword" value="0000000000000000"/>
                     <value name="MarkChar" type="qword" value="0000000000000000"/>
                     <value name="MarkCharCursorColor" type="color" background="00000000" foreground="FF000000" flags=""/>
                     <value name="MarkCharNormalColor" type="color" background="00000000" foreground="FF000000" flags=""/>
@@ -987,9 +1013,11 @@
                     <value name="SelectedCursorColor" type="color" background="00000000" foreground="FF000000" flags="fg4bit bg4bit"/>
                     <value name="SizeAboveS" type="text" value=""/>
                     <value name="SizeBelowS" type="text" value=""/>
+                    <value name="Title" type="text" value=""/>
                     <value name="UseAttr" type="qword" value="0000000000000000"/>
                     <value name="UseDate" type="qword" value="0000000000000000"/>
                     <value name="UseHardLinks" type="qword" value="0000000000000000"/>
+                    <value name="UseMask" type="qword" value="0000000000000001"/>
                     <value name="UseSize" type="qword" value="0000000000000000"/>
                 </key>
             </key>
@@ -998,7 +1026,7 @@
     </highlight>
     <panelmodes>
         <hierarchicalconfig>
-            <key name="0" description="">
+            <key name="0">
                 <value name="ColumnTitles" type="text" value="NM,SC,D"/>
                 <value name="ColumnWidths" type="text" value="0,10,0"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1006,7 +1034,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR"/>
                 <value name="StatusColumnWidths" type="text" value="0"/>
             </key>
-            <key name="1" description="">
+            <key name="1">
                 <value name="ColumnTitles" type="text" value="N,N,N"/>
                 <value name="ColumnWidths" type="text" value="0,0,0"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1014,7 +1042,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR,S,D,T"/>
                 <value name="StatusColumnWidths" type="text" value="0,6,0,5"/>
             </key>
-            <key name="2" description="">
+            <key name="2">
                 <value name="ColumnTitles" type="text" value="N,N"/>
                 <value name="ColumnWidths" type="text" value="0,0"/>
                 <value name="Flags" type="qword" value="0000000000000000"/>
@@ -1022,7 +1050,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR,S,D,T"/>
                 <value name="StatusColumnWidths" type="text" value="0,6,0,5"/>
             </key>
-            <key name="3" description="">
+            <key name="3">
                 <value name="ColumnTitles" type="text" value="N,S,D,T"/>
                 <value name="ColumnWidths" type="text" value="0,6,0,5"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1030,7 +1058,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR"/>
                 <value name="StatusColumnWidths" type="text" value="0"/>
             </key>
-            <key name="4" description="">
+            <key name="4">
                 <value name="ColumnTitles" type="text" value="N,S"/>
                 <value name="ColumnWidths" type="text" value="0,6"/>
                 <value name="Flags" type="qword" value="0000000000000000"/>
@@ -1038,7 +1066,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR,S,D,T"/>
                 <value name="StatusColumnWidths" type="text" value="0,6,0,5"/>
             </key>
-            <key name="5" description="">
+            <key name="5">
                 <value name="ColumnTitles" type="text" value="N,S,P,DM,DC,DA,A"/>
                 <value name="ColumnWidths" type="text" value="0,6,6,14,14,14,0"/>
                 <value name="Flags" type="qword" value="0000000000000003"/>
@@ -1046,7 +1074,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR"/>
                 <value name="StatusColumnWidths" type="text" value="0"/>
             </key>
-            <key name="6" description="">
+            <key name="6">
                 <value name="ColumnTitles" type="text" value="N,Z"/>
                 <value name="ColumnWidths" type="text" value="40%,0"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1054,7 +1082,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR,S,D,T"/>
                 <value name="StatusColumnWidths" type="text" value="0,6,0,5"/>
             </key>
-            <key name="7" description="">
+            <key name="7">
                 <value name="ColumnTitles" type="text" value="N,S,Z"/>
                 <value name="ColumnWidths" type="text" value="0,6,70%"/>
                 <value name="Flags" type="qword" value="0000000000000003"/>
@@ -1062,7 +1090,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR"/>
                 <value name="StatusColumnWidths" type="text" value="0"/>
             </key>
-            <key name="8" description="">
+            <key name="8">
                 <value name="ColumnTitles" type="text" value="N,S,O"/>
                 <value name="ColumnWidths" type="text" value="0,6,15"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1070,7 +1098,7 @@
                 <value name="StatusColumnTitles" type="text" value="NR,S,D,T"/>
                 <value name="StatusColumnWidths" type="text" value="0,6,0,15"/>
             </key>
-            <key name="9" description="">
+            <key name="9">
                 <value name="ColumnTitles" type="text" value="N,S,LN"/>
                 <value name="ColumnWidths" type="text" value="0,6,3"/>
                 <value name="Flags" type="qword" value="0000000000000002"/>
@@ -1083,17 +1111,17 @@
     </panelmodes>
     <shortcuts>
         <hierarchicalconfig>
-            <key name="Shortcuts" description="">
-                <key name="0" description=""/>
-                <key name="1" description=""/>
-                <key name="2" description=""/>
-                <key name="3" description=""/>
-                <key name="4" description=""/>
-                <key name="5" description=""/>
-                <key name="6" description=""/>
-                <key name="7" description=""/>
-                <key name="8" description=""/>
-                <key name="9" description=""/>
+            <key name="Shortcuts">
+                <key name="0"/>
+                <key name="1"/>
+                <key name="2"/>
+                <key name="3"/>
+                <key name="4"/>
+                <key name="5"/>
+                <key name="6"/>
+                <key name="7"/>
+                <key name="8"/>
+                <key name="9"/>
             </key>
         </hierarchicalconfig>
     </shortcuts>
@@ -1260,7 +1288,7 @@
         <plugin guid="23C16506-38EE-48D1-9874-CD1736408867">
             <hierarchicalconfig>
                 <key name="23C16506-38EE-48D1-9874-CD1736408867" description="LUA Format Block">
-                    <key name="lfblock.data" description="">
+                    <key name="lfblock.data">
                         <value name="align" type="qword" value="0000000000000001"/>
                         <value name="first" type="qword" value="0000000000000001"/>
                         <value name="insertline" type="qword" value="0000000000000000"/>
@@ -1316,9 +1344,9 @@
         <plugin guid="42E4AEB1-A230-44F4-B33C-F195BB654931">
             <hierarchicalconfig>
                 <key name="42E4AEB1-A230-44F4-B33C-F195BB654931" description="NetBox">
-                    <key name="Configuration" description="">
-                        <value name="Version" type="text" value="2.3.0"/>
-                        <key name="Interface" description="">
+                    <key name="Configuration">
+                        <value name="Version" type="text" value="2.4.5"/>
+                        <key name="Interface">
                             <value name="AutoReadDirectoryAfterOp" type="qword" value="0000000000000001"/>
                             <value name="BeepOnFinish" type="qword" value="0000000000000000"/>
                             <value name="BeepOnFinishAfter" type="hex" value="17,6C,C1,16,6C,C1,36,3F"/>
@@ -1358,14 +1386,14 @@
                             <value name="TryFtpWhenSshFails" type="qword" value="0000000000000001"/>
                             <value name="TunnelLocalPortNumberHigh" type="qword" value="000000000000C3B3"/>
                             <value name="TunnelLocalPortNumberLow" type="qword" value="000000000000C350"/>
-                            <key name="Interface" description="">
-                                <key name="Bookmarks" description="">
-                                    <key name="Local" description=""/>
-                                    <key name="Options" description=""/>
-                                    <key name="Remote" description=""/>
-                                    <key name="ShortCuts" description=""/>
+                            <key name="Interface">
+                                <key name="Bookmarks">
+                                    <key name="Local"/>
+                                    <key name="Options"/>
+                                    <key name="Remote"/>
+                                    <key name="ShortCuts"/>
                                 </key>
-                                <key name="CopyParam" description="">
+                                <key name="CopyParam">
                                     <value name="AddXToDirectories" type="qword" value="0000000000000001"/>
                                     <value name="CPSLimit" type="qword" value="0000000000000000"/>
                                     <value name="CalculateSize" type="qword" value="0000000000000001"/>
@@ -1391,7 +1419,7 @@
                                     <value name="Text" type="text" value="rw-r--r--"/>
                                     <value name="TransferMode" type="qword" value="0000000000000000"/>
                                 </key>
-                                <key name="Far" description="">
+                                <key name="Far">
                                     <value name="ApplyCommandCommand" type="text" value=""/>
                                     <value name="ApplyCommandParams" type="qword" value="0000000000000000"/>
                                     <value name="ColumnTypesDetailed" type="text" value="N,S,DM,O,G,R"/>
@@ -1416,14 +1444,14 @@
                                     <value name="StatusColumnTypesDetailed" type="text" value="NR"/>
                                     <value name="StatusColumnWidthsDetailed" type="text" value="0"/>
                                 </key>
-                                <key name="Interface" description="">
-                                    <key name="NewDirectory" description="">
+                                <key name="Interface">
+                                    <key name="NewDirectory">
                                         <value name="Valid" type="hex" value="84,97,1B,5A,00,00,00,00,00,00,00,00,00,00,00,00"/>
                                     </key>
                                 </key>
                             </key>
                         </key>
-                        <key name="Logging" description="">
+                        <key name="Logging">
                             <value name="LogActions" type="qword" value="0000000000000000"/>
                             <value name="LogFileAppend" type="qword" value="0000000000000001"/>
                             <value name="LogFileName" type="text" value="%25TEMP%25%5C&amp;S.log"/>
@@ -1432,41 +1460,40 @@
                             <value name="Logging" type="qword" value="0000000000000000"/>
                             <value name="PermanentActionsLogFileName" type="text" value="%25TEMP%25%5C&amp;S.xml"/>
                         </key>
-                        <key name="Usage" description=""/>
+                        <key name="Usage"/>
                     </key>
-                    <key name="Sessions" description="">
-                        <key name="@10.10.1.1" description="">
+                    <key name="Sessions">
+                        <key name="@10.10.1.1">
                             <value name="FSProtocol" type="text" value="SFTP%20(SCP)"/>
                             <value name="HostName" type="text" value="10.10.1.1"/>
                             <value name="Version" type="text" value="2.1.41"/>
                         </key>
-                        <key name="Default%20Settings" description="">
+                        <key name="Default%20Settings">
                             <value name="FSProtocol" type="text" value="SFTP%20(SCP)"/>
                             <value name="Version" type="text" value="2.1.41"/>
                         </key>
-                        <key name="downloadcd@dcdnet.ru" description="">
+                        <key name="downloadcd@dcdnet.ru">
                             <value name="CodePage" type="text" value=""/>
                             <value name="FSProtocol" type="text" value="FTP"/>
                             <value name="HostName" type="text" value="dcdnet.ru"/>
-                            <value name="LoginType" type="qword" value="0000000000000001"/>
                             <value name="Password" type="text" value="A35C4052789288E9E59235960E25A62FA00538332B3230333D383F38383F38323928722E29383F383239283A282C3A7127B9"/>
                             <value name="PingType" type="qword" value="0000000000000002"/>
                             <value name="PortNumber" type="qword" value="0000000000000015"/>
-                            <value name="RemoteDirectory" type="text" value="/"/>
+                            <value name="RemoteDirectory" type="text" value="/upload/_q3"/>
                             <value name="UserName" type="text" value="downloadcd"/>
-                            <value name="Version" type="text" value="2.1.41"/>
+                            <value name="Version" type="text" value="2.4.5"/>
                         </key>
-                        <key name="wave@bizon.no-ip.biz" description="">
+                        <key name="wave@bison.red">
                             <value name="CodePage" type="text" value=""/>
                             <value name="FSProtocol" type="text" value="FTP"/>
-                            <value name="HostName" type="text" value="bizon.no-ip.biz"/>
-                            <value name="LoginType" type="qword" value="0000000000000001"/>
-                            <value name="Password" type="text" value="A35C4151F09009516A2F7FF7079ACB82D22B3D2A393E3526333272323371352C723E352638332B3230333D383F38115F25D6"/>
+                            <value name="HostName" type="text" value="bison.red"/>
+                            <value name="LookupUserGroups2" type="qword" value="0000000000000000"/>
                             <value name="PingType" type="qword" value="0000000000000002"/>
                             <value name="PortNumber" type="qword" value="0000000000000015"/>
                             <value name="RemoteDirectory" type="text" value="/"/>
+                            <value name="SFTPMaxVersion" type="qword" value="0000000000000000"/>
                             <value name="UserName" type="text" value="wave"/>
-                            <value name="Version" type="text" value="2.1.45"/>
+                            <value name="Version" type="text" value="2.4.5"/>
                         </key>
                     </key>
                 </key>
@@ -1475,11 +1502,13 @@
         <plugin guid="4EBBEFC8-2084-4B7F-94C0-692CE136894D">
             <hierarchicalconfig>
                 <key name="4EBBEFC8-2084-4B7F-94C0-692CE136894D" description="LuaMacro">
-                    <key name="JD" description="">
+                    <key name="FarSessions"/>
+                    <key name="JD">
                         <value name="MultiPanel" type="hex" value="72,65,74,75,72,6E,20,7B,0A,20,20,5B,22,50,61,6E,65,6C,73,22,5D,20,3D,20,7B,0A,7D,0A,2C,0A,7D,0A"/>
+                        <value name="RecentScreens" type="hex" value="6C,6F,63,61,6C,20,69,64,78,3D,7B,7D,3B,20,66,6F,72,20,69,3D,31,2C,31,20,64,6F,20,69,64,78,5B,69,5D,3D,7B,7D,20,65,6E,64,0A,64,6F,20,6C,6F,63,61,6C,20,74,3D,69,64,78,5B,31,5D,0A,20,20,74,5B,22,6D,65,6E,75,44,65,6C,61,79,22,5D,20,3D,20,32,30,30,0A,20,20,74,5B,22,73,77,69,74,63,68,49,6E,73,74,61,6E,74,22,5D,20,3D,20,74,72,75,65,0A,20,20,74,5B,22,52,65,63,65,6E,74,4F,6E,43,6C,6F,73,65,22,5D,20,3D,20,74,72,75,65,0A,65,6E,64,0A,72,65,74,75,72,6E,20,69,64,78,5B,31,5D,0A"/>
                     </key>
-                    <key name="LuaMacro" description="">
-                        <value name="MacroBrowser" type="hex" value="6C,6F,63,61,6C,20,69,64,78,3D,7B,7D,3B,20,66,6F,72,20,69,3D,31,2C,31,20,64,6F,20,69,64,78,5B,69,5D,3D,7B,7D,20,65,6E,64,0A,64,6F,20,6C,6F,63,61,6C,20,74,3D,69,64,78,5B,31,5D,0A,20,20,74,5B,22,49,6E,76,53,6F,72,74,22,5D,20,3D,20,31,0A,20,20,74,5B,22,53,68,6F,77,4F,6E,6C,79,41,63,74,69,76,65,22,5D,20,3D,20,74,72,75,65,0A,20,20,74,5B,22,53,6F,72,74,4B,65,79,22,5D,20,3D,20,22,43,2B,46,33,22,0A,65,6E,64,0A,72,65,74,75,72,6E,20,69,64,78,5B,31,5D,0A"/>
+                    <key name="LuaMacro">
+                        <value name="MacroBrowser" type="hex" value="6C,6F,63,61,6C,20,69,64,78,3D,7B,7D,3B,20,66,6F,72,20,69,3D,31,2C,31,20,64,6F,20,69,64,78,5B,69,5D,3D,7B,7D,20,65,6E,64,0A,64,6F,20,6C,6F,63,61,6C,20,74,3D,69,64,78,5B,31,5D,0A,20,20,74,5B,22,49,6E,76,53,6F,72,74,22,5D,20,3D,20,31,0A,20,20,74,5B,22,53,68,6F,77,4F,6E,6C,79,41,63,74,69,76,65,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,74,5B,22,53,6F,72,74,4B,65,79,22,5D,20,3D,20,22,43,2B,46,31,22,0A,65,6E,64,0A,72,65,74,75,72,6E,20,69,64,78,5B,31,5D,0A"/>
                     </key>
                 </key>
             </hierarchicalconfig>
@@ -1487,7 +1516,7 @@
         <plugin guid="4F6BDE22-3F56-496B-B1DD-7991199D2043">
             <hierarchicalconfig>
                 <key name="4F6BDE22-3F56-496B-B1DD-7991199D2043" description="Compare">
-                    <value name="CompareContents" type="qword" value="0000000000000000"/>
+                    <value name="CompareContents" type="qword" value="0000000000000001"/>
                     <value name="CompareContentsIgnore" type="qword" value="0000000000000000"/>
                     <value name="CompareSize" type="qword" value="0000000000000001"/>
                     <value name="CompareTime" type="qword" value="0000000000000000"/>
@@ -1516,7 +1545,7 @@
                     <value name="UseSubstEngines_BatchEnv" type="qword" value="0000000000000001"/>
                     <value name="UseSubstEngines_Env" type="qword" value="0000000000000000"/>
                     <value name="UseSubstEngines_Reg" type="qword" value="0000000000000000"/>
-                    <key name="folders" description="">
+                    <key name="folders">
                         <key name="d">
                             <value name="Description" type="text" value=""/>
                             <value name="Directory" type="text" value="%TEA_HOME%\var\git"/>
@@ -1698,10 +1727,11 @@
         </plugin>
         <plugin guid="65642111-AA69-4B84-B4B8-9249579EC4FA">
             <hierarchicalconfig>
-                <key name="65642111-AA69-4B84-B4B8-9249579EC4FA" description="arclite">
+                <key name="65642111-AA69-4B84-B4B8-9249579EC4FA" description="ArcLite">
+                    <value name="include_masks" type="text" value="*.rar,*.zip,*.[zj],*.[bg7x]z,*.[bg]zip,*.tar,*.t[agbx]z,*.ar[cj],*.r[0-9][0-9],*.a[0-9][0-9],*.bz2,*.cab,*.[jwe]ar,*.lha,*.lzh,*.ha,*.ac[bei],*.pa[ck],*.rk,*.cpio,*.rpm,*.zoo,*.hqx,*.sit,*.ice,*.uc2,*.ain,*.imp,*.777,*.ufa,*.boa,*.bs[2a],*.sea,*.hpk,*.ddi,*.x2,*.rkv,*.[lw]sz,*.h[ay]p,*.lim,*.sqz,*.chz"/>
                     <value name="update_append_ext" type="qword" value="0000000000000001"/>
                     <value name="update_arc_format_name" type="text" value="zip"/>
-                    <key name="profiles" description=""/>
+                    <key name="profiles"/>
                 </key>
             </hierarchicalconfig>
         </plugin>
@@ -1724,6 +1754,11 @@
                 <key name="773B5051-7C5F-4920-A201-68051C4176A4" description="Network">
                     <value name="PanelMode" type="text" value="3"/>
                 </key>
+            </hierarchicalconfig>
+        </plugin>
+        <plugin guid="79A03C60-7C60-480E-A1FA-FB49368F9D9A">
+            <hierarchicalconfig>
+                <key name="79A03C60-7C60-480E-A1FA-FB49368F9D9A" description="Observer"/>
             </hierarchicalconfig>
         </plugin>
         <plugin guid="7DE7CE15-8615-4A8E-A015-DB9BD8B1E7F7">
@@ -1779,14 +1814,14 @@
         <plugin guid="8E11EA75-0303-4374-AC60-D1E38F865449">
             <hierarchicalconfig>
                 <key name="8E11EA75-0303-4374-AC60-D1E38F865449" description="LuaFAR Search">
-                    <value name="alldata" type="hex" value="64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,20,3D,20,74,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,61,6E,65,6C,73,22,5D,20,3D,20,74,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,61,6E,65,6C,73,22,5D,5B,22,6D,65,6E,75,22,5D,20,3D,20,74,0A,20,20,20,20,20,20,74,5B,22,70,6F,73,69,74,69,6F,6E,22,5D,20,3D,20,31,0A,20,20,20,20,65,6E,64,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,72,65,73,65,74,73,22,5D,20,3D,20,74,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,6D,61,69,6E,22,5D,20,3D,20,74,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,6D,61,69,6E,22,5D,5B,22,74,43,68,65,63,6B,65,64,43,6F,64,65,50,61,67,65,73,22,5D,20,3D,20,74,0A,20,20,20,20,65,6E,64,0A,20,20,20,20,74,5B,22,73,53,65,61,72,63,68,50,61,74,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,73,52,65,70,6C,61,63,65,50,61,74,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,69,53,65,6C,65,63,74,65,64,43,6F,64,65,50,61,67,65,22,5D,20,3D,20,2D,31,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,74,6D,70,70,61,6E,65,6C,22,5D,20,3D,20,74,0A,20,20,20,20,74,5B,22,53,74,61,72,74,53,6F,72,74,69,6E,67,22,5D,20,3D,20,22,31,34,2C,30,22,0A,20,20,20,20,74,5B,22,43,6F,6C,75,6D,6E,54,79,70,65,73,22,5D,20,3D,20,22,4E,52,2C,53,22,0A,20,20,20,20,74,5B,22,4E,65,77,50,61,6E,65,6C,46,6F,72,53,65,61,72,63,68,52,65,73,75,6C,74,73,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,43,6F,70,79,43,6F,6E,74,65,6E,74,73,22,5D,20,3D,20,30,0A,20,20,20,20,74,5B,22,52,65,70,6C,61,63,65,4D,6F,64,65,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,53,74,61,74,75,73,43,6F,6C,75,6D,6E,57,69,64,74,68,73,22,5D,20,3D,20,22,30,2C,38,2C,30,2C,35,22,0A,20,20,20,20,74,5B,22,53,74,61,74,75,73,43,6F,6C,75,6D,6E,54,79,70,65,73,22,5D,20,3D,20,22,4E,52,2C,53,43,2C,44,2C,54,22,0A,20,20,20,20,74,5B,22,46,75,6C,6C,53,63,72,65,65,6E,50,61,6E,65,6C,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,43,6F,6C,75,6D,6E,57,69,64,74,68,73,22,5D,20,3D,20,22,30,2C,38,22,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,65,64,69,74,6F,72,22,5D,20,3D,20,74,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,65,64,69,74,6F,72,22,5D,5B,22,6D,65,6E,75,22,5D,20,3D,20,74,0A,20,20,20,20,20,20,74,5B,22,70,6F,73,69,74,69,6F,6E,22,5D,20,3D,20,31,0A,20,20,20,20,65,6E,64,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,63,6F,6E,66,69,67,22,5D,20,3D,20,74,0A,20,20,65,6E,64,0A,65,6E,64,0A"/>
+                    <value name="alldata" type="hex" value="64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,20,3D,20,74,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,61,6E,65,6C,73,22,5D,20,3D,20,74,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,61,6E,65,6C,73,22,5D,5B,22,6D,65,6E,75,22,5D,20,3D,20,74,0A,20,20,20,20,20,20,74,5B,22,70,6F,73,69,74,69,6F,6E,22,5D,20,3D,20,32,0A,20,20,20,20,65,6E,64,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,70,72,65,73,65,74,73,22,5D,20,3D,20,74,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,72,65,6E,61,6D,65,22,5D,20,3D,20,74,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,6D,61,69,6E,22,5D,20,3D,20,74,0A,20,20,20,20,74,5B,22,73,53,63,6F,70,65,22,5D,20,3D,20,22,67,6C,6F,62,61,6C,22,0A,20,20,20,20,74,5B,22,73,47,72,65,70,4C,69,6E,65,73,41,66,74,65,72,22,5D,20,3D,20,22,30,20,20,20,20,22,0A,20,20,20,20,74,5B,22,62,4D,75,6C,74,69,50,61,74,74,65,72,6E,73,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,55,73,65,46,69,6C,65,46,69,6C,74,65,72,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,49,6E,69,74,46,75,6E,63,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,62,44,65,6C,4E,6F,6E,4D,61,74,63,68,4C,69,6E,65,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,44,65,6C,45,6D,70,74,79,4C,69,6E,65,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,47,72,65,70,48,69,67,68,6C,69,67,68,74,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,52,65,67,65,78,4C,69,62,22,5D,20,3D,20,22,66,61,72,22,0A,20,20,20,20,74,5B,22,73,46,69,6C,65,4D,61,73,6B,22,5D,20,3D,20,22,2A,22,0A,20,20,20,20,74,5B,22,62,41,64,76,61,6E,63,65,64,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,6D,61,69,6E,22,5D,5B,22,74,43,68,65,63,6B,65,64,43,6F,64,65,50,61,67,65,73,22,5D,20,3D,20,74,0A,20,20,20,20,65,6E,64,0A,20,20,20,20,74,5B,22,73,4C,61,73,74,4F,70,22,5D,20,3D,20,22,72,65,70,6C,61,63,65,22,0A,20,20,20,20,74,5B,22,73,46,69,6E,61,6C,46,75,6E,63,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,73,53,65,61,72,63,68,41,72,65,61,22,5D,20,3D,20,22,4F,6E,6C,79,43,75,72,72,46,6F,6C,64,65,72,22,0A,20,20,20,20,74,5B,22,62,52,65,67,45,78,70,72,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,62,49,6E,76,65,72,73,65,53,65,61,72,63,68,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,48,69,67,68,6C,69,67,68,74,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,53,6B,69,70,50,61,74,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,62,53,65,61,72,63,68,53,79,6D,4C,69,6E,6B,73,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,69,53,65,6C,65,63,74,65,64,43,6F,64,65,50,61,67,65,22,5D,20,3D,20,2D,31,0A,20,20,20,20,74,5B,22,73,4F,72,69,67,69,6E,22,5D,20,3D,20,22,63,75,72,73,6F,72,22,0A,20,20,20,20,74,5B,22,62,47,72,65,70,53,68,6F,77,4C,69,6E,65,4E,75,6D,62,65,72,73,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,4F,72,69,67,69,6E,49,6E,47,6C,6F,62,61,6C,22,5D,20,3D,20,22,63,75,72,73,6F,72,22,0A,20,20,20,20,74,5B,22,62,57,72,61,70,41,72,6F,75,6E,64,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,43,61,73,65,53,65,6E,73,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,46,69,6C,74,65,72,46,75,6E,63,22,5D,20,3D,20,22,22,0A,20,20,20,20,74,5B,22,62,45,78,74,65,6E,64,65,64,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,73,53,65,61,72,63,68,50,61,74,22,5D,20,3D,20,22,5C,5C,7B,28,3F,3D,5C,5C,64,29,22,0A,20,20,20,20,74,5B,22,73,52,65,70,6C,61,63,65,50,61,74,22,5D,20,3D,20,22,7B,23,22,0A,20,20,20,20,74,5B,22,62,4D,61,6B,65,42,61,63,6B,75,70,43,6F,70,79,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,55,73,65,44,69,72,46,69,6C,74,65,72,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,52,65,70,49,73,46,75,6E,63,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,43,6F,6E,66,69,72,6D,52,65,70,6C,61,63,65,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,73,47,72,65,70,4C,69,6E,65,73,42,65,66,6F,72,65,22,5D,20,3D,20,22,30,20,20,20,20,22,0A,20,20,20,20,74,5B,22,62,53,65,61,72,63,68,42,61,63,6B,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,57,68,6F,6C,65,57,6F,72,64,73,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,62,47,72,65,70,49,6E,76,65,72,73,65,53,65,61,72,63,68,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,74,6D,70,70,61,6E,65,6C,22,5D,20,3D,20,74,0A,20,20,20,20,74,5B,22,53,74,61,72,74,53,6F,72,74,69,6E,67,22,5D,20,3D,20,22,31,34,2C,30,22,0A,20,20,20,20,74,5B,22,43,6F,6C,75,6D,6E,54,79,70,65,73,22,5D,20,3D,20,22,4E,52,2C,53,22,0A,20,20,20,20,74,5B,22,50,72,65,73,65,72,76,65,43,6F,6E,74,65,6E,74,73,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,4E,65,77,50,61,6E,65,6C,46,6F,72,53,65,61,72,63,68,52,65,73,75,6C,74,73,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,43,6F,70,79,43,6F,6E,74,65,6E,74,73,22,5D,20,3D,20,30,0A,20,20,20,20,74,5B,22,52,65,70,6C,61,63,65,4D,6F,64,65,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,53,74,61,74,75,73,43,6F,6C,75,6D,6E,57,69,64,74,68,73,22,5D,20,3D,20,22,30,2C,38,2C,30,2C,35,22,0A,20,20,20,20,74,5B,22,53,74,61,74,75,73,43,6F,6C,75,6D,6E,54,79,70,65,73,22,5D,20,3D,20,22,4E,52,2C,53,43,2C,44,2C,54,22,0A,20,20,20,20,74,5B,22,46,75,6C,6C,53,63,72,65,65,6E,50,61,6E,65,6C,22,5D,20,3D,20,66,61,6C,73,65,0A,20,20,20,20,74,5B,22,43,6F,6C,75,6D,6E,57,69,64,74,68,73,22,5D,20,3D,20,22,30,2C,38,22,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,65,64,69,74,6F,72,22,5D,20,3D,20,74,0A,20,20,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,65,64,69,74,6F,72,22,5D,5B,22,6D,65,6E,75,22,5D,20,3D,20,74,0A,20,20,20,20,20,20,74,5B,22,70,6F,73,69,74,69,6F,6E,22,5D,20,3D,20,32,0A,20,20,20,20,65,6E,64,0A,20,20,65,6E,64,0A,20,20,64,6F,20,6C,6F,63,61,6C,20,74,20,3D,20,7B,7D,3B,20,44,61,74,61,5B,22,63,6F,6E,66,69,67,22,5D,20,3D,20,74,0A,20,20,20,20,74,5B,22,45,64,69,74,6F,72,48,69,67,68,6C,69,67,68,74,43,6F,6C,6F,72,22,5D,20,3D,20,32,30,37,0A,20,20,20,20,74,5B,22,47,72,65,70,4C,69,6E,65,4E,75,6D,4D,61,74,63,68,43,6F,6C,6F,72,22,5D,20,3D,20,31,36,30,0A,20,20,20,20,74,5B,22,62,55,73,65,46,61,72,48,69,73,74,6F,72,79,22,5D,20,3D,20,74,72,75,65,0A,20,20,20,20,74,5B,22,47,72,65,70,4C,69,6E,65,4E,75,6D,43,6F,6E,74,65,78,74,43,6F,6C,6F,72,22,5D,20,3D,20,31,32,38,0A,20,20,65,6E,64,0A,65,6E,64,0A"/>
                 </key>
             </hierarchicalconfig>
         </plugin>
-        <plugin guid="9C3A61FC-F349-48E8-9B78-DAEBD821694B">
+        <plugin guid="A227A268-5682-4C83-9341-EAE3405D4666">
             <hierarchicalconfig>
-                <key name="9C3A61FC-F349-48E8-9B78-DAEBD821694B" description="Audio player">
-                    <value name="volume" type="qword" value="0000000000000039"/>
+                <key name="A227A268-5682-4C83-9341-EAE3405D4666" description="Word Completion">
+                    <key name="Auto Completion"/>
                 </key>
             </hierarchicalconfig>
         </plugin>
@@ -1854,6 +1889,7 @@
                     <value name="TextIgnoreCase" type="qword" value="0000000000000000"/>
                     <value name="TextIgnoreEmptyLine" type="qword" value="0000000000000001"/>
                     <value name="TextIgnoreSpace" type="qword" value="0000000000000001"/>
+                    <value name="UnfoldFiles" type="qword" value="0000000000000000"/>
                 </key>
             </hierarchicalconfig>
         </plugin>
@@ -1899,74 +1935,80 @@
                     <value name="TrueMod" type="qword" value="0000000000000000"/>
                     <value name="UserHrcPath" type="text" value="%FARPROFILE%\..\FarColorer\schemes.hrc"/>
                     <value name="UserHrdPath" type="text" value="%FARPROFILE%\..\FarColorer\styles.xml"/>
-                    <key name="HrcSettings" description="">
-                        <key name="Batch" description="">
-                            <value name="favorite" type="text" value="true"/>
+                    <key name="HrcSettings">
+                        <key name="Batch">
                             <value name="hotkey" type="text" value="B"/>
                         </key>
-                        <key name="config" description="">
-                            <value name="favorite" type="text" value="true"/>
+                        <key name="config">
                             <value name="hotkey" type="text" value="C"/>
                         </key>
-                        <key name="default" description="">
+                        <key name="default">
                             <value name="favorite" type="text" value="false"/>
                         </key>
-                        <key name="forth" description="">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="forth">
                             <value name="hotkey" type="text" value="F"/>
                         </key>
-                        <key name="ium.boobs">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="ium.basic">
                             <value name="hotkey" type="text" value="I"/>
                         </key>
-                        <key name="ium.config" description="">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="ium.config">
                             <value name="hotkey" type="text" value="I"/>
                         </key>
-                        <key name="jScript" description="">
-                            <value name="favorite" type="text" value="true"/>
+                        <key name="jScript">
                             <value name="hotkey" type="text" value="J"/>
                         </key>
-                        <key name="java" description="">
+                        <key name="java">
                             <value name="hotkey" type="text" value="J"/>
                         </key>
-                        <key name="lua" description="">
+                        <key name="lua">
                             <value name="hotkey" type="text" value="L"/>
                         </key>
-                        <key name="markdown" description="">
+                        <key name="markdown">
                             <value name="hotkey" type="text" value="M"/>
                         </key>
-                        <key name="mediawiki" description="">
+                        <key name="mediawiki">
                             <value name="hotkey" type="text" value="M"/>
                         </key>
-                        <key name="perl" description="">
-                            <value name="favorite" type="text" value="true"/>
+                        <key name="perl">
                             <value name="hotkey" type="text" value="P"/>
                         </key>
-                        <key name="powershell" description="">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="powershell">
                             <value name="hotkey" type="text" value="P"/>
                         </key>
-                        <key name="shell" description="">
-                            <value name="favorite" type="text" value="true"/>
+                        <key name="python">
+                            <value name="hotkey" type="text" value="P"/>
+                        </key>
+                        <key name="shell">
                             <value name="hotkey" type="text" value="S"/>
                         </key>
-                        <key name="vbScript" description="">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="sql">
+                            <value name="hotkey" type="text" value="S"/>
+                        </key>
+                        <key name="text">
+                            <value name="hotkey" type="text" value=""/>
+                        </key>
+                        <key name="vbScript">
                             <value name="hotkey" type="text" value="B"/>
                         </key>
                         <key name="vbasic">
                             <value name="hotkey" type="text" value="B"/>
                         </key>
-                        <key name="wsf" description="">
-                            <value name="favorite" type="text" value="false"/>
+                        <key name="wsf">
                             <value name="hotkey" type="text" value="W"/>
                         </key>
-                        <key name="xml" description="">
+                        <key name="xml">
                             <value name="hotkey" type="text" value="X"/>
+                        </key>
+                        <key name="yaml">
+                            <value name="hotkey" type="text" value="Y"/>
                         </key>
                     </key>
                 </key>
+            </hierarchicalconfig>
+        </plugin>
+        <plugin guid="D82D6847-0C7B-4BF4-9A31-B0B929707854">
+            <hierarchicalconfig>
+                <key name="D82D6847-0C7B-4BF4-9A31-B0B929707854" description="MBlockEditor"/>
             </hierarchicalconfig>
         </plugin>
         <plugin guid="DEEC52C3-AC76-4AD3-A6EF-CAFC33BD4C05">
@@ -1975,7 +2017,7 @@
                     <value name="ExcludeFileMasks" type="text" value=""/>
                     <value name="FileMasks" type="text" value="*.*"/>
                     <value name="RightMargin" type="qword" value="000000000000004B"/>
-                    <value name="Wrap" type="qword" value="0000000000000001"/>
+                    <value name="Wrap" type="qword" value="0000000000000000"/>
                 </key>
             </hierarchicalconfig>
         </plugin>
@@ -2024,7 +2066,8 @@
                     <value name="EPositionAtSub" type="qword" value="0000000000000001"/>
                     <value name="EPositionSubName" type="text" value="pos"/>
                     <value name="EREvaluateScript" type="text" value="{16D51579-A30B-4C8B-A276-0FF4DC41E755}"/>
-                    <value name="ERReplace" type="text" value=""/>
+                    <value name="ERRepeatCount" type="qword" value="0000000000000002"/>
+                    <value name="ERReplace" type="text" value="&lt;$1A"/>
                     <value name="ERegExp" type="qword" value="0000000000000001"/>
                     <value name="ESeveralLine" type="qword" value="0000000000000000"/>
                     <value name="EShowPosition" type="qword" value="0000000000000001"/>
@@ -2032,7 +2075,7 @@
                     <value name="ETDSideOffset" type="qword" value="0000000000000002"/>
                     <value name="ETSource" type="text" value=""/>
                     <value name="ETTarget" type="text" value=""/>
-                    <value name="EText" type="text" value="^::etc\\\S+ ?"/>
+                    <value name="EText" type="text" value="&lt;(\/?)a"/>
                     <value name="FAAttributesCleared" type="qword" value="0000000000000000"/>
                     <value name="FAAttributesSet" type="qword" value="0000000000000000"/>
                     <value name="FACaseSensitive" type="qword" value="0000000000000000"/>
@@ -2086,7 +2129,7 @@
                     <value name="FROpenModified" type="qword" value="0000000000000000"/>
                     <value name="FROverwriteBackup" type="qword" value="0000000000000001"/>
                     <value name="FRPreviewRename" type="qword" value="0000000000000000"/>
-                    <value name="FRReplace" type="text" value=""/>
+                    <value name="FRReplace" type="text" value="\u"/>
                     <value name="FRReplaceReadonly" type="qword" value="0000000000000001"/>
                     <value name="FRReplaceToNew" type="qword" value="0000000000000000"/>
                     <value name="FRSaveOriginal" type="qword" value="0000000000000000"/>
@@ -2094,9 +2137,10 @@
                     <value name="FSEditSrchAfterFile" type="qword" value="0000000000000000"/>
                     <value name="FSInverse" type="qword" value="0000000000000000"/>
                     <value name="FSUseSingleCR" type="qword" value="0000000000000000"/>
-                    <value name="FSearchAs" type="qword" value="0000000000000000"/>
+                    <value name="FSearchAs" type="qword" value="0000000000000001"/>
                     <value name="FSearchIn" type="qword" value="0000000000000003"/>
-                    <value name="FText" type="text" value=""/>
+                    <value name="FShowStatistics" type="qword" value="0000000000000000"/>
+                    <value name="FText" type="text" value="(.)"/>
                     <value name="FUseShortFilenames" type="qword" value="0000000000000000"/>
                     <value name="MaxInThreadLength" type="qword" value="0000000000000400"/>
                     <value name="SeveralLines" type="qword" value="0000000000000020"/>
@@ -2110,6 +2154,7 @@
                     <value name="g_bDefaultOEM" type="qword" value="0000000000000001"/>
                     <value name="g_bEscapesInPlainText" type="qword" value="0000000000000001"/>
                     <value name="g_bIgnoreIdentReplace" type="qword" value="0000000000000000"/>
+                    <value name="g_bReplaceOnShiftIns" type="qword" value="0000000000000000"/>
                     <value name="g_bStripCommon" type="qword" value="0000000000000001"/>
                     <value name="g_bStripRegExp" type="qword" value="0000000000000001"/>
                     <value name="g_bUseRealEOL" type="qword" value="0000000000000000"/>
@@ -2118,9 +2163,9 @@
                     <value name="g_strPostfix" type="text" value=" - "/>
                     <value name="g_strPrefix" type="text" value=""/>
                     <value name="g_strStrip" type="text" value="^\d+\s*([-.]\s*)?"/>
-                    <key name="EditorBatches" description=""/>
-                    <key name="PanelBatches" description=""/>
-                    <key name="ScriptEngines" description="">
+                    <key name="EditorBatches"/>
+                    <key name="PanelBatches"/>
+                    <key name="ScriptEngines">
                         <value name="{16D51579-A30B-4C8B-A276-0FF4DC41E755}" type="text" value="JScript"/>
                         <value name="{989D1DC0-B162-11D1-B6EC-D27DDCF9A923}" type="text" value="XML"/>
                         <value name="{B54F3741-5B07-11CF-A4B0-00AA004A55E8}" type="text" value="VBScript"/>
