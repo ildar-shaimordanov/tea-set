@@ -1,13 +1,13 @@
 #! ~/.bash_profile
 
-# Workaround to avoid the existing issue of sourcing from /etc/profile
-# https://github.com/msysgit/msysgit/pull/231
-case "$OSTYPE" in
-msys*)
-	[ "${BASH_SOURCE[1]}" == "/etc/profile" ] && return
-	;;
-esac
-## echo "${BASH_SOURCE[@]}"
+#- # Workaround to avoid the existing issue of sourcing from /etc/profile
+#- # https://github.com/msysgit/msysgit/pull/231
+#- case "$OSTYPE" in
+#- msys*)
+#- 	[ "${BASH_SOURCE[1]}" == "/etc/profile" ] && return
+#- 	;;
+#- esac
+#- ## echo "${BASH_SOURCE[@]}"
 
 # =========================================================================
 
