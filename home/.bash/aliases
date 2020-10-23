@@ -173,10 +173,10 @@ then
 	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
 
 	# cd to home dir for personal gits
-	alias cdgp='cd $HOME/../var/git && ls'
+	alias cdgp='cd "$( git-bunch priv )" && ls'
 
 	# cd to home dir for gits used at work
-	alias cdgw="cd $drive_prefix/u/var/git && ls"
+	alias cdgw='cd "$( git-bunch work )" && ls'
 
 	unset drive_prefix
 
