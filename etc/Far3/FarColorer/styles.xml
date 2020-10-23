@@ -2,6 +2,7 @@
 
 <hrd-sets>
 
+<!--
 <hrd class="console" name="gentle" description="Gentle Console">
 <location link="%FARPROFILE%/../FarColorer/styles/gentle-console.hrd"/>
 </hrd>
@@ -9,6 +10,7 @@
 <hrd class="rgb" name="gentle_rgb" description="Gentle RGB">
 <location link="%FARPROFILE%/../FarColorer/styles/gentle-rgb.hrd"/>
 </hrd>
+-->
 
 </hrd-sets>
 <!--
