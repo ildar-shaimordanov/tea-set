@@ -6,10 +6,11 @@ setlocal
 
 set "np_registry=HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe"
 
-if /i "%~1" == "/install"   call :np_add
-if /i "%~1" == "/uninstall" call :np_delete
+if /i "%~1" == "install"   goto :np_add
+if /i "%~1" == "uninstall" goto :np_delete
+if /i "%~1" == "show"      goto :np_show
 
-call :np_show
+echo:Usage: %~n0 install ^| uninstall ^| show>&2
 
 endlocal
 goto :EOF
