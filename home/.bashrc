@@ -104,6 +104,29 @@ export HISTFILESIZE=20000
 # Paranoid: neither group nor others have any perms:
 # umask 077
 
+# The CYGWIN environment variable
+#
+# https://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
+# https://www.cygwin.com/cygwin-ug-net/using.html#pathnames-symlinks
+#
+# winsymlinks:{lnk,native,nativestrict}
+#
+# if set to just winsymlinks or winsymlinks:lnk, Cygwin creates symlinks
+# as Windows shortcuts with a special header and the R/O attribute set.
+#
+# If set to winsymlinks:native or winsymlinks:nativestrict, Cygwin
+# creates symlinks as native Windows symlinks on filesystems and OS
+# versions supporting them.
+#
+# The difference between winsymlinks:native and winsymlinks:nativestrict
+# is this: If the filesystem supports native symlinks and Cygwin fails
+# to create a native symlink for some reason, it will fall back to
+# creating Cygwin default symlinks with winsymlinks:native, while with
+# winsymlinks:nativestrict the symlink(2) system call will immediately
+# fail.
+
+export CYGWIN="winsymlinks"
+
 # =========================================================================
 
 if [ -d "${HOME}/.bash" ]
