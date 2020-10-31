@@ -96,6 +96,13 @@ $packages = @(
 		"dir" = "unxutils\bin";
 	}
 
+	@{
+		"name" = "Busybox";
+		"home" = "https://frippery.org/busybox/";
+		"url" = "https://frippery.org/files/busybox/busybox.exe";
+		"url" = "https://frippery.org/files/busybox/busybox64.exe";
+		"dir" = "..\opt\busybox";
+	}
 );
 
 # =========================================================================
