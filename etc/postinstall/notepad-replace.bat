@@ -19,16 +19,15 @@ goto :EOF
 :np_setup
 set "np_fullpath="
 for %%f in (
+	"%~dp0..\..\GUI\notepad3\Notepad3.exe"
+	"%~dp0..\..\GUI\notepad\Notepad3.exe"
 	"%~dp0..\..\vendors\notepad3\Notepad3.exe"
 	"%~dp0..\..\vendors\notepad\Notepad3.exe"
-	"%~dp0..\..\vendors\notepad2-mod\Notepad2.exe"
-	"%~dp0..\..\vendors\notepad2\Notepad2.exe"
-	"%~dp0..\..\vendors\notepad\Notepad2.exe"
 ) do if exist "%%~ff" (
 	set "np_fullpath=%%~ff"
 	goto :EOF
 )
-echo:Notepad2 not found>&2
+echo:Notepad replacement not found>&2
 exit /b 1
 
 

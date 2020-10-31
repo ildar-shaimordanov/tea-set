@@ -13,7 +13,7 @@ $packages = @(
 		"name" = "7-zip";
 		"home" = "http://7-zip.org/";
 		"url" = "http://downloads.sourceforge.net/sevenzip/7za920.zip";
-		"dir" = "7za";
+		"dir" = "..\opt\7za";
 		"postinstall" = {
 			$dir = $args[0];
 			$script:7zip_exe = "$dir\7za.exe";
@@ -60,27 +60,11 @@ $packages = @(
 	}
 
 	@{
-		"name" = "Notepad2-mod";
-		"home" = "http://xhmikosr.github.io/notepad2-mod/";
-		"url" = "https://github.com/XhmikosR/notepad2-mod/releases/download/4.2.25.985/Notepad2-mod.4.2.25.985_x86.zip";
-		"dir" = "notepad";
-		"postinstall" = {
-			$dir = $args[0];
-			$ini = "$dir\Notepad2.ini";
-			mv -Force -Path "$ini" -Destination "$ini.orig";
-			& {
-				"[Notepad2]";
-				"Notepad2.ini=..\..\etc\notepad\Notepad.ini";
-			} | Out-File "$ini";
-		};
-	}
-
-	@{
 		"skip" = $True;
 		"name" = "Notepad3";
 		"home" = "https://www.rizonesoft.com/downloads/notepad3/";
 		"url" = "https://github.com/rizonesoft/Notepad3/releases/download/RELEASE_4.18.512.992/Notepad3_4.18.512.992.zip";
-		"dir" = "notepad";
+		"dir" = "..\GUI\notepad";
 		"postinstall" = {
 			$dir = $args[0];
 			$ini = "$dir\Notepad3.ini";

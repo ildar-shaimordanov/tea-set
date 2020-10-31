@@ -38,14 +38,6 @@ for /f "tokens=*" %%p in ( "%~dp0." ) do call :shellenv.set.home TEA_HOME "%%~fp
 
 :: ========================================================================
 ::
-:: 7-ZIP
-::
-:: ========================================================================
-
-call :shellenv.set.home SEVENZIP_HOME "%TEA_HOME%\vendors\7za"
-
-:: ========================================================================
-::
 :: OpenLDAP
 ::
 :: ========================================================================
@@ -111,16 +103,11 @@ if defined UNIX_NAME call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%UNIX
 ::
 :: ========================================================================
 
-set "PERL_NAME=Perl"
-
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Perl
-
-if defined PERL_NAME set "PERL_HOME=%TEA_HOME%\vendors\%PERL_NAME%"
-if defined PERL_NAME for %%f in ( 
+if exist "%TEA_HOME%\opt\Perl" for %%f in (
 	"c" 
 	"perl" 
 	"perl\site" 
-) do call :shellenv.select.path "%PERL_HOME%\%%~f" /P
+) do call :shellenv.select.path "%TEA_HOME%\opt\Perl\%%~f" /P
 
 :: ========================================================================
 ::

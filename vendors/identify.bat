@@ -8,11 +8,6 @@ if /i "%~1 %~2" == "app Far3" (
 	rem set "FAR_NAME=Far30b4900.x86.20170221"
 )
 
-if /i "%~1 %~2" == "app Perl" (
-	rem set "PERL_NAME=StrawberryPerl-5.8.8.3"
-	rem set "PERL_NAME=StrawberryPerl-5.16.2"
-)
-
 if /i "%~1 %~2" == "app Unix" (
 	rem set "UNIX_NAME=cygwin"
 	rem set "UNIX_NAME=gnuwin32"
