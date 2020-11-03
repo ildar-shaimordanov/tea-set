@@ -80,7 +80,15 @@ fi
 
 # =========================================================================
 
-if which colordiff > /dev/null 2>&1
+# Detect colorized diff and its colorizing wrappers
+
+if diff --help 2>/dev/null | grep -q color
+then
+	alias diff='diff --color=auto'
+elif which ~/bin/colordiff > /dev/null 2>&1
+then
+	alias diff=~/bin/colordiff
+elif which colordiff > /dev/null 2>&1
 then
 	alias diff=colordiff
 fi
