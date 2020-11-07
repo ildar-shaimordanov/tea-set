@@ -88,6 +88,7 @@ then
 	# diff 3.4+ allows coloring
 	alias diff='diff --color=auto'
 elif which git > /dev/null 2>&1
+then
 	# git is available
 	alias diff='git diff --no-index'
 fi
