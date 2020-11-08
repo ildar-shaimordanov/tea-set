@@ -29,9 +29,9 @@
 # alias whence='type -a'                        # where, of a sort
 
 # Some versions do not support colorizing
-if grep --color -V >/dev/null 2>&1
+if grep --help 2>/dev/null | grep -q color
 then
-	alias grep='grep --color'               # show differences in colour
+	alias grep='grep --color=auto'          # show differences in colour
 	alias egrep='egrep --color=auto'        # show differences in colour
 	alias fgrep='fgrep --color=auto'        # show differences in colour
 fi
