@@ -21,6 +21,14 @@ USAGE
 
 # =========================================================================
 
+# Native Windows application invoker (works in most cases)
+alias np='call notepad'
+call() {
+	command "$1" "$( cygpath -m -- "${@:2}" )"
+}
+
+# =========================================================================
+
 ip2hex() {
 	local ip
 	IFS="." read -ra ip <<<"$1"
