@@ -2,6 +2,8 @@
 
 # =========================================================================
 
+# Manage with windows clipboard
+
 clip() {
 	# clip | ...
 	[ -t 1 ] || { cat - </dev/clipboard ; return ; }
@@ -22,9 +24,38 @@ USAGE
 # =========================================================================
 
 # Native Windows application invoker (works in most cases)
+
 alias np='call notepad'
 call() {
 	command "$1" "$( cygpath -m -- "${@:2}" )"
+}
+
+# =========================================================================
+
+# pwd -W for cygwin
+uname | grep -iq cygwin && pwd() {
+	case "$1" in
+	-W )
+		cygpath -m "$PWD"
+		;;
+	* )
+		builtin pwd "$@"
+		;;
+	esac
+}
+
+# =========================================================================
+
+# join lines
+
+j2() {
+	sed "N;s/\n/$1/"
+	#paste -sd "$1\n"
+}
+
+jn() {
+	sed ":a;N;s/\n/$1/;ta"
+	#paste -sd"$1"
 }
 
 # =========================================================================
