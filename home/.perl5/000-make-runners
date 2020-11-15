@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# =========================================================================
+
+shell_runner() {
+	cat - <<-'SCRIPT'
+#!/usr/bin/env bash
+
+PERL5LIB="$( dirname "$0" )/../home/.perl5/lib"
+perl -I "$PERL5LIB" -x -S "$PERL5LIB/../bin/$( basename "$0" )" "$@"
+SCRIPT
+}
+
+batch_runner() {
+	cat - <<-'SCRIPT' | unix2dos
+@echo off
+set PERL5LIB="%~dp0..\home\.perl5\lib"
+perl -I "%PERL5LIB%" -x -S "%PERL5LIB%\..\bin\%~n0" %*
+SCRIPT
+}
+
+# =========================================================================
+
+DESTDIR="${1:-$HOME/bin}"
+
+[ -d "$DESTDIR" ] || {
+	echo "Not a directory: $DESTDIR"
+	exit 1
+}
+
+cat - <<BANNER
+Make runners for local Perl utilites
+Destination: $DESTDIR"
+BANNER
+
+grep -l '^#!.*perl' "$( dirname "$0" )/bin"/* \
+| while read f
+do
+	g="${f##*/}"
+
+	echo "  Perl script: $g"
+
+	shell_runner > "$DESTDIR/$g"
+	batch_runner > "$DESTDIR/$g.bat"
+done
+
+# =========================================================================
+
+# EOF
