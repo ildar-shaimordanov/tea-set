@@ -17,12 +17,12 @@ goto :EOF
 set "FAR_HOME=%~dp0vendors\%FAR_NAME%"
 
 :: Path to the common directory for all FAR-related stuffs
-:: It can be redeclared in "shellenv.bat"
 set "FAR_CONF=%~dp0etc\Far3"
 
 :: FAR startup options
-:: It can be redeclared in "shellenv.bat"
-set "FAR_OPTS=/w /p"%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins;%ConEmuDir%\Plugins\ConEmu""
+set "FAR_OPTS=%FAR_HOME%\Plugins;%FAR_CONF%\Profile\Plugins"
+if defined ConEmuDir if exist "%ConEmuDir%" set "FAR_OPTS=%FAR_OPTS%;%ConEmuDir%\Plugins\ConEmu"
+set "FAR_OPTS=/w /p"%FAR_OPTS%""
 
 if exist "%~dp0shellenv.bat" call "%~dp0shellenv.bat"
 
