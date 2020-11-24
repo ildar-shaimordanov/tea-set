@@ -148,6 +148,7 @@ for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :shellenv.select.path "%%~d"
 
 :shellenv.integration
 
+:: reg query "HKCU\Console" /v VirtualTerminalLevel 2>nul | find "0x1" && echo:[99999;1H
 if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[99999;1H
 
 :: Make ConEmu's environment variables available for child processes
