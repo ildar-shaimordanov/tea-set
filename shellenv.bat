@@ -148,7 +148,7 @@ for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :shellenv.select.path "%%~d"
 
 :shellenv.integration
 
-if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[9999E
+if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[99999;1H
 
 :: Make ConEmu's environment variables available for child processes
 :: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
