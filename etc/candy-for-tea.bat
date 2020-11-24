@@ -99,7 +99,7 @@ $packages = @(
 	@{
 		"name" = "Busybox";
 		"home" = "https://frippery.org/busybox/";
-		"url" = "https://frippery.org/files/busybox/busybox.exe";
+		# "url" = "https://frippery.org/files/busybox/busybox.exe";
 		"url" = "https://frippery.org/files/busybox/busybox64.exe";
 		"dir" = "..\opt\busybox";
 	}
@@ -124,7 +124,15 @@ function download-archive( [string]$url, [string]$targetDir ) {
 	return $filename;
 }
 
+function extract-zip-v5( [string]$filename, [string]$targetDir ) {
+	return Expand-Archive -Path $filename -DestinationPath $targetDir
+}
+
 function extract-zip( [string]$filename, [string]$targetDir ) {
+	if ( $PSVersionTable.PSVersion.Major -gt 5 ) {
+		return extract-zip-v5 $filename $targetDir
+	}
+
 	$shell = New-Object -com shell.application;
 	$zip = $shell.NameSpace($filename);
 	foreach ( $item in $zip.items() ) {
