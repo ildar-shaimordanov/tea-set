@@ -15,8 +15,8 @@
 # $proxy_http_index
 # $proxy_https_index
 
-[ -f ~/.bash/.settings-proxy-auto-config ] \
-&& . ~/.bash/.settings-proxy-auto-config
+[ -f ~/.settings-proxy-auto-config ] \
+&& . ~/.settings-proxy-auto-config
 
 [ -z "$proxy_auto_config" ] && return
 [ -z "$proxy_subnet_list" ] && return
