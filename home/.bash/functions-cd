@@ -120,6 +120,8 @@ HELP
 
 	local jcmd="cd"
 
+	OPTIND=1
+
 	local opt
 	while getopts ":la:d:A" opt
 	do
