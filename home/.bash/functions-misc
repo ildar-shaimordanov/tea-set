@@ -2,6 +2,18 @@
 
 # =========================================================================
 
+symlink() {
+	[ $# -eq 2 ] || {
+		echo "Make symbolic links in the Cygwin 1.7.xx style"
+		echo "Usage: symlink TARGET LINK_NAME"
+		return 1
+	}
+	printf '!<symlink>%s\0' "$1" > "$2" || return $?
+	chattr +s "$2"
+}
+
+# =========================================================================
+
 # Manage with windows clipboard
 
 clip() {
