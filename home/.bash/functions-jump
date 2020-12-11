@@ -1,0 +1,98 @@
+#! ~/.bash/functions-jump
+
+# =========================================================================
+
+# Jump around anywhere
+# - Keep the list of most frequently visited directories
+# - Allow to jump to the directories fastly by aliases
+j() {
+	if [ $# -eq 0 ]
+	then
+		cat - <<HELP
+Jump around anywhere
+  j    ALIAS [SUBDIR] Jump to the directory by its alias
+  j -l ALIAS [SUBDIR] List the directory content
+  j -a ALIAS          Create the alias for the current directory
+  j -d ALIAS          Delete the alias
+  j -A                Display all directories and their aliases
+HELP
+		return
+	fi
+
+	local CONF=~/.jconf
+
+	if [ ! -f "$CONF" ]
+	then
+		echo "File not exist: ~/.jconf" >&2
+	fi
+
+	local jcmd="cd"
+
+	OPTIND=1
+
+	local opt
+	while getopts ":la:d:A" opt
+	do
+		case "$opt" in
+		l )
+			jcmd="ls"
+			break
+			;;
+		a )
+			if [ -f "$CONF" ] && grep -Pq "^$OPTARG\t" "$CONF"
+			then
+				echo "Entry already exists: $OPTARG" >&2
+				return 255
+			fi
+			printf '%s\t%s\n' "$OPTARG" "$PWD" >>"$CONF"
+			return $?
+			;;
+		d )
+			sed -i "/^$OPTARG\t/d" "$CONF"
+			return $?
+			;;
+		A )
+			sort "$CONF"
+			return $?
+			;;
+		: )
+			echo "Alias required" >&2
+			return 255
+			;;
+		\? )
+			echo "Bad option: $OPTARG"
+			return 255
+			;;
+		esac
+	done
+
+	shift $(( OPTIND - 1 ))
+
+	if [ -z "$1" ]
+	then
+		echo "Alias not specified" >&2
+		return $?
+	fi
+
+	local -a jdir
+	mapfile -t jdir < <( sed -n "s/^$1\t*//p" "$CONF" )
+
+	case "${#jdir[@]}" in
+	0 )
+		echo "No entry found: $1" >&2
+		return 255
+		;;
+	1 )
+		# cd or ls
+		$jcmd "${jdir[0]}/$2"
+		;;
+	* )
+		echo "More than one entry found: $1" >&2
+		return 255
+		;;
+	esac
+}
+
+# =========================================================================
+
+# EOF
