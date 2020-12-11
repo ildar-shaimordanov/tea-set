@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2020-11-24 08:59:28" build="201123a">
+		<key name=".Vanilla" modified="2020-12-11 20:29:05" build="201124">
 			<key name="Tasks" modified="2019-10-16 21:46:21" build="160313">
 				<value name="Count" type="long" data="11"/>
 				<key name="Task1" modified="2019-10-16 21:46:21" build="160313">
@@ -410,7 +410,7 @@
 			<value name="ShowHelpTooltips" type="hex" data="01"/>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
-			<value name="Multi.ShowSearch" type="hex" data="01"/>
+			<value name="Multi.ShowSearch" type="hex" data="00"/>
 			<value name="Multi.NumberInCaption" type="hex" data="01"/>
 			<value name="Multi.CloseConfirmFlags" type="hex" data="07"/>
 			<value name="Multi.NewConfirm" type="hex" data="00"/>
@@ -453,7 +453,7 @@
 			<value name="ColorKeyTransparent" type="hex" data="00"/>
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
 			<value name="UseCurrentSizePos" type="hex" data="01"/>
-			<value name="AutoSaveSizePos" type="hex" data="01"/>
+			<value name="AutoSaveSizePos" type="hex" data="00"/>
 			<value name="Cascaded" type="hex" data="00"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>

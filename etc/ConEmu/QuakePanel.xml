@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2020-11-24 08:35:23" build="201123a">
+		<key name=".Vanilla" modified="2020-12-11 20:29:43" build="201124">
 			<key name="Tasks" modified="2019-10-16 21:46:21" build="160313">
 				<value name="Count" type="long" data="11"/>
 				<key name="Task1" modified="2019-10-16 21:46:21" build="160313">
@@ -417,7 +417,7 @@
 			<value name="Multi.SplitWidth" type="hex" data="04"/>
 			<value name="Multi.SplitHeight" type="hex" data="04"/>
 			<value name="ResetTerminalConfirm" type="hex" data="01"/>
-			<value name="FontName" type="string" data="Consolas"/>
+			<value name="FontName" type="string" data="Lucida Console"/>
 			<value name="FontName2" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
 			<value name="FontSizeX" type="ulong" data="0"/>
