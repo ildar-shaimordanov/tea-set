@@ -41,7 +41,7 @@ HELP
 		a )
 			if [ -f "$CONF" ] && grep -Pq "^$OPTARG\t" "$CONF"
 			then
-				echo "Entry already exists: $OPTARG" >&2
+				echo "Alias already exists: $OPTARG" >&2
 				return 255
 			fi
 			printf '%s\t%s\n' "$OPTARG" "$PWD" >>"$CONF"
@@ -79,7 +79,7 @@ HELP
 
 	case "${#jdir[@]}" in
 	0 )
-		echo "No entry found: $1" >&2
+		echo "Alias not found: $1" >&2
 		return 255
 		;;
 	1 )
@@ -87,7 +87,7 @@ HELP
 		$jcmd "${jdir[0]}/$2"
 		;;
 	* )
-		echo "More than one entry found: $1" >&2
+		echo "More than one alias found: $1" >&2
 		return 255
 		;;
 	esac
