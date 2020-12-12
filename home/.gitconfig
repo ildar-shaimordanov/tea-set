@@ -21,5 +21,3 @@
 	path = /cygdrive/c/PROGS/var/git
 [bunch "work"]
 	path = /cygdrive/u/var/git
-[bunch "temp"]
-	path = /cygdrive/u/tmp/git

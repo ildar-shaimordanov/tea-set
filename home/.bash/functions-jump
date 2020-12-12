@@ -3,8 +3,15 @@
 # =========================================================================
 
 # Jump around anywhere
-# - Keep the list of most frequently visited directories
+# It's developed simple as much as possible:
+# - Keep the list of directories and aliases in the "~/.jconf" TSV-file
 # - Allow to jump to the directories fastly by aliases
+# - Listing of directories by its aliases
+# - Display listing of available directories and aliases
+#
+# Other projects implementing the same functionalities:
+# https://github.com/rupa/z
+# https://github.com/mfaerevaag/wd
 j() {
 	if [ $# -eq 0 ]
 	then
