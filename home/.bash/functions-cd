@@ -3,92 +3,78 @@
 # =========================================================================
 
 # http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
+# dirname DIR/FILE + cd DIR
 cdf() {
-	[ $# -ge 1 ] || {
-		echo "Usage: $FUNCNAME filename" >&2
-		return 1
-	}
-
 	cd "$( [ -f "$1" ] && dirname "$1" || echo "$1" )"
 }
 
-# http://www.commandlinefu.com/commands/view/13604/change-directory-for-current-path-in-bash
-cdd() {
-	[ $# -ge 2 ] || {
-		echo "Usage: $FUNCNAME old_dir new_dir" >&2
-		return 1
-	}
-
-	cd "$( pwd | sed -e "s/$1/$2/" )"
-}
+# =========================================================================
 
 # http://www.commandlinefu.com/commands/view/12669/create-a-directory-and-change-into-it-at-the-same-time
+# mkdir DIR + cd DIR
 mkcd() {
-	[ $# -eq 1 ] || {
-		echo "Usage: $FUNCNAME dirname" >&2
-		return 1
-	}
-
 	mkdir -p "$1" && cd "$1"
 }
 
-# http://code.metager.de/source/xref/gnu/bash/examples/functions/ksh-cd
-#
-#  Chet Ramey <chet.ramey@case.edu>
-#
-#  Copyright 2001 Chester Ramey
-#
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2, or (at your option)
-#   any later version.
-#
-#   TThis program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with this program; if not, write to the Free Software Foundation,
-#   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# =========================================================================
 
+# cd [-LP] old new
 #
-# ksh-like `cd': cd [-LP] [dir [change]]
+# https://linux.die.net/man/1/ksh
+# The string new is substituted for old in the current directory, and
+# the shell attempts to change to the new directory.
 #
+# https://linux.die.net/man/1/zshbuiltins
+# ... substitutes the string new for the string old in the name of the
+# current directory, and tries to change to this new directory.
+#
+# http://code.metager.de/source/xref/gnu/bash/examples/functions/ksh-cd
+# Early by this link I've seen the bash function by Chester Ramey
+# implementing a such functionality. At the present, that link is
+# unavailable. Also it's old implementation and it doesn't support
+# additional options introduced in the latest bash 4.4.x releases. And
+# as a result, I reinvented it on my own.
+#
+# http://www.commandlinefu.com/commands/view/13604/change-directory-for-current-path-in-bash
+# Lightweight version with the almost same functionality
 cd() {
 	local CDOPTS
-	local old
-	local new
-	local dir
+	local opt
 
 	OPTIND=1
-	while getopts "LP" opt
+
+	while getopts "LPe@" opt
 	do
-		case $opt in
-		L|P)	CDOPTS="$CDOPTS -$opt" ;;
-		*)	echo "$FUNCNAME: usage: $FUNCNAME [-LP] [dir] [change]" >&2
-			return 2;;
+		case "$opt" in
+		L | P | e | @ )
+			CDOPTS="$CDOPTS -$opt"
+			;;
 		esac
 	done
 
-	shift $(( $OPTIND - 1 ))
+	shift $(( OPTIND - 1 ))
 
 	case $# in
-	0)	builtin cd $CDOPTS "$HOME" ;;
-	1) 	builtin cd $CDOPTS "$@" ;;
-	2)	old="$1" new="$2"
+	0 | 1 )
+		builtin cd $CDOPTS "$@"
+		;;
+	2 )
 		case "$PWD" in
-		*$old*)	;;
-		*)	 echo "${0##*/}: $FUNCNAME: bad substitution" >&2 ; return 1 ;;
+		*$1* )
+			# correct: do nothing
+			;;
+		* )
+			echo "${0##*/}: cd: bad substitution" >&2
+			return 2
+			;;
 		esac
 
-		dir=${PWD//$old/$new}
-
-		builtin cd $CDOPTS "$dir" && echo "$PWD"
-
+		builtin cd $CDOPTS "${PWD//$1/$2}"
 		;;
-	*)	echo "${0##*/}: $FUNCNAME: usage: $FUNCNAME [-LP] [dir] [change]" >&2
-		return 2 ;;
+	* )
+		echo "${0##*/}: cd: too many arguments" >&2
+		return 2
+		;;
 	esac
 }
 
