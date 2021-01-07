@@ -3,19 +3,19 @@
 # =========================================================================
 
 shell_runner() {
-	cat - <<-'SCRIPT'
+	cat - <<-SCRIPT
 #!/usr/bin/env bash
 
-PERL5LIB="$( dirname "$0" )/../home/.perl5/lib"
-perl -I "$PERL5LIB" -x -S "$PERL5LIB/../bin/$( basename "$0" )" "$@"
+PERL5LIB="\$( dirname "\$0" )/../home/.perl5/lib"
+perl -I "\$PERL5LIB" -x -S "\$PERL5LIB/../bin/\$( basename "\$0" )$1" "\$@"
 SCRIPT
 }
 
 batch_runner() {
-	cat - <<-'SCRIPT' | unix2dos
+	cat - <<-SCRIPT | unix2dos
 @echo off
 set PERL5LIB="%~dp0..\home\.perl5\lib"
-perl -I "%PERL5LIB%" -x -S "%PERL5LIB%\..\bin\%~n0" %*
+perl -I "%PERL5LIB%" -x -S "%PERL5LIB%\..\bin\%~n0$1" %*
 SCRIPT
 }
 
@@ -36,12 +36,13 @@ BANNER
 grep -l '^#!.*perl' "$( dirname "$0" )/bin"/* \
 | while read f
 do
-	g="${f##*/}"
+	g="$( basename "$f" .pl )"
+	[ "$g" = "$( basename "$f" )" ] || x=".pl"
 
 	echo "  Perl script: $g"
 
-	shell_runner > "$DESTDIR/$g"
-	batch_runner > "$DESTDIR/$g.bat"
+	shell_runner "$x" > "$DESTDIR/$g"
+	batch_runner "$x" > "$DESTDIR/$g.bat"
 done
 
 # =========================================================================
