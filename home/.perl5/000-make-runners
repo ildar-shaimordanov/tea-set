@@ -5,7 +5,6 @@
 shell_runner() {
 	cat - <<-SCRIPT
 #!/usr/bin/env bash
-
 PERL5LIB="\$( dirname "\$0" )/../home/.perl5/lib"
 perl -I "\$PERL5LIB" -x -S "\$PERL5LIB/../bin/\$( basename "\$0" )$1" "\$@"
 SCRIPT
@@ -44,6 +43,8 @@ do
 	shell_runner "$x" > "$DESTDIR/$g"
 	batch_runner "$x" > "$DESTDIR/$g.bat"
 done
+
+cp "$( dirname "$0" )/bin-copy"/* "$DESTDIR"
 
 # =========================================================================
 
