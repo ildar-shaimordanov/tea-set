@@ -160,6 +160,8 @@ then
 	alias ggg='git rev-parse --git-dir'
 	alias ggb='git rev-parse --abbrev-ref HEAD'
 
+	alias ght='grep . ~/.gh-token-* | sed "s#.*/##; s#:# #"'
+
 	# /cygdrive if cygwin default settings or emty string otherwise
 	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
 
