@@ -32,19 +32,25 @@ Make runners for local Perl utilites
 Destination: $DESTDIR"
 BANNER
 
-grep -l '^#!.*perl' "$( dirname "$0" )/bin"/* \
-| while read f
+grep -c '^#!.*perl' "$( dirname "$0" )/bin"/* \
+| while IFS=":" read f n
 do
+	if [ "$n" = "0" ]
+	then
+		echo "  Copying: $f"
+		cp "$f" "$DESTDIR"
+		continue
+	fi
+
 	g="$( basename "$f" .pl )"
+	x=""
 	[ "$g" = "$( basename "$f" )" ] || x=".pl"
 
-	echo "  Perl script: $g"
+	echo "  Perl script: $f"
 
 	shell_runner "$x" > "$DESTDIR/$g"
 	batch_runner "$x" > "$DESTDIR/$g.bat"
 done
-
-cp "$( dirname "$0" )/bin-copy"/* "$DESTDIR"
 
 # =========================================================================
 
