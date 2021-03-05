@@ -12,6 +12,7 @@
 	show-root = rev-parse --show-toplevel
 	show-git = rev-parse --git-dir
 	show-url = config --local remote.origin.url
+	graph = log --color --graph --oneline --decorate --all
 [pager]
 	branch = cat
 	config = cat
