@@ -42,6 +42,15 @@ local ExtCompOpts = ""
 
 ---------------------------------------------------------------------------
 
+-- Hotkeys to launch VisualCompare and external tool
+
+local hotkeys = {
+	VisComp = "Ctrl/";
+	ExtComp = "CtrlShift/";
+}
+
+---------------------------------------------------------------------------
+
 ---- Локализация
 _G.far.lang = far.lang or win.GetEnv("farlang")
 
@@ -129,7 +138,7 @@ end
 Macro {
 	description = M.Description;
 	area = "Shell Tree";
-	key = "Ctrl/";
+	key = hotkeys.VisComp;
 	action = function()
 		callCompare(0)
 	end
@@ -138,7 +147,7 @@ Macro {
 Macro {
 	description = M.DescriptionAlt;
 	area = "Shell Tree";
-	key = "CtrlShift/";
+	key = hotkeys.ExtComp;
 	action = function()
 		callCompare(1)
 	end
