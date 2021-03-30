@@ -169,6 +169,15 @@ cover2folder() {
 
 # =========================================================================
 
+# POSIX shell calculator
+# https://www.commandlinefu.com/commands/view/24415/shell-pocket-calculator-pure-sh
+
+calc() {
+	printf "%.8g\n" "$( printf "%s\n" "$*" | bc -l )"
+}
+
+# =========================================================================
+
 # Additional function, complementary to "declare -p", but shorter in
 # typing and produces more convenient output
 var() {
