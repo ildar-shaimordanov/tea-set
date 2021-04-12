@@ -76,7 +76,7 @@ fi
 alias np='call notepad'
 
 call() {
-	eval set -- "$1" $( cygpath -m -- "${@:2}" | sed 's/^\|$/"/g' )
+	eval set -- "$1" $( [ $# -gt 1 ] && cygpath -m -- "${@:2}" | sed 's/^\|$/"/g' )
 	command "$@"
 }
 
