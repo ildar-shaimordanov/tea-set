@@ -13,6 +13,12 @@
 <filename>/\.(config)$/i</filename>
 </prototype>
 
+<prototype name="awk" group="scripts" description="AWK">
+<location link="schemes/awk.hrc"/>
+<filename weight='5'>/\.awk$/i</filename>
+<firstline>/^# gawk/i</firstline>
+</prototype>
+
 <!-- prototype name="jScript" group="inet" description="JavaScript">
 <location link="schemes/jscript.hrc"/>
 <filename>/\.(js|mocha)$/i</filename>
