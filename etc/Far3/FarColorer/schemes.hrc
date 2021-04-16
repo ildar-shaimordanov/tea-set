@@ -62,22 +62,4 @@
 </prototype>
 -->
 
-<prototype name="java" group="main" description="Java">
-<!--<location link="schemes/java.hrc"/>-->
-<location link="jar:%FARHOME%/Plugins/FarColorer/base/hrc/common.jar!base/java.hrc"/>
-<filename>/\.ja(va|v|d)$/i</filename>
-<firstline weight='2'>/^\/\/ Decompiled by Jad/</firstline>
-<firstline weight='2'>/^\/\*\r?\n \* Decompiled with CFR/</firstline><!-- support another java decompiler https://github.com/leibnitz27/cfr -->
-<parameters>
-<param name="tabs-as-errors" value="false" description="Shows tabulation symbol as error"/>
-<param name="spaces-as-errors" value="false" description="Shows trailing spaces as error"/>
-<param name="outlined-new" value="false" description="Outline creation of instances"/>
-<param name="j2se-core-classes" value="true" description="Use names of J2SE core classes"/>
-<param name="j2se-xml-classes" value="true" description="Use names of J2SE Xml classes"/>
-<param name="j2se-javax-classes" value="false" description="Use names of J2SE javax.* classes"/>
-<param name="j2se-gui-classes" value="false" description="Use names of J2SE applet, Awt and Swing classes"/>
-<param name="j2se-omg-classes" value="false" description="Use names of J2SE org.omg.* classes"/>
-</parameters>
-</prototype>
-
 </hrc>
