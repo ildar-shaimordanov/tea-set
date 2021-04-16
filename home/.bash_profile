@@ -38,6 +38,13 @@
 
 # =========================================================================
 
+# Workaround for setting HOME to $TEA_HOME/home
+OLD_HOME="$HOME"
+HOME="$( dirname "$BASH_SOURCE" | cygpath -mf - | xargs realpath -e | cygpath -uf - )"
+
+[ "$OLD_HOME" == "$PWD" ] && cd "$HOME"
+unset OLD_HOME
+
 PATH="$PATH:$HOME/bin"
 
 # =========================================================================
