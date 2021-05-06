@@ -75,4 +75,22 @@ HELP
 
 # =========================================================================
 
+# https://unix.stackexchange.com/a/11859/440611
+#
+# print the header (the first line of input)
+# and then run the specified command on the body (the rest of the input)
+# use it in a pipeline, e.g. ps | body grep somepattern
+#
+# Examples:
+# ps -o pid,comm | body sort -k2
+# ps -o pid,comm | body grep bash
+# printf '%s\n' no-sort-1 no-sort-2 first second | body body sort
+body() {
+	IFS= read -r header
+	printf '%s\n' "$header"
+	"$@"
+}
+
+# =========================================================================
+
 # EOF
