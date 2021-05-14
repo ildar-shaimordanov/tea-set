@@ -16,11 +16,11 @@ symlink() {
 
 # Manage with windows clipboard
 
-clip() {
-	# clip | ...
+clp() {
+	# clp | ...
 	[ -t 1 ] || { cat - </dev/clipboard ; return ; }
 
-	# ... | clip
+	# ... | clp
 	[ -t 0 ] || { cat - >/dev/clipboard ; return ; }
 
 	# simply output the clipboard
@@ -28,8 +28,8 @@ clip() {
 
 	cat - <<USAGE
 Usage:
-    clip | ....
-    .... | clip
+    clp | ...
+    ... | clp
 USAGE
 }
 
