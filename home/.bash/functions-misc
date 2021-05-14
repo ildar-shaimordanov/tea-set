@@ -17,20 +17,14 @@ symlink() {
 # Manage with windows clipboard
 
 clp() {
-	# clp | ...
-	[ -t 1 ] || { cat - </dev/clipboard ; return ; }
-
 	# ... | clp
 	[ -t 0 ] || { cat - >/dev/clipboard ; return ; }
 
-	# simply output the clipboard
-	[ "$1" = "-h" ] || { cat /dev/clipboard ; return ; }
+	# clp | ...
+	# or simply output the clipboard
+	[ "$1" = "-h" ] || { cat - </dev/clipboard ; return ; }
 
-	cat - <<USAGE
-Usage:
-    clp | ...
-    ... | clp
-USAGE
+	echo "Usage: [ clp | ] ... [ | clp ]"
 }
 
 # =========================================================================
