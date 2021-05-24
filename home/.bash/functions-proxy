@@ -1,0 +1,60 @@
+#! ~/.bash/functions-strings
+
+# =========================================================================
+
+proxy_by_net() {
+	# Address of proxy auto-config file
+	# (mandatory)
+	# $proxy_auto_config
+
+	# List of subnets requiring the proxy setting (like "192\.168\.")
+	# (mandatory)
+	# $proxy_subnet_list
+
+	# Indexes of http and https proxy in the 0-based proxy list
+	# (optional, empty or not-specified value means 0)
+	# $proxy_http_index
+	# $proxy_https_index
+
+	[ -f ~/.proxy-auto-config ] \
+	&& . ~/.proxy-auto-config
+
+	[ -z "$proxy_auto_config" ] && return
+	[ -z "$proxy_subnet_list" ] && return
+
+	# Look for the default route and take the internal IP address.
+	# Network Destination        Netmask          Gateway       Interface  Metric
+	#           0.0.0.0          0.0.0.0      192.168.1.1    192.168.1.101     25
+	#
+	# Assume 192.168.* is the network requiring the proxy, so the list of 
+	# subnets should be declared as follows (array allows to add new subnet in 
+	# simple way): 
+	# proxy_subnet_list=( "192\.168\." ).
+
+	netstat -rn \
+	| grep -w '0.0.0.0' \
+	| awk '{ print $4 }' \
+	| grep -Eq $( printf -- " -e ^%s " "${proxy_subnet_list[@]}" ) || return
+
+	# Look for the strings "PROXY (.*)".
+
+	proxy_list=( $(
+		timeout 5 \
+		wget -qO - "$proxy_auto_config" -o /dev/null \
+		| grep -Eow 'PROXY [^"; ]+' \
+		| sed 's/^.* //; /^SETTINGS$/d'
+	) )
+
+	export http_proxy="${proxy_list[${proxy_http_index:-0}]}"
+	export HTTPS_PROXY="${proxy_list[${proxy_https_index:-0}]}"
+
+	cat - <<EOT
+Proxy settings:
+http_proxy  = [$http_proxy]
+HTTPS_PROXY = [$HTTPS_PROXY]
+EOT
+}
+
+# =========================================================================
+
+# EOF
