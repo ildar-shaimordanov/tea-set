@@ -19,22 +19,33 @@ symlink() {
 clp() {
 	if [ "$1" = "-h" -o "$1" = "--help" ]
 	then
-		cat <<-HELP
-		Usage: [ clp | ] ... [ | clp ]
+		cat <<HELP
+Usage: [ clp [-u|-d] | ] ... [ | clp [-u|-d] ]
 
-		Copy data from and/or to the clipboard
-		HELP
+Copy data from and/or to the clipboard
+
+	-u	dos2unix
+	-d	unix2dos
+HELP
 		return
 	fi
 
 	if [ ! -t 0 ]
 	then
 		# ... | clp
-		cat - >/dev/clipboard
+		case "$1" in
+		-u ) dos2unix ;;
+		-d ) unix2dos ;;
+		*  ) cat - ;;
+		esac >/dev/clipboard
 	else
 		# clip | ...
 		# or simply output data from the clipboard
-		cat - </dev/clipboard
+		case "$1" in
+		-u ) dos2unix ;;
+		-d ) unix2dos ;;
+		*  ) cat - ;;
+		esac </dev/clipboard
 	fi
 }
 
