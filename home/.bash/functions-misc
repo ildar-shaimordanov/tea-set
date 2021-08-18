@@ -51,6 +51,15 @@ HELP
 
 # =========================================================================
 
+# Tokens are stored in the file ~/.git-tokens in the form: ALIAS TOKEN
+# Display a token by its alias or print the list of token aliases,
+# if the alias not specified
+gt() {
+	awk -v t="$1" '! t { print $1 } $1 == t { print $2 }' ~/.git-tokens
+}
+
+# =========================================================================
+
 # https://github.com/rprichard/winpty
 
 if ! which winpty > /dev/null 2>&1
