@@ -39,8 +39,8 @@ HELP
 		*  ) cat - ;;
 		esac >/dev/clipboard
 	else
-		# clip | ...
-		# or simply output data from the clipboard
+		# clp | ...
+		# or simply output the clipboard
 		case "$1" in
 		-u ) dos2unix ;;
 		-d ) unix2dos ;;
