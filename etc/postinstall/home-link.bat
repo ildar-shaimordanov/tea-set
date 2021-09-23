@@ -1,6 +1,6 @@
-:: Setup a TEA-SET home as Cygwin user home
+:: Setup a TEA-SET home as Cygwin/MSYS2/MinGW user home
 ::
-:: Usage: cygwin-home TYPE
+:: Usage: home-link TYPE
 ::
 :: Available types:
 ::
@@ -11,6 +11,14 @@
 ::		and the R/O attribute set.
 :: cyglink	creates symlinks in the old-fashioned Cygwin style
 ::		(a special file with the System attribute set).
+::
+:: The script assumes the following directory tree structure and HAVE TO BE
+:: executed from within one of %TEA_SET%\vendors\*\home:
+:: %TEA_SET%\home
+:: %TEA_SET%\vendors\cygwin\home
+:: %TEA_SET%\vendors\msys32\home
+:: %TEA_SET%\vendors\msys64\home
+:: ... and so on
 @echo off
 
 if "%~1" == "" (
@@ -35,34 +43,23 @@ goto :EOF
 rem =======================================================================
 
 :create-junction
-call :mklink j
+mklink /j "%USERNAME%" "..\..\..\home"
 goto :EOF
 
 :create-symlinkd
-call :mklink d
-goto :EOF
-
-:mklink
-setlocal
-cd "%~dp0..\..\vendors\cygwin\home" || exit /b %ERRORLEVEL%
-mklink /%~1 "%USERNAME%" "..\..\..\home"
+mklink /d "%USERNAME%" "..\..\..\home"
 goto :EOF
 
 rem =======================================================================
 
 :create-winlink
-call :copy-file R winlink "%USERNAME%.lnk"
+copy /b "%~dpn0.winlink" "%USERNAME%.lnk" || exit /b %ERRORLEVEL%
+attrib +R "%USERNAME%.lnk"
 goto :EOF
 
 :create-cyglink
-call :copy-file S cyglink "%USERNAME%"
-goto :EOF
-
-:copy-file
-setlocal
-set "dstfile=%~dp0..\..\vendors\cygwin\home\%~3"
-copy /b "%~dpn0.%~2" "%dstfile%" || exit /b %ERRORLEVEL%
-attrib +%~1 "%dstfile%"
+copy /b "%~dpn0.cyglink" "%USERNAME%" || exit /b %ERRORLEVEL%
+attrib +S "%USERNAME%"
 goto :EOF
 
 rem =======================================================================
