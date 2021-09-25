@@ -69,22 +69,46 @@ then
 	# -- CYGROOT/../winpty*cygwin* for Cygwin
 	# -- MSYSROOT/../winpty*msys2* for Msys
 
-	case "$( uname | tr [:upper:] [:lower:] )" in
-	cygwin* )
+	WINPTY="$(
+		n="$( uname -s -m | tr [:upper:] [:lower:] )"
+
+		case "$n" in
+		cygwin* )
+			d="$( cygpath -m / )"
+			e=cygwin
+			;;
+		msys* | mingw* | windows* )
+			d="$( cd / ; pwd -W )"
+			e=msys2
+			;;
+		esac
+
+		case "$n" in
+		*x86_64	)
+			b=64
+			;;
+		*	)
+			b=32
+			;;
+		esac
+
 		WINPTY="$(
-			ls -rd $( cygpath -m / )/../winpty*cygwin* \
-			| head -1 \
-			| xargs -r cygpath
+			ls -rd "$d"/../winpty*$e*$b 2>/dev/null \
+			| head -1
 		)"
-		;;
-	msys* | mingw* | windows* )
-		WINPTY="$(
-			ls -d "$( cd / ; pwd -W )"/../winpty*msys2* \
-			| head -1 \
-			| xargs -r -IX bash -c 'cd "X" && pwd' 2>/dev/null
-		)"
-		;;
-	esac
+
+		[ -n "$WINPTY" ] || exit
+
+		case "$n" in
+		cygwin* )
+			cygpath "$WINPTY"
+			;;
+		msys* | mingw* | windows* )
+			cd "$WINPTY"
+			pwd
+			;;
+		esac
+	)"
 
 	if [ -n "$WINPTY" -a -x "$WINPTY/bin/winpty" ]
 	then
