@@ -18,7 +18,3 @@
 	config = cat
 	diff = less -R
 	log = less -R
-[bunch "priv"]
-	path = /cygdrive/c/PROGS/var/git
-[bunch "work"]
-	path = /cygdrive/u/var/git
