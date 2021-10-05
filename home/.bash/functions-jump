@@ -28,10 +28,15 @@ HELP
 
 	local CONF=~/.jconf
 
-	if [ ! -f "$CONF" ]
-	then
-		echo "File not exist: ~/.jconf" >&2
-	fi
+	# Estimate the prefix for Cygwin, Msys2 and so on.
+	# It differs for different systems:
+	# - "/cygdrive/" for Cygwin (NB: the single trailing slash)
+	# - "/" for Msys2
+	# - empty string for real Unix environments
+	local prefix="$(
+		cd -P /proc/cygdrive 2>/dev/null || exit 0
+		echo "${PWD%%/}/"
+	)"
 
 	local jcmd="cd"
 
@@ -46,19 +51,30 @@ HELP
 			break
 			;;
 		a )
+			# Prevent adding the same alias
 			if [ -f "$CONF" ] && grep -Pq "^$OPTARG\t" "$CONF"
 			then
 				echo "Alias already exists: $OPTARG" >&2
 				return 255
 			fi
-			printf '%s\t%s\n' "$OPTARG" "$PWD" >>"$CONF"
+
+			printf '%s\t%s\n' "$OPTARG" "${PWD#$prefix}" >>"$CONF"
 			return $?
 			;;
 		d )
+			# No file, nothing to delete -- no error
+			[ -f "$CONF" ] || return 0
+
 			sed -i "/^$OPTARG\t/d" "$CONF"
 			return $?
 			;;
 		A )
+			# No file, nothing to display -- error
+			[ -f "$CONF" ] || {
+				echo "File not exist: ~/.jconf" >&2
+				return 255
+			}
+
 			sort "$CONF"
 			return $?
 			;;
@@ -90,8 +106,16 @@ HELP
 		return 255
 		;;
 	1 )
+		# FIXME!!! Sometimes it fails -- for example:
+		# 1. run under Msys2
+		#    cd /tmp ; j -a zzz
+		# 2. run under Cygwin
+		#    j zzz
+		# It happens because Msys2 creates "zzz {TAB} tmp"
+		# And further Cygwin tries to "cd /cygdrive/tmp"
+		[ "${jdir[0]:0:1}" = "/" ] && prefix=""
 		# cd or ls
-		$jcmd "${jdir[0]}/$2"
+		$jcmd "$prefix${jdir[0]}/$2"
 		;;
 	* )
 		echo "More than one alias found: $1" >&2
