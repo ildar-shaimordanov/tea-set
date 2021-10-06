@@ -112,7 +112,7 @@ fi
 # =========================================================================
 
 # Windows only (Cygwin or MSys)
-case "$( uname | tr [:upper:] [:lower:] )" in
+case "$( uname | tr '[:upper:]' '[:lower:]' )" in
 cygwin* | msys* | mingw* )
 	alias ps='ps -W'
 	;;
@@ -161,31 +161,17 @@ then
 	alias ggg='git rev-parse --git-dir'
 	alias ggb='git rev-parse --abbrev-ref HEAD'
 
-	# /cygdrive if cygwin default settings or emty string otherwise
-	drive_prefix="$( mount -p 2>/dev/null | sed -n '2s/[ ]*[^ ]*[ ]*[^ ]*$//p' | grep -vx '/' )"
-
-	# cd to home dir for personal gits
-	alias cdgp='cd "$( git-bunch priv )" && ls'
-
-	# cd to home dir for gits used at work
-	alias cdgw='cd "$( git-bunch work )" && ls'
-
-	unset drive_prefix
-
 	# Do cd to the git root dir (if it's possible
 	alias cdggr='cd "$( ggr )"'
-fi
 
-# =========================================================================
+	if command -v git-bunch >/dev/null 2>&1
+	then
+		# cd to home dir for personal gits
+		alias cdgp='cd "$( git-bunch priv )" && ls'
 
-if command -v perl >/dev/null 2>&1
-then
-	# `whichpm` reports the filesystem path of Perl modules by module 
-	# (package) name, similar to what the Unix `which` utility does 
-	# for binaries.
-	# See also:
-	# https://github.com/mklement0/whichpm
-	alias whichpm='perldoc -lm'
+		# cd to home dir for gits used at work
+		alias cdgw='cd "$( git-bunch work )" && ls'
+	fi
 fi
 
 # =========================================================================

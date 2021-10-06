@@ -6,16 +6,14 @@
 # http://backreference.org/2011/01/29/in-place-editing-of-files/
 # http://joeyh.name/code/moreutils/
 command -v sponge >/dev/null 2>&1 || sponge() {
-	typeset FN="sponge"
-
-	if [ $# -ne 1 -o -z "$1" ]
+	if [ $# -ne 1 ] || [ -z "$1" ]
 	then
 		cat <<HELP
 NAME
-	$FN - Soak up standard input and write to a file
+	sponge - Soak up standard input and write to a file
 
 USAGE
-	command FILE | $FN FILE
+	command FILE | sponge FILE
 
 DESCRIPTION
 	The function reads standard input and writes it out to the 
@@ -42,16 +40,14 @@ HELP
 # 1. Extend with END-OF-PARA
 # 2. Rewrite entirely on Perl
 command -v paragrep >/dev/null 2>&1 || paragrep() {
-	typeset FN="paragrep"
-
-	if [ $# -lt 2 -o -z "$1" ]
+	if [ $# -lt 2 ] || [ -z "$1" ]
 	then
 		cat <<HELP
 NAME
-	$FN - grep-like filter for searching matches in paragraphs
+	paragrep - grep-like filter for searching matches in paragraphs
 
 USAGE
-	$FN BEGIN-OF-PARA PATTERN [FILE]...
+	paragrep BEGIN-OF-PARA PATTERN [FILE]...
 
 DESCRIPTION
 	The function assumes input consists of paragraphs and outputs the 

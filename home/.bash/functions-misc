@@ -17,7 +17,7 @@ symlink() {
 # Manage with windows clipboard
 
 clp() {
-	if [ "$1" = "-h" -o "$1" = "--help" ]
+	if [ "$1" = "-h" ] || [ "$1" = "--help" ]
 	then
 		cat <<HELP
 Usage: [ clp [-u|-d] | ] ... [ | clp [-u|-d] ]
@@ -70,7 +70,7 @@ then
 	# -- MSYSROOT/../winpty*msys2* for Msys
 
 	WINPTY="$(
-		n="$( uname -s -m | tr [:upper:] [:lower:] )"
+		n="$( uname -s -m | tr '[:upper:]' '[:lower:]' )"
 
 		case "$n" in
 		cygwin* )
