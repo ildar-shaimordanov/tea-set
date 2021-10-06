@@ -5,7 +5,7 @@
 # Perl version of sponge
 # http://backreference.org/2011/01/29/in-place-editing-of-files/
 # http://joeyh.name/code/moreutils/
-which sponge >/dev/null 2>&1 || sponge() {
+command -v sponge >/dev/null 2>&1 || sponge() {
 	typeset FN="sponge"
 
 	if [ $# -ne 1 -o -z "$1" ]
@@ -41,7 +41,7 @@ HELP
 # TODO!!!
 # 1. Extend with END-OF-PARA
 # 2. Rewrite entirely on Perl
-which paragrep >/dev/null 2>&1 || paragrep() {
+command -v paragrep >/dev/null 2>&1 || paragrep() {
 	typeset FN="paragrep"
 
 	if [ $# -lt 2 -o -z "$1" ]

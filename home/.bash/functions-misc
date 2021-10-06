@@ -62,7 +62,7 @@ gt() {
 
 # https://github.com/rprichard/winpty
 
-if ! which winpty > /dev/null 2>&1
+if ! command -v winpty >/dev/null 2>&1
 then
 	# Assume winpty* instances lie next to Cygwin/Msys separately
 	# under their own directories as follows:
