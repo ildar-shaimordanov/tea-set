@@ -9,7 +9,7 @@ echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw6
 # =========================================================================
 
 # Git settings
-declare -F | grep -q _git && return
+#declare -F | grep -q _git && return
 
 for f in \
 	"/usr/share/bash-completion/completions/git" \
