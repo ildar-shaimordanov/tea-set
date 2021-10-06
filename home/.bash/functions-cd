@@ -1,10 +1,11 @@
-#! ~/.bash/functions-cd
+# shellcheck shell=bash
 
 # =========================================================================
 
 # http://www.commandlinefu.com/commands/view/11246/bashksh-function-given-a-file-cd-to-the-directory-it-lives
 # dirname DIR/FILE + cd DIR
 cdf() {
+	# shellcheck disable=SC2164
 	cd "$( [ -f "$1" ] && dirname "$1" || echo "$1" )"
 }
 
@@ -13,6 +14,7 @@ cdf() {
 # http://www.commandlinefu.com/commands/view/12669/create-a-directory-and-change-into-it-at-the-same-time
 # mkdir DIR + cd DIR
 mkcd() {
+	# shellcheck disable=SC2164
 	mkdir -p "$1" && cd "$1"
 }
 
@@ -49,6 +51,9 @@ cd() {
 		L | P | e | @ )
 			CDOPTS="$CDOPTS -$opt"
 			;;
+		* )
+			return $?
+			;;
 		esac
 	done
 
@@ -56,6 +61,7 @@ cd() {
 
 	case $# in
 	0 | 1 )
+		# shellcheck disable=SC2086,SC2164
 		builtin cd $CDOPTS "$@"
 		;;
 	2 )
@@ -69,6 +75,7 @@ cd() {
 			;;
 		esac
 
+		# shellcheck disable=SC2086,SC2164
 		builtin cd $CDOPTS "${PWD//$1/$2}"
 		;;
 	* )

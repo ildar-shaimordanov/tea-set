@@ -1,23 +1,21 @@
-#! ~/.bash/functions-datetime
+# shellcheck shell=bash
 
 # =========================================================================
 
 now() {
-	local args="$@"
-	date "+%F %T" ${args:+ -d "$args"}
+	date "+%F %T" ${@:+ -d "$@"}
 }
 
 today() {
-	local args="$@"
-	date "+%F" ${args:+ -d "$args"}
+	date "+%F" ${@:+ -d "$@"}
 }
 
 tomorrow() {
-	today "+1 day $@"
+	today "+1 day $*"
 }
 
 yesterday() {
-	today "-1 day $@"
+	today "-1 day $*"
 }
 
 # =========================================================================

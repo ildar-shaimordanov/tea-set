@@ -1,4 +1,4 @@
-#! ~/.bash/functions-jump
+# shellcheck shell=bash
 
 # =========================================================================
 
@@ -33,6 +33,7 @@ HELP
 	# - "/cygdrive/" for Cygwin (NB: the single trailing slash)
 	# - "/" for Msys2
 	# - empty string for real Unix environments
+	# shellcheck disable=SC2155
 	local prefix="$(
 		cd -P /proc/cygdrive 2>/dev/null || exit 0
 		echo "${PWD%%/}/"

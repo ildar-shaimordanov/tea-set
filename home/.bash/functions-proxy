@@ -1,4 +1,4 @@
-#! ~/.bash/functions-strings
+# shellcheck shell=bash
 
 # =========================================================================
 
@@ -16,6 +16,7 @@ proxy_by_net() {
 	# $proxy_http_index
 	# $proxy_https_index
 
+	# shellcheck source=/dev/null
 	[ -f ~/.proxy-auto-config ] \
 	&& . ~/.proxy-auto-config
 
@@ -31,6 +32,7 @@ proxy_by_net() {
 	# simple way): 
 	# proxy_subnet_list=( "192\.168\." ).
 
+	# shellcheck disable=SC2046
 	netstat -rn \
 	| grep -w '0.0.0.0' \
 	| awk '{ print $4 }' \
@@ -38,6 +40,7 @@ proxy_by_net() {
 
 	# Look for the strings "PROXY (.*)".
 
+	# shellcheck disable=SC2207
 	proxy_list=( $(
 		timeout 5 \
 		wget -qO - "$proxy_auto_config" -o /dev/null \

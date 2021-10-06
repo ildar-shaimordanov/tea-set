@@ -1,4 +1,4 @@
-#! ~/.bash/functions-misc
+# shellcheck shell=bash
 
 # =========================================================================
 
@@ -92,6 +92,7 @@ then
 			;;
 		esac
 
+		# shellcheck disable=SC2012
 		WINPTY="$(
 			ls -rd "$d"/../winpty*$e*$b 2>/dev/null \
 			| head -1
@@ -104,13 +105,12 @@ then
 			cygpath "$WINPTY"
 			;;
 		msys* | mingw* | windows* )
-			cd "$WINPTY"
-			pwd
+			cd "$WINPTY" && pwd
 			;;
 		esac
 	)"
 
-	if [ -n "$WINPTY" -a -x "$WINPTY/bin/winpty" ]
+	if [ -n "$WINPTY" ] && [ -x "$WINPTY/bin/winpty" ]
 	then
 		PATH="$PATH:$WINPTY/bin"
 	fi

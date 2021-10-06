@@ -1,4 +1,4 @@
-#! ~/.bash/functions-strings
+# shellcheck shell=bash
 
 # =========================================================================
 
@@ -26,6 +26,7 @@ ord() {
 	printf "0x%x" "'$1"
 }
 
+# shellcheck disable=SC2059
 chr() {
 	local s
 	printf -v s '\\%03o' "$@"
@@ -41,7 +42,7 @@ chr() {
 rep() {
 	local s
 	printf -v s "%${2}s"
-	printf -- "${s// /$1}"
+	printf '%s' "${s// /$1}"
 #	printf "%${2}s" | sed "s/ /${1}/g"
 }
 

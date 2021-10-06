@@ -1,10 +1,10 @@
-#! ~/.bash/settings-git
+# shellcheck shell=bash
 
 # =========================================================================
 
 # Support Git-for-Windows
-echo $PATH | grep -q '/mingw32/bin' || { test -d '/mingw32/bin' && PATH="/mingw32/bin:$PATH" ; }
-echo $PATH | grep -q '/mingw64/bin' || { test -d '/mingw64/bin' && PATH="/mingw64/bin:$PATH" ; }
+echo "$PATH" | grep -q '/mingw32/bin' || { [ -d '/mingw32/bin' ] && PATH="/mingw32/bin:$PATH" ; }
+echo "$PATH" | grep -q '/mingw64/bin' || { [ -d '/mingw64/bin' ] && PATH="/mingw64/bin:$PATH" ; }
 
 # =========================================================================
 
@@ -21,6 +21,7 @@ for f in \
 do
 	if [ -f "$f" ]
 	then
+		# shellcheck source=/dev/null
 		. "$f"
 		break
 	fi
@@ -35,6 +36,7 @@ for f in \
 do
 	if [ -f "$f" ]
 	then
+		# shellcheck source=/dev/null
 		. "$f"
 		break
 	fi
