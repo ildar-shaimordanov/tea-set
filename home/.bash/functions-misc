@@ -125,8 +125,8 @@ fi
 alias np='call notepad'
 
 call() {
-	eval set -- "$1" $( [ $# -gt 1 ] && cygpath -m -- "${@:2}" | sed 's/^\|$/"/g' )
-	command "$@"
+	# shellcheck disable=SC2046
+	eval "$1" $( [ $# -gt 1 ] && shift && cygpath -m -- "$@" | sed 's/^\|$/"/g' )
 }
 
 # =========================================================================
