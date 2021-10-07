@@ -65,10 +65,10 @@ then
 	alias hd='xxd -g1'
 elif command -v perl >/dev/null 2>&1
 then
-	# perl implementing xdd -g1
+	# perl implementing xxd -g1
 	alias hd=xxd_g1
 	xxd_g1() {
-		perl -000 -e '
+		perl -0777 -e '
 		for ( <> =~ /.{1,16}/gs ) {
 			@d = unpack("H32") =~ /../g;
 			s/[^[:print:]]/./g;
