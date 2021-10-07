@@ -65,17 +65,22 @@ then
 	alias hd='xxd -g1'
 elif command -v awk >/dev/null 2>&1
 then
+	# Based on the answer to the question "Slurp-mode in awk?"
+	# https://unix.stackexchange.com/a/304458/440611
 	# awk implementing xxd -g1
 	alias hd=xxd_awk
 	xxd_awk() {
-		awk -v RS="\000" -v FS="\000" '
+		awk -v RS="\0" -v RT="\0" -v FS="\0" '
+		{
+			input = input $0 RT
+		}
 		END {
 			for (i = 0; i < 256; i++) {
 				c = sprintf("%c", i)
 				ord[c] = i
 			}
 
-			while ( s = substr($0, m + 1, 16) ) {
+			while ( s = substr(input, m + 1, 16) ) {
 				d = ""
 				for (i = 1; i <= length(s); i++) {
 					c = substr(s, i, 1)
