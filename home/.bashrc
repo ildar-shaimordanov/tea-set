@@ -1,14 +1,5 @@
 #! ~/.bashrc
 
-#- # Workaround to avoid the existing issue of sourcing from /etc/profile
-#- # https://github.com/msysgit/msysgit/pull/231
-#- case "$OSTYPE" in
-#- msys*)
-#- 	[ "${BASH_SOURCE[1]}" == "/etc/profile" ] && return
-#- 	;;
-#- esac
-#- ## echo "${BASH_SOURCE[@]}"
-
 # =========================================================================
 
 # To the extent possible under law, the author(s) have dedicated all 
@@ -129,19 +120,40 @@ export CYGWIN="winsymlinks"
 
 # =========================================================================
 
+# Clean the variable reserved for custom MOTD before using it. See the
+# details below to understand the concept of the feature.
+unset BASH_PROFILE_MOTD
+
 if [ -d "${HOME}/.bash" ]
 then
 	# Environment, functions, some setings and aliases: in this order
-	for f in \
-		"${HOME}/.bash/environ" \
-		$( ls ${HOME}/.bash/functions-* 2>/dev/null ) \
-		$( ls ${HOME}/.bash/settings-* 2>/dev/null ) \
-		"${HOME}/.bash/aliases"
+	for f in 				\
+		"${HOME}/.bash"/environ		\
+		"${HOME}/.bash"/functions-*	\
+		"${HOME}/.bash"/settings-*	\
+		"${HOME}/.bash"/aliases		\
+
 	do
 		[ -f "$f" ] \
 		&& . "$f"
 	done
 fi
+
+# Either "~/.bashrc" or any of "~/.bash/*" can define its own message
+# of the day (MOTD). Each MOTD should be correct shell code that
+# will be executed after sourcing all "~/.bash/*" and "~/.bashrc"
+# files. They should be added (either prepended or appended) to the
+# "$BASH_PROFILE_MOTD" variable. The easiest way to declare MOTD is
+# as follows:
+#
+# BASH_PROFILE_MOTD="$BASH_PROFILE_MOTD
+# : some code here if needed
+# cat <<MOTD
+# some text here
+# MOTD
+# : another code if needed
+# "
+eval "$BASH_PROFILE_MOTD"
 
 # =========================================================================
 
