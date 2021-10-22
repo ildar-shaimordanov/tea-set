@@ -11,5 +11,6 @@ Macro {
 		win.system("echo:Started Far3")
 		win.system("echo:[ %DATE% %TIME% ]")
 		panel.SetUserScreen()
+		win.Sleep(2000) -- workaround to avoid unexpected keystroke printing
 	end;
 }
