@@ -1,21 +1,18 @@
-# shellcheck shell=bash
+# shellcheck shell=sh
 
 # =========================================================================
 
+# The "proxy_auto_config" and "proxy_subnet_list" variables are used to
+# detect and set a proxy for the currently used used subnet. They have
+# higher precedence and if both are declared, they are used.
+#
+# The "proxy_subnet_list" variable is the whitespace separated list of
+# subnets (in the form "10\. 11\." and so on). If the currently active
+# network IP address matches this list, the PAC-file specified by the
+# "proxy_auto_config" variable will be downloaded and parsed to extract
+# one of the proxies.
+
 proxy_by_net() {
-	# Address of proxy auto-config file
-	# (mandatory)
-	# $proxy_auto_config
-
-	# List of subnets requiring the proxy setting (like "192\.168\.")
-	# (mandatory)
-	# $proxy_subnet_list
-
-	# Indexes of http and https proxy in the 0-based proxy list
-	# (optional, empty or not-specified value means 0)
-	# $proxy_http_index
-	# $proxy_https_index
-
 	# shellcheck source=/dev/null
 	[ -f ~/.proxy-auto-config ] \
 	&& . ~/.proxy-auto-config
@@ -27,37 +24,35 @@ proxy_by_net() {
 	# Network Destination        Netmask          Gateway       Interface  Metric
 	#           0.0.0.0          0.0.0.0      192.168.1.1    192.168.1.101     25
 	#
-	# Assume 192.168.* is the network requiring the proxy, so the list of 
-	# subnets should be declared as follows (array allows to add new subnet in 
-	# simple way): 
-	# proxy_subnet_list=( "192\.168\." ).
+	# Assume "192.168.*" is the network requiring the proxy, so the
+	# list should be declared as follows:
+	# proxy_subnet_list="192\.168\.".
 
-	# shellcheck disable=SC2046
-	netstat -rn \
-	| grep -w '0.0.0.0' \
+	# shellcheck disable=SC2046,SC2086
+	route print 0.0.0.0 \
+	| grep -Fw '0.0.0.0' \
 	| awk '{ print $4 }' \
-	| grep -Eq $( printf -- " -e ^%s " "${proxy_subnet_list[@]}" ) || return
+	| grep -Eq $( printf -- " -e ^%s " $proxy_subnet_list ) || return
 
-	# Look for the strings "PROXY (.*)".
-
-	# shellcheck disable=SC2207
-	proxy_list=( $(
-		timeout 5 \
+	proxy_list="$(
 		wget -qO - "$proxy_auto_config" -o /dev/null \
 		| grep -Eow 'PROXY [^"; ]+' \
 		| sed 's/^.* //; /^SETTINGS$/d'
-	) )
+	)"
 
 	# Learn more following these links:
 	# https://superuser.com/a/1690537/564864
 	# https://about.gitlab.com/blog/2021/01/27/we-need-to-talk-no-proxy/
 
-	export http_proxy="${proxy_list[${proxy_http_index:-0}]}"
-	export HTTP_PROXY="${proxy_list[${proxy_http_index:-0}]}"
+	# shellcheck disable=SC2155
+	export http_proxy="$( echo "$proxy_list" | awk "NR == ${1:-1}" )"
+	export HTTP_PROXY="$http_proxy"
 
-	export https_proxy="${proxy_list[${proxy_https_index:-0}]}"
-	export HTTPS_PROXY="${proxy_list[${proxy_https_index:-0}]}"
+	# shellcheck disable=SC2155
+	export https_proxy="$( echo "$proxy_list" | awk "NR == ${2:-1}" )"
+	export HTTPS_PROXY="$https_proxy"
 
+	# shellcheck disable=SC2154
 	cat - <<EOT
 Proxy settings:
 http_proxy  = [$http_proxy]
