@@ -48,13 +48,26 @@ proxy_by_net() {
 		| sed 's/^.* //; /^SETTINGS$/d'
 	) )
 
+	# Learn more following these links:
+	# https://superuser.com/a/1690537/564864
+	# https://about.gitlab.com/blog/2021/01/27/we-need-to-talk-no-proxy/
+
 	export http_proxy="${proxy_list[${proxy_http_index:-0}]}"
+	export HTTP_PROXY="${proxy_list[${proxy_http_index:-0}]}"
+
+	export https_proxy="${proxy_list[${proxy_https_index:-0}]}"
 	export HTTPS_PROXY="${proxy_list[${proxy_https_index:-0}]}"
 
 	cat - <<EOT
 Proxy settings:
 http_proxy  = [$http_proxy]
+HTTP_PROXY  = [$HTTP_PROXY]
+
+https_proxy = [$https_proxy]
 HTTPS_PROXY = [$HTTPS_PROXY]
+
+no_proxy    = [$no_proxy]
+NO_PROXY    = [$NO_PROXY]
 EOT
 }
 
