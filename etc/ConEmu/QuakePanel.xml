@@ -87,15 +87,6 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task10" modified="2019-10-16 21:46:21" build="160313">
-					<value name="Name" type="string" data="{flinux}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" flinux -new_console:bn'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Flags" type="dword" data="00000000"/>
-				</key>
 				<key name="Task11" modified="2019-10-16 21:46:21" build="160313">
 					<value name="Name" type="string" data="{PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
