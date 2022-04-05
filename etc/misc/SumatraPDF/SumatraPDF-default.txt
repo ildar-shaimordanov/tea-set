@@ -1,4 +1,4 @@
-﻿# For documentation, see http://www.sumatrapdfreader.org/settings3.2.html
+# For documentation, see http://www.sumatrapdfreader.org/settings3.2.html
 
 MainWindowBackground = #80fff200
 EscToExit = false

@@ -1,4 +1,4 @@
-﻿local Info = Info or package.loaded.regscript or function(...) return ... end --luacheck: ignore 113/Info
+local Info = Info or package.loaded.regscript or function(...) return ... end --luacheck: ignore 113/Info
 local nfo = Info { _filename or ...,
   name        = "Ctrl+O ultimate";
   description = "View UserScreen from any area";

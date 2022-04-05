@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2020-12-11 20:29:43" build="201124">
+		<key name=".Vanilla" modified="2022-02-11 17:48:10" build="210905">
 			<key name="Tasks" modified="2019-10-16 21:46:21" build="160313">
 				<value name="Count" type="long" data="11"/>
 				<key name="Task1" modified="2019-10-16 21:46:21" build="160313">
@@ -703,6 +703,9 @@
 			<key name="Colors" modified="2020-11-24 05:37:15" build="201123a">
 				<value name="Count" type="long" data="0"/>
 			</key>
+			<value name="CmdLineHistory" type="multi">
+				<line data="{syncup}"/>
+			</value>
 		</key>
 	</key>
 </key>

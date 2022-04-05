@@ -2,6 +2,9 @@
 
 # =========================================================================
 
+# Set the locale
+export LANG=en_US.UTF-8
+
 # Enable ANSI codes in less output
 export LESS='-R'
 
