@@ -1,6 +1,6 @@
 ; This is a TAB separated value file. It configures a set of directories
-; supposed to be put in PATH. It allows few simple rules describing
-; which directories nad how should be put in PATH.
+; supposed to be put in PATH. It provides few simple rules describing
+; which directories and how should be put in PATH.
 ;
 ; ROOT rootdir
 ; It defines a root directory for looking for other directories laying
