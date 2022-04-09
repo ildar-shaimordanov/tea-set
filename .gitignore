@@ -36,4 +36,4 @@ opt/*
 
 var/
 
-.vendors/
+vendors/
