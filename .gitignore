@@ -27,11 +27,13 @@ home/*
 !home/.inputrc
 !home/.profile
 
+libexec/*
+!libexec/README*
+!libexec/identify.bat
+
 opt/*
 !opt/README*
 
 var/
 
-libexec/*
-!libexec/README*
-!libexec/identify.bat
+.vendors/
