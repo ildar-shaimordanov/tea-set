@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
-		<key name=".Vanilla" modified="2022-04-09 10:26:11" build="210905">
+		<key name=".Vanilla" modified="2022-04-09 10:59:51" build="210905">
 			<key name="Tasks" modified="2022-04-05 02:35:58" build="210905">
 				<value name="Count" type="long" data="9"/>
 				<key name="Task1" modified="2019-10-16 21:46:21" build="160313">
@@ -135,7 +135,7 @@
 			<value name="Update.UseBuilds" type="hex" data="02"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="01"/>
-			<value name="FontSize" type="ulong" data="12"/>
+			<value name="FontSize" type="ulong" data="13"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="13"/>
 			<key name="HotKeys" modified="2022-04-05 02:35:58" build="210905">

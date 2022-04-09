@@ -5,5 +5,5 @@ Transparency=low
 OpaqueWhenFocused=no
 ClicksPlaceCursor=no
 RightClickAction=paste
-FontHeight=9
+FontHeight=10
 BellType=0
