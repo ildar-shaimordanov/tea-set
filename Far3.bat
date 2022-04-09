@@ -4,9 +4,9 @@ setlocal
 
 set "FAR_NAME=Far3"
 
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Far3
+if exist "%~dp0libexec\identify.bat" call "%~dp0libexec\identify.bat" app Far3
 
-if defined FAR_NAME if exist "%~dp0vendors\%FAR_NAME%\Far.exe" goto :continue
+if defined FAR_NAME if exist "%~dp0libexec\%FAR_NAME%\Far.exe" goto :continue
 
 call :error "Can't identify Far3 by name %FAR_NAME%"
 goto :EOF
@@ -14,7 +14,7 @@ goto :EOF
 :: ========================================================================
 
 :continue
-set "FAR_HOME=%~dp0vendors\%FAR_NAME%"
+set "FAR_HOME=%~dp0libexec\%FAR_NAME%"
 
 :: Path to the common directory for all FAR-related stuffs
 set "FAR_CONF=%~dp0etc\Far3"

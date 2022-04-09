@@ -25,12 +25,12 @@ if exist "%~dp0etc\%~n0\%~1.bat" call "%~dp0etc\%~n0\%~1.bat"
 set "SHELL_NAME=%~1"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell "%~1"
+if exist "%~dp0libexec\identify.bat" call "%~dp0libexec\identify.bat" shell "%~1"
 
 :: ========================================================================
 
 :: Check if there is git-bash
-if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\git-bash.exe" (
+if defined SHELL_NAME if exist "%~dp0libexec\%SHELL_NAME%\git-bash.exe" (
 	call :shell.git-bash.prepare "%~1"
 	call :shell.start "%~1" "git-bash.exe"
 	goto :EOF
@@ -43,7 +43,7 @@ if defined SHELL_NAME for %%s in (
 	bin
 	usr\bin
 	usr\local\bin
-) do if exist "%~dp0vendors\%SHELL_NAME%\%%s\mintty.exe" (
+) do if exist "%~dp0libexec\%SHELL_NAME%\%%s\mintty.exe" (
 	call :shell.mintty.prepare "%~1" %%s
 	call :shell.start "%~1" "%%s\mintty.exe"
 	goto :EOF
@@ -55,9 +55,9 @@ if defined SHELL_NAME for %%s in (
 set "SHELL_NAME=ConEmu"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell ConEmu
+if exist "%~dp0libexec\identify.bat" call "%~dp0libexec\identify.bat" shell ConEmu
 
-if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
+if defined SHELL_NAME if exist "%~dp0libexec\%SHELL_NAME%\ConEmu.exe" (
 	call :shell.conemu.prepare "%~1" && (
 		call :shell.start "%~1" "ConEmu.exe"
 		goto :EOF
@@ -70,9 +70,9 @@ if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\ConEmu.exe" (
 set "SHELL_NAME=ConsoleZ"
 set "SHELL_ARGS="
 
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" shell ConsoleZ
+if exist "%~dp0libexec\identify.bat" call "%~dp0libexec\identify.bat" shell ConsoleZ
 
-if defined SHELL_NAME if exist "%~dp0vendors\%SHELL_NAME%\Console.exe" (
+if defined SHELL_NAME if exist "%~dp0libexec\%SHELL_NAME%\Console.exe" (
 	call :shell.consolez.prepare "%~1" && (
 		call :shell.start "%~1" "Console.exe"
 		goto :EOF
@@ -89,7 +89,7 @@ for %%s in (
 	bash
 	ksh
 	sh
-) do if exist "%~dp0vendors\%SHELL_NAME%\bin\%%~s.exe" (
+) do if exist "%~dp0libexec\%SHELL_NAME%\bin\%%~s.exe" (
 	call :shell.start "%~1" "bin\%%~s.exe"
 	goto :EOF
 )
@@ -107,7 +107,7 @@ exit /b 1
 :: ========================================================================
 
 :shell.start
-start "Starting %~1 (%SHELL_NAME%)" "%~dp0vendors\%SHELL_NAME%\%~2" %SHELL_ARGS%
+start "Starting %~1 (%SHELL_NAME%)" "%~dp0libexec\%SHELL_NAME%\%~2" %SHELL_ARGS%
 goto :EOF
 
 :: ========================================================================

@@ -108,7 +108,7 @@ $packages = @(
 
 # =========================================================================
 
-$vendorsDir = [System.IO.Path]::GetFullPath("$pwd\..\vendors");
+$libexecDir = [System.IO.Path]::GetFullPath("$pwd\..\libexec");
 $distribDir = "$pwd\distrib";
 
 $7zip_exe = "";
@@ -155,7 +155,7 @@ function extract-archive( [string]$filename, [string]$targetDir, [bool]$onlyFile
 }
 
 function install-package( $package ) {
-	$dstDir = $script:vendorsDir + "\" + $package.dir;
+	$dstDir = $script:libexecDir + "\" + $package.dir;
 
 	"=================================================================";
 	"Package     : $($package.name)";

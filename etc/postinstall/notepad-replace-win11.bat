@@ -22,8 +22,8 @@ for %%f in (
 	"%~dp0..\..\opt\notepad\Notepad3.exe"
 	"%~dp0..\..\GUI\notepad3\Notepad3.exe"
 	"%~dp0..\..\GUI\notepad\Notepad3.exe"
-	"%~dp0..\..\vendors\notepad3\Notepad3.exe"
-	"%~dp0..\..\vendors\notepad\Notepad3.exe"
+	"%~dp0..\..\libexec\notepad3\Notepad3.exe"
+	"%~dp0..\..\libexec\notepad\Notepad3.exe"
 ) do if exist "%%~ff" (
 	set "np_fullpath=%%~ff"
 	goto :EOF

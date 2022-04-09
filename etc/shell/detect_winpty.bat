@@ -11,8 +11,8 @@ if "%~1" == "" (
 )
 
 for /f "tokens=* delims=" %%n in ( '
-	dir /ad /o-n /b "%~dp0..\..\vendors\winpty*%~1*%~2"
-' ) do for %%d in ( "%~dp0..\..\vendors\%%~n" ) do if exist "%%~d\bin\winpty.exe" (
+	dir /ad /o-n /b "%~dp0..\..\libexec\winpty*%~1*%~2"
+' ) do for %%d in ( "%~dp0..\..\libexec\%%~n" ) do if exist "%%~d\bin\winpty.exe" (
 	set "PATH=%PATH%;%%~d\bin"
 	goto :EOF
 )

@@ -2,6 +2,6 @@ Variety of tools and packages
 
 If you want to maintain different versions of one tool you can follow the procedure as below:
 
-1. store each version of the tool as a separate directory under the "000versions" directory
-2. create a directory symbolic link using the command "mklink /d NAME 000versions\NAME-VERSION"
-
+1. store each version of the tool in a separate directory
+2.1. create a junction link using the command "mklink /j NAME NAME-VERSION"
+2.2. create a directory symbolic link using the command "mklink /d NAME NAME-VERSION"

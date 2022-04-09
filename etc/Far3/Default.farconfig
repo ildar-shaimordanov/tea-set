@@ -584,7 +584,7 @@
         <filetype mask="*.ps" description="PostScript">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\vendors\cygwin\bin\gs -q -dNODISPLAY -P- -dSAFER -dDELAYBIND -dWRITESYSTEMDICT -dSIMPLE -c save -f ps2ascii.ps &quot;!.!&quot; -c quit"/>
+            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\libexec\cygwin\bin\gs -q -dNODISPLAY -P- -dSAFER -dDELAYBIND -dWRITESYSTEMDICT -dSIMPLE -c save -f ps2ascii.ps &quot;!.!&quot; -c quit"/>
             <command type="3" enabled="0" command=""/>
             <command type="4" enabled="0" command=""/>
             <command type="5" enabled="0" command=""/>
@@ -592,7 +592,7 @@
         <filetype mask="*.man,*.[1-8],*.[1-8].in" description="UNIX Man">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\vendors\cygwin\bin\groff.exe -P -cbou -Tlatin1 -mandoc &quot;!\!.!&quot; 2&gt;nul"/>
+            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\libexec\cygwin\bin\groff.exe -P -cbou -Tlatin1 -mandoc &quot;!\!.!&quot; 2&gt;nul"/>
             <command type="3" enabled="0" command=""/>
             <command type="4" enabled="0" command=""/>
             <command type="5" enabled="0" command=""/>
@@ -1625,7 +1625,7 @@
                         </key>
                         <key name="hv">
                             <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%TEA_HOME%\vendors"/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\libexec"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>

@@ -13,11 +13,11 @@
 ::		(a special file with the System attribute set).
 ::
 :: The script assumes the following directory tree structure and HAVE TO BE
-:: executed from within one of %TEA_SET%\vendors\*\home:
+:: executed from within one of %TEA_SET%\libexec\*\home:
 :: %TEA_SET%\home
-:: %TEA_SET%\vendors\cygwin\home
-:: %TEA_SET%\vendors\msys32\home
-:: %TEA_SET%\vendors\msys64\home
+:: %TEA_SET%\libexec\cygwin\home
+:: %TEA_SET%\libexec\msys32\home
+:: %TEA_SET%\libexec\msys64\home
 :: ... and so on
 @echo off
 

@@ -32,6 +32,6 @@ opt/*
 
 var/
 
-vendors/*
-!vendors/README*
-!vendors/identify.bat
+libexec/*
+!libexec/README*
+!libexec/identify.bat

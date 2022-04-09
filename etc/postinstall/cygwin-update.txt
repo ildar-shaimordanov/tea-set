@@ -39,7 +39,7 @@ Another and portable way
    the following lines
 
 # Set new home dir
-HOME="$( ../bin/cygpath -w / | ../bin/sed 's/vendors.*/home/' | ../bin/cygpath -uf - )"
+HOME="$( ../bin/cygpath -w / | ../bin/sed 's/libexec.*/home/' | ../bin/cygpath -uf - )"
 
 
 5. Save the changes to the file
