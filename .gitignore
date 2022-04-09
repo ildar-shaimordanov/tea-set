@@ -1,3 +1,5 @@
+shellenv.cfg
+
 bin/*
 !bin/README*
 

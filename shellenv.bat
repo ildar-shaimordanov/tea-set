@@ -34,88 +34,9 @@ doskey shellinfo="%~dp0shellinfo.bat" $*
 ::
 :: ========================================================================
 
-for /f "tokens=*" %%p in ( "%~dp0." ) do call :shellenv.set.home TEA_HOME "%%~fp"
-
-:: ========================================================================
-::
-:: OpenLDAP
-::
-:: ========================================================================
-
-call :shellenv.set.home OPENLDAP_HOME "%TEA_HOME%\opt\OpenLDAP"
-
-:: ========================================================================
-::
-:: IUM Sandbox
-::
-:: ========================================================================
-
-if exist "C:\IUM\etc\sandbox-release" (
-	for /f "usebackq eol=# delims=; tokens=1,2,*" %%a in (
-		"C:\IUM\etc\sandbox-release"
-	) do if not "%%~a" == "" (
-		rem 1. do attempt to assign to the sandbox drive
-		call :shellenv.set.home IUM_HOME "%%~a"
-	) else if not "%%~b" == "" (
-		rem 2. do attempt to assign to the sandbox path
-		call :shellenv.set.home IUM_HOME "%%~b"
-	)
-)
-
-:: ========================================================================
-::
-:: WWW (WebServers aka D.N.W.R.)
-::
-:: ========================================================================
-
-call :shellenv.set.home WWW_HOME "%TEA_HOME%\vendors\WWW"
-
-:: ========================================================================
-::
-:: Unix tools (Cygwin, GoW, GnuWin32, MSysGit, Git_Bash, UnixUtils, Win-Bash etc)
-::
-:: ========================================================================
-
-set "UNIX_NAME=unxutils"
-
-if exist "%~dp0vendors\identify.bat" call "%~dp0vendors\identify.bat" app Unix
-
-if defined UNIX_NAME call :shellenv.set.home UNIX_HOME "%TEA_HOME%\vendors\%UNIX_NAME%" /P
-
-:: What is the HOME directory?
-:: http://gnuwin32.sourceforge.net/faq.html
-:: set "HOME=%TEA_HOME%"
-
-:: The program aborts with the message: cannot create file /tmp/...
-:: http://gnuwin32.sourceforge.net/faq.html
-:: set "TMPDIR=%TEMP%"
-:: set "TMP=%TEMP%"
-
-:: How can I disable native language support?
-:: http://gnuwin32.sourceforge.net/faq.html
-:: set "LANG=en"
-:: set "LANGUAGE=en"
-
-:: ========================================================================
-::
-:: Perl
-:: (prepend in PATH to overrride other Perls from other places)
-::
-:: ========================================================================
-
-if exist "%TEA_HOME%\opt\Perl" for %%f in (
-	"c" 
-	"perl" 
-	"perl\site" 
-) do call :shellenv.select.path "%TEA_HOME%\opt\Perl\%%~f" /P
-
-:: ========================================================================
-::
-:: VirtualBox
-::
-:: ========================================================================
-
-call :shellenv.select.path "%ProgramFiles%\Oracle\VirtualBox"
+for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
+set "TEA_HOME=C:\PROGS"
+call :shellenv.select.path "%TEA_HOME%"
 
 :: ========================================================================
 ::
@@ -127,18 +48,18 @@ call :shellenv.lookup.jdk
 call :shellenv.lookup.jre
 
 if defined JDK_HOME (
-	call :shellenv.set.home JAVA_HOME "%JDK_HOME%"
+	set "JAVA_HOME=%JDK_HOME%"
 ) else if defined JRE_HOME (
-	call :shellenv.set.home JAVA_HOME "%JRE_HOME%"
+	set "JAVA_HOME=%JRE_HOME%"
 )
 
 :: ========================================================================
 ::
-:: Autoloading the rest of tools from %TEA_HOME%\opt
+:: Autoloading the rest of tools (for example from %TEA_HOME%\opt)
 ::
 :: ========================================================================
 
-for /d %%d in ( "%TEA_HOME%\opt\*" ) do call :shellenv.select.path "%%~d"
+call :shellenv.from.file
 
 :: ========================================================================
 ::
@@ -182,9 +103,13 @@ goto :EOF
 call :shellenv.lookup.java JDK_HOME jdk "Java Development Kit"
 goto :EOF
 
+:: ========================================================================
+
 :shellenv.lookup.jre
 call :shellenv.lookup.java JRE_HOME jre "Java Runtime Environment"
 goto :EOF
+
+:: ========================================================================
 
 :shellenv.lookup.java
 set "%~1="
@@ -209,6 +134,28 @@ goto :EOF
 
 :: ========================================================================
 
+:shellenv.from.file
+if not exist "%~dpn0.cfg" goto :EOF
+
+setlocal enabledelayedexpansion
+
+for /f "usebackq eol=; tokens=1,2,3,4 delims=	" %%1 in ( "%~dpn0.cfg" ) do (
+	if /i "%%~1" == "ROOT" (
+		for /f "tokens=*" %%p in ( 'echo:%%~2' ) do set "auto_root=%%~fp"
+	) else if /i "%%~1" == "HOME" (
+		call :shellenv.set.home "%%~2" "%%~3"
+	) else if /i "%%~1" == "DIRS" (
+		call :shellenv.set.dirs "!auto_root!\%%~2" "%%~3" "%%~4"
+	) else if /i "%%~1" == "DIR" (
+		call :shellenv.select.path "!auto_root!\%%~2" "%%~3"
+	)
+)
+
+endlocal & set "PATH=%PATH%"
+goto :EOF
+
+:: ========================================================================
+
 :: This routine sets home name variable (looks like XXX_HOME) to the 
 :: directory's path and adds paths to %PATH%. 
 ::
@@ -224,22 +171,37 @@ goto :EOF
 :: By default, all the paths are appended to %PATH%. In the case when 
 :: paths should to be prepended, use "/P" option.
 ::
-:: %~1 - home name variable (looks like XXX_HOME)
-:: %~2 - the directory's path
-:: %~3 - /P to force prepending to %PATH%, or empty
+:: %~1 - homedir
+:: %~2 - the subdirectories list
+:: %~3 - "prepend" for prepending or nothing
 
+:: home prepend
 :shellenv.set.home
-if defined %~1 goto :EOF
+call :shellenv.set.dirs "%~1" "bin;sbin;usr\bin" "%~2"
+goto :EOF
 
-:: Set all provided paths to %PATH%
-for %%p in (
-	"%~2\bin"
-	"%~2\sbin"
-	"%~2\usr\bin"
-	"%~2"
-) do (
-	call :shellenv.set.path "%%~fp" "%~3" && set "%~1=%~2"
+:: ========================================================================
+
+:: root\dir subdirs prepend
+:shellenv.set.dirs
+if "%~1" == "" goto :EOF
+if "%~2" == "" goto :EOF
+
+setlocal enabledelayedexpansion
+
+set "auto_unchecked=%~2"
+set "auto_unchecked=%~1\!auto_unchecked:;=;%~1\!"
+
+set "auto_path="
+for %%p in ( "%auto_unchecked:;=" "%" ) do (
+	call :shellenv.check.path "%%~p" && set "auto_path=!auto_path!;%%~p"
 )
+
+if defined auto_path set "auto_path=!auto_path:~1!"
+
+call :shellenv.concat.path "%~3"
+
+endlocal & set "PATH=%PATH%"
 goto :EOF
 
 :: ========================================================================
@@ -254,58 +216,49 @@ goto :EOF
 :: paths should to be prepended, use "/P" option.
 ::
 :: %~1 - the directory's path
-:: %~2 - /P to force prepending to %PATH%, or empty
+:: %~2 - "prepend" for prepending or nothing
 
 :shellenv.select.path
+if "%~1" == "" goto :EOF
 
-:: Only one of these paths will be appended to %PATH%
 for %%p in (
 	"%~1\bin"
 	"%~1\usr\bin"
 	"%~1\cmd"
 	"%~1"
 ) do (
-	call :shellenv.set.path "%%~fp" "%~2" && goto :EOF
+	call :shellenv.check.path "%%~fp" && (
+		set "auto_path=%%~fp"
+		call :shellenv.concat.path "%~2"
+		goto :EOF
+	)
 )
+
 goto :EOF
 
 :: ========================================================================
-
-:: Checks the provided directory if it is new and adds to %PATH%.
-::
-:: By default, all the paths are appended to %PATH%. In the case when 
-:: paths should to be prepended, use "/P" option.
-::
-:: %~1 - the directory's path
-:: %~2 - /P to force prepending to %PATH%, or empty
-
-:shellenv.set.path
-
-:: Check if the path is not specified in %PATH% and contains executables
-call :shellenv.check.path "%~1" || goto :EOF
-
-:: Append or prepend new path to %PATH%
-if /i     "%~2" == "/P" set "PATH=%~1;%PATH%"
-if /i not "%~2" == "/P" set "PATH=%PATH%;%~1"
-goto :EOF
-
-:: ========================================================================
-
-:: Checks the provided directory if it is new in %PATH%.
-::
-:: Returns ERRORLEVEL == 1 if path is found in %PATH% or no executables in 
-:: the specified path, otherwise 0.
-::
-:: %~1 - the directory's path
 
 :shellenv.check.path
+:: Skip if path not exists
+if not exist "%~1" exit /b 1
 
 :: Skip if the path is specified in %PATH%
 for %%p in ( "%PATH:;=" "%" ) do if /i "%~1" == "%%~p" exit /b 1
 
 :: Skip if no executables in the path
 dir /b /a-d "%~1\*.exe" "%~1\*.bat" "%~1\*.cmd" >nul 2>nul
+goto :EOF
 
+:: ========================================================================
+
+:shellenv.concat.path
+if not defined auto_path goto :EOF
+
+if /i "%~1" == "prepend" (
+	set "PATH=%auto_path%;%PATH%"
+) else (
+	set "PATH=%PATH%;%auto_path%"
+)
 goto :EOF
 
 :: ========================================================================

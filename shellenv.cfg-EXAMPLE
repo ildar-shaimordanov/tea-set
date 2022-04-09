@@ -1,0 +1,39 @@
+; This is a TAB separated value file. It configures a set of directories
+; supposed to be put in PATH. It allows few simple rules describing
+; which directories nad how should be put in PATH.
+;
+; ROOT rootdir
+; It defines a root directory for looking for other directories laying
+; under it.
+;
+; DIR dir [prepend]
+; It defines a directory as rootdir\dir and may contain any subdirectories
+; of the list: "bin", "usr\bin", or "cmd". The first found subdirectory
+; or the directory itself will be specified in PATH.
+;
+; DIRS dir subdirs [prepend]
+; It defines a directory rootdir\dir as above. The second parameter is a
+; list of subdirectories delimited with ";". All declared subdirectories
+; can be specified in PATH.
+;
+; HOME homedir [prepend]
+; It defines an application's home directory. It acts as couple of two
+; rules (assuming that homedir=root\dir):
+; ROOT root
+; DIRS dir "bin;sbin;usr\bin" [prepend]
+;
+; The optional parameter "prepend" affects on how new directories will be
+; concatenated with PATH: prepended as NEW;PATH or appended as PATH;NEW.
+;
+; =========================================================================
+
+;; The following rules demonstrate the usage of these rules.
+
+;HOME	"%ProgramFiles%\Oracle\VirtualBox"
+;ROOT	%TEA_HOME%\opt
+;DIR	7za
+;DIR	busybox
+
+; =========================================================================
+
+; EOF
