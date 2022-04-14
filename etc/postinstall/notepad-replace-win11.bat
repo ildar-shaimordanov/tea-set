@@ -47,6 +47,6 @@ goto :EOF
 
 
 :np_show
-reg query "%np_registry%"
+reg query "%np_registry%" /s
 goto :EOF
 
