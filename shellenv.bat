@@ -7,12 +7,18 @@
 for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
 
 :: Java
-if exist "%~dp0javaenv.bat" call "%~dp0javaenv.bat"
+call :ifexist "%~dp0javaenv.bat"
 
 call :shellenv.config
 
 call :shellenv.conemu
 
+goto :EOF
+
+:: ========================================================================
+
+:ifexist
+if exist "%~1" call %*
 goto :EOF
 
 :: ========================================================================
@@ -122,18 +128,22 @@ goto :EOF
 :: ========================================================================
 
 :shellenv.conemu
-
-:: reg query "HKCU\Console" /v VirtualTerminalLevel 2>nul | find "0x1" && echo:[99999;1H
-if defined ConEmuANSI if /i "%ConEmuANSI%" == "ON" echo:[99999;1H
+:: If possible, move the cursor to the bottom of the screen
+if /i "%ConEmuANSI%" == "ON" (
+	echo:[99999;1H
+) else (
+	reg query "HKCU\Console" /v VirtualTerminalLevel 2>nul | findstr "0x1" && echo:[99999;1H
+)
 
 :: Make ConEmu's environment variables available for child processes
-:: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\IsConEmu.cmd" (
-:: 	call "%ConEmuBaseDir%\IsConEmu.cmd" >nul && "%ConEmuBaseDir%\ConEmuC.exe" /export
+:: if defined ConEmuBaseDir (
+:: 	call :ifexist "%ConEmuBaseDir%\IsConEmu.cmd" >nul
+	if %ERRORLEVEL% == 0 call :ifexist "%ConEmuBaseDir%\ConEmuC.exe" /export
 :: )
 
 :: Colorize the command line prompt
-:: if defined ConEmuBaseDir if exist "%ConEmuBaseDir%\ColorPrompt.cmd" (
-:: 	call "%ConEmuBaseDir%\ColorPrompt.cmd"
+:: if defined ConEmuBaseDir (
+:: 	call :ifexist "%ConEmuBaseDir%\ColorPrompt.cmd"
 :: )
 goto :EOF
 
