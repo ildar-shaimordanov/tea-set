@@ -5,15 +5,11 @@
 
 :: Tea-Set
 for /f "tokens=*" %%p in ( "%~dp0." ) do set "TEA_HOME=%%~fp"
-set "TEA_HOME=C:\PROGS"
-call :shellenv.set.dir "%TEA_HOME%"
 
 :: Java
 if exist "%~dp0javaenv.bat" call "%~dp0javaenv.bat"
 
-call :shellenv.from.file
-
-call :shellenv.alias
+call :shellenv.config
 
 call :shellenv.conemu
 
@@ -21,7 +17,7 @@ goto :EOF
 
 :: ========================================================================
 
-:shellenv.from.file
+:shellenv.config
 if not exist "%~dpn0.cfg" goto :EOF
 
 setlocal enabledelayedexpansion
@@ -58,12 +54,10 @@ if "%~2" == "" goto :EOF
 
 setlocal enabledelayedexpansion
 
-set "auto_unchecked=%~2"
-set "auto_unchecked=%~1\!auto_unchecked:;=;%~1\!"
-
+set "auto_subdirs=%~2"
 set "auto_path="
-for %%p in ( "%auto_unchecked:;=" "%" ) do (
-	call :shellenv.check.dir "%%~p" && set "auto_path=!auto_path!;%%~p"
+for %%s in ( "%auto_subdirs:;=" "%" ) do for %%p in ( "%~1\%%~s" ) do (
+	call :shellenv.check.dir "%%~fp" && set "auto_path=!auto_path!;%%~fp"
 )
 
 if defined auto_path set "auto_path=!auto_path:~1!"
@@ -79,19 +73,23 @@ goto :EOF
 :shellenv.set.dir
 if "%~1" == "" goto :EOF
 
+setlocal
+
+set "auto_path="
 for %%p in (
 	"%~1\bin"
 	"%~1\usr\bin"
 	"%~1\cmd"
 	"%~1"
-) do (
-	call :shellenv.check.dir "%%~fp" && (
-		set "auto_path=%%~fp"
-		call :shellenv.concat "%~2"
-		goto :EOF
-	)
+) do if not defined auto_path (
+	call :shellenv.check.dir "%%~fp" && set "auto_path=%%~fp"
 )
 
+if not defined auto_path goto :EOF
+
+call :shellenv.concat "%~2"
+
+endlocal & set "PATH=%PATH%"
 goto :EOF
 
 :: ========================================================================
@@ -119,15 +117,6 @@ if /i "%~1" == "prepend" (
 ) else (
 	set "PATH=%PATH%;%auto_path%"
 )
-goto :EOF
-
-:: ========================================================================
-
-:shellenv.alias
-doskey alias=if "$1" == "" ( doskey /macros ) else ( doskey $* )
-doskey unalias=doskey $1=
-doskey shellenv="%~f0"
-doskey shellinfo="%~dp0shellinfo.bat" $*
 goto :EOF
 
 :: ========================================================================

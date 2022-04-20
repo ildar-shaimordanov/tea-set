@@ -27,12 +27,42 @@
 ;
 ; =========================================================================
 
-;; The following rules demonstrate the usage of these rules.
+; TEA_HOME variable is already set by shellenv.bat.
+; The following rules add TEA_HOME and TEA_HOME\bin to PATH
 
-;HOME	"%ProgramFiles%\Oracle\VirtualBox"
-;ROOT	%TEA_HOME%\opt
-;DIR	7za
-;DIR	busybox
+ROOT	%TEA_HOME%
+DIRS	.		"bin;."
+
+; =========================================================================
+
+; Let's try to add Java
+
+HOME	%JAVA_HOME%
+
+; =========================================================================
+
+; Let's try to add Virtual Box for its headless usage
+
+HOME	"%ProgramFiles%\Oracle\VirtualBox"
+
+; =========================================================================
+
+; Let's begin with these ones
+
+ROOT	%TEA_HOME%\opt
+
+DIR	7za
+DIR	busybox
+
+; Add here everything you want from TEA_HOME\opt
+
+; =========================================================================
+
+; Add here everything you want from TEA_HOME\libexec
+
+; =========================================================================
+
+; Add here everything you want from another places
 
 ; =========================================================================
 
