@@ -15,9 +15,6 @@ if not exist "%~dp0libexec\%CLINK_NAME%\clink.bat" goto :EOF
 :: Inject clink
 call "%~dp0libexec\%CLINK_NAME%\clink.bat" inject --quiet --profile "%~dp0etc\clink"
 
-:: Integrate Git into prompt
-prompt $p$s{git}$_$g$s
-
 :: ========================================================================
 
 :: EOF

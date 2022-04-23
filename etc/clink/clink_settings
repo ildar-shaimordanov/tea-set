@@ -1,0 +1,117 @@
+# name: Strips CR and LF chars on paste
+# type: enum
+# options: delete,space,ampersand,crlf
+clink.paste_crlf = space
+
+# name: Auto-answer terminate prompt
+# type: enum
+# options: off,answer_yes,answer_no
+cmd.auto_answer = off
+
+# name: Pressing Ctrl-D exits session
+# type: boolean
+cmd.ctrld_exits = True
+
+# name: Argument color
+# type: color
+color.arg = bold
+
+# name: Argument info color
+# type: color
+color.arginfo = yellow
+
+# name: Shell command completions
+# type: color
+color.cmd = bold
+
+# name: Color for comment row
+# type: color
+color.comment_row = bright white on cyan
+
+# name: Description completion color
+# type: color
+color.description = bright cyan
+
+# name: Doskey completions
+# type: color
+color.doskey = bold cyan
+
+# name: Filtered completion color
+# type: color
+color.filtered = bold
+
+# name: Flag color
+# type: color
+color.flag = default
+
+# name: For user-interaction prompts
+# type: color
+color.interact = bold
+
+# name: Message area color
+# type: color
+color.message = default
+
+# name: Prompt color
+# type: color
+color.prompt = bright red
+
+# name: Color for suggestion text
+# type: color
+color.suggestion = bright black
+
+# name: Unexpected argument color
+# type: color
+color.unexpected = default
+
+# name: Controls how duplicate entries are handled
+# type: enum
+# options: add,ignore,erase_prev
+history.dupe_mode = erase_prev
+
+# name: Sets how command history expansion is applied
+# type: enum
+# options: off,on,not_squoted,not_dquoted,not_quoted
+history.expand_mode = not_quoted
+
+# name: Skip adding lines prefixed with whitespace
+# type: boolean
+history.ignore_space = False
+
+# name: The number of history lines to save
+# type: integer
+history.max_lines = 10000
+
+# name: Save history between sessions
+# type: boolean
+history.save = True
+
+# name: Share history between instances
+# type: boolean
+history.shared = False
+
+# name: Controls VT emulation
+# type: enum
+# options: native,emulate,auto
+terminal.emulation = auto
+
+# name: Esc sends a literal escape character
+# type: boolean
+terminal.raw_esc = False
+
+# name: Support Windows' Ctrl-Alt substitute for AltGr
+# type: boolean
+terminal.use_altgr_substitute = True
+
+
+
+exec.cwd = 1
+
+exec.dirs = 1
+
+exec.enable = 1
+
+exec.path = 1
+
+exec.space_prefix = 1
+
