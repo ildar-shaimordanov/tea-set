@@ -2,8 +2,8 @@
 <key name="Software">
 	<key name="ConEmu" modified="2013-09-08 05:52:37">
 		<key name=".Vanilla" modified="2022-04-09 10:59:51" build="210905">
-			<key name="Tasks" modified="2022-04-05 02:35:58" build="210905">
-				<value name="Count" type="long" data="9"/>
+			<key name="Tasks" modified="2022-04-27 14:11:25" build="220418">
+				<value name="Count" type="long" data="7"/>
 				<key name="Task1" modified="2019-10-16 21:46:21" build="160313">
 					<value name="Name" type="string" data="{cmd}"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -54,49 +54,26 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task6" modified="2019-10-16 21:46:21" build="160313">
-					<value name="Name" type="string" data="{syncup}"/>
+				<key name="Task6" modified="2022-04-27 14:11:25" build="220418">
+					<value name="Name" type="string" data="{Cygwin}"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="3"/>
-					<value name="Cmd1" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run ium -cur_console:bn'/>
-					<value name="Cmd2" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run progs -cur_console:bn'/>
-					<value name="Cmd3" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run media -cur_console:bn'/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" cygwin -new_console:bn'/>
 					<value name="Cmd4" type="string" data="C:\PROGS\nnsync.bat ce-www copy pause"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task7" modified="2019-10-16 21:46:21" build="160313">
-					<value name="Name" type="string" data="{wscmd}"/>
+				<key name="Task7" modified="2022-04-27 14:11:25" build="220418">
+					<value name="Name" type="string" data="{Git}"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\bin\wscmd.bat" /debug'/>
+					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" git -new_console:bn'/>
 					<value name="Cmd2" type="string" data="cmd -cur_console:s1TVn"/>
 					<value name="Cmd3" type="string" data="cmd -cur_console:s1TVn"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task8" modified="2019-10-16 21:46:21" build="160313">
-					<value name="Name" type="string" data="{Cygwin}"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" cygwin -new_console:bn'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="Cmd2" type="string" data="cmd -cur_console:s1TVn"/>
-					<value name="Cmd3" type="string" data="cmd -cur_console:s1THn"/>
-					<value name="Cmd4" type="string" data="cmd -cur_console:s2THn"/>
-					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task9" modified="2019-10-16 21:46:21" build="160313">
-					<value name="Name" type="string" data="{Git}"/>
-					<value name="Flags" type="dword" data="00000000"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" git -new_console:bn'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
 			<value name="StartType" type="hex" data="02"/>

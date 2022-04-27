@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2020-12-11 20:19:04" build="201124">
+		<key name=".Vanilla" modified="2022-04-27 13:40:54" build="220418">
 			<value name="SingleInstance" type="hex" data="00"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
@@ -114,7 +114,7 @@
 			<value name="FontName" type="string" data="Lucida Console"/>
 			<value name="FontName2" type="string" data="Lucida Console"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
-			<value name="FontSize" type="ulong" data="14"/>
+			<value name="FontSize" type="ulong" data="12"/>
 			<value name="FontSizeX" type="ulong" data="0"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="01"/>
@@ -139,8 +139,8 @@
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
 			<value name="UseCurrentSizePos" type="hex" data="01"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd Width" type="dword" data="00000050"/>
-			<value name="ConWnd Height" type="dword" data="0000001b"/>
+			<value name="ConWnd Width" type="dword" data="00000078"/>
+			<value name="ConWnd Height" type="dword" data="0000001f"/>
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="ConWnd X" type="long" data="28"/>
 			<value name="ConWnd Y" type="long" data="290"/>
@@ -535,8 +535,8 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-			<key name="Tasks" modified="2016-03-06 13:11:27" build="160301">
-				<value name="Count" type="long" data="11"/>
+			<key name="Tasks" modified="2022-04-27 14:09:30" build="220418">
+				<value name="Count" type="long" data="7"/>
 				<key name="Task1" modified="2016-03-06 13:11:27" build="160301">
 					<value name="Name" type="string" data="{cmd}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -582,54 +582,24 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task6" modified="2016-03-06 13:11:27" build="160301">
-					<value name="Name" type="string" data="{syncup}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run ium -cur_console:bn'/>
-					<value name="Cmd2" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run progs -cur_console:bn'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="3"/>
-					<value name="Flags" type="dword" data="00000000"/>
-					<value name="Cmd3" type="string" data='%COMSPEC% /k "%ConEmuDir%\..\..\bin\syncup.bat" run media -cur_console:bn'/>
-				</key>
-				<key name="Task7" modified="2016-03-06 13:11:27" build="160301">
-					<value name="Name" type="string" data="{wscmd}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\bin\wscmd.bat" /debug'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ver &amp; echo This is 32 bit cmd.exe -new_console:s50V'/>
-					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task8" modified="2016-03-06 13:11:27" build="160301">
+				<key name="Task6" modified="2022-04-27 14:09:30" build="220418">
 					<value name="Name" type="string" data="{Cygwin}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" cygwin -new_console:bn'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ver &amp; echo This is 32 bit cmd.exe -new_console:s50V'/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task9" modified="2016-03-06 13:11:27" build="160301">
+				<key name="Task7" modified="2022-04-27 14:09:30" build="220418">
 					<value name="Name" type="string" data="{Git}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data='"%ConEmuDir%\..\..\shell.bat" git -new_console:bn'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
+					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ver &amp; echo This is 32 bit cmd.exe -new_console:s50V'/>
 					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task11" modified="2016-03-06 13:11:27" build="160301">
-					<value name="Name" type="string" data="{PowerShell}"/>
-					<value name="Flags" type="dword" data="00000000"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="powershell.exe"/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
 			<key name="Apps" modified="2016-03-06 13:11:27" build="160301">
@@ -652,7 +622,7 @@
 			<value name="StatusBar.Hide.WVDC" type="hex" data="01"/>
 			<value name="TabFlashChanged" type="long" data="8"/>
 			<value name="TabModifiedSuffix" type="string" data="[*]"/>
-			<key name="HotKeys" modified="2020-12-11 20:19:04" build="201124">
+			<key name="HotKeys" modified="2022-04-27 13:36:10" build="220418">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -850,12 +820,13 @@
 				<value name="Key.EditMenu2" type="dword" data="00000000"/>
 				<value name="Key.BufPrUp" type="dword" data="00121121"/>
 				<value name="Key.BufPrDn" type="dword" data="00121122"/>
+				<value name="SetFocusParent" type="dword" data="0000a01b"/>
 			</key>
 			<value name="StartCreateDelay" type="ulong" data="100"/>
 			<value name="DefaultTerminalDebugLog" type="hex" data="00"/>
 			<value name="ProcessCtrlZ" type="hex" data="00"/>
 			<value name="SuppressBells" type="hex" data="01"/>
-			<value name="LastMonitor" type="string" data="0,0,1514,870"/>
+			<value name="LastMonitor" type="string" data="0,0,1920,1020"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
 			<value name="Anti-aliasing2" type="hex" data="01"/>
 			<value name="Update.InetTool" type="hex" data="00"/>
