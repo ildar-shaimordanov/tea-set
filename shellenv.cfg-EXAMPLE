@@ -6,15 +6,15 @@
 ; It defines a root directory for looking for other directories laying
 ; under it.
 ;
+; DIRS dir subdirs [prepend]
+; It defines a directory rootdir\dir. The second parameter is a list of
+; subdirectories delimited with ";". All declared subdirectories will
+; be specified in PATH.
+;
 ; DIR dir [prepend]
-; It defines a directory as rootdir\dir and may contain any subdirectories
+; It defines a directory rootdir\dir that may contain any subdirectories
 ; of the list: "bin", "usr\bin", or "cmd". The first found subdirectory
 ; or the directory itself will be specified in PATH.
-;
-; DIRS dir subdirs [prepend]
-; It defines a directory rootdir\dir as above. The second parameter is a
-; list of subdirectories delimited with ";". All declared subdirectories
-; can be specified in PATH.
 ;
 ; HOME homedir [prepend]
 ; It defines an application's home directory. It acts as couple of two
