@@ -1,0 +1,56 @@
+Default settings for the portable version of PuTTY by Jacub Kotrla:
+https://jakub.kotrla.net/putty/
+
+Copy the content of this directory into the place on your computer where
+you have deployed PuTTY.
+
+The "#default-settings.session" file contains all PuTTY settings with some
+changes I found in my practice useful and convenient (see them below). You
+can modify this file as you want. The better way is to run PuTTY, load the
+session, change parameters and save again. Further these settings are
+spreaded on other sessions by executing the "create-putty-sessions.bat"
+script.
+
+The script reads the "putty.conf" configuration file to retreive the
+directory configured to store PuTTY sessions and the extension for
+sessions filenames. The list of hosts or sessions is read from the
+"sessions-list.txt" file.
+
+Both files "create-putty-sessions.bat" and "sessions-list.txt" MUST be
+placed in the same directory, next each other.
+
+# FILES
+
+The content of this directory:
+
+putty.conf
+	The main PuTTY configuration file
+README
+	This file
+config/create-putty-sessions.bat
+	The script to create PuTTY sessions files
+config/sessions-list.txt
+	The sessions list file
+config/sessions/#default-settings.session
+	The default settings for other PuTTY sessions
+
+# SETTINGS
+
+The "#default-settings.session" file provides the following changed
+parameters:
+
+Window
+	Lines of scrollback
+	2000000
+
+Window/Behaviour
+	System menu appears on ALT Space
+	on
+
+Connection
+	Seconds between keepalives (0 to turn off)
+	10
+
+Connection/SSH/X11
+	Enable X11 forwarding
+	on

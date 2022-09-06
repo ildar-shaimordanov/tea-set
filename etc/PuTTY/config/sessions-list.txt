@@ -1,0 +1,14 @@
+# Usually host lists are documented and distributed as the lists of
+# entries where the first item is the host name and the second one is its
+# IP address. Sometimes they can be the simple lists of host names only.
+#
+# This file contains the mappings of session names (how they are supposed
+# to be stored in PuTTY) and host names (PuTTY connects to). If the host
+# name is not presented the session name is used.
+#
+# Examples:
+#
+#	localhost		127.0.0.1
+#	example.com
+#	x.acme.com		1.2.3.4
+#	y.acme.com		1.2.3.5
