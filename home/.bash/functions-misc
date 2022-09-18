@@ -17,7 +17,7 @@ symlink() {
 # Manage with windows clipboard
 # Check for clp from https://github.com/ildar-shaimordanov/my-scripts
 
-command -v clp || clp() {
+command -v clp >/dev/null || clp() {
 	if [ "$1" = "-h" ] || [ "$1" = "--help" ]
 	then
 		cat <<HELP
