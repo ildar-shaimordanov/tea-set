@@ -143,7 +143,7 @@ end
 
 Macro {
 	area = "Editor";
-	key = "/Home|Num7/";
+	key = "/(Home|Num7)/";
 	flags = "";
 	description = "Editor: Smart Move: Home";
 	action = function()
@@ -151,18 +151,15 @@ Macro {
 	end;
 }
 
---[[
-
 Macro {
 	area = "Editor";
-	key = "/End|Num1/";
+	key = "/(End|Num1)/";
 	flags = "";
 	description = "Editor: Smart Move: End";
 	action = function()
 		SmartEnd(false)
 	end;
 }
-]]
 
 Macro {
 	area = "Editor";
@@ -174,8 +171,6 @@ Macro {
 	end;
 }
 
---[[
-
 Macro {
 	area = "Editor";
 	key = "/Shift(End|Num1)/";
@@ -185,8 +180,6 @@ Macro {
 		SmartEnd(true)
 	end;
 }
-
-]]
 
 --[[
 
