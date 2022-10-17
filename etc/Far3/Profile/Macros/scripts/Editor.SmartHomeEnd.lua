@@ -143,7 +143,7 @@ end
 
 Macro {
 	area = "Editor";
-	key = "/(Home|Num7)/";
+	key = "Home Num7";
 	flags = "";
 	description = "Editor: Smart Move: Home";
 	action = function()
@@ -153,7 +153,7 @@ Macro {
 
 Macro {
 	area = "Editor";
-	key = "/(End|Num1)/";
+	key = "End Num1";
 	flags = "";
 	description = "Editor: Smart Move: End";
 	action = function()
@@ -163,7 +163,7 @@ Macro {
 
 Macro {
 	area = "Editor";
-	key = "/Shift(Home|Num7)/";
+	key = "ShiftHome ShiftNum7";
 	flags = "";
 	description = "Editor: Smart Select: ShiftHome";
 	action = function()
@@ -173,7 +173,7 @@ Macro {
 
 Macro {
 	area = "Editor";
-	key = "/Shift(End|Num1)/";
+	key = "ShiftEnd ShiftNum1";
 	flags = "";
 	description = "Editor: Smart Select: ShiftEnd";
 	action = function()
@@ -185,7 +185,7 @@ Macro {
 
 Macro {
 	area = "Editor";
-	key = "/AltShift(Home|Num7)/";
+	key = "AltShiftHome AltShiftNum7";
 	flags = "";
 	description = "Editor: Smart AltShiftHome";
 	action = function()
@@ -199,7 +199,7 @@ Macro {
 
 Macro {
 	area = "Editor";
-	key = "/AltShift(End|Num1)/";
+	key = "AltShiftEnd AltShiftNum1";
 	flags = "";
 	description = "Editor: Smart AltShiftEnd";
 	action = function()

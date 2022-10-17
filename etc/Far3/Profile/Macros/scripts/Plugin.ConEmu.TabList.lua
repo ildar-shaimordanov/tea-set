@@ -13,9 +13,11 @@ Macro
   flags="NoSendKeysToPlugins";
   description="ConEmu: Show all windows list from all consoles";
 action = function()
-  if Plugin.Menu(ConEmu) then
-    Keys("T")
-  end
+  local k = Plugin.Menu(ConEmu) and "T" or "F12"
+  Keys(k)
+--  if Plugin.Menu(ConEmu) then
+--    Keys("T")
+--  end
 end
 }
 

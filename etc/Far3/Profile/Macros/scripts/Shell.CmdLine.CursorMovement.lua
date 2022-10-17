@@ -53,7 +53,7 @@ end
 
 Macro {
 	area = "Shell Info QView Tree";
-	key = "Home";
+	key = "Home Num7";
 	description = "CmdLine.CursorMovement.Home";
 	flags = "NotEmptyCommandLine";
 	action = function() CursorMoveHome() end;
@@ -61,7 +61,7 @@ Macro {
 
 Macro {
 	area = "Shell Info QView Tree";
-	key = "ShiftHome";
+	key = "ShiftHome ShiftNum7";
 	description = "CmdLine.CursorMovement.ShiftHome";
 	flags = "NotEmptyCommandLine";
 	action = function() CursorMoveHome(1) end;
@@ -69,7 +69,7 @@ Macro {
 
 Macro {
 	area = "Shell Info QView Tree";
-	key = "End";
+	key = "End Num1";
 	description = "CmdLine.CursorMovement.End";
 	flags = "NotEmptyCommandLine";
 	action = function() CursorMoveEnd() end;
@@ -77,7 +77,7 @@ Macro {
 
 Macro {
 	area = "Shell Info QView Tree";
-	key = "ShiftEnd";
+	key = "ShiftEnd ShiftNum1";
 	description = "CmdLine.CursorMovement.ShiftEnd";
 	flags = "NotEmptyCommandLine";
 	action = function() CursorMoveEnd(1) end;

@@ -15,7 +15,7 @@
 
 Macro {
 	area = "Viewer QView";
-	key = "PgDn";
+	key = "PgDn Num3";
 	description = "Viewer: Smart scrolling using PgDn";
 	action = function()
 		Keys("PgDn");
