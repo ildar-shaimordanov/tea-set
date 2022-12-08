@@ -38,7 +38,7 @@
 --local ExtComp = "ExamDiff"
 --local ExtCompOpts = "/t"
 
-local ExtComp = "WinMergeU"
+local ExtComp = "winmerge"
 local ExtCompOpts = ""
 
 ---------------------------------------------------------------------------
