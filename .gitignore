@@ -15,6 +15,7 @@ etc/clink/.history
 etc/Far3/Profile/Plugins/*
 etc/Far3/Profile/PluginsData/*
 etc/Far3/Profile/*.db*
+etc/Far3/ProfileLocal
 
 GUI/
 
