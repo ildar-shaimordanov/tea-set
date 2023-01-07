@@ -560,9 +560,9 @@
         <filetype mask="*.class" description="Java Class">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;jd-cfr &quot;!.!&quot;"/>
-            <command type="3" enabled="0" command=""/>
-            <command type="4" enabled="1" command="edit:&lt;jd-cfr &quot;!.!&quot;"/>
+            <command type="2" enabled="1" command="view:&lt;jd-cfr &quot;!\!.!&quot;"/>
+            <command type="3" enabled="1" command="view:&lt;jd-cli -g OFF &quot;!\!.!&quot;"/>
+            <command type="4" enabled="1" command="edit:&lt;jd-cfr &quot;!\!.!&quot;"/>
             <command type="5" enabled="0" command=""/>
         </filetype>
         <filetype mask="*.rtf" description="RTF">
@@ -581,18 +581,10 @@
             <command type="4" enabled="0" command=""/>
             <command type="5" enabled="0" command=""/>
         </filetype>
-        <filetype mask="*.ps" description="PostScript">
-            <command type="0" enabled="0" command=""/>
-            <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\libexec\cygwin\bin\gs -q -dNODISPLAY -P- -dSAFER -dDELAYBIND -dWRITESYSTEMDICT -dSIMPLE -c save -f ps2ascii.ps &quot;!.!&quot; -c quit"/>
-            <command type="3" enabled="0" command=""/>
-            <command type="4" enabled="0" command=""/>
-            <command type="5" enabled="0" command=""/>
-        </filetype>
         <filetype mask="*.man,*.[1-8],*.[1-8].in" description="UNIX Man">
             <command type="0" enabled="0" command=""/>
             <command type="1" enabled="0" command=""/>
-            <command type="2" enabled="1" command="view:&lt;%TEA_HOME%\libexec\cygwin\bin\groff.exe -P -cbou -Tlatin1 -mandoc &quot;!\!.!&quot; 2&gt;nul"/>
+            <command type="2" enabled="1" command="view:&lt;man2txt &quot;!\!.!&quot;"/>
             <command type="3" enabled="0" command=""/>
             <command type="4" enabled="0" command=""/>
             <command type="5" enabled="0" command=""/>
@@ -1546,9 +1538,9 @@
                     <value name="UseSubstEngines_Env" type="qword" value="0000000000000000"/>
                     <value name="UseSubstEngines_Reg" type="qword" value="0000000000000000"/>
                     <key name="folders">
-                        <key name="d">
+                        <key name="do">
                             <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%TEA_HOME%\var\git"/>
+                            <value name="Directory" type="text" value="%USERPROFILE%\Documents"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
@@ -1595,6 +1587,13 @@
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
                         </key>
+                        <key name="gp">
+                            <value name="Description" type="text" value=""/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\var\git"/>
+                            <value name="Flags" type="qword" value="0000000000000000"/>
+                            <value name="HostFile" type="text" value=""/>
+                            <value name="Param" type="text" value=""/>
+                        </key>
                         <key name="he">
                             <value name="Description" type="text" value=""/>
                             <value name="Directory" type="text" value="%TEA_HOME%\etc"/>
@@ -1616,16 +1615,16 @@
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
                         </key>
-                        <key name="ho">
+                        <key name="hl">
                             <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%TEA_HOME%\opt"/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\libexec"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
                         </key>
-                        <key name="hv">
+                        <key name="ho">
                             <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%TEA_HOME%\libexec"/>
+                            <value name="Directory" type="text" value="%TEA_HOME%\opt"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
@@ -1675,41 +1674,6 @@
                         <key name="mv">
                             <value name="Description" type="text" value=""/>
                             <value name="Directory" type="text" value="C:\Media\Video"/>
-                            <value name="Flags" type="qword" value="0000000000000000"/>
-                            <value name="HostFile" type="text" value=""/>
-                            <value name="Param" type="text" value=""/>
-                        </key>
-                        <key name="uh">
-                            <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%IUM_HOME%\home"/>
-                            <value name="Flags" type="qword" value="0000000000000000"/>
-                            <value name="HostFile" type="text" value=""/>
-                            <value name="Param" type="text" value=""/>
-                        </key>
-                        <key name="uo">
-                            <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%IUM_HOME%\opt"/>
-                            <value name="Flags" type="qword" value="0000000000000000"/>
-                            <value name="HostFile" type="text" value=""/>
-                            <value name="Param" type="text" value=""/>
-                        </key>
-                        <key name="uu">
-                            <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%IUM_HOME%\usr"/>
-                            <value name="Flags" type="qword" value="0000000000000000"/>
-                            <value name="HostFile" type="text" value=""/>
-                            <value name="Param" type="text" value=""/>
-                        </key>
-                        <key name="uv">
-                            <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%IUM_HOME%\var"/>
-                            <value name="Flags" type="qword" value="0000000000000000"/>
-                            <value name="HostFile" type="text" value=""/>
-                            <value name="Param" type="text" value=""/>
-                        </key>
-                        <key name="uvg">
-                            <value name="Description" type="text" value=""/>
-                            <value name="Directory" type="text" value="%IUM_HOME%\var\git"/>
                             <value name="Flags" type="qword" value="0000000000000000"/>
                             <value name="HostFile" type="text" value=""/>
                             <value name="Param" type="text" value=""/>
@@ -1924,7 +1888,7 @@
                     <value name="Catalog" type="text" value=""/>
                     <value name="ChangeBgEditor" type="qword" value="0000000000000000"/>
                     <value name="CrossDraw" type="qword" value="0000000000000001"/>
-                    <value name="CrossStyle" type="qword" value="0000000000000000"/>
+                    <value name="CrossStyle" type="qword" value="0000000000000003"/>
                     <value name="Enabled" type="qword" value="0000000000000001"/>
                     <value name="HrdName" type="text" value="gentle"/>
                     <value name="HrdNameTm" type="text" value="gentle_rgb"/>
@@ -1947,12 +1911,6 @@
                         </key>
                         <key name="forth">
                             <value name="hotkey" type="text" value="F"/>
-                        </key>
-                        <key name="ium.basic">
-                            <value name="hotkey" type="text" value="I"/>
-                        </key>
-                        <key name="ium.config">
-                            <value name="hotkey" type="text" value="I"/>
                         </key>
                         <key name="jScript">
                             <value name="hotkey" type="text" value="J"/>
