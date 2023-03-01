@@ -1,0 +1,17 @@
+# /etc/fstab
+#
+#    This file is read once by the first process in a Cygwin process tree.
+#    To pick up changes, restart all Cygwin processes.  For a description
+#    see https://cygwin.com/cygwin-ug-net/using.html#mount-table
+
+# This is default mapping to paths like "/cygdrive/..."
+none /cygdrive cygdrive binary,noacl,posix=0,user 0 0
+
+# This is for mapping to paths like "/mnt/..."
+#none /mnt cygdrive binary,noacl,posix=0,user 0 0
+
+# This is for mapping to paths like "/..."
+#none / cygdrive binary,noacl,posix=0,user 0 0
+
+# This is for mapping to new userhome like "TEA_HOME/home"
+TEA_HOME/home /home/USERNAME ntfs binary,noacl,posix=0,user 0 0
