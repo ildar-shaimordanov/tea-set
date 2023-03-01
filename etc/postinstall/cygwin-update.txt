@@ -44,3 +44,18 @@ HOME="$( ../bin/cygpath -w / | ../bin/sed 's/libexec.*/home/' | ../bin/cygpath -
 
 5. Save the changes to the file
 
+---------------------------------------------------------------------------
+
+Yet another way (git can't recognize /home/USERNAME as part of a repo)
+
+http://cygwin.com/cygwin-ug-net/using.html#mount-table
+
+3. open CYGWIN-DIR/etc/fstab
+
+4. add the following lines
+
+# This is for mapping new userhome
+TEA_HOME-DIR/home /home/USERNAME ntfs binary,noacl,posix=0,user 0 0
+
+5. Close the current Cygwin session
+
