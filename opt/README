@@ -1,7 +1,17 @@
 Variety of tools and packages
 
-If you want to maintain different versions of one tool you can follow the procedure as below:
+These tools are not added automatically to "%PATH%". To enable the tool,
+declare the path to the tool in "shellenv.cfg".
+
+If you want to maintain different versions of one tool you can follow
+the procedure as below:
 
 1. store each version of the tool in a separate directory
-2.1. create a junction link using the command "mklink /j NAME NAME-VERSION"
-2.2. create a directory symbolic link using the command "mklink /d NAME NAME-VERSION"
+
+2.1. create a junction link using the command
+
+    mklink /j NAME NAME-VERSION
+
+2.2. create a directory symbolic link using the command
+
+    mklink /d NAME NAME-VERSION
