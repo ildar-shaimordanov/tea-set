@@ -22,7 +22,8 @@ if /i "%~1 %~2" == "app Unix" (
 
 if /i "%~1 %~2" == "shell Git" (
 	rem set "SHELL_NAME=PortableGit-2.11.1-32-bit"
-	set "SHELL_NAME=PortableGit-2.11.1-64-bit"
+	rem set "SHELL_NAME=PortableGit-2.11.1-64-bit"
+	set "SHELL_NAME=PortableGit-2.42.0.2-64-bit"
 )
 
 if /i "%~1 %~2" == "shell ConEmu" (
