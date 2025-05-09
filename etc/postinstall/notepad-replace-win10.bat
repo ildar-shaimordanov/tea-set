@@ -1,4 +1,5 @@
 :: http://www.flos-freeware.ch/doc/notepad2-Replacement.html
+:: https://github.com/rizonesoft/Notepad3/issues/3742
 
 @echo off
 
@@ -39,11 +40,11 @@ goto :EOF
 
 
 :np_uninstall
-reg delete "%np_registry%" /f
+reg delete "%np_registry%" /v "Debugger" /f
 goto :EOF
 
 
 :np_show
-reg query "%np_registry%"
+reg query "%np_registry%" /s
 goto :EOF
 

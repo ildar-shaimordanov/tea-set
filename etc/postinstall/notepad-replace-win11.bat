@@ -1,5 +1,5 @@
 :: http://www.flos-freeware.ch/doc/notepad2-Replacement.html
-:: https://githubhot.com/repo/rizonesoft/Notepad3/issues/3742
+:: https://github.com/rizonesoft/Notepad3/issues/3742
 
 @echo off
 
