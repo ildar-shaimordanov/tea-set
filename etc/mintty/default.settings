@@ -7,3 +7,4 @@ ClicksPlaceCursor=no
 RightClickAction=paste
 FontHeight=10
 BellType=0
+CtrlShiftShortcuts=yes
